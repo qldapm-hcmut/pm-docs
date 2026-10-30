@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8">
+<!-- Sơ đồ kiến trúc React → Go → PostgreSQL (báo cáo mục 1.7). Render: python render.py <thư-mục-ra> architecture.html -->
+<style>
+@page { size: 920px 596px; margin: 0 }
+html, body { margin: 0; width: 920px; height: 596px; background: #fff; font-family: "Segoe UI", Arial, sans-serif; color: #1a1a1a }
+.b { position: absolute; box-sizing: border-box; border: 1.8px solid #455a64; border-radius: 8px; padding: 8px 10px; background: #fff; font-size: 13px; line-height: 1.35 }
+.b h3 { margin: 0 0 4px; font-size: 14.5px }
+.b small { color: #555; font-size: 11.5px }
+.fe { border-color: #1565c0; background: #eef4fb }
+.be { border-color: #2e7d32; background: #eef7ef }
+.db { border-color: #6a1b9a; background: #f5eefa }
+.open { border-style: dashed; border-color: #8a8a8a; background: #fafafa; color: #444 }
+.m { display: inline-block; border: 1px solid #2e7d32; border-radius: 4px; padding: 1px 5px; margin: 2px 2px 0 0; background: #fff; font-size: 11.5px }
+.t { display: inline-block; border: 1px solid #6a1b9a; border-radius: 4px; padding: 1px 5px; margin: 2px 2px 0 0; background: #fff; font-size: 11.5px }
+.lab { position: absolute; font-size: 11.5px; color: #333; background: #fff; padding: 0 3px }
+svg { position: absolute; left: 0; top: 0 }
+path { fill: none; stroke: #455a64; stroke-width: 1.6 }
+path.d { stroke-dasharray: 6 4; stroke: #8a8a8a }
+.note { position: absolute; left: 16px; right: 16px; top: 556px; font-size: 11.5px; color: #444 }
+</style></head><body>
+<svg width="920" height="596"><defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" style="fill:#455a64;stroke:none"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" style="fill:#8a8a8a;stroke:none"/></marker>
+</defs>
+<path d="M150,136 L150,166" marker-end="url(#a)"/>
+<path d="M300,250 L372,250" marker-end="url(#a)"/>
+<path d="M372,266 L300,266" marker-end="url(#a)"/>
+<path d="M600,346 L600,392" marker-end="url(#a)"/>
+<path d="M150,392 L150,350" class="d" marker-end="url(#g)"/>
+<path d="M300,420 C340,420 340,330 380,346" class="d" marker-end="url(#g)"/>
+<path d="M766,128 L766,164" class="d" marker-end="url(#g)"/>
+</svg>
+
+<div class="b" style="left:16px;top:16px;width:300px;height:120px">
+  <h3>Người dùng (trình duyệt web)</h3>
+  Sinh viên · Organizer (Khoa, CLB/Đội/Nhóm, phòng ban) · Admin duyệt sự kiện<br>
+  <small>Q01, Q12, Q20 · web responsive, không native mobile (Q09, Q10)</small>
+</div>
+
+<div class="b fe" style="left:16px;top:166px;width:284px;height:180px">
+  <h3>Frontend: React (SPA, responsive)</h3>
+  Đăng nhập · tạo, sửa, duyệt, công bố sự kiện · đăng ký, hủy, waitlist · check-in: quét QR, nhập mã, xác nhận thủ công · báo cáo, xuất file<br>
+  <small>A28 layout và component dùng chung; A35 màn hình check-in và báo cáo · TV4</small>
+</div>
+
+<div class="b be" style="left:372px;top:166px;width:520px;height:180px">
+  <h3>Backend: Go (API)</h3>
+  <span class="m">Xác thực, phân quyền · A26</span><span class="m">Sự kiện, duyệt, công bố, sửa/hủy · A27</span>
+  <span class="m">Đăng ký, hủy (hạn 24 giờ) · A29</span><span class="m">Waitlist FIFO, tự chuyển · A62</span>
+  <span class="m">Điểm danh QR + dự phòng · A33</span><span class="m">Báo cáo, xuất CSV · A34</span>
+  <span class="m">Thông báo trong ứng dụng (dùng chung)</span><br>
+  <small>TV3, TV5 · quyền xem dữ liệu theo vai trò và đơn vị (Q20) · đăng nhập bằng tài khoản mẫu có email trường, không SSO thật (Q02, ASM-06)</small>
+</div>
+<div class="lab" style="left:306px;top:230px">HTTP API</div>
+<div class="lab" style="left:304px;top:272px"><small>hợp đồng A25</small></div>
+
+<div class="b db" style="left:372px;top:392px;width:520px;height:150px">
+  <h3>PostgreSQL</h3>
+  <span class="t">users</span><span class="t">roles</span><span class="t">units</span><span class="t">events</span><span class="t">registrations</span><span class="t">waitlist</span><span class="t">attendance</span><span class="t">notifications</span><br>
+  Migration SQL nằm trong mã nguồn backend · ràng buộc một đăng ký còn hiệu lực/sự kiện (Q15) · không tạo điểm danh trùng<br>
+  <small>PD-02 (A25); bảng units, notifications bổ sung 20/10, chờ TV3 xác nhận</small>
+</div>
+
+<div class="b open" style="left:16px;top:392px;width:284px;height:150px">
+  <h3>Mã nguồn, CI và triển khai (A24, A53)</h3>
+  GitLab của nhóm, mirror công khai để nộp<br>
+  CI: Jenkins (chọn 21/10)<br>
+  Hosting free-tier (ASM-05) <b>(nền tảng chưa chốt)</b><br>
+  <small>TV5 · nét đứt: hosting chưa quyết định</small>
+</div>
+
+<div class="b open" style="left:640px;top:16px;width:252px;height:112px">
+  <h3>Kênh thông báo</h3>
+  Trong ứng dụng là giả định tối thiểu; email là Should <b>(chờ thầy xác nhận ở A58)</b><br>
+  <small>Q04, Q14, Q19</small>
+</div>
+
+<div class="lab" style="left:22px;top:362px"><small>build, deploy</small></div>
+<div class="note">AI hỗ trợ vẽ 21/10 từ PD-01–PD-03, Client Log và checklist TV3; chờ TV3, TV5 duyệt. Chỉ ghi thành phần đã chốt (stack React, Go, PostgreSQL chốt 18/10); giao thức API chi tiết chốt ở A25, hosting chốt ở A24.</div>
+</body></html>
