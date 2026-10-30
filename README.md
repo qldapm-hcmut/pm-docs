@@ -35,7 +35,7 @@ Trang kế hoạch dự án: mở thẳng `docs/plan/index.html` bằng trình d
 - Pull request: nêu rõ mục đích và activity ID liên quan; ít nhất một người review trong 24 giờ.
 - Mọi thay đổi vào `main` đi qua pull request. Branch protection do chủ repo bật.
 - Baseline đã duyệt thì **không sửa**. Thay đổi đi qua Change Request (`docs/change/`) và tạo baseline mới.
-- Repo ở chế độ private vì hồ sơ có họ tên, MSSV và trao đổi với client. Trước khi mở công khai (bản gửi giảng viên), quét lại dữ liệu cá nhân và secret.
+- Repo ở chế độ public (TV1 chuyển ngày 30/10/2026, sau khi quét secret; TV1 xác nhận việc lộ họ tên và MSSV không phải vấn đề). Không đưa secret, `Link.txt`, file `.xlsx` vào repo; quét lại trước khi thêm file có link nội bộ hoặc dữ liệu cá nhân mới.
 
 ## Phân công
 
