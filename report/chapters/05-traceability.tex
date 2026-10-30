@@ -1,0 +1,39 @@
+\chapter{Ma trận truy vết}
+\label{chap:traceability}
+
+Mỗi dòng nối một chuỗi Objective $\rightarrow$ Requirement/Product $\rightarrow$ Activity $\rightarrow$ Resource $\rightarrow$ Risk $\rightarrow$ Test $\rightarrow$ Checkpoint bằng mã định danh. Mã objective theo Bảng~\ref{tab:objectives}, mã yêu cầu theo Bảng~\ref{tab:moscow}, mã sản phẩm S theo PBS (mục~\ref{sec:2-1}), activity theo mạng hoạt động (mục~\ref{sec:2-4}), rủi ro theo Bảng~\ref{tab:risk-high} và~\ref{tab:risk-activity}, checkpoint theo Bảng~\ref{tab:checkpoints}. Ma trận lấy từ tab Traceability của Sheet master (bản export 22/10); cột người duyệt là thành viên xác nhận dòng đó.
+
+\kiemtra{Bốn dòng (O4 và S42) còn chờ duyệt; cột ngày duyệt trong Sheet còn trống. Mã test (T-\ldots) là đề xuất, chốt ở A22. Cột Resource đã đối chiếu với owner ở tab Activity ngày 20/10.}
+
+\begin{landscape}
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{3.0cm}L{4.0cm}L{1.5cm}L{1.7cm}L{1.3cm}L{4.3cm}L{1.3cm}L{1.3cm}}
+\caption{Ma trận truy vết}\label{tab:traceability}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Objective} & \textbf{Requirement / Product} & \textbf{Activity} & \textbf{Resource} & \textbf{Risk} & \textbf{Test} & \textbf{Check\-point} & \textbf{Người duyệt} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Objective} & \textbf{Requirement / Product} & \textbf{Activity} & \textbf{Resource} & \textbf{Risk} & \textbf{Test} & \textbf{Check\-point} & \textbf{Người duyệt} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+O1 Duy trì chính xác đăng ký, số chỗ, waitlist & REQ-05, REQ-06 Capacity, đăng ký và hủy (S33) & A29 & TV3, TV4, TV5 & R17 & T-REG-01 đến 05: không trùng, không vượt chỗ, hủy đến 24 giờ trước giờ bắt đầu sự kiện & CP3 & TV3 \\
+O1 & REQ-07, REQ-08, REQ-09 Waitlist, tự chuyển FIFO, thông báo (S33) & A62 & TV3, TV4, TV5 & R17, R18 & T-WL-01 đến 04: FIFO, thông báo lỗi vẫn đăng ký, đăng ký lại & CP3 & TV3 \\
+O1 & REQ-03 Tạo và chỉnh sửa sự kiện (S32) & A27 & TV3, TV4, TV5 & R14 & T-EV-01 đến 05 & CP3 & TV3 \\
+O1 & REQ-21 Sửa hoặc hủy sự kiện đã công bố (S32), Should & A27, A29 & TV3, TV4, TV5 & R14 & T-EV-06 đến 07: thông báo khi đổi thời gian/địa điểm; hủy sự kiện thì hủy đăng ký, đóng waitlist và thông báo người liên quan & CP3 & TV3 \\
+O2 Tăng tốc điểm danh, có phương án dự phòng & REQ-10 Điểm danh bằng QR (S34) & A20, A33 & TV3, TV5, TV2 & R04 & T-CI-01 đến 03: quét, trùng, median $\le$ 5 giây & CP5 & TV5 \\
+O2 & REQ-11 Nhập mã hoặc xác nhận thủ công (S34) & A33 & TV5, TV3, TV2 & R04 & T-CI-04 đến 05: cập nhật giống QR & CP5 & TV5 \\
+O2 & REQ-10 Giao diện điểm danh mobile-first (S36) & A35 & TV4 & R04, R21 & T-UI-01 & CP5 & TV5 \\
+O3 Giảm thời gian lấy thông tin tham dự & REQ-12, REQ-13 Danh sách đăng ký, tham dự, thống kê (S35) & A34 & TV3, TV5 & R16 & T-RP-01 đến 02: số liệu khớp dữ liệu nguồn & CP5 & TV3 \\
+O3 & REQ-14 Xuất CSV (mở được bằng Excel) (S35) & A34 & TV3, TV5 & R16 & T-RP-03: 500 lượt đăng ký trong 30 giây & CP5 & TV3 \\
+O4 Chỉ vai trò có thẩm quyền mới publish và truy cập & REQ-01, REQ-02 Đăng nhập mô phỏng, phân quyền (S31) & A26 & TV3, TV5, TV4 & R20 & T-AUTH-01 đến 03 & CP3 & chờ duyệt \\
+O4 & REQ-04 Duyệt trước khi công bố; Organizer không tự duyệt (S31, S32) & A26, A27 & TV3, TV5, TV4 & R14 & T-AUTH-04: không publish khi chưa duyệt; Organizer không được tự duyệt sự kiện mình tạo & CP3 & chờ duyệt \\
+O4 & REQ-15 Bảo vệ dữ liệu cá nhân; quyền xem dữ liệu theo vai trò (Q20) & A26 & TV3, TV5, TV4 & R20 & T-AUTH-05 đến 06 & CP5 & chờ duyệt \\
+O1 đến O4 & S42 Tested Integrated System & A37, A39, A53 & TV3, TV4, TV5, TV2 & R15, R16 & T-INT-01 đến 03: luồng end-to-end & CP4, CP5 & chờ duyệt \\
+O1 đến O4 & S51 Deployed System & A24, A53, A41 & TV5, TV3, TV4, TV2, TV1 & R09, R11, R20 & T-DEP-01; UAT theo tiêu chí acceptance & CP5 & TV5 \\
+Quản lý: Baseline V1.0 nhất quán & M2 Project Baseline & A17 đến A23 & TV1, TV2, TV3, TV4, TV5 & R08, R15 & Review chéo theo checklist CP2 & CP2 & TV1 \\
+\end{longtable}
+\endgroup
+\end{landscape}
