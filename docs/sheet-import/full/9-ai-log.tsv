@@ -1,0 +1,15 @@
+﻿Ngày	Công cụ	Task / artifact	Dùng để làm gì	Nhóm đã kiểm tra và điều chỉnh thế nào	Người dùng
+2026-09-23	Claude	Kế hoạch tổng thể (`plan/index.html`)	Lập khung kế hoạch, Gantt, template, chi tiết activity		Đức Nghĩa
+2026-10-02	Claude	Cấu trúc `docs/`, template, cấu hình CI	Dựng khung thư mục và template tài liệu		Đức Nghĩa
+2026-10-02	Claude	Sheet master; cập nhật kế hoạch theo P01–P06 và mốc M1 05/10	Dựng file sheet, cập nhật lịch và tài liệu		Đức Nghĩa
+2026-10-02	Claude	Sheet master (file này)	Lọc bỏ dữ liệu Claude đề xuất; chỉ giữ dữ liệu thật, quyết định đã đưa ra và các dòng ví dụ		Đức Nghĩa
+2026-10-02	Claude	Kế hoạch HTML, file import Jira, tài liệu trong repo	Lưu ý: số effort, thời lượng, lịch, rủi ro, PD trong các file này là bản nháp Claude đề xuất, không phải số liệu của nhóm; chỉ dùng tham khảo		Đức Nghĩa
+2026-10-04	Claude	Slide M1 - Nhóm 9	Biên soạn và tổng hợp slide		Đức Nghĩa
+2026-10-06	Claude	File tách công việc task 2 cho từng người	Chia nhỏ phân công Task 2 theo từng người, dựa trên trang kế hoạch nháp		Đức Nghĩa
+2026-10-03	Claude Code	Khung báo cáo LaTeX	Dựng khung báo cáo theo Task 1–4; đưa dữ liệu client và quyết định đã chốt vào báo cáo	Không dùng số liệu nháp AI; sửa người gửi vòng hỏi 1; bỏ nội dung ngoài yêu cầu của đề; bổ sung tên, MSSV thành viên	Đức Nghĩa
+2026-10-04	Claude Code	M1-followup-drafts.md	Soạn bản nháp email vòng 2 và tin nhắn nhóm trước M1	Bản nháp tham khảo, PM sửa trước khi dùng; email vòng 2 thực tế gửi 08/10 16:39	Đức Nghĩa
+2026-10-04	Claude Code	M1-slide-update-TV4.md và M1-slide-text-updates.md	Đối chiếu báo cáo TV4 với tài liệu nhóm; soạn lại chữ placeholder, slide 4 và 9, nháp business case	PM đối chiếu với TV4: giờ trả lời client là 02/10 19:48; bỏ Vue 3/React vì stack chưa chốt; 585h là capacity, không phải effort; nhắc lịch giữ mức Should	Đức Nghĩa
+2026-10-12	Claude Code	Task 2: mạng hoạt động, checkpoint, ước lượng, file import Sheet, chương 2 báo cáo	Dựng bản nháp để nhóm duyệt; sinh sơ đồ từ danh sách activity; đề xuất effort và thời lượng; phân tích tải theo tuần	PM chốt E04 là giờ người, L1 theo PFD, hạn A18 tối 14/10; số effort và thời lượng là đề xuất AI, nhóm chốt ở A18, chưa dùng làm số của nhóm	Đức Nghĩa
+2026-10-12	Claude Code	A58-email-xac-nhan-scope.md	Soạn bản nháp email xác nhận các điểm ảnh hưởng scope	Chưa gửi; viết lại sau phản hồi 08/10; PM quyết định có gửi hay không	Đức Nghĩa
+2026-10-13	Claude Code	Báo cáo: cập nhật theo phản hồi 08/10, giả định ASM-02, ASM-06, ASM-07, ghi chú highlight	Đề xuất giá trị giả định theo yêu cầu PM; cập nhật báo cáo; đề xuất xử lý A34 và A38	PM chốt 13/10: cắt scope Could rồi Should, REQ-21 là Should, mirror công khai, thông báo trong ứng dụng bắt buộc; nhóm rà lại ASM-02, ASM-06, ASM-07	Đức Nghĩa
+2026-10-13	Claude Code	Nội dung các tab Risk Register, Product Description, Traceability, Biên bản CP, Weekly Log	Soạn nháp để nhóm duyệt và dán vào Sheet	P, I, owner, mã test và nội dung PD là đề xuất AI; TV5, TV2, TV4 duyệt trước khi coi là của nhóm	Đức Nghĩa

@@ -1,0 +1,16 @@
+﻿W7	05/10 – 11/10	A49	Trình bày Milestone 1 trên lớp (05/10)	Đã trình bày 05/10	5			Chưa ghi effort thực tế vào Time Tracking	Ghi nhận xét của thầy vào Client Log trong 24 giờ	Đức Nghĩa
+W7	05/10 – 11/10	A11	Soạn câu hỏi vòng 2 (06/10)	Đã soạn bộ câu hỏi Q10–Q18; bổ sung Q19, Q20	3			Chưa ghi effort thực tế vào Time Tracking	Gộp thành một email vòng 2 gửi thầy	Đức Nghĩa
+W7	05/10 – 11/10	A12	Gửi email vòng 2 và theo dõi (07–08/10)	Gửi 08/10 16:39 bởi Đức Nghĩa; thầy trả lời 19:58	4			Q16: không có Milestone 2 và 3; Q17: change event không báo trước. Chưa ghi effort thực tế vào Time Tracking	Cập nhật CP2, CP4 và A38 theo Q16, Q17; đưa yêu cầu mới Q19 vào ước lượng	Đức Nghĩa
+W7	05/10 – 11/10	A15	Dựng PBS và PFD (06–07/10)	Đã có PBS và PFD (A15_PBS_PFD.md)	10			Mã sản phẩm M/S khác mã P1.x trong repo. Chưa ghi effort thực tế vào Time Tracking	Dùng mã M/S cho báo cáo; thống nhất mã trước khi truy vết	Đức Nghĩa
+W7	05/10 – 11/10	A17	Dựng activity network và checkpoints (08–09/10)	Bản nháp AI hoàn thành 12/10 (mục 2.4, 2.5); chờ TV2 kiểm	6			Trễ so với lịch 08–09/10; Jira: In Progress	PM chốt L1, L2, L3 ngày 12–13/10; giao TV2 kiểm	Đức Nghĩa
+W7	05/10 – 11/10	A16	Viết Product Descriptions, ít nhất 5 (09–10/10)	Chưa có PD do nhóm viết; bản nháp AI 5 PD đã soạn 13/10 để nhóm duyệt	8			Trễ so với lịch 09–10/10; Jira: Backlog	TV2 viết 3 PD, TV4 viết 2 PD hoặc duyệt bản nháp AI	Đức Nghĩa
+W7	05/10 – 11/10	A18	Ước lượng effort từ dưới lên (10–11/10)	Đã có khung, đề xuất effort và thời lượng (nháp AI); chờ từng thành viên ước lượng	10			Jira: In Progress; hạn nhóm điền: tối 14/10	Gửi hướng dẫn A18 cho nhóm; PM chốt E04 là giờ người, không quy VND	Đức Nghĩa
+W7	05/10 – 11/10	A19	Rủi ro cấp activity và activity phản hồi (10–11/10)	Chưa làm; có đề xuất rủi ro nháp AI trong Risk Register	8			Jira: Backlog; chờ A17	TV5 và TV4 chấm P, I và bổ sung rủi ro cấp activity	Đức Nghĩa
+W7	05/10 – 11/10	A22	Quality plan và chiến lược test (11–12/10)	Chưa làm; chờ A16	6			Jira: Backlog	TV2 và TV4 viết quality plan sau khi có PD	Đức Nghĩa
+W7	05/10 – 11/10	A25	Thiết kế database và API contract (11–13/10)	Chưa làm	6			Jira: Backlog; cần thêm yêu cầu Q14, Q15, Q19 vào thiết kế	TV3 vẽ ERD, TV4 review API contract	Đức Nghĩa
+W8	12/10 – 18/10	A21	Lịch, Gantt, critical path (12/10)	Đang làm (Jira: In Progress); chờ A18 và A19	5			Phụ thuộc A18 và A19	TV3 tính đường găng khi có số ước lượng của nhóm	Đức Nghĩa
+W8	12/10 – 18/10	A58	Email các điểm ảnh hưởng scope (13–14/10)	Chưa gửi; bản nháp đã viết lại sau phản hồi 08/10	2			Chỉ gửi khi A18 xác nhận lịch vượt hoặc còn câu hỏi	TV1 quyết định có gửi hay không	Đức Nghĩa
+W8	12/10 – 18/10	A20	Spike check-in QR (13–15/10)	Chưa bắt đầu	6			Stack kỹ thuật chưa chốt	Chốt stack trước khi làm spike	Đức Nghĩa
+W8	12/10 – 18/10	A50	Phân bổ tài nguyên, cân bằng lịch (13–15/10)	Chưa bắt đầu; chờ A21	6			Tuần nghỉ chỉ khoảng 6h/người (E02)	Thu lịch rảnh và lịch thi của từng người	Đức Nghĩa
+W8	12/10 – 18/10	A23	Chốt Baseline V1.0 (CP2, 16/10)	Chưa đến hạn	5			CP2 là mốc nội bộ, không phải milestone của môn (Q16)	Review chéo theo checklist CP2	Đức Nghĩa
+W8	12/10 – 18/10	A24	Thiết lập codebase, CI và deploy (đến 18/10)	Chưa bắt đầu	8			Chưa có owner trên Jira; stack chưa chốt	Gán owner (đề xuất TV5)	Đức Nghĩa

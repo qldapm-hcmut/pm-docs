@@ -1,0 +1,14 @@
+﻿2026-10-08	R13	Đóng: thầy xác nhận không có Milestone 2 và 3, chỉ một Progress Check	Phản hồi Q16 ngày 08/10 (19:58)	TV1
+2026-10-08	R01	P 3→2, exposure 12→8	Vòng 2 gửi 16:39 được trả lời trong cùng ngày 19:58	TV1
+2026-10-08	R05	Cập nhật giảm thiểu: contingency chung thay cho activity riêng	Q17: change event không báo trước nội dung, không tạo activity riêng	TV1
+2026-10-13	R11	P 3→2, exposure 12→8; thêm mirror công khai	PM chốt mirror công khai ngày 13/10	TV1
+2026-10-13	R14	Thêm mới: yêu cầu mới từ Q19 làm tăng effort	Phản hồi 08/10 thêm sửa/hủy sự kiện và thông báo	TV1
+2026-10-13	R15	Thêm mới: lịch vượt Progress Check và demo theo năng lực E01	Phân tích tải và đề xuất thời lượng (nháp AI) ngày 12/10	TV1
+2026-10-13	R16	Thêm mới: báo cáo tích hợp muộn ở A39	A34 không còn chặn A37 để giữ Progress Check	TV1
+2026-10-13	R17	Thêm mới: tranh chấp khi waitlist tự chuyển	Q14, Q15: quy tắc waitlist và đăng ký lại	TV1
+2026-10-13	R18	Thêm mới: thông báo thất bại hoặc thiếu kênh email	Q14: thông báo lỗi không hoàn tác việc chuyển	TV1
+2026-10-13	R19	Thêm mới: TV1 quá tải	Tải theo tuần vượt 7h khi tính theo effort đã chốt	TV1
+2026-10-13	R20	Thêm mới: lộ thông tin xác thực khi mirror công khai	Quyết định mirror công khai; file ghi mật khẩu trong thư mục dự án	TV1
+2026-10-13	R05	Cập nhật giảm thiểu: A38 là quỹ dự phòng 30h trong cost baseline, không nằm trong chuỗi phụ thuộc	PM chốt L6 = B ngày 13/10 (sau Q17: không tạo activity Change Event; tránh A38 nằm trên đường găng)	TV1
+2026-10-13	R15	Cập nhật giảm thiểu: A34 làm gối đầu A33 (L1 = C), dùng float trước A21 và A23 (L5)	PM chốt 13/10; điều kiện TV3 xác nhận khả thi ở A18	TV1
+2026-10-13	R16	Cập nhật giảm thiểu: bắt đầu A34 sớm trên schema từ A25	PM chốt L1 = C ngày 13/10	TV1

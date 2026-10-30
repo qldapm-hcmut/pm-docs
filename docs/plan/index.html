@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CO3011 · Kế hoạch dự án University Event Registration System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F7F8; --sheet:#FFFFFF; --ink:#17212B; --muted:#5B6875; --line:#D8DEE3; --soft:#EDF1F3;
+  --accent:#0D6B78; --accent-soft:#D6ECEE; --crit:#B4233C; --crit-soft:#F6DDE2; --cp:#C98A00; --warn:#FBE9C2; --over:#F3C9CF;
+  --font:"Be Vietnam Pro", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11181E; --sheet:#182229; --ink:#E6ECEF; --muted:#9AA8B3; --line:#2C3A44; --soft:#1F2B33;
+    --accent:#4FB3BF; --accent-soft:#1D3B40; --crit:#F0667E; --crit-soft:#4A2029; --cp:#F0B429; --warn:#4A3B12; --over:#5A2530;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11181E; --sheet:#182229; --ink:#E6ECEF; --muted:#9AA8B3; --line:#2C3A44; --soft:#1F2B33;
+  --accent:#4FB3BF; --accent-soft:#1D3B40; --crit:#F0667E; --crit-soft:#4A2029; --cp:#F0B429; --warn:#4A3B12; --over:#5A2530;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15.5px;line-height:1.6}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh}
+nav.side{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;overflow:auto;padding:28px 18px;border-right:1px solid var(--line);background:var(--sheet)}
+nav.side .brand{font-weight:700;font-size:15px;line-height:1.3;margin-bottom:4px}
+nav.side .brand small{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:2px}
+nav.side ol{list-style:none;padding:0;margin:22px 0 0;counter-reset:s}
+nav.side li{counter-increment:s}
+nav.side a{display:flex;gap:10px;padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+nav.side a::before{content:counter(s);color:var(--muted);font-variant-numeric:tabular-nums;min-width:1.2em}
+nav.side a:hover{background:var(--soft)}
+nav.side .tools{margin-top:24px;display:flex;flex-direction:column;gap:8px}
+
+main{padding:40px 44px 80px;min-width:0}
+header.top{max-width:980px;margin-bottom:36px}
+header.top h1{font-size:34px;line-height:1.15;margin:0 0 10px;letter-spacing:-0.01em;font-weight:700}
+header.top p{margin:0;color:var(--muted);max-width:68ch}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:22px;font-size:14px}
+.facts div b{display:block;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.facts div span{color:var(--muted)}
+
+section{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:28px 30px;margin-bottom:22px}
+section>h2{font-size:22px;margin:0 0 6px;font-weight:700;letter-spacing:-0.005em}
+section>.lede{color:var(--muted);margin:0 0 18px;max-width:72ch}
+h3{font-size:16.5px;margin:26px 0 8px;font-weight:600}
+p,li{max-width:76ch}
+ul{padding-left:20px}
+
+.tbl{overflow-x:auto;margin:10px 0 6px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+td.empty{height:30px}
+.tag{display:inline-block;padding:1px 7px;border-radius:999px;font-size:12px;background:var(--accent-soft);color:var(--ink);white-space:nowrap}
+.tag.crit{background:var(--crit-soft)}
+.tag.cp{background:var(--warn)}
+.note{border-left:3px solid var(--accent);background:var(--soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0;max-width:80ch}
+.note.warn{border-left-color:var(--crit)}
+
+button,.btn{font:inherit;font-size:13.5px;padding:6px 12px;border-radius:6px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+label.field{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+input[type=date]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--sheet);color:var(--ink)}
+
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.phase{border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.phase h4{margin:0 0 2px;font-size:15px}
+.phase .when{color:var(--muted);font-size:13px;margin-bottom:6px}
+.phase ul{margin:6px 0 0;font-size:14px}
+
+/* Gantt */
+.gantt-controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);align-items:center}
+.legend i{display:inline-block;width:18px;height:10px;border-radius:3px;vertical-align:middle;margin-right:5px}
+.gantt-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.gantt{display:grid;min-width:max-content;font-size:13px}
+.g-label,.g-track{border-bottom:1px solid var(--line);height:28px}
+.g-label{position:sticky;left:0;z-index:2;background:var(--sheet);padding:0 10px;display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-right:1px solid var(--line)}
+.g-label .id{color:var(--muted);font-variant-numeric:tabular-nums;min-width:30px}
+.g-label .nm{overflow:hidden;text-overflow:ellipsis}
+.g-track{position:relative;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px);background-size:calc(var(--day) * 7) 100%;background-position:var(--gridoff,0) 0}
+.g-head{position:sticky;top:0;z-index:3;background:var(--soft);height:auto}
+.g-head.g-label{z-index:4;font-weight:600;background:var(--soft)}
+.weeks{display:flex;height:22px;border-bottom:1px solid var(--line)}
+.weeks div{border-right:1px solid var(--line);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.days{display:flex;height:22px}
+.days div{width:var(--day);font-size:10px;color:var(--muted);display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.days div.we{background:var(--crit-soft);opacity:.75}
+.g-phase{grid-column:1 / -1;background:var(--soft);font-weight:600;padding:4px 10px;border-bottom:1px solid var(--line);position:sticky;left:0}
+.bar{position:absolute;top:7px;height:14px;border-radius:4px;background:var(--accent)}
+.bar.crit{background:var(--crit)}
+.float{position:absolute;top:12px;height:4px;border-top:2px dotted var(--muted);opacity:.7}
+.diamond{position:absolute;top:6px;width:15px;height:15px;background:var(--cp);transform:rotate(45deg);border-radius:2px}
+.cp-flag{position:absolute;top:5px;font-size:11px;font-weight:600;color:var(--ink);white-space:nowrap}
+.hide-noncrit .row-noncrit{display:none}
+
+.load td.l1{background:var(--warn)}
+.load td.l2{background:var(--over);font-weight:600}
+
+.tpl-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.tpl-head h3{margin:0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+
+@media (max-width: 900px){
+  .layout{grid-template-columns:1fr}
+  nav.side{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}
+  nav.side ol{display:flex;flex-wrap:wrap;gap:4px;margin-top:12px}
+  main{padding:24px 14px 60px}
+  section{padding:20px 16px}
+  header.top h1{font-size:27px}
+  
+}
+@media print{
+  nav.side,.no-print,.tpl-head button{display:none!important}
+  .layout{display:block}
+  main{padding:0}
+  section{break-inside:auto;border:none;padding:10px 0}
+  .gantt-wrap,.tbl{overflow:visible}
+  body{background:#fff;color:#000}
+}
+.gantt{--day:15px;--label:292px;position:relative;grid-template-columns:var(--label) calc(var(--day) * var(--ndays))}
+.band{position:absolute;top:0;bottom:0;background:var(--cp);opacity:.10;pointer-events:none;z-index:1}
+.vline{position:absolute;top:0;bottom:0;border-left:2px dashed var(--muted);opacity:.8;pointer-events:none;z-index:1}
+.vline.today{border-left:2px solid var(--accent);opacity:1}
+.vline span{position:absolute;top:48px;left:4px;font-size:11px;font-weight:600;white-space:nowrap;background:var(--sheet);padding:0 4px;border-radius:3px;color:var(--ink)}
+.days div.brk{background:var(--warn)}
+.load th.brk,.load td.brk{box-shadow:inset 0 0 0 999px rgba(201,138,0,.08)}
+@media (max-width: 900px){ .gantt{--label:170px} }
+
+
+.act-filter{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 14px}
+.act-filter button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.act-filter input{font:inherit;font-size:14px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:var(--sheet);color:var(--ink);min-width:200px}
+.act-phase{margin:22px 0 8px;font-size:15px;font-weight:600;color:var(--muted)}
+details.act{border:1px solid var(--line);border-radius:8px;margin:0 0 8px;background:var(--sheet)}
+details.act[open]{border-color:var(--accent)}
+details.act>summary{cursor:pointer;list-style:none;padding:10px 14px;display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:4px 12px;align-items:baseline}
+details.act>summary::-webkit-details-marker{display:none}
+details.act>summary .aid{font-weight:600;font-variant-numeric:tabular-nums}
+details.act>summary .aname{font-weight:600}
+details.act>summary .ameta{color:var(--muted);font-size:13px;text-align:right;white-space:nowrap}
+details.act>summary .agoal{grid-column:2 / -1;color:var(--muted);font-size:14px}
+details.act.crit>summary .aid{color:var(--crit)}
+.act-body{padding:4px 18px 16px 72px;font-size:14.5px}
+.act-body h5{margin:12px 0 4px;font-size:13.5px;font-weight:600}
+.act-body ol{margin:0;padding-left:20px}
+.act-body p{margin:0}
+.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:4px 20px}
+.g-label{cursor:pointer}
+@media (max-width: 900px){ details.act>summary{grid-template-columns:40px minmax(0,1fr)} details.act>summary .ameta{grid-column:2;text-align:left} .act-body{padding:4px 14px 14px} }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side" aria-label="Mục lục">
+  <div class="brand">CO3011 · Event Registration<small>Kế hoạch nhóm 5 người, 23/09 – 07/12</small></div>
+  <ol>
+    <li><a href="#overview">Tổng quan</a></li>
+    <li><a href="#team">Tổ chức nhóm</a></li>
+    <li><a href="#phases">Lộ trình và mốc môn học</a></li>
+    <li><a href="#gantt">Gantt & critical path</a></li>
+    <li><a href="#cpm">Bảng phân tích mạng</a></li>
+    <li><a href="#details">Chi tiết activity</a></li>
+    <li><a href="#load">Tải công việc</a></li>
+    <li><a href="#checkpoints">Checkpoints</a></li>
+    <li><a href="#questions">Câu hỏi client</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#viva">Chuẩn bị viva</a></li>
+    <li><a href="#rhythm">Nhịp làm việc</a></li>
+    <li><a href="#pitfalls">Lỗi cần tránh</a></li>
+  </ol>
+  <div class="tools no-print">
+    <button type="button" onclick="window.print()">In hoặc lưu PDF</button>
+    <button type="button" id="themeBtn">Đổi giao diện sáng/tối</button>
+  </div>
+</nav>
+
+<main>
+<header class="top">
+  <h1>University Event Registration System: kế hoạch dự án từ khởi động đến bàn giao</h1>
+  <p>Kế hoạch được neo theo lịch môn học: bắt đầu thứ Tư 23/09 (tuần 5), hỏi client vòng 1 ngày 28/09, <b>trình bày Milestone 1 trên lớp thứ Hai 05/10</b>, hỏi client vòng 2 qua email ngay sau đó, nghỉ giữa kỳ tuần 8, Progress Check tuần 12, demo và viva ngày 07/12. Task 1 và Task 2 vẫn được hoàn thành sớm. Phần lịch còn lại được dùng làm buffer thay vì dồn thêm việc. Đây là <b>bản nháp kế hoạch</b>: nhóm cần điều chỉnh theo câu trả lời thật của client và năng lực thật của từng thành viên trước khi chốt Baseline V1.0.</p>
+  <div class="facts">
+    <div><b>76</b><span>ngày lịch (23/09 – 07/12)</span></div>
+    <div><b id="factEffort">–</b><span>person-hours kế hoạch</span></div>
+    <div><b>28/09</b><span>hỏi client vòng 1</span></div>
+    <div><b>05/10</b><span>trình bày Milestone 1</span></div>
+    <div><b>trước 19/10</b><span>nhóm chốt Baseline V1.0</span></div>
+    <div><b>09/11</b><span>Progress Check</span></div>
+  </div>
+</header>
+
+<section id="overview">
+  <h2>Tổng quan và nguyên tắc</h2>
+  <p class="lede">Đề chấm chủ yếu phần quản lý dự án (code chỉ chiếm 20%), nên mọi quyết định đều phải để lại bằng chứng được tạo ra trong lúc làm.</p>
+  <ul>
+    <li><b>Client là giảng viên (xác nhận ở P01).</b> Mọi vấn đề về scope, mức ưu tiên và thay đổi yêu cầu trao đổi trực tiếp với thầy. Kênh chính là email (P02): mỗi vòng gom câu hỏi vào một email; thầy không cam kết thời gian phản hồi nên kế hoạch luôn chừa thời gian chờ. Vòng 1 hỏi trên lớp ngày 28/09; vòng 2 gửi email ngay khi soạn xong.</li>
+    <li><b>Milestone 1 là buổi trình bày trên lớp ngày 05/10, sớm hơn 6 ngày so với kế hoạch trước (11/10).</b> Nội dung M1 bám bảng milestone của đề – <b>Initiation & Definition</b>: client consultation, evaluation (business case), objectives, stakeholders, infrastructure, lifecycle. Ước lượng effort thuộc Milestone 2 – Planning Baseline, nên không làm trước M1 (lịch môn học có nhắc "initial effort estimates"; nhóm sẽ hỏi lại thầy trong email vòng 2). Toàn bộ Task 2 làm trong 06–12/10 và hoàn thành trước khi chốt Baseline V1.0. Đoạn 02–05/10 là đoạn găng nhất của kế hoạch: không còn float.</li>
+    <li><b>Tuần nghỉ giữa kỳ (12–18/10) chỉ dành cho việc nhóm tự làm được:</b> spike QR, thiết kế database, setup codebase, san tải. Tải mỗi người khoảng một nửa bình thường. Không xếp việc cần gặp client.</li>
+    <li><b>Nhóm tự chốt Baseline V1.0 (P05).</b> Client không duyệt toàn bộ baseline; trước khi chốt, nhóm gửi email hỏi các điểm ảnh hưởng đáng kể tới scope hoặc planning (A58). Baseline được chốt trong tuần nghỉ, nhưng Increment 1 vẫn bắt đầu 20/10 như cũ; phần thời gian dư trong tuần nghỉ là float, dùng khi trễ hoặc có lịch thi.</li>
+    <li><b>Progress Check (09/11) phải chạy được core workflow đầy đủ:</b> tạo sự kiện, đăng ký, check-in. Check-in vì vậy được làm xong trước buổi check.</li>
+    <li><b>Reserve cho change event (A38, 10–17/11) đặt ngay sau Progress Check,</b> vì đó là thời điểm giảng viên nhiều khả năng đưa ra thay đổi. Nếu change event đến sớm hơn, dời reserve lên và ghi lại quyết định.</li>
+    <li><b>Lifecycle đề xuất:</b> dự án product-based, giao theo <b>incremental delivery</b>, gồm hai increment (20/10 – 01/11 và 02 – 09/11).</li>
+    <li><b>Một nguồn dữ liệu duy nhất:</b> mọi bảng lấy từ một Google Sheet master, dùng chung ID <code>O#</code>, <code>P#</code>, <code>A#</code>, <code>R#</code>, <code>T#</code>, <code>CP#</code>. Baseline V1.0 được export PDF, gắn <code>git tag baseline-v1.0</code> và không sửa lại nữa.</li>
+  </ul>
+  <div class="note"><b>Đã xác nhận qua email P01–P06 (thầy trả lời 24/09) và thông báo trên lớp:</b> giảng viên đóng vai client; trao đổi qua email, gom câu hỏi, không cam kết thời gian phản hồi; không khảo sát sinh viên; Milestone 1 là buổi trình bày trên lớp thứ Hai 05/10 (thông báo trên lớp; trước đó nhóm hiểu nhầm là 11/10); liên hệ được qua email trong tuần nghỉ; nhóm tự chốt baseline; Client Log không cần biên bản ký nhưng phải ghi thời điểm trao đổi. <b>Còn là giả định (hỏi trong email vòng 2):</b> Milestone 2 – Planning Baseline do nhóm tự chốt trong tuần nghỉ; Milestone 3 trùng Progress Check 09/11; hạn nộp báo cáo cuối trước buổi demo 07/12.</div>
+  <h3>Scope giả thuyết (phải xác nhận với client)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Mức ưu tiên</th><th>Chức năng</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag crit">Must</span></td><td>Đăng nhập theo vai trò (Sinh viên, Ban tổ chức, Admin); tạo, sửa, publish sự kiện có giới hạn số chỗ; đăng ký và hủy đăng ký; check-in bằng QR hoặc mã; danh sách tham dự và xuất CSV/Excel.</td></tr>
+      <tr><td><span class="tag">Should</span></td><td>Danh sách chờ khi hết chỗ, email xác nhận, thống kê sau sự kiện.</td></tr>
+      <tr><td><span class="tag">Could</span></td><td>Nhắc lịch trước sự kiện, thu feedback sau sự kiện.</td></tr>
+      <tr><td><span class="tag cp">Won't</span></td><td>App mobile native, tích hợp SSO hay hệ thống điểm rèn luyện thật của trường.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="team">
+  <h2>Tổ chức nhóm</h2>
+  <p class="lede">Mỗi người có một vai trò chính và sở hữu vài artifact quản lý. Viva có thể hỏi bất kỳ ai về bất kỳ artifact nào, nên mỗi tuần cần có một phiên trình bày chéo.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Mã</th><th>Vai trò</th><th>Artifact sở hữu</th><th>Phần code</th></tr></thead>
+    <tbody>
+      <tr><td>TV1</td><td>Project Manager, đầu mối với client. Quỹ thời gian hạn chế nên chỉ nhận việc không ủy quyền được</td><td>Project authority, escalation, phân bổ tài nguyên, duyệt baseline V1/V2, chủ trì phân tích change event, weekly log (tự viết), rà traceability trước mỗi checkpoint, phân tích planned vs actual</td><td>Không nhận việc code; review PR khi cần</td></tr>
+      <tr><td>TV2</td><td>BA / QA</td><td>Client Interaction Log, scope, objectives/MoE, Product Descriptions, quality plan, test cases, UAT</td><td>Viết và chạy test; hỗ trợ giao diện và check-in</td></tr>
+      <tr><td>TV3</td><td>Tech Lead, Backend. Kiêm hỗ trợ lập lịch cho PM</td><td>Chủ trì bottom-up estimates, PBS/PFD, lịch nháp và Gantt, phân tích planned vs actual</td><td>Database, API, quản lý sự kiện</td></tr>
+      <tr><td>TV4</td><td>Frontend</td><td>Stakeholder analysis, business case và đánh giá tài chính</td><td>Giao diện</td></tr>
+      <tr><td>TV5</td><td>Fullstack, DevOps. Kiêm hỗ trợ tài liệu kế hoạch cho PM</td><td>Risk register, project characteristics và lifecycle, standards và communication plan, activity network, closure/handover</td><td>Check-in QR, CI/CD, deploy</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b>Phân bổ theo năng lực thật của PM:</b> TV1 bận nên nhận khoảng 81h, thấp hơn mức chia đều nhưng đủ để có bằng chứng quản lý liên tục. Phần soạn thảo dài chuyển sang TV5 (standards, communication plan, activity network) và TV3 (lịch nháp và Gantt). Bù lại, TV1 giữ trọn những việc quản lý ngắt quãng được và để lại dấu vết mang tên mình: tự viết weekly log (A36), rà traceability trước mỗi checkpoint (A57), chủ trì phân tích change event (A38), phân tích planned vs actual (A42). TV1 commit các tài liệu này vào /docs để lịch sử repo phản ánh hoạt động quản lý, vì TV1 không nhận việc code. Phần trình bày chéo chạy bất đồng bộ hằng tuần (5–10 dòng hoặc ghi âm 3 phút đăng lên chat), nhằm bảo đảm TV1 giải thích được mọi artifact trong viva mà không phát sinh buổi họp.</div>
+  <div class="note"><b>Giả định năng lực:</b> TV2–TV5 trung bình 12h/tuần, tối đa khoảng 16h trong tuần cao điểm, khoảng 6h trong tuần nghỉ giữa kỳ; TV1 khoảng 7h/tuần, rải đều chứ không dồn. Trải trên 11 tuần, quỹ thời gian khoảng 585 person-hours, nhiều hơn effort kế hoạch, nên phần dư là khoảng trống cho các môn khác và cho rủi ro. Ghi rõ giả định này trong báo cáo (Task 2.6 và 2.10) và cập nhật theo lịch thi thật của từng người.</div>
+</section>
+
+<section id="phases">
+  <h2>Lộ trình và mốc của môn học</h2>
+  <p class="lede">Tuần theo lịch môn học: tuần 1 bắt đầu 24/08, mỗi tuần bắt đầu vào thứ Hai.</p>
+  <div class="phase-grid">
+    <div class="phase"><h4>Khởi động</h4><div class="when">Tuần 5 · 23 – 25/09</div><ul><li>Setup repo, board, master sheet, time tracking</li><li>Phân tích brief; gửi email làm rõ vai trò client</li></ul></div>
+    <div class="phase"><h4>Task 1: Initiation & Definition</h4><div class="when">Tuần 5–7 · 23/09 – 06/10 · CP1 06/10</div><ul><li>Email làm rõ vai trò client (23–24/09, đã có trả lời)</li><li>Hỏi client vòng 1 trên lớp (28/09) và vòng 2 qua email</li><li>Business case, scope, objectives và MoE, authority, stakeholders, infrastructure, lifecycle</li></ul></div>
+    <div class="phase"><h4>Milestone 1 (thu hẹp)</h4><div class="when">02 – 05/10 · trình bày 05/10</div><ul><li>Hoàn tất Task 1; CP1 ngày 04/10</li><li>Client consultation, evaluation, objectives, stakeholders, infrastructure, lifecycle</li><li>Chuẩn bị slide 04/10, trình bày trên lớp 05/10</li></ul></div>
+    <div class="phase"><h4>Task 2: Baseline draft</h4><div class="when">Tuần 7 · 06 – 12/10</div><ul><li>Email hỏi client vòng 2, kèm phản hồi sau buổi M1</li><li>PBS, PD, PFD, activity network, checkpoints</li><li>Estimate bottom-up, activity risks, quality plan, lịch nháp (nội dung Milestone 2)</li></ul></div>
+    <div class="phase"><h4>Nghỉ giữa kỳ và chốt baseline</h4><div class="when">Tuần 8 · 12 – 18/10 · CP2 trong tuần</div><ul><li>Email hỏi client các điểm ảnh hưởng scope (A58)</li><li>San tải, hoàn thiện resource plan; nhóm tự chốt Baseline V1.0</li><li>Spike QR, thiết kế database và API, setup codebase</li></ul></div>
+    <div class="phase"><h4>Task 3: Increment 1</h4><div class="when">Tuần 9–10 · 20/10 – 01/11 · CP3 01/11</div><ul><li>Auth và phân quyền, quản lý sự kiện</li><li>Đăng ký và hủy đăng ký</li></ul></div>
+    <div class="phase"><h4>Task 3: Increment 2 và Progress Check</h4><div class="when">Tuần 11–12 · 02 – 09/11 · CP4 09/11</div><ul><li>Lower-level plan cho increment 2</li><li>Check-in, điểm danh, báo cáo; tích hợp core workflow</li><li>Trình bày Progress Check kèm actual effort và risk</li></ul></div>
+    <div class="phase"><h4>Xử lý thay đổi và kiểm thử</h4><div class="when">Tuần 12–13 · 10 – 22/11</div><ul><li>Reserve cho change event, lập Baseline V2.0 nếu cần</li><li>Regression test, sửa lỗi, hoàn thiện bản phát hành</li></ul></div>
+    <div class="phase"><h4>Task 4: Delivery & Closure</h4><div class="when">Tuần 14–16 · 23/11 – 07/12 · CP5 24/11</div><ul><li>UAT ở buổi học 23/11 (cùng tuần học Ch13 Quality)</li><li>Planned vs actual, closure, lessons learned, báo cáo cuối</li><li>Diễn tập, nộp bài, demo và viva 07/12</li></ul></div>
+  </div>
+  <h3>Đối chiếu mốc môn học với kế hoạch</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Mốc môn học</th><th>Tuần</th><th>Yêu cầu</th><th>Activity trong kế hoạch</th></tr></thead>
+    <tbody>
+      <tr><td>Assignment kick-off</td><td>4</td><td>Đăng ký nhóm, nhận brief</td><td>A01, A02, A55 (từ 23/09)</td></tr>
+      <tr><td>Milestone 1 · Initiation & Definition</td><td>7 (05/10)</td><td>Client consultation, evaluation, objectives, stakeholders, infrastructure, lifecycle</td><td>A04 + Client Log, A06, A07, A09, A10, A13; CP1 A14; slide A61, A59; trình bày A49 (05/10)</td></tr>
+      <tr><td>Milestone 2 · Planning Baseline</td><td>chưa có ngày (giả định: tuần nghỉ)</td><td>Products/activities, estimates, risks, resources, schedule, quality plan</td><td>A15–A22, A50; nhóm tự chốt Baseline V1.0 ở A23 (sớm nhất 16/10)</td></tr>
+      <tr><td>Milestone 3 · Execution, Monitoring & Control</td><td>chưa có ngày (giả định: Progress Check)</td><td>Working product, actual data, change response, revised plan</td><td>A26–A37, A36; change response A38 và revised plan (Baseline V2.0). Nếu M3 = Progress Check 09/11 thì A38 phải dời lên trước 09/11 (R13)</td></tr>
+      <tr><td>Nghỉ giữa kỳ</td><td>8</td><td>–</td><td>A20, A24, A25, A50 (tải giảm, không cần client)</td></tr>
+      <tr><td>Progress Check</td><td>12</td><td>Demo core workflow, cập nhật risks/issues, báo cáo actual effort và schedule</td><td>A51 (09/11), dữ liệu từ A36</td></tr>
+      <tr><td>Final demo & viva</td><td>16</td><td>Trình bày sản phẩm và bằng chứng quản lý</td><td>A54 (07/12)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="gantt">
+  <h2>Gantt và critical path</h2>
+  <p class="lede">Lịch được tính tự động bằng CPM (forward và backward pass) từ thời lượng, quan hệ finish-to-start và các ngày cố định của môn học. Các activity gắn với buổi học (hỏi client vòng 2, duyệt baseline, Progress Check, UAT, demo) được đặt ràng buộc "không bắt đầu trước ngày". Float trước các mốc này chính là buffer của nhóm.</p>
+  <div class="gantt-controls no-print">
+    <label class="field">Ngày bắt đầu dự án (ngày 1)<input type="date" id="startDate"></label>
+    <button type="button" id="critToggle">Chỉ hiện activity găng</button>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--crit)"></i>Activity găng (float = 0)</span>
+    <span><i style="background:var(--accent)"></i>Activity có float</span>
+    <span><i style="border-top:2px dotted var(--muted);height:0;border-radius:0"></i>Float</span>
+    <span><i style="background:var(--cp);width:10px;height:10px;transform:rotate(45deg)"></i>Checkpoint / mốc</span>
+    <span><i style="background:var(--cp);opacity:.3"></i>Nghỉ giữa kỳ</span>
+    <span><i style="background:var(--accent);width:3px"></i>Hôm nay</span>
+  </div>
+  <div class="gantt-wrap" style="margin-top:12px"><div class="gantt" id="ganttChart"></div></div>
+  <div class="note" id="critSummary"></div>
+</section>
+
+<section id="cpm">
+  <h2>Bảng phân tích mạng</h2>
+  <p class="lede">ES/EF là ngày bắt đầu và kết thúc sớm nhất, LS/LF là muộn nhất, Float = LS − ES. Effort tính bằng person-hours; thời lượng tính bằng ngày lịch (Task 2.6). Cột "Ràng buộc" là ngày cố định theo lịch môn học.</p>
+  <div class="tpl-head"><h3>Danh sách activity</h3><button type="button" data-copy="cpmTable">Copy để dán vào Google Sheets</button></div>
+  <div class="tbl"><table id="cpmTable"></table></div>
+</section>
+
+<section id="details">
+  <h2>Chi tiết activity</h2>
+  <p class="lede">Mỗi activity gồm mục tiêu, các bước thực hiện, đầu vào, đầu ra và điều kiện hoàn thành. Lọc theo thành viên để mỗi người xem phần việc của mình. Bấm vào tên activity trong Gantt cũng sẽ mở mục tương ứng ở đây.</p>
+  <div class="act-filter no-print" id="actFilter">
+    <button type="button" data-who="all" aria-pressed="true">Tất cả</button>
+    <button type="button" data-who="TV1" aria-pressed="false">TV1</button>
+    <button type="button" data-who="TV2" aria-pressed="false">TV2</button>
+    <button type="button" data-who="TV3" aria-pressed="false">TV3</button>
+    <button type="button" data-who="TV4" aria-pressed="false">TV4</button>
+    <button type="button" data-who="TV5" aria-pressed="false">TV5</button>
+    <input type="search" id="actSearch" placeholder="Tìm theo mã hoặc tên activity" aria-label="Tìm activity">
+    <button type="button" id="actOpenAll">Mở tất cả</button>
+    <button type="button" id="actCloseAll">Thu gọn</button>
+  </div>
+  <div id="actList"></div>
+</section>
+
+<section id="load">
+  <h2>Tải công việc theo tuần</h2>
+  <p class="lede">Effort của mỗi activity được chia đều cho các owner và các ngày của activity. Ô vàng là trên mức bình thường (12h mỗi tuần, 6h trong tuần nghỉ), ô đỏ là trên mức cao điểm (16h, 8h trong tuần nghỉ). Tuần đầu và tuần cuối không đủ 7 ngày nên ngưỡng được quy đổi theo số ngày.</p>
+  <div class="tbl"><table class="load" id="loadTable"></table></div>
+  <div class="note">Cách dùng cho Task 2.10: trình bày bảng này như một <b>kế hoạch lý tưởng</b>, chỉ ra các tuần quá tải, sau đó mô tả cách san tải (dời activity có float, chuyển bớt việc cho người đang nhẹ tải, gộp hoặc tách activity) để ra lịch khả thi. Kế hoạch đã hạ tải TV1 xuống khoảng 7h/tuần và chia phần còn lại cho TV2–TV5, nên các tuần 6 (dồn việc trước Milestone 1 ngày 05/10), 8 và 11 chạm ngưỡng cao điểm và cần rà lại theo lịch thi thật. Các activity trong tuần nghỉ đều có float, nên rà lại bảng này theo lịch thi thật của từng người trước khi nhóm chốt baseline (A50, A23).</div>
+</section>
+
+<section id="checkpoints">
+  <h2>Checkpoints</h2>
+  <p class="lede">Mỗi checkpoint trả lời ba câu: kiểm tra gì, ai duyệt, và nếu không đạt thì làm gì (Task 2.5).</p>
+  <div class="tbl"><table>
+    <thead><tr><th>CP</th><th>Ngày</th><th>Nội dung kiểm tra</th><th>Người duyệt</th><th>Nếu không đạt</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag cp">CP1</span></td><td>04/10</td><td>Scope, exclusions, objectives và MoE đầy đủ, nhất quán với Client Log vòng 1; có go/no-go</td><td>Cả nhóm review chéo trên chat, TV1 chịu trách nhiệm</td><td>Phần chưa rõ ghi thành assumption có mã, trình bày ở M1 và đưa vào email vòng 2</td></tr>
+      <tr><td><span class="tag cp">M1</span></td><td>05/10</td><td>Trình bày trên lớp 6 mục Initiation & Definition: client consultation, evaluation, objectives, stakeholders, infrastructure, lifecycle; con số trong slide khớp với tài liệu</td><td>Giảng viên (client)</td><td>Ghi nhận xét của thầy vào Client Log; đưa phần cần sửa vào email vòng 2 (A12) và vào Task 2 trước khi chốt baseline</td></tr>
+      <tr><td><span class="tag cp">CP2 · M2</span></td><td>trong tuần 12–18/10</td><td>Baseline V1.0: traceability không mâu thuẫn, estimate có giả định, risk register có owner, lịch khả thi về tài nguyên; đã hỏi client các điểm ảnh hưởng scope (A58); tích hợp nhận xét Milestone 1</td><td>Cả nhóm xác nhận, TV1 ký duyệt (client không duyệt toàn bộ baseline, theo P05)</td><td>Dùng float còn lại trong tuần nghỉ để sửa; Increment 1 vẫn bắt đầu 20/10</td></tr>
+      <tr><td><span class="tag cp">CP3</span></td><td>01/11</td><td>Increment 1 chạy end-to-end: đăng nhập, tạo sự kiện, đăng ký và hủy; test cases pass</td><td>TV2 (QA)</td><td>Ghi deviation, chuyển phần dở sang tuần 11, cắt Could-have khỏi Increment 2</td></tr>
+      <tr><td><span class="tag cp">CP4 · M3?</span></td><td>09/11</td><td>Progress Check: core workflow gồm cả check-in; actual effort và schedule so với V1.0; risk register cập nhật</td><td>Client (giảng viên)</td><td>Demo phần đã xong, trình bày rõ deviation và kế hoạch khắc phục; dùng reserve A38</td></tr>
+      <tr><td><span class="tag cp">CP5</span></td><td>23–24/11</td><td>Client nghiệm thu theo tiêu chí acceptance đã thống nhất</td><td>Client</td><td>Sửa trong tuần 14; mục chưa đạt ghi vào outstanding issues của closure plan</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="questions">
+  <h2>Câu hỏi cho client</h2>
+  <h3 style="margin-top:4px">Làm rõ cách làm việc với client (email 23–24/09, mã P)</h3>
+  <ol>
+    <li>Ai đóng vai client/sponsor, và ai có quyền duyệt scope cũng như thay đổi?</li>
+    <li>Liên hệ client qua kênh nào; có giới hạn thời gian hay số câu hỏi; thời gian phản hồi email?</li>
+    <li>Có nên khảo sát sinh viên thật không; nếu có thì trình bày tách khỏi Client Log?</li>
+    <li>Hạn nộp và định dạng nộp Milestone 1?</li>
+    <li>Có liên hệ client được trong tuần nghỉ giữa kỳ để duyệt baseline không?</li>
+    <li>Bằng chứng cho Client Log: email/tin nhắn LMS là đủ hay cần biên bản có xác nhận?</li>
+  </ol>
+  <h3>Câu hỏi yêu cầu, vòng 1 (buổi học 28/09, mã Q)</h3>
+  <p class="lede">Xếp theo mức ảnh hưởng tới scope, effort và rủi ro. Vòng 1 diễn ra ở buổi học 28/09. Vòng 2 gửi qua email, gom thành một email (theo P02), chỉ đào sâu những câu trả lời còn mơ hồ hoặc có tác động lớn. Các câu hỏi này đã được điền sẵn trong template Client Interaction Log bên dưới, kèm một câu về hạn Milestone 1 và tuần nghỉ.</p>
+  <ol>
+    <li>Ai được tạo sự kiện (khoa, CLB, Phòng CTSV)? Sự kiện có cần qua bước duyệt không?</li>
+    <li>Người dùng đăng nhập bằng gì: tài khoản trường, email trường hay tự đăng ký?</li>
+    <li>Điểm danh nên làm thế nào (QR, mã, danh sách)? Có cần check-out không? Mạng yếu tại hội trường thì xử lý ra sao?</li>
+    <li>Sự kiện có giới hạn số chỗ không? Khi hết chỗ có danh sách chờ không? Có hạn chót hủy đăng ký không?</li>
+    <li>Sau sự kiện cần báo cáo gì, theo định dạng nào? Có liên quan tới điểm rèn luyện không?</li>
+    <li>Quy mô: bao nhiêu sự kiện mỗi tháng, bao nhiêu người mỗi sự kiện, lúc cao điểm check-in bao nhiêu người cùng lúc?</li>
+    <li>Hiện nay đang dùng công cụ gì, và việc tổng hợp mất bao lâu? (Dùng làm mốc cho measures of effectiveness.)</li>
+    <li>Tiêu chí nghiệm thu là gì? Nếu thiếu thời gian thì ưu tiên chức năng nào?</li>
+    <li>Có ràng buộc gì về dữ liệu cá nhân sinh viên, hosting hay nền tảng (web hay mobile)?</li>
+  </ol>
+</section>
+
+<section id="templates">
+  <h2>Templates</h2>
+  <p class="lede">Nút copy chép bảng dưới dạng tab-separated, dán thẳng vào một tab của Google Sheets hoặc Excel. Các dòng ghi "Ví dụ" chỉ để minh họa cách điền; xóa trước khi dùng.</p>
+  <div class="note warn">Client Interaction Log chỉ ghi những trao đổi có thật, kèm bằng chứng (email, ảnh chụp tin nhắn, biên bản). Đề bài coi dữ liệu bịa là vi phạm liêm chính học thuật.</div>
+
+  <div class="tpl-head"><h3>1. Client Interaction Log</h3><button type="button" data-copy="tplClient">Copy</button></div>
+  <div class="tbl"><table id="tplClient">
+    <thead><tr><th>Mã</th><th>Ngày</th><th>Buổi / hình thức</th><th>Người hỏi</th><th>Câu hỏi của nhóm</th><th>Trả lời của client</th><th>Tác động tới dự án</th><th>ID liên quan</th><th>Bằng chứng</th></tr></thead>
+    <tbody id="clientRows"></tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>2. Weekly Project Log</h3><button type="button" data-copy="tplWeekly">Copy</button></div>
+  <div class="tbl"><table id="tplWeekly">
+    <thead><tr><th>Tuần</th><th>Từ – đến</th><th>Activity ID</th><th>Công việc kế hoạch</th><th>Công việc thực tế</th><th class="num">Effort KH (h)</th><th class="num">Effort TT (h)</th><th class="num">Chênh lệch</th><th>Issues / risks</th><th>Hành động quản lý</th><th>Người cập nhật</th></tr></thead>
+    <tbody>
+      <tr><td>Ví dụ: W9</td><td>19/10 – 25/10</td><td>A26</td><td>Implement authentication & roles</td><td>Xong đăng nhập, còn phân quyền Ban tổ chức</td><td class="num">10</td><td class="num">13</td><td class="num">+3</td><td>Chưa rõ ai được duyệt sự kiện</td><td>Hỏi client ở buổi 26/10; A27 bắt đầu với phần đã chốt</td><td>TV1</td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>3. Time Tracking (mỗi người điền hằng ngày hoặc cuối tuần)</h3><button type="button" data-copy="tplTime">Copy</button></div>
+  <div class="tbl"><table id="tplTime">
+    <thead><tr><th>Ngày</th><th>Thành viên</th><th>Activity ID</th><th>Việc đã làm</th><th class="num">Giờ</th><th>Link commit / tài liệu</th></tr></thead>
+    <tbody>
+      <tr><td>Ví dụ</td><td>TV3</td><td>A25</td><td>Vẽ ERD, định nghĩa bảng events và registrations</td><td class="num">3</td><td>link PR</td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>4. Risk Register (rủi ro đề xuất, nhóm cần đánh giá lại)</h3><button type="button" data-copy="tplRisk">Copy</button></div>
+  <p style="color:var(--muted);font-size:14px;margin:4px 0 0">P và I theo thang 1–5; Exposure = P × I. Rủi ro có Exposure từ 12 trở lên cần có activity phản hồi trong kế hoạch (Task 2.9).</p>
+  <div class="tbl"><table id="tplRisk">
+    <thead><tr><th>ID</th><th>Mô tả rủi ro</th><th>Nhóm</th><th class="num">P</th><th class="num">I</th><th class="num">Exposure</th><th>Owner</th><th>Giảm thiểu (reduction)</th><th>Dự phòng (contingency)</th><th>Activity liên quan</th><th>Trạng thái</th></tr></thead>
+    <tbody id="riskRows"></tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>5. Change Request và phân tích tác động</h3><button type="button" data-copy="tplCR">Copy</button></div>
+  <div class="tbl"><table id="tplCR">
+    <thead><tr><th>Mục</th><th>Nội dung</th></tr></thead>
+    <tbody>
+      <tr><td>Mã CR, ngày nhận, người yêu cầu</td><td></td></tr>
+      <tr><td>Mô tả thay đổi và lý do</td><td></td></tr>
+      <tr><td>Ảnh hưởng tới requirements / products</td><td></td></tr>
+      <tr><td>Ảnh hưởng tới activities (thêm, bỏ, sửa)</td><td></td></tr>
+      <tr><td>Ảnh hưởng tới effort (h) và resources</td><td></td></tr>
+      <tr><td>Ảnh hưởng tới risks</td><td></td></tr>
+      <tr><td>Ảnh hưởng tới schedule, critical path, cost</td><td></td></tr>
+      <tr><td>Ảnh hưởng tới quality và test</td><td></td></tr>
+      <tr><td>Phương án A (ví dụ: dùng reserve A38)</td><td></td></tr>
+      <tr><td>Phương án B (ví dụ: cắt Could/Should-have)</td><td></td></tr>
+      <tr><td>Phương án C (ví dụ: dời deliverable, đàm phán lại scope)</td><td></td></tr>
+      <tr><td>Phương án chọn và lý do</td><td></td></tr>
+      <tr><td>Quyết định, người duyệt, ngày duyệt</td><td></td></tr>
+      <tr><td>Có cần Baseline V2.0 không? Các mục thay đổi so với V1.0</td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>6. Traceability Matrix</h3><button type="button" data-copy="tplTrace">Copy</button></div>
+  <div class="tbl"><table id="tplTrace">
+    <thead><tr><th>Objective</th><th>Requirement / Product</th><th>Activity</th><th>Resource</th><th>Risk</th><th>Verification / Test</th><th>Checkpoint</th></tr></thead>
+    <tbody>
+      <tr><td>Ví dụ: O1 Rút ngắn thời gian điểm danh</td><td>P-Checkin (check-in bằng QR)</td><td>A20, A33, A35</td><td>TV5, TV1, TV4</td><td>R04</td><td>T-CI-01…05</td><td>CP4</td></tr>
+      <tr><td>Ví dụ: O2 Tổng hợp danh sách tham dự nhanh</td><td>P-Report (báo cáo, xuất file)</td><td>A34, A35</td><td>TV3, TV4</td><td>R06</td><td>T-RP-01…03</td><td>CP4</td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>7. Product Description</h3><button type="button" data-copy="tplPD">Copy</button></div>
+  <div class="tbl"><table id="tplPD">
+    <thead><tr><th>Trường</th><th>Nội dung</th></tr></thead>
+    <tbody>
+      <tr><td>Identity (mã, tên product)</td><td></td></tr>
+      <tr><td>Purpose / description</td><td></td></tr>
+      <tr><td>Derivation (tạo ra từ product nào)</td><td></td></tr>
+      <tr><td>Composition (gồm những phần nào)</td><td></td></tr>
+      <tr><td>Format</td><td></td></tr>
+      <tr><td>Relevant standards</td><td></td></tr>
+      <tr><td>Quality criteria</td><td></td></tr>
+      <tr><td>Quality method (review, test…) và người kiểm tra</td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>8. Biên bản checkpoint</h3><button type="button" data-copy="tplCP">Copy</button></div>
+  <div class="tbl"><table id="tplCP">
+    <thead><tr><th>CP</th><th>Ngày thực tế</th><th>Tiêu chí kiểm tra</th><th>Kết quả</th><th>Người duyệt</th><th>Hành động tiếp theo</th></tr></thead>
+    <tbody>
+      <tr><td>CP1</td><td></td><td></td><td>Đạt / Không đạt</td><td></td><td></td></tr>
+      <tr><td>CP2</td><td></td><td></td><td>Đạt / Không đạt</td><td></td><td></td></tr>
+      <tr><td>CP3</td><td></td><td></td><td>Đạt / Không đạt</td><td></td><td></td></tr>
+      <tr><td>CP4</td><td></td><td></td><td>Đạt / Không đạt</td><td></td><td></td></tr>
+      <tr><td>CP5</td><td></td><td></td><td>Đạt / Không đạt</td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>9. Nhật ký sử dụng AI (để khai báo trong báo cáo cuối)</h3><button type="button" data-copy="tplAI">Copy</button></div>
+  <div class="tbl"><table id="tplAI">
+    <thead><tr><th>Ngày</th><th>Công cụ</th><th>Task / artifact</th><th>Dùng để làm gì</th><th>Nhóm đã kiểm tra và điều chỉnh thế nào</th><th>Người dùng</th></tr></thead>
+    <tbody>
+      <tr><td></td><td>Claude</td><td>Kế hoạch tổng thể, template</td><td>Lập khung kế hoạch 8.5 tuần, Gantt nháp, template</td><td></td><td></td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="viva">
+  <h2>Chuẩn bị viva và đóng góp cá nhân</h2>
+  <p class="lede">Viva là 4% trong bảng điểm, nhưng quan trọng hơn: giảng viên có thể điều chỉnh điểm từng cá nhân dựa trên viva, bằng chứng đóng góp, project log, lịch sử repo và khả năng giải thích artifact của nhóm. Đề yêu cầu mỗi người hiểu toàn bộ dự án, không chỉ phần mình làm.</p>
+
+  <h3>Luyện từ bây giờ, không đợi tháng 12</h3>
+  <ul>
+    <li><b>Mỗi Chủ nhật, bất đồng bộ:</b> một người (xoay vòng) viết 5–10 dòng hoặc ghi âm 3 phút giải thích artifact của người khác, đăng lên chat; người sở hữu sửa lại nếu sai. Ghi vào weekly log ai trình bày phần gì.</li>
+    <li><b>Mỗi người giữ một thẻ bằng chứng</b> (template bên dưới) và điền dần sau mỗi activity, thay vì dựng lại vào cuối kỳ.</li>
+    <li><b>Trước mỗi checkpoint,</b> người sở hữu artifact tóm tắt trong 3 câu: artifact này nói gì, dựa trên thông tin nào, và đã thay đổi quyết định nào của nhóm.</li>
+    <li><b>Trong A46 (03–04/12):</b> hỏi chéo toàn bộ, mỗi người trả lời câu hỏi thuộc vai trò của người khác.</li>
+  </ul>
+
+  <h3>Câu hỏi luyện tập</h3>
+  <p style="color:var(--muted);font-size:14px;margin:4px 0 0">Nhóm câu hỏi được suy ra từ những gì đề nêu tên: estimate, rủi ro, quyết định tài nguyên, thay đổi lịch, tương tác với client, quyết định scope. Mọi thành viên nên trả lời được nhóm A và B; nhóm C trở đi ưu tiên người sở hữu artifact nhưng ai cũng cần nắm ý chính.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Nhóm</th><th>Câu hỏi</th><th>Trả lời dựa trên</th><th>Ai phải trả lời được</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="4">A. Tổng quan dự án</td><td>Mục tiêu của dự án là gì, và đo bằng gì?</td><td>Objectives và MoE (A07)</td><td>Tất cả</td></tr>
+      <tr><td>Scope gồm gì, loại trừ gì, và vì sao?</td><td>Scope statement, Client Log</td><td>Tất cả</td></tr>
+      <tr><td>Vì sao chọn incremental delivery thay vì waterfall hay Scrum thuần?</td><td>Phân tích đặc điểm dự án (A13)</td><td>Tất cả; TV5 giải thích sâu</td></tr>
+      <tr><td>Sản phẩm đã xong, nhưng objective đã đạt chưa? Dựa vào số liệu nào?</td><td>Đánh giá MoE (A42)</td><td>Tất cả</td></tr>
+      <tr><td rowspan="3">B. Đóng góp cá nhân</td><td>Bạn làm những phần nào? Chứng minh bằng gì?</td><td>Thẻ bằng chứng, time tracking, commit</td><td>Từng người</td></tr>
+      <tr><td>Bạn đã ra quyết định nào, và vì sao chọn phương án đó?</td><td>Weekly log, biên bản checkpoint</td><td>Từng người</td></tr>
+      <tr><td>Phần khó nhất bạn gặp là gì, xử lý thế nào?</td><td>Issue log, risk register</td><td>Từng người</td></tr>
+      <tr><td rowspan="3">C. Ước lượng và lịch</td><td>Vì sao activity này ước lượng X giờ? Thực tế bao nhiêu, lệch vì sao?</td><td>Bảng estimate (A18), weekly log</td><td>TV3 chủ trì; người làm activity đó</td></tr>
+      <tr><td>Critical path đi qua đâu? Trễ ở đó thì ảnh hưởng gì?</td><td>Activity network, Gantt</td><td>TV5, TV3, TV1</td></tr>
+      <tr><td>Phân biệt effort và elapsed time trong dự án này bằng một ví dụ.</td><td>A18</td><td>Tất cả</td></tr>
+      <tr><td rowspan="3">D. Rủi ro</td><td>Rủi ro lớn nhất là gì? Ai sở hữu? Đã làm gì để giảm?</td><td>Risk register (A19)</td><td>TV5 chủ trì; tất cả nắm 3 rủi ro đầu</td></tr>
+      <tr><td>Rủi ro nào đã xảy ra thật? Hệ quả và cách xử lý?</td><td>Risk register cập nhật (A36)</td><td>TV5, TV1</td></tr>
+      <tr><td>Activity nào trong kế hoạch tồn tại chỉ để giảm rủi ro?</td><td>A20 spike, A38 reserve</td><td>Tất cả</td></tr>
+      <tr><td rowspan="3">E. Client và scope</td><td>Câu trả lời nào của client làm nhóm đổi scope hay estimate?</td><td>Client Log, cột tác động</td><td>TV2 chủ trì; TV1</td></tr>
+      <tr><td>Giả định nào nhóm phải tự đặt vì client chưa trả lời?</td><td>Assumptions (A05)</td><td>TV2, TV1</td></tr>
+      <tr><td>Nhóm đã ưu tiên câu hỏi thế nào, và vì sao hỏi câu đó trước?</td><td>A03, A11</td><td>TV2</td></tr>
+      <tr><td rowspan="3">F. Thay đổi và tài nguyên</td><td>Change event ảnh hưởng gì? Nhóm cân nhắc những phương án nào?</td><td>Change Request (A38)</td><td>TV1 chủ trì; tất cả nắm quyết định</td></tr>
+      <tr><td>Baseline V2.0 khác V1.0 ở đâu, và ai duyệt?</td><td>So sánh V1.0 và V2.0</td><td>TV1, TV3</td></tr>
+      <tr><td>Lịch lý tưởng khác lịch có ràng buộc tài nguyên thế nào?</td><td>Resource plan (A50)</td><td>TV1, TV3</td></tr>
+      <tr><td rowspan="2">G. Chất lượng</td><td>Làm sao chứng minh requirement này đã được kiểm tra?</td><td>Traceability, kết quả test</td><td>TV2 chủ trì; tất cả</td></tr>
+      <tr><td>Checkpoint nào từng không đạt? Xử lý ra sao?</td><td>Biên bản checkpoint</td><td>Tất cả</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tpl-head"><h3>Thẻ bằng chứng đóng góp cá nhân</h3><button type="button" data-copy="tplViva">Copy</button></div>
+  <p style="color:var(--muted);font-size:14px;margin:4px 0 0">Mỗi người một tab riêng, điền dần sau mỗi activity. Đây là nguồn cho phần individual contribution statement ở Task 4.6 và cho câu hỏi nhóm B.</p>
+  <div class="tbl"><table id="tplViva">
+    <thead><tr><th>Activity ID</th><th>Việc đã làm</th><th class="num">Effort TT (h)</th><th>Sản phẩm tạo ra</th><th>Quyết định của tôi và lý do</th><th>Bằng chứng (commit / tài liệu / biên bản)</th></tr></thead>
+    <tbody>
+      <tr><td>Ví dụ: A19</td><td>Đánh giá rủi ro kỹ thuật check-in, đề xuất phương án nhập mã thủ công</td><td class="num">4</td><td>R04 trong risk register</td><td>Chọn giữ cả QR và nhập tay thay vì chỉ QR, vì kết quả spike cho thấy quét lỗi khi mạng yếu</td><td>Link risk register, báo cáo spike A20</td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note warn"><b>Rủi ro riêng của TV1:</b> TV1 không nhận việc code nên gần như không có commit code, và phần soạn thảo dài đã chuyển sang TV5 và TV3. Ba biện pháp bù: tự viết weekly log có ký tên, commit tài liệu quản lý vào /docs, và ghi mọi quyết định vào thẻ bằng chứng (quyết định gì, cân nhắc phương án nào, chọn vì sao). Mức 81h vẫn thấp hơn mức chia đều, nên nó chỉ bảo vệ được nếu TV1 có mặt đều đặn: hai buổi hỏi client, duyệt baseline 19/10, Progress Check 09/11, UAT 23/11, và việc viết weekly log mỗi Chủ nhật. Nếu không chắc duy trì được nhịp này, nên đổi vai PM trước ngày 19/10, khi baseline chưa chốt và client chưa quen liên hệ với TV1.</div>
+</section>
+
+<section id="rhythm">
+  <h2>Nhịp làm việc: bất đồng bộ, chỉ họp khi cần</h2>
+  <p class="lede">Không có buổi họp định kỳ. Mọi việc chạy trên chat, board và repo; nhóm giữ sẵn một giờ họp tối thứ 3 nhưng mặc định hủy, chỉ họp khi một trong các điều kiện bên dưới xảy ra. Đổi lại, các nghi thức bất đồng bộ trở thành bắt buộc, vì đó là toàn bộ bằng chứng cho tiêu chí Execution Evidence.</p>
+
+  <h3>Nghi thức bất đồng bộ bắt buộc</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Thời điểm</th><th>Ai làm</th><th>Nội dung</th><th>Đầu ra</th></tr></thead>
+    <tbody>
+      <tr><td>Thứ 4 hoặc 5, trước 21:00</td><td>Mỗi người</td><td>Đăng 3 dòng lên chat: đã xong gì (kèm activity ID), đang làm gì, vướng gì</td><td>Issue phát hiện sớm</td></tr>
+      <tr><td>Chủ nhật, trước 20:00</td><td>Mỗi người</td><td>Điền time tracking và cập nhật thẻ bằng chứng</td><td>Actual effort</td></tr>
+      <tr><td>Chủ nhật, trước 22:00</td><td>TV1</td><td>Viết weekly log: kế hoạch và thực tế, deviation, hành động quản lý; đăng tóm tắt lên chat và gán task tuần mới trên board</td><td>Weekly log, board tuần mới</td></tr>
+      <tr><td>Chủ nhật, trước 22:00</td><td>TV5</td><td>Rà risk register, đăng thay đổi lên chat</td><td>Risk status</td></tr>
+      <tr><td>Chủ nhật (xoay vòng)</td><td>Một người mỗi tuần</td><td>Viết 5–10 dòng hoặc ghi âm 3 phút giải thích artifact <b>của người khác</b>, đăng lên chat; người sở hữu artifact sửa lại nếu sai</td><td>Chuẩn bị viva; ghi vào weekly log</td></tr>
+      <tr><td>Mỗi pull request</td><td>Người review</td><td>Tiêu đề PR ghi activity ID; review trong 24 giờ</td><td>Lịch sử repo gắn với kế hoạch</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--muted)">Nếu ai không đăng check-in hoặc time tracking hai tuần liên tiếp, đó là tín hiệu rủi ro R07 và TV1 xử lý trực tiếp với người đó, không đưa ra nhóm.</p>
+
+  <h3>Khi nào thì họp, và họp vào lúc nào</h3>
+  <p><b>Giờ họp cố định: tối thứ 3, tối đa 45 phút.</b> Đây là chỗ giữ sẵn trong lịch của cả nhóm, mặc định là <b>hủy</b>. Buổi họp chỉ thực sự diễn ra khi một trong sáu điều kiện dưới đây xảy ra. Người phát hiện điều kiện là người gọi họp, không cần chờ PM; chốt muộn nhất tối thứ 2 để mọi người biết trước một ngày.</p>
+  <p style="font-size:14px;color:var(--muted)">Thứ 3 hợp lý vì các buổi gặp client đều rơi vào thứ 2 (giờ học): việc phát sinh từ buổi học được xử lý ngay ngày hôm sau, và cụm nghi thức Chủ nhật vẫn là nơi phát hiện điều kiện cần họp. Riêng việc gấp như change event hay sự cố trước demo thì họp ngay, không đợi tới thứ 3.</p>
+  <p>Sáu điều kiện:</p>
+  <ul>
+    <li><b>Quyết định cần từ ba người trở lên</b> và đã trao đổi một vòng trên chat trong 24 giờ mà chưa ngã ngũ.</li>
+    <li><b>Trước mỗi checkpoint</b> (CP1, CP2, CP3, CP4, CP5) và trước khi nộp Milestone 1: một buổi 45 phút để review chéo và ký duyệt. CP2 rơi vào tuần nghỉ giữa kỳ, nên buổi chuẩn bị là thứ 3 ngày 13/10; nếu nhóm không họp được tuần đó thì chuyển sang review chéo trên chat và ghi rõ trong weekly log.</li>
+    <li><b>Có change event</b> từ giảng viên: họp phân tích tác động và chọn phương án.</li>
+    <li><b>Deviation vượt 20%</b> về effort hoặc lịch ở một activity găng.</li>
+    <li><b>Một rủi ro có exposure từ 12 trở lên xảy ra thật.</b></li>
+    <li><b>Hai người trở lên báo blocker</b> trong cùng một đợt check-in giữa tuần.</li>
+  </ul>
+  <p style="font-size:14px;color:var(--muted)">Quy tắc chung: họp có agenda gửi trước từ tối thứ 2, tối đa 45 phút, kết thúc bằng quyết định ghi vào weekly log. Tuần nào không có điều kiện nào xảy ra thì không họp, và ghi một dòng "không họp" trong weekly log. Cập nhật tiến độ, review code và quyết định một hoặc hai người là đủ thì không đưa ra họp; người sở hữu artifact tự quyết và ghi lại, ai phản đối thì nói trong 24 giờ.</p>
+
+  <h3>Các buổi đã cố định theo lịch môn học</h3>
+  <p>Những buổi này diễn ra trong giờ học nên không tốn thêm thời gian: hỏi client vòng 1 (28/09), Progress Check (09/11), UAT (23/11). Cuối kỳ có thêm một buổi retrospective và diễn tập demo (A44, A46).</p>
+
+  <div class="note warn"><b>Đánh đổi cần biết:</b> bỏ họp định kỳ tiết kiệm khoảng 45 person-hours cho cả dự án, nhưng toàn bộ bằng chứng Execution Evidence dồn vào weekly log, check-in trên chat và lịch sử repo. Thiếu một tuần là không có gì thay thế. Nếu trong ba tuần đầu có từ hai tuần thiếu check-in hoặc thiếu log, nên chuyển buổi thứ 3 thành họp cố định hằng tuần và ghi quyết định đó vào weekly log như một hành động quản lý.</div>
+</section>
+
+<section id="pitfalls">
+  <h2>Lỗi dễ mất điểm cần tránh</h2>
+  <ul>
+    <li>Client log có câu trả lời không kiểm chứng được, hoặc cột "Tác động" để trống. Mỗi câu trả lời quan trọng phải trỏ tới một requirement, risk hoặc estimate cụ thể.</li>
+    <li>Không ghi actual effort mỗi tuần. Thiếu dữ liệu này thì Task 3.3 và Task 4.2 gần như không có gì để phân tích.</li>
+    <li>Sửa thẳng estimate hoặc lịch cũ sau khi đã có kết quả thực tế. Luôn giữ V1.0 và lập V2.0.</li>
+    <li>Các bảng mâu thuẫn nhau (ID lệch, effort khác giữa estimate và Gantt). Dùng master sheet và review chéo trước mỗi checkpoint.</li>
+    <li>Objectives chỉ lặp lại deliverable ("xây dựng hệ thống"). Objective phải là kết quả có thể đo được.</li>
+    <li>Viết tài liệu dài, chung chung. Đề ưu tiên artifact ngắn gọn, nhất quán, có lý do.</li>
+    <li>Không khai báo công cụ AI đã dùng, hoặc không giải thích được artifact trong viva.</li>
+  </ul>
+</section></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// id, name, task ref, phase, owners, effort(h), duration(days), predecessors, checkpoint label, fixed start date (course calendar)
+const ACT = [
+ ["A01","Set up project infrastructure","1.7","P0",["TV3","TV5"],6,3,[]],
+ ["A02","Analyse project brief","1.1","P0",["TV1","TV2","TV3","TV4","TV5"],5,1,[]],
+ ["A55","Clarify client role & channel (P01–P06)","1.1, 1.5","P1",["TV1"],2,2,[],"","2026-09-23"],
+ ["A03","Prepare client questions (round 1)","1.1","P1",["TV2","TV4"],5,2,["A02"]],
+ ["A04","Consult client (round 1)","1.1","P1",["TV1","TV2"],4,1,["A01","A03"],"","2026-09-28"],
+ ["A05","Document business context & constraints","1.2","P1",["TV2","TV5"],6,1,["A04"],"","2026-10-02"],
+ ["A08","Define project authority & escalation","1.5","P1",["TV1"],4,1,["A04"],"","2026-10-02"],
+ ["A06","Evaluate business case & costs","1.3","P1",["TV4"],8,2,["A04"],"","2026-10-02"],
+ ["A09","Analyse stakeholders","1.6","P1",["TV2","TV3"],5,2,["A04"],"","2026-10-02"],
+ ["A13","Analyse project characteristics & lifecycle","1.8","P1",["TV5","TV3"],8,2,["A04"],"","2026-10-02"],
+ ["A07","Define scope, objectives & MoE","1.4","P1",["TV2","TV5"],8,1,["A05"]],
+ ["A10","Establish standards & communication plan","1.7","P1",["TV3","TV4"],6,1,["A08"]],
+ ["A11","Prepare client questions (round 2)","1.1","P2",["TV2","TV5"],3,1,["A07","A09","A49"]],
+ ["A14","Approve project definition","CP1","P1",["TV1","TV2","TV3","TV4","TV5"],3,1,["A06","A07","A09","A10","A13"],"CP1"],
+ ["A61","Build Milestone 1 deck skeleton","M1","P1",["TV1"],1,1,[],"","2026-10-02"],
+ ["A59","Fill Milestone 1 deck & rehearse","M1","P1",["TV1"],3,1,["A61","A06","A07","A09","A10","A13"],"","","2026-10-04"],
+ ["A49","Present Milestone 1 in class","M1","P1",["TV1","TV2","TV3","TV4","TV5"],5,1,["A14","A59"],"M1","2026-10-05"],
+ ["A12","Consult client by email (round 2)","1.1","P2",["TV1","TV2"],4,2,["A11","A49"]],
+ ["A15","Build PBS & PFD","2.1, 2.3","P2",["TV3","TV5"],10,2,["A49"]],
+ ["A16","Write product descriptions","2.2","P2",["TV2","TV4"],8,2,["A15","A12"]],
+ ["A17","Construct activity network & checkpoints","2.4, 2.5, 2.7","P2",["TV1","TV2"],6,2,["A15"]],
+ ["A18","Estimate activity effort bottom-up","2.6","P2",["TV1","TV2","TV3","TV4","TV5"],10,2,["A17"]],
+ ["A19","Assess activity risks & plan responses","2.8, 2.9","P2",["TV5","TV4"],8,2,["A17","A13"]],
+ ["A22","Write quality plan & test strategy","2.12","P2",["TV2","TV4"],6,2,["A16"]],
+ ["A21","Draft schedule & Gantt","2.11","P2",["TV3"],5,1,["A18","A19"]],
+ ["A20","Prototype QR check-in (spike)","2.9","P3",["TV3","TV5"],6,3,["A21"]],
+ ["A25","Design database schema & API contract","3.1","P3",["TV3","TV4"],6,3,["A16"]],
+ ["A50","Allocate resources & level schedule","2.10","P3",["TV1","TV3"],6,3,["A21"]],
+ ["A24","Set up codebase, CI & deployment","3.1","P3",["TV5"],8,3,["A25"]],
+ ["A58","Confirm scope-affecting points with client","1.1","P3",["TV1"],2,2,["A21","A12"]],
+ ["A23","Approve Project Baseline V1.0 (team)","CP2","P3",["TV1","TV2","TV3","TV4","TV5"],5,1,["A50","A25","A22","A58"],"CP2"],
+ ["A26","Implement authentication & roles","3.1","P4",["TV3","TV5"],10,3,["A23","A24"],"","2026-10-20"],
+ ["A28","Build UI layout & shared components","3.1","P4",["TV4","TV2"],10,4,["A23"],"","2026-10-20"],
+ ["A31","Write test cases for increment 1","3.5","P4",["TV2"],10,5,["A23"],"","2026-10-20"],
+ ["A27","Implement event management","3.1","P4",["TV3","TV4","TV5"],24,4,["A26","A28"]],
+ ["A29","Implement event registration & cancellation","3.1","P4",["TV3","TV4","TV5"],12,2,["A27"]],
+ ["A62","Implement waitlist & auto-promotion","3.1","P4",["TV3","TV4","TV5"],12,2,["A29"]],
+ ["A30","Test & demo increment 1","CP3","P4",["TV1","TV2","TV3","TV4","TV5"],10,1,["A62","A31"],"CP3"],
+ ["A36","Monitor progress & update logs","3.2–3.4","P4",["TV1"],24,49,["A23"]],
+ ["A57","Chair traceability & consistency reviews","Traceability","P4",["TV1"],10,40,["A23"]],
+ ["A32","Plan increment 2 in detail","3.8","P5",["TV1"],4,1,["A30"]],
+ ["A33","Implement QR check-in & attendance","3.1","P5",["TV5","TV2"],16,5,["A32","A20"]],
+ ["A35","Build check-in & report UI","3.1","P5",["TV4"],14,5,["A32"]],
+ ["A34","Implement attendance reports & export","3.1","P5",["TV3"],14,4,["A32","A25"]],
+ ["A40","Write test cases for increment 2","3.5","P5",["TV2"],8,4,["A32"]],
+ ["A37","Integrate core workflow","3.1","P5",["TV3","TV4","TV5"],8,1,["A33","A35"]],
+ ["A51","Present progress check","CP4","P5",["TV1","TV2","TV3","TV4","TV5"],5,1,["A37"],"CP4","2026-11-09"],
+ ["A38","Hold contingency buffer (change event)","3.6, 3.7","P6",["TV1","TV2","TV3","TV4","TV5"],30,8,["A51"]],
+ ["A39","Test increment 2 & regression","3.5","P6",["TV2","TV4"],10,3,["A51","A40","A34"]],
+ ["A53","Fix defects & deploy release","3.5","P6",["TV3","TV4","TV5"],12,2,["A39"]],
+ ["A41","Conduct user acceptance test","CP5","P7",["TV2","TV1"],6,2,["A53"],"CP5","2026-11-23"],
+ ["A42","Analyse planned vs actual performance","4.2, 4.3","P7",["TV1","TV3"],10,4,["A41"]],
+ ["A43","Prepare closure & handover plan","4.4","P7",["TV5"],5,3,["A41"]],
+ ["A44","Hold retrospective & record lessons","4.5","P7",["TV1","TV2","TV3","TV4","TV5"],5,1,["A41"]],
+ ["A45","Compile final report","4.1–4.6","P7",["TV2","TV4","TV5"],15,4,["A42","A43","A44"]],
+ ["A46","Rehearse demo & viva","4.6","P7",["TV1","TV2","TV3","TV4","TV5"],10,2,["A45"]],
+ ["A47","Submit final deliverables","4","P7",["TV1"],2,1,["A46"]],
+ ["A54","Present final demo & viva","Demo","P7",["TV1","TV2","TV3","TV4","TV5"],5,1,["A47"],"Demo","2026-12-07"],
+].map(r=>({id:r[0],name:r[1],task:r[2],phase:r[3],owners:r[4],effort:r[5],dur:r[6],preds:r[7],cp:r[8]||"",fixed:r[9]||"",deadline:r[10]||"",hammock:["A36","A57"].includes(r[0])}));
+
+const PHASES = {P0:"Khởi động (tuần 5)",P1:"Task 1 · Initiation & Definition và Milestone 1 (05/10)",P2:"Task 2 · Baseline draft",P3:"Nghỉ giữa kỳ và chốt Baseline V1.0",P4:"Task 3 · Increment 1 và giám sát",P5:"Task 3 · Increment 2 và Progress Check",P6:"Task 3 · Xử lý thay đổi và kiểm thử",P7:"Task 4 · Delivery & Closure"};
+const PEOPLE = ["TV1","TV2","TV3","TV4","TV5"];
+const COURSE_W1 = new Date("2026-08-24T00:00:00");
+const BREAK = ["2026-10-12","2026-10-18"];
+const DEFAULT_START = "2026-09-23";
+const COURSE_MARKS = [["2026-10-05","Milestone 1"],["2026-11-09","Progress Check"],["2026-12-07","Demo & viva"]];
+const MS = 86400000;
+
+let startDate = DEFAULT_START;
+try { const s = localStorage.getItem("co3011_start_v2"); if(s) startDate = s; } catch(e){}
+const sdInput = document.getElementById("startDate");
+sdInput.value = startDate;
+sdInput.addEventListener("change",()=>{ startDate = sdInput.value || DEFAULT_START; try{ localStorage.setItem("co3011_start_v2",startDate); }catch(e){} renderAll(); });
+
+const byId = Object.fromEntries(ACT.map(a=>[a.id,a]));
+const toDate = s => new Date(s+"T00:00:00");
+const dayOf = s => Math.round((toDate(s) - toDate(startDate))/MS) + 1;
+function dayDate(n){ const d = toDate(startDate); d.setDate(d.getDate()+n-1); return d; }
+function fmt(n){ const d = dayDate(n); return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}`; }
+const WD = ["CN","T2","T3","T4","T5","T6","T7"];
+function courseWeek(n){ return Math.floor((dayDate(n) - COURSE_W1)/MS/7) + 1; }
+function isBreak(n){ const d = dayDate(n); return d >= toDate(BREAK[0]) && d <= toDate(BREAK[1]); }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+let END = 0, order = [];
+function computeCPM(){
+  order = []; const seen = new Set();
+  const visit = a => { if(seen.has(a.id)) return; seen.add(a.id); a.preds.forEach(p=>visit(byId[p])); order.push(a); };
+  ACT.forEach(visit);
+  order.forEach(a=>{ a.es = Math.max(0,...a.preds.map(p=>byId[p].ef)); if(a.fixed) a.es = Math.max(a.es, dayOf(a.fixed)-1); a.ef = a.es + a.dur; });
+  END = Math.max(...ACT.map(a=>a.ef));
+  [...order].reverse().forEach(a=>{
+    const succ = ACT.filter(b=>b.preds.includes(a.id));
+    a.lf = succ.length ? Math.min(...succ.map(b=>b.ls)) : END; a.ls = a.lf - a.dur;
+    // course dates are fixed events (must start on): no float, predecessors must finish before them
+    if(a.deadline){ a.lf = Math.min(a.lf, dayOf(a.deadline)); a.ls = a.lf - a.dur; }
+    if(a.fixed){ a.ls = Math.min(a.ls, a.es); a.lf = a.ls + a.dur; }
+    a.float = a.ls - a.es; a.crit = a.float === 0 && !a.hammock;
+  });
+}
+const totalEffort = ACT.reduce((s,a)=>s+a.effort,0);
+document.getElementById("factEffort").textContent = totalEffort;
+
+function weekGroups(){
+  const g = [];
+  for(let d=1; d<=END; d++){ const w = courseWeek(d); if(!g.length || g[g.length-1].w!==w) g.push({w,a:d,b:d}); else g[g.length-1].b = d; }
+  return g;
+}
+
+function renderGantt(){
+  const g = document.getElementById("ganttChart");
+  g.style.setProperty("--ndays", END);
+  const firstMon = [...Array(8).keys()].map(i=>i+1).find(d=>dayDate(d).getDay()===1) || 1;
+  g.style.setProperty("--gridoff", `calc(var(--day) * ${firstMon-1})`);
+  let h = `<div class="g-label g-head" style="height:44px">Activity</div><div class="g-track g-head" style="height:44px;background-image:none"><div class="weeks">`;
+  weekGroups().forEach(({w,a,b})=>{ h += `<div style="width:calc(var(--day) * ${b-a+1})" title="Tuần ${w}">${b-a>=2?"W"+w+(isBreak(a)?" nghỉ":""):""}</div>`; });
+  h += `</div><div class="days">`;
+  for(let d=1; d<=END; d++){ const dt = dayDate(d); const cls = isBreak(d)?"brk":(dt.getDay()===0||dt.getDay()===6)?"we":""; h += `<div class="${cls}" title="${WD[dt.getDay()]} ${fmt(d)}">${dt.getDate()}</div>`; }
+  h += `</div></div>`;
+  let cur = null;
+  const rows = [...ACT].sort((a,b)=> (a.phase>b.phase?1:a.phase<b.phase?-1:0) || a.es-b.es || a.id.localeCompare(b.id));
+  rows.forEach(a=>{
+    if(a.phase!==cur){ cur=a.phase; h += `<div class="g-phase">${esc(PHASES[cur])}</div>`; }
+    const rc = a.crit ? "" : "row-noncrit";
+    const tip = `${a.id} ${a.name} · ${WD[dayDate(a.es+1).getDay()]} ${fmt(a.es+1)} → ${WD[dayDate(a.ef).getDay()]} ${fmt(a.ef)} · ${a.dur} ngày · ${a.effort}h · ${a.owners.join(", ")} · float ${a.float}`;
+    h += `<div class="g-label ${rc}" title="${esc(tip)}"><span class="id">${a.id}</span><span class="nm">${esc(a.name)}</span></div><div class="g-track ${rc}">`;
+    if(a.cp){ h += `<div class="diamond" title="${esc(tip)}" style="left:calc(var(--day) * ${a.es} + 0px)"></div><div class="cp-flag" style="left:calc(var(--day) * ${a.ef} + 6px)">${a.cp} ${fmt(a.es+1)}</div>`; }
+    else { h += `<div class="bar ${a.crit?"crit":""}" title="${esc(tip)}" style="left:calc(var(--day) * ${a.es} + 1px);width:calc(var(--day) * ${a.dur} - 2px)"></div>`; }
+    if(a.float>0 && !a.hammock) h += `<div class="float" style="left:calc(var(--day) * ${a.ef});width:calc(var(--day) * ${a.float})"></div>`;
+    h += `</div>`;
+  });
+  // overlays: midterm break band, course milestones, today
+  const b0 = dayOf(BREAK[0]), b1 = dayOf(BREAK[1]);
+  if(b1>=1 && b0<=END) h += `<div class="band" style="left:calc(var(--label) + var(--day) * ${Math.max(b0,1)-1});width:calc(var(--day) * ${Math.min(b1,END)-Math.max(b0,1)+1})"></div>`;
+  COURSE_MARKS.forEach(([d,l])=>{ const n = dayOf(d); if(n>=1&&n<=END) h += `<div class="vline" style="left:calc(var(--label) + var(--day) * ${n})" title="${esc(l)} ${fmt(n)}"></div>`; });
+  const today = new Date(); today.setHours(0,0,0,0); const tn = Math.round((today - toDate(startDate))/MS)+1;
+  if(tn>=1&&tn<=END) h += `<div class="vline today" style="left:calc(var(--label) + var(--day) * ${tn-1} + var(--day) / 2)"><span>Hôm nay</span></div>`;
+  g.innerHTML = h;
+  const crit = order.filter(a=>a.crit).sort((a,b)=>a.es-b.es).map(a=>a.id);
+  document.getElementById("critSummary").innerHTML = `<b>Activity găng, float = 0 (${fmt(1)} – ${fmt(END)}, ${END} ngày):</b> ${crit.join(", ")}. Vì có các ngày cố định của môn học, lịch bị chia thành nhiều đoạn găng riêng: chuỗi từ 02/10 tới buổi trình bày Milestone 1 (05/10), chuỗi phát triển từ 20/10 tới Progress Check (09/11), và chuỗi xử lý thay đổi tới UAT (23/11). Tuần nghỉ giữa kỳ không có activity găng: nhóm tự chốt Baseline V1.0 sớm nhất 15/10, còn Increment 1 cố định bắt đầu 20/10, nên các việc trong tuần nghỉ có 1–5 ngày float để bù cho lịch thi. Các activity song song như business case hay viết test case cũng có float, và giai đoạn cuối có một ngày float trước buổi demo; đây là buffer của nhóm, không phải thời gian rảnh. A36 (giám sát) là hammock activity chạy suốt giai đoạn thực thi nên không tính vào đường găng. Trễ ở activity găng sẽ làm trễ mốc môn học tương ứng, trừ khi dùng reserve A38.`;
+}
+
+function renderCPM(){
+  let h = `<thead><tr><th>ID</th><th>Activity</th><th>Task</th><th>Owner</th><th class="num">Effort (h)</th><th class="num">Thời lượng (ngày)</th><th>Phụ thuộc</th><th>Ràng buộc</th><th class="num">ES</th><th class="num">EF</th><th class="num">LS</th><th class="num">LF</th><th class="num">Float</th><th>Bắt đầu</th><th>Kết thúc</th><th class="num">Tuần</th></tr></thead><tbody>`;
+  [...ACT].sort((a,b)=>a.es-b.es || a.id.localeCompare(b.id)).forEach(a=>{
+    const w1 = courseWeek(a.es+1), w2 = courseWeek(a.ef);
+    h += `<tr><td><a href="#act-${a.id}" onclick="document.getElementById('act-${a.id}').open=true">${a.id}</a></td><td>${esc(a.name)}${a.cp?` <span class="tag cp">${a.cp}</span>`:""}</td><td>${esc(a.task)}</td><td>${a.owners.join(", ")}</td><td class="num">${a.effort}</td><td class="num">${a.dur}</td><td>${a.preds.join(", ")||"–"}</td><td>${a.fixed?"Từ "+fmt(dayOf(a.fixed)):a.deadline?"Hạn "+fmt(dayOf(a.deadline)):"–"}</td><td class="num">${a.es+1}</td><td class="num">${a.ef}</td><td class="num">${a.ls+1}</td><td class="num">${a.lf}</td><td class="num">${a.hammock?'–':a.crit?'<span class="tag crit">0</span>':a.float}</td><td>${WD[dayDate(a.es+1).getDay()]} ${fmt(a.es+1)}</td><td>${WD[dayDate(a.ef).getDay()]} ${fmt(a.ef)}</td><td class="num">${w1===w2?w1:w1+"–"+w2}</td></tr>`;
+  });
+  h += `<tr><td></td><td><b>Tổng effort kế hoạch</b></td><td></td><td></td><td class="num"><b>${totalEffort}</b></td><td class="num"><b>${END}</b></td><td colspan="10"></td></tr></tbody>`;
+  document.getElementById("cpmTable").innerHTML = h;
+}
+
+function renderLoad(){
+  const wg = weekGroups();
+  const load = {}; PEOPLE.forEach(p=>load[p]=wg.map(()=>0));
+  const idx = d => wg.findIndex(g=>d>=g.a&&d<=g.b);
+  ACT.forEach(a=>{ const per = a.effort/a.owners.length/a.dur; for(let d=a.es+1; d<=a.ef; d++){ a.owners.forEach(o=>{ load[o][idx(d)] += per; }); } });
+  let h = `<thead><tr><th>Thành viên</th>${wg.map(g=>`<th class="num ${isBreak(g.a)?"brk":""}" title="${fmt(g.a)} – ${fmt(g.b)}">W${g.w}${isBreak(g.a)?" (nghỉ)":""}</th>`).join("")}<th class="num">Tổng (h)</th></tr></thead><tbody>`;
+  PEOPLE.forEach(p=>{
+    const tot = load[p].reduce((s,v)=>s+v,0);
+    h += `<tr><td>${p}</td>${load[p].map((v,i)=>{ const g = wg[i]; const brk = isBreak(g.a); const scale = (g.b-g.a+1)/7; const lo = (brk?6:12)*scale, hi = (brk?8:16)*scale; const c = v>hi?"l2":v>lo?"l1":""; return `<td class="num ${c} ${brk?"brk":""}">${v.toFixed(1)}</td>`; }).join("")}<td class="num"><b>${tot.toFixed(0)}</b></td></tr>`;
+  });
+  document.getElementById("loadTable").innerHTML = h + `</tbody>`;
+}
+
+const QUESTIONS = [
+ "Ai được tạo sự kiện? Sự kiện có cần duyệt không?",
+ "Người dùng đăng nhập bằng gì (tài khoản trường, email trường, tự đăng ký)?",
+ "Điểm danh làm thế nào (QR, mã, danh sách)? Có check-out không? Mạng yếu thì sao?",
+ "Có giới hạn số chỗ, danh sách chờ, hạn chót hủy đăng ký không?",
+ "Sau sự kiện cần báo cáo gì, định dạng nào? Có liên quan điểm rèn luyện không?",
+ "Quy mô: số sự kiện mỗi tháng, số người mỗi sự kiện, số người check-in cùng lúc?",
+ "Hiện dùng công cụ gì, tổng hợp mất bao lâu?",
+ "Tiêu chí nghiệm thu? Ưu tiên chức năng nào nếu thiếu thời gian?",
+ "Ràng buộc về dữ liệu cá nhân, hosting, nền tảng?"
+];
+const PQUESTIONS = [
+ ["Ai đóng vai client/sponsor? Ai duyệt scope và thay đổi?","Task 1.5 project authority"],
+ ["Liên hệ client qua kênh nào? Giới hạn và thời gian phản hồi?","Communication plan; A04, A12"],
+ ["Có nên khảo sát sinh viên thật? Trình bày tách khỏi Client Log?","A56, Task 1.6"],
+ ["Hạn nộp và định dạng Milestone 1?","A49, R10"],
+ ["Có liên hệ client trong tuần nghỉ để duyệt baseline không?","A23"],
+ ["Bằng chứng cho Client Log cần dạng nào?","Standards & procedures"]
+];
+document.getElementById("clientRows").innerHTML = PQUESTIONS.map((q,i)=>`<tr><td>P${String(i+1).padStart(2,"0")}</td><td>23/09</td><td>Email làm rõ</td><td>TV1</td><td>${esc(q[0])}</td><td></td><td></td><td>${esc(q[1])}</td><td></td></tr>`).join("") + QUESTIONS.map((q,i)=>`<tr><td>Q${String(i+1).padStart(2,"0")}</td><td>28/09</td><td>Vòng 1, trên lớp</td><td></td><td>${esc(q)}</td><td></td><td></td><td></td><td></td></tr>`).join("") + `<tr><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`;
+
+const RISKS = [
+ ["R01","Client phản hồi email chậm (không cam kết thời gian, theo P02), làm rõ yêu cầu bị trễ","Requirements",3,4,"TV2","Gom câu hỏi, gửi sớm ngay khi soạn xong; chừa 2 ngày chờ trong kế hoạch","Ghi phần chưa rõ thành assumption có mã, làm trước phần Must","A12, A58"],
+ ["R02","Ước lượng thấp hơn thực tế do nhóm thiếu kinh nghiệm","Estimation",4,3,"TV3","Three-point estimate, spike A20, so sánh actual hằng tuần","Dùng reserve A38, cắt Could-have","A18"],
+ ["R03","Thành viên bận thi giữa kỳ (tuần 8) hoặc deadline môn khác","Resource",4,3,"TV1","Thu lịch thi từ tuần 5, chỉ xếp việc nhẹ và không cần client vào tuần 8","Hoán đổi việc giữa các thành viên, dùng float trước 19/10","A20, A24, A25, A50"],
+ ["R04","Check-in QR chạy kém trên điện thoại hoặc mạng yếu","Technical",3,4,"TV5","Spike A20 trên nhiều thiết bị","Cho phép nhập mã thủ công","A20, A33"],
+ ["R05","Change event của giảng viên làm tăng scope đáng kể","Scope",5,3,"TV1","Giữ reserve A38 ngay sau Progress Check, chuẩn bị template CR sẵn","Đàm phán cắt Should/Could, lập V2.0","A38"],
+ ["R06","Frontend và backend lệch API khi tích hợp","Technical",3,3,"TV3","Chốt API contract ở A25","Dành A37 để tích hợp trước Progress Check","A25, A37"],
+ ["R07","Một thành viên không đóng góp hoặc rời nhóm","Resource",2,5,"TV1","Owner rõ ràng, review hằng tuần qua time tracking","Phân lại việc, báo giảng viên","A36"],
+ ["R08","Các bảng trong báo cáo mâu thuẫn nhau","Quality",3,4,"TV2","Master sheet dùng chung ID","Review chéo trước mỗi checkpoint","A49, A23, A45"],
+ ["R09","Hosting free-tier lỗi ngay trước buổi demo","Technical",2,4,"TV5","Deploy sớm từ A24, kiểm tra trước demo 2 ngày","Chạy local và quay video dự phòng","A24, A46"],
+ ["R13","Milestone 3 (change response, revised plan) diễn ra ở Progress Check 09/11, trước reserve A38","Schedule",3,4,"TV1","Hỏi ngày M2, M3 và thời điểm change event trong email vòng 2 (A11, A12)","Dời A38 và Baseline V2.0 lên trước A51; giảm phạm vi Increment 2 tương ứng","A38, A51"],
+ ["R10","Milestone 1 sớm hơn kế hoạch (05/10 thay vì 11/10) — ĐÃ XẢY RA ngày 02/10","Schedule",5,5,"TV1","Thu hẹp nội dung M1 theo lịch môn học; dời PBS, PD, estimate đầy đủ sang sau M1","Trình bày phần đã xong, nêu rõ kế hoạch hoàn thiện trước khi chốt baseline","A18, A59, A49"],
+];
+document.getElementById("riskRows").innerHTML = RISKS.map(r=>`<tr><td>${r[0]}</td><td>${esc(r[1])}</td><td>${r[2]}</td><td class="num">${r[3]}</td><td class="num">${r[4]}</td><td class="num">${r[3]*r[4]>=12?`<span class="tag crit">${r[3]*r[4]}</span>`:r[3]*r[4]}</td><td>${r[5]}</td><td>${esc(r[6])}</td><td>${esc(r[7])}</td><td>${r[8]}</td><td>Open</td></tr>`).join("");
+
+const DETAILS = {
+A01:{g:"Tạo nơi làm việc chung để mọi bằng chứng quản lý được ghi lại ngay từ ngày đầu.",
+ s:["Tạo GitHub repo gồm thư mục /docs (tài liệu quản lý) và /src (code); bật bảo vệ nhánh main, bắt buộc review PR.","Tạo template PR có ô bắt buộc ghi Activity ID.","Tạo board (GitHub Projects hoặc Jira) với các cột Backlog, Doing, Review, Done; label theo activity ID.","Tạo Google Sheet master với các tab Client Log, Traceability, Estimates, Risk Register, Weekly Log, Time Tracking (dùng nút copy ở mục Templates).","Tạo kênh chat nhóm và thư mục Drive; phân quyền cho cả 5 người."],
+ i:"Đề bài CO3011, danh sách thành viên",o:"Repo, board, master sheet, kênh liên lạc; link ghi trong README",d:"Cả 5 người đã truy cập, commit thử và ghi thử một dòng time tracking."},
+A02:{g:"Cả nhóm hiểu cùng một cách về đề bài và brief, và biết điều gì còn chưa rõ.",
+ s:["Mỗi người tự đọc đề CO3011 và brief, ghi ra các điểm chưa rõ.","Họp khoảng 1 giờ để gom danh sách, bỏ trùng.","Phân loại từng điểm theo ảnh hưởng: scope, effort, rủi ro, lịch, nghiệm thu.","Thống nhất vai trò TV1–TV5 và artifact mỗi người sở hữu."],
+ i:"Đề CO3011, brief đề tài",o:"Danh sách điểm chưa rõ (đầu vào cho A55, A03); bảng vai trò",d:"Danh sách lưu trong /docs, mỗi điểm có người phụ trách hỏi."},
+A55:{g:"Xác định ai là client, liên hệ qua kênh nào và các mốc nộp, trước khi hỏi yêu cầu.",
+ s:["Gửi email P01–P06 cho giảng viên (bản nháp đã soạn).","Ghi P01–P06 vào Client Log với ngày gửi và người gửi.","Khi có trả lời: điền cột trả lời, tác động và bằng chứng (ảnh chụp hoặc link email) trong vòng 1 ngày.","Đóng hoặc sửa các giả định trong plan theo câu trả lời; báo cho TV1 cập nhật lịch nếu mốc thay đổi."],
+ i:"Danh sách điểm chưa rõ từ A02",o:"Email đã gửi; 6 dòng P trong Client Log",d:"Email gửi trước hết ngày 24/09; mọi câu trả lời đã ghi vào log và plan."},
+A03:{g:"Có một bộ câu hỏi ngắn, được ưu tiên, để buổi hỏi đầu tiên đem lại nhiều thông tin nhất.",
+ s:["Rà Q01–Q09, bỏ những câu brief hoặc email P đã trả lời.","Với mỗi câu, ghi một dòng \"nếu câu trả lời là A thì ảnh hưởng gì tới scope, effort hoặc rủi ro\" để xếp ưu tiên.","Sắp xếp theo tác động giảm dần; chuẩn bị sẵn câu follow-up cho các câu quan trọng.","Phân công người hỏi và người ghi chép; in hoặc mở sẵn biểu mẫu ghi chép."],
+ i:"Q01–Q09, kết quả A02 và A55",o:"Bộ câu hỏi vòng 1 đã ưu tiên",d:"Không quá khoảng 10 câu, mỗi câu có mục đích rõ; cả nhóm đã xem qua."},
+A04:{g:"Làm rõ các yêu cầu quan trọng nhất với client và ghi lại có bằng chứng.",
+ s:["Hỏi theo thứ tự ưu tiên; hỏi follow-up ngay khi câu trả lời còn mơ hồ.","Người ghi chép ghi nguyên ý câu trả lời, không diễn giải.","Trong 24 giờ: điền Client Log (trả lời, tác động, ID liên quan).","Gửi email tóm tắt các câu trả lời cho client để xác nhận; lưu email làm bằng chứng."],
+ i:"Bộ câu hỏi vòng 1 (A03)",o:"Client Log vòng 1; email tóm tắt",d:"Mỗi câu có câu trả lời, hoặc được đánh dấu \"chưa rõ, hỏi vòng 2\"."},
+A05:{g:"Mô tả bối cảnh, vấn đề và giới hạn của dự án (Task 1.2).",
+ s:["Mô tả bối cảnh tổ chức: các đơn vị tổ chức sự kiện, cách đang làm hiện nay.","Nêu vấn đề hoặc cơ hội: nhiều công cụ rời rạc, khó quản lý người tham dự và tổng hợp.","Mô tả ngắn sản phẩm đề xuất.","Liệt kê assumptions (có mã, ghi rõ nguồn: client xác nhận hay nhóm tự giả định) và constraints (thời gian, nhân lực, hosting miễn phí, dữ liệu cá nhân sinh viên)."],
+ i:"Brief, Client Log vòng 1",o:"Mục 1.2 của báo cáo",d:"Mọi assumption có mã và trạng thái đã/chưa xác nhận."},
+A06:{g:"Đánh giá dự án có đáng làm không và đưa ra khuyến nghị go/no-go (Task 1.3).",
+ s:["Liệt kê lợi ích (giảm giờ công tổng hợp, điểm danh nhanh và chính xác hơn) và disbenefits (chi phí làm quen, phụ thuộc hệ thống).","Ước tính chi phí phát triển (person-hours nhân đơn giá giả định) và chi phí vận hành (hosting, bảo trì).","Ước tính lợi ích quy ra giờ công mỗi năm dựa trên số sự kiện và thời gian tổng hợp hiện tại (câu Q06, Q07).","Tính payback, ROI hoặc NPV đơn giản cho 2–3 năm, nêu rõ giả định.","Kết luận go/no-go gắn với các con số trên."],
+ i:"Client Log (Q06, Q07), A05",o:"Business case và khuyến nghị go/no-go",d:"Mọi con số có nguồn hoặc được ghi là assumption."},
+A08:{g:"Làm rõ ai quyết định điều gì và vấn đề được đẩy lên thế nào (Task 1.5).",
+ s:["Xác định sponsor/client, PM và các vai trò quyết định (scope, kỹ thuật, lịch, chất lượng).","Lập bảng quyết định: loại quyết định, người đề xuất, người duyệt.","Viết quy trình leo thang: vấn đề nội bộ báo PM trong 24 giờ; vấn đề ảnh hưởng scope hoặc mốc báo client."],
+ i:"Trả lời P01",o:"Mục project authority",d:"Mỗi loại quyết định có đúng một người chịu trách nhiệm cuối cùng."},
+A09:{g:"Hiểu các bên liên quan và điều chỉnh dự án theo họ (Task 1.6).",
+ s:["Liệt kê stakeholder: sinh viên, ban tổ chức/CLB, Phòng CTSV, IT trường, giảng viên, nhóm dự án.","Đánh giá interest, influence và impact của từng bên.","Vẽ lưới power–interest và chọn chiến lược engagement cho từng nhóm.","Ghi rõ điều chỉnh nào về objectives, scope hay cách làm là kết quả của phân tích này."],
+ i:"Client Log, A05",o:"Bảng stakeholder, lưới power–interest",d:"Có ít nhất một quyết định được ghi rõ là hệ quả của phân tích."},
+A56:{g:"Thu ý kiến sinh viên thật để củng cố stakeholder analysis (chỉ làm nếu thầy đồng ý ở P03).",
+ s:["Soạn Google Form 5–7 câu: đang đăng ký sự kiện thế nào, gặp khó khăn gì, muốn nhận thông báo qua kênh nào.","Gửi cho 1–2 lớp hoặc nhóm sinh viên.","Tổng hợp kết quả thành vài biểu đồ đơn giản.","Ghi là stakeholder input, tách khỏi Client Log; trích dẫn trong A09."],
+ i:"Trả lời P03",o:"Kết quả khảo sát",d:"Kết quả được dùng trong A09; nếu không làm thì ghi lý do trong weekly log."},
+A10:{g:"Thống nhất cách làm việc và cách liên lạc của nhóm (Task 1.7).",
+ s:["Viết coding standard ngắn và git flow (main, dev, nhánh feature; mỗi PR có ít nhất một người review).","Viết Definition of Done cho task code và cho tài liệu.","Chốt quy ước ID (O#, P#, A#, R#, T#, CP#) và cách đặt tên file.","Viết communication plan theo nguyên tắc bất đồng bộ là mặc định: check-in 3 dòng giữa tuần, cập nhật log Chủ nhật, sáu điều kiện gọi họp và giờ họp cố định tối thứ 3 (mặc định hủy), kênh chat, email với client, ai liên lạc với ai.","Mô tả tổ chức nhóm và vai trò."],
+ i:"Kết quả A02, trả lời P02 và P06",o:"Standards & procedures, communication plan",d:"Cả nhóm đồng ý; tài liệu nằm trong /docs."},
+A07:{g:"Xác định làm gì, không làm gì và thế nào là thành công (Task 1.4).",
+ s:["Viết phần in-scope theo MoSCoW và danh sách exclusions.","Viết 3–4 objectives dưới dạng kết quả, ví dụ \"giảm thời gian tổng hợp danh sách tham dự\", không phải \"xây dựng hệ thống\".","Với mỗi objective, đặt ít nhất một measure of effectiveness có số: mức hiện tại (từ Q07) và mức mục tiêu.","Gán mã O# cho objectives và mã cho requirements."],
+ i:"Client Log, A05",o:"Scope statement, objectives và MoE",d:"Mỗi objective có MoE đo được; không objective nào chỉ lặp lại deliverable."},
+A11:{g:"Chuẩn bị vòng hỏi thứ hai tập trung vào những gì còn thiếu.",
+ s:["Lọc các câu đánh dấu \"chưa rõ\" ở vòng 1.","Thêm câu phát sinh từ scope nháp và stakeholder analysis.","Chuẩn bị bản tóm tắt scope và objectives nháp để xin client xác nhận.","Hỏi thêm về lịch milestone: ngày Milestone 2 (Planning Baseline) và Milestone 3 (Execution, Monitoring & Control); M1 có cần initial effort estimates như lịch môn học ghi không; change event dự kiến được đưa ra khi nào.","Xếp ưu tiên như A03."],
+ i:"Client Log vòng 1, A07, A09, nhận xét M1",o:"Bộ câu hỏi vòng 2",d:"Mỗi câu gắn với một điểm chưa rõ hoặc một quyết định đang chờ."},
+A12:{g:"Chốt scope và objectives nháp với client qua email (theo P02: gom câu hỏi vào một email, client không cam kết thời gian phản hồi).",
+ s:["Gửi một email duy nhất ngay sau buổi M1 (05/10) gồm: tóm tắt scope, exclusions, objectives nháp để xin xác nhận, các câu follow-up còn mơ hồ từ vòng 1, và các điểm thầy nhận xét ở buổi M1 cần làm rõ.","Chờ phản hồi tối đa 2 ngày; trong lúc chờ, tiếp tục A15–A17 dựa trên scope nháp.","Ghi Client Log trong 24 giờ sau khi nhận trả lời, kèm giờ gửi, giờ nhận và ảnh chụp email.","Cập nhật scope, assumptions và risk register theo câu trả lời. Nếu quá 2 ngày chưa có phản hồi: ghi phần chưa rõ thành assumption có mã và đưa vào gói Milestone 1."],
+ i:"Bộ câu hỏi vòng 2 (A11)",o:"Client Log vòng 2; scope đã được xác nhận",d:"Scope nháp được client xác nhận, hoặc có danh sách điều chỉnh cụ thể."},
+A13:{g:"Chọn cách tiếp cận phù hợp cho dự án (Task 1.8).",
+ s:["Lập luận dự án là product-based hay objective-based.","Phân tích đặc điểm: quy mô nhỏ, yêu cầu tương đối rõ sau khi hỏi, thời gian cố định, nhóm ít kinh nghiệm, có change event.","Liệt kê high-level risks.","So sánh vài lifecycle (waterfall, incremental, Scrum thuần) và chọn incremental delivery kèm lý do."],
+ i:"A07, Client Log",o:"Mục 1.8 của báo cáo",d:"Lựa chọn lifecycle gắn với đặc điểm cụ thể của dự án, không chung chung."},
+A14:{g:"Kiểm tra Task 1 đã đủ và nhất quán trước buổi trình bày Milestone 1 (checkpoint CP1). Review chéo trên chat, không cần họp.",
+ s:["Mỗi người review chéo một phần của người khác theo checklist: khớp Client Log, ID nhất quán, assumptions có trạng thái.","Sửa các lỗi tìm thấy.","Ghi biên bản CP1 (template 8)."],
+ i:"Kết quả A05–A13",o:"Task 1 hoàn chỉnh; biên bản CP1",d:"Biên bản ghi Đạt; nếu Không đạt thì có hành động và hạn sửa."},
+A15:{g:"Xác định các sản phẩm của dự án và quan hệ giữa chúng (Task 2.1, 2.3).",
+ s:["Liệt kê products theo nhóm: management products (kế hoạch, báo cáo) và specialist products (SRS, thiết kế, module code, test, hệ thống đã deploy).","Đánh dấu product nào là deliverable, product nào là intermediate.","Vẽ PBS dạng cây và đánh mã P#.","Vẽ PFD thể hiện product nào tạo ra từ product nào; chỉ rõ product instances (module Event, Registration, Check-in, Report)."],
+ i:"Scope (A07)",o:"PBS, PFD",d:"Mỗi product lá sẽ có ít nhất một activity tạo ra nó."},
+A16:{g:"Mô tả rõ các sản phẩm quan trọng để biết khi nào chúng đạt yêu cầu (Task 2.2).",
+ s:["Chọn ít nhất 5 product: SRS, thiết kế database, module Check-in, Test plan, hệ thống đã deploy.","Điền template PD đủ 8 trường cho mỗi product.","Viết quality criteria đo được, ví dụ \"100% requirement Must có ít nhất một test case\"."],
+ i:"PBS, PFD, Client Log vòng 2",o:"≥5 Product Descriptions",d:"Mỗi PD có quality criteria kiểm tra được và người kiểm tra."},
+A17:{g:"Chuyển sản phẩm thành các activity có thứ tự rõ ràng (Task 2.4, 2.5, 2.7).",
+ s:["Từ PFD suy ra các activity, đặt tên dạng động từ + danh từ.","Xác định dependencies và vẽ activity network (activity-on-node).","Đặt checkpoints; với mỗi checkpoint ghi kiểm tra gì, ai duyệt, không đạt thì làm gì.","Tách activity quá dài (trên khoảng 16h) và gộp activity quá ngắn; ghi lý do."],
+ i:"PBS, PFD",o:"Activity network, danh sách checkpoints",d:"Mỗi activity tạo ra ít nhất một product; không có activity \"treo\" không có đầu ra."},
+A18:{g:"Ước lượng effort từ dưới lên trên activity network (Task 2.6), tách rõ effort và thời lượng. Thuộc Milestone 2 – Planning Baseline theo bảng milestone của đề.",
+ s:["Người phụ trách mỗi activity đưa ra ba giá trị: lạc quan, khả dĩ nhất, bi quan (điền vào tab Ước lượng 3 điểm của Sheet master).","Tính PERT = (O + 4M + P) / 6.","Một người thứ hai ước lượng độc lập; nếu lệch trên 50% thì cả hai giải thích và thống nhất.","Ghi effort (person-hours) và thời lượng (ngày) riêng; nêu giả định như 12h/người/tuần, TV1 ~7h/tuần, tuần nghỉ giảm tải.","Tính cost = effort × đơn giá giả định."],
+ i:"Activity network (A17), nhận xét M1",o:"Bảng estimate và cost estimate",d:"Mọi activity có estimate, phương pháp và giả định được ghi rõ."},
+A19:{g:"Nhận diện và định lượng rủi ro cấp activity, đưa phản hồi vào kế hoạch (Task 2.8, 2.9).",
+ s:["Rà risk register đề xuất và thêm rủi ro gắn với từng activity.","Đánh giá P và I (thang 1–5), tính exposure.","Chọn owner, biện pháp giảm thiểu và phương án dự phòng.","Với rủi ro exposure từ 12 trở lên, thêm activity phản hồi vào kế hoạch (ví dụ A20 spike, A38 reserve) và ghi rõ liên kết."],
+ i:"Activity network, high-level risks (A13)",o:"Risk register cấp activity",d:"Mỗi rủi ro quan trọng có owner, reduction, contingency và activity liên quan."},
+A22:{g:"Lên kế hoạch đảm bảo chất lượng cho cả tài liệu và sản phẩm.",
+ s:["Xác định các mức kiểm thử: unit cho logic đăng ký và giới hạn chỗ, integration cho API, end-to-end cho luồng chính, UAT với client.","Quy định cách review tài liệu (review chéo, checklist).","Chọn công cụ test và nơi lưu bằng chứng.","Quy định mỗi test có mã T# gắn với requirement."],
+ i:"Product Descriptions (A16)",o:"Quality plan và test strategy",d:"Mỗi product quan trọng có cách kiểm tra và người kiểm tra."},
+A21:{g:"Lập lịch nháp và Gantt làm đầu vào cho Baseline V1.0 (Task 2.11).",
+ s:["Nhập activity, thời lượng và dependencies.","Tính critical path; vẽ Gantt với các mốc.","Ghi rõ đây là lịch nháp, chưa ràng buộc tài nguyên (sẽ làm ở A50)."],
+ i:"A17, A18, A19",o:"Lịch nháp, Gantt, critical path",d:"Lịch khớp với estimate và dependencies."},
+A61:{g:"Dựng sẵn khung slide M1 ngay hôm nay để Chủ nhật chỉ còn thay số liệu thật. TV1 làm một mình, dùng Claude Design / Slides.",
+ s:["Tạo deck theo 6 mục Milestone 1 của đề: client consultation, evaluation (business case), objectives và MoE, stakeholders, infrastructure, lifecycle; thêm slide Thay đổi so với kế hoạch.","Điền sẵn phần đã có: tóm tắt P01–P06, hạ tầng (GitLab, Jenkins, Jira), lựa chọn lifecycle, issue I01.","Chỗ chưa có số liệu để ô đánh dấu rõ: cần điền gì, lấy từ file nào.","Ghi việc dùng AI vào docs/ai-usage.md."],
+ i:"Trang kế hoạch, Client Log, docs/setup-tools.md, docs/task1/1.8",o:"Khung deck M1 có placeholder",d:"Mỗi slide đã có tiêu đề, nguồn dữ liệu và ô cần điền."},
+A59:{g:"Điền số liệu thật vào deck M1 và chuẩn bị trình bày; mọi con số khớp với tài liệu. TV1 làm một mình để xong nhanh nhất.",
+ s:["Sau CP1, thay các ô placeholder trong khung deck (A61) bằng nội dung từ tài liệu đã chốt: Client Log, business case (1.3), scope, objectives và MoE (1.4), stakeholders (1.6), standards và communication (1.7), lifecycle (1.8).","Thêm một slide 'Thay đổi so với kế hoạch': M1 sớm hơn 6 ngày, nhóm đã thu hẹp nội dung thế nào.","Phân công người trình bày; ai cũng phải trả lời được câu hỏi về phần của người khác.","Tập một lần, canh thời gian; gắn git tag m1."],
+ i:"Khung deck (A61), Task 1 (A05–A13), Client Log",o:"Slide M1 hoàn chỉnh, phân công trình bày",d:"Đã tập; số liệu trong slide khớp với tài liệu trong docs/."},
+A49:{g:"Trình bày Milestone 1 trên lớp và thu phản hồi của client.",
+ s:["Trình bày theo phân công.","Một người ghi lại toàn bộ nhận xét và câu hỏi của thầy, có giờ.","Trong 24 giờ: ghi vào Client Log, phân loại nhận xét theo tác động (scope, estimate, rủi ro).","Đưa các điểm cần làm rõ vào email vòng 2 (A12) và các điểm cần sửa vào Task 2."],
+ i:"Slide M1 (A59)",o:"Biên bản nhận xét M1, Client Log cập nhật",d:"Nhận xét đã ghi vào Client Log trong 24 giờ, mỗi nhận xét có hành động tương ứng."},
+A20:{g:"Kiểm tra sớm rủi ro kỹ thuật lớn nhất: check-in bằng QR (giới hạn 6h).",
+ s:["Thử thư viện có sẵn để tạo mã QR và quét bằng camera điện thoại trên trình duyệt.","Thử trên 3–4 thiết bị, trình duyệt và trong điều kiện mạng yếu.","Đo thời gian check-in cho mỗi người.","Quyết định dùng QR, mã nhập tay hay cả hai; cập nhật rủi ro R04 và estimate của A33."],
+ i:"Risk register (R04)",o:"Báo cáo spike ngắn, code thử (không đưa vào sản phẩm)",d:"Có quyết định kỹ thuật và số liệu đo được."},
+A25:{g:"Thiết kế dữ liệu và giao tiếp giữa frontend và backend trước khi code.",
+ s:["Vẽ ERD: users, roles, events, registrations, attendance.","Xác định ràng buộc: không đăng ký trùng, không vượt số chỗ.","Liệt kê API endpoints với request và response mẫu.","Review cùng TV4 để frontend dùng được."],
+ i:"Scope, PD thiết kế database",o:"ERD, API contract",d:"TV4 đồng ý API contract; ERD đáp ứng mọi requirement Must."},
+A50:{g:"Biến lịch lý tưởng thành lịch khả thi theo năng lực thật (Task 2.10).",
+ s:["Thu lịch rảnh và lịch thi của từng người.","Gán owner cho từng activity; xem bảng tải theo tuần.","San tải: dời activity có float, chuyển việc cho người nhẹ tải, tách hoặc gộp activity.","So sánh lịch lý tưởng và lịch có ràng buộc tài nguyên; ghi lý do mỗi thay đổi."],
+ i:"Lịch nháp (A21), estimate",o:"Resource plan, lịch có ràng buộc tài nguyên",d:"Không ai vượt ngưỡng cao điểm mà không có lý do được ghi lại."},
+A24:{g:"Chuẩn bị nền tảng code để Increment 1 bắt đầu ngay khi baseline được duyệt.",
+ s:["Khởi tạo project theo stack đã chọn, ưu tiên thư viện và component có sẵn.","Cài lint và format; CI chạy test khi mở PR.","Deploy bản khung lên hosting và seed dữ liệu mẫu.","Viết README cách chạy local."],
+ i:"Quyết định kỹ thuật từ A25 (stack đã chốt)",o:"Codebase khung, CI, bản deploy",d:"Mọi thành viên chạy được local; CI chạy trên PR. Chưa viết chức năng nghiệp vụ."},
+A58:{g:"Hỏi client trước khi chốt baseline về những điểm ảnh hưởng đáng kể tới scope hoặc planning (theo P05).",
+ s:["Từ gói Milestone 1 và risk register, lọc các assumption chưa xác nhận có ảnh hưởng lớn tới scope, effort hoặc lịch.","Gom vào một email gửi client (có thể gửi trong tuần nghỉ, theo P05).","Ghi Client Log kèm thời điểm gửi và nhận.","Nếu chưa có phản hồi trước khi chốt: giữ assumption, ghi rõ trong baseline và risk register."],
+ i:"Gói Milestone 1, risk register, assumptions",o:"Email đã gửi; Client Log cập nhật",d:"Mọi điểm ảnh hưởng lớn đã được hỏi hoặc ghi rõ là assumption."},
+A23:{g:"Nhóm tự duyệt và chốt Project Baseline V1.0 (checkpoint CP2). Theo P05, client không duyệt toàn bộ baseline.",
+ s:["Tích hợp nhận xét của giảng viên về Milestone 1 (nếu có).","Tích hợp câu trả lời của client ở A58.","Review chéo toàn bộ kế hoạch theo checklist CP2 và rà traceability (A57).","Cả nhóm xác nhận trong biên bản CP2; TV1 ký duyệt cuối.","Export PDF, gắn git tag baseline-v1.0; từ đây không sửa file này."],
+ i:"Gói M1, kết quả A50, A58, nhận xét M1",o:"Baseline V1.0",d:"Biên bản CP2 có xác nhận của cả nhóm; baseline đã gắn tag."},
+A26:{g:"Người dùng đăng nhập được và chỉ thấy chức năng đúng vai trò.",
+ s:["Dùng thư viện xác thực có sẵn thay vì tự viết.","Tạo 3 vai trò: Sinh viên, Ban tổ chức, Admin.","Phân quyền cho route và API.","Viết test cho phân quyền."],
+ i:"API contract",o:"Module xác thực và phân quyền",d:"Test phân quyền pass; merge qua PR có review."},
+A28:{g:"Có khung giao diện và component dùng chung để các màn hình làm nhanh và đồng nhất.",
+ s:["Dùng thư viện UI component có sẵn.","Làm layout và điều hướng theo vai trò.","Tạo form, bảng, thông báo lỗi và trạng thái trống dùng chung."],
+ i:"API contract, danh sách màn hình",o:"Layout và component dùng chung",d:"Các màn hình Increment 1 dựng được từ component có sẵn."},
+A31:{g:"Có sẵn test case trước khi code xong Increment 1.",
+ s:["Viết test case cho xác thực, quản lý sự kiện, đăng ký và hủy theo requirement ID.","Thêm các trường hợp biên: hết chỗ, đăng ký trùng, hủy sau hạn, sai quyền.","Cập nhật traceability matrix."],
+ i:"Requirements, quality plan",o:"Bộ test case Increment 1",d:"Mỗi requirement Must của Increment 1 có ít nhất một test case."},
+A27:{g:"Ban tổ chức tạo và quản lý được sự kiện.",
+ s:["Làm chức năng tạo, sửa, xóa sự kiện với các trường: tên, thời gian, địa điểm, số chỗ, mô tả.","Thêm trạng thái nháp và đã publish.","Validation dữ liệu và thông báo lỗi rõ ràng.","Chỉ Ban tổ chức và Admin được thao tác.","Cho phép Organizer sửa hoặc hủy sự kiện đã công bố; sửa thời gian hoặc địa điểm thì thông báo người đã đăng ký (Q19).","Hủy sự kiện: chuyển sang trạng thái Cancelled, hủy các đăng ký, đóng waitlist, thông báo (Q19). Organizer không được tự duyệt sự kiện của mình; Admin duyệt (Q12)."],
+ i:"API contract, component dùng chung",o:"Module quản lý sự kiện",d:"Test case liên quan pass; merge qua PR."},
+A29:{g:"Sinh viên đăng ký, hủy đăng ký; ban tổ chức xem được danh sách.",
+ s:["Đăng ký có kiểm tra còn chỗ và không trùng (xử lý đồng thời bằng transaction).","Hủy đăng ký đến 24 giờ trước giờ bắt đầu sự kiện (Q13); sau đó sinh viên liên hệ Organizer.","Màn hình \"sự kiện của tôi\" cho sinh viên; danh sách người đăng ký cho ban tổ chức.","Mỗi sinh viên một đăng ký còn hiệu lực cho một sự kiện; hủy rồi được đăng ký lại, vào cuối waitlist nếu đã đầy (Q15).","Khi hết chỗ, đăng ký mới chuyển sang danh sách chờ (phần xử lý chờ ở A62)."],
+ i:"Module sự kiện",o:"Module đăng ký",d:"Test case liên quan pass, kể cả trường hợp hết chỗ."},
+A62:{g:"Khi có chỗ trống, người đầu danh sách chờ được chuyển thành đã đăng ký và nhận thông báo, không cần ban tổ chức duyệt (Q04).",
+ s:["Lưu danh sách chờ theo thứ tự thời gian đăng ký.","Khi có người hủy hoặc tăng số chỗ: tự chuyển người đầu danh sách chờ sang đã đăng ký (trong cùng transaction).","Gửi thông báo cho người được chuyển. Thông báo thất bại vẫn tính là đã đăng ký; không có trạng thái chờ xác nhận (Q14).","Hiển thị vị trí trong danh sách chờ cho sinh viên."],
+ i:"Module đăng ký (A29)",o:"Danh sách chờ và tự động chuyển",d:"Test case liên quan pass, kể cả hủy khi có người chờ và nhiều hủy cùng lúc."},
+A30:{g:"Xác nhận Increment 1 chạy end-to-end (checkpoint CP3).",
+ s:["Chạy toàn bộ test case Increment 1; ghi defect.","Demo nội bộ luồng: đăng nhập, tạo sự kiện, đăng ký, hủy.","So sánh actual với baseline, ghi deviation.","Ghi biên bản CP3."],
+ i:"Code Increment 1, test case",o:"Kết quả test, biên bản CP3",d:"Không còn defect nghiêm trọng ở luồng chính."},
+A57:{g:"Giữ cho mọi bảng và artifact nhất quán với nhau; đây là tiêu chí đề phạt nặng nhất nếu vi phạm.",
+ s:["Trước mỗi checkpoint (CP2, CP3, CP4, CP5) và trước khi nộp báo cáo, rà traceability matrix: mỗi objective có product, activity, resource, risk, test và checkpoint.","Đối chiếu số liệu giữa các bảng: effort trong estimate, trong Gantt và trong weekly log phải khớp; ID không lệch.","Kiểm tra mọi thay đổi sau change event đã lan đủ sang các bảng liên quan.","Ghi lại các điểm sửa và người sửa vào weekly log; PM commit bản cập nhật vào /docs."],
+ i:"Traceability matrix, estimate, weekly log, risk register",o:"Traceability đã rà, danh sách điểm sửa",d:"Không còn mâu thuẫn giữa các bảng tại thời điểm checkpoint; ghi rõ ngày rà và người rà."},
+A36:{g:"Theo dõi tiến độ so với baseline suốt giai đoạn thực thi (Task 3.2–3.4). PM tự viết log để có bằng chứng quản lý mang tên mình.",
+ s:["Mỗi Chủ nhật PM tự cập nhật weekly log: kế hoạch và thực tế, effort kế hoạch và thực tế, vấn đề, hành động quản lý; ký tên và ghi ngày.","Ghi ngày bắt đầu, kết thúc thực tế của từng activity.","Giải thích mọi chênh lệch trên 20%.","Rà risk register cùng TV5; báo client khi có chênh lệch ảnh hưởng mốc.","Commit weekly log vào /docs thay vì chỉ sửa trên Google Docs, để lịch sử repo phản ánh hoạt động quản lý."],
+ i:"Time tracking của cả nhóm, Baseline V1.0",o:"Weekly log, dữ liệu planned vs actual",d:"Không có tuần nào thiếu log; mỗi log có tên người viết và một hành động quản lý cụ thể."},
+A32:{g:"Lập kế hoạch chi tiết cho Increment 2 khi đã có đủ thông tin (Task 3.8).",
+ s:["Chia A33–A35 thành các task nhỏ, mỗi task không quá khoảng 1 ngày.","Dựa trên kết quả Increment 1 và spike để điều chỉnh estimate.","Giải thích vì sao mức chi tiết này không thể có ở thời điểm lập baseline."],
+ i:"Kết quả CP3, spike A20",o:"Lower-level plan cho Increment 2",d:"Task nhỏ đã có trên board, có owner."},
+A33:{g:"Ban tổ chức check-in người tham dự nhanh và chính xác.",
+ s:["Sinh mã QR hoặc token cho mỗi lượt đăng ký.","Màn hình quét cho ban tổ chức; chặn check-in trùng.","Phương án nhập mã thủ công khi quét không được.","Ghi thời gian check-in."],
+ i:"Module đăng ký, kết quả spike",o:"Module check-in",d:"Test case check-in pass trên điện thoại thật."},
+A35:{g:"Giao diện cho check-in và xem báo cáo.",
+ s:["Màn hình quét và nhập mã cho ban tổ chức.","Màn hình hiển thị mã QR cho sinh viên.","Màn hình thống kê và nút xuất file."],
+ i:"API check-in và báo cáo",o:"Giao diện Increment 2",d:"Dùng được trên điện thoại; khớp test case."},
+A34:{g:"Tổng hợp thông tin sau sự kiện nhanh chóng.",
+ s:["Thống kê số đăng ký, số tham dự, tỉ lệ tham dự cho từng sự kiện.","Xuất CSV hoặc Excel bằng thư viện có sẵn.","Kiểm tra số liệu khớp dữ liệu gốc."],
+ i:"Dữ liệu đăng ký và check-in",o:"Module báo cáo",d:"Số liệu xuất ra khớp với dữ liệu kiểm tra."},
+A40:{g:"Có sẵn test case cho Increment 2.",
+ s:["Viết test case cho check-in (quét, trùng, nhập tay) và báo cáo.","Cập nhật traceability matrix."],
+ i:"Requirements Increment 2",o:"Bộ test case Increment 2",d:"Mỗi requirement Must của Increment 2 có test case."},
+A37:{g:"Toàn bộ luồng chính chạy liền mạch trên bản deploy, sẵn sàng cho Progress Check.",
+ s:["Chạy thử luồng: tạo sự kiện, đăng ký, check-in trên bản deploy. Báo cáo (A34) chưa bắt buộc cho Progress Check, được tích hợp ở A39.","Sửa các lỗi chặn luồng.","Chuẩn bị dữ liệu demo."],
+ i:"Các module A33 và A35",o:"Bản deploy có core workflow",d:"Luồng chính chạy trơn tru trên bản deploy."},
+A51:{g:"Trình bày tiến độ và sản phẩm tại Progress Check (checkpoint CP4).",
+ s:["Demo core workflow.","Trình bày effort và lịch thực tế so với Baseline V1.0, các chênh lệch lớn và lý do.","Trình bày risk register và issue đã cập nhật.","Ghi nhận xét và yêu cầu thay đổi của client vào Client Log."],
+ i:"Bản deploy, weekly log, risk register",o:"Slide ngắn, biên bản CP4",d:"Đã trình bày; mọi nhận xét được ghi lại."},
+A38:{g:"Dành contingency cho change event của giảng viên; nội dung không báo trước nên không tạo activity riêng trước (Q17). Khi change event xuất hiện, xử lý có phân tích và phê duyệt (Task 3.6, 3.7).",
+ s:["Phân tích tác động theo template Change Request: requirements, activities, effort, resources, risks, schedule, cost, quality.","Đưa ra 2–3 phương án và chọn một, có lý do.","Xin client duyệt; nếu baseline thay đổi thì lập Baseline V2.0 và giữ nguyên V1.0.","Thực hiện thay đổi. Nếu không có change event, dùng thời gian cho Should-have hoặc sửa lỗi và ghi rõ quyết định đó."],
+ i:"Change event, Baseline V1.0",o:"Change Request đã duyệt, Baseline V2.0 nếu cần",d:"Có quyết định được duyệt và bằng chứng thực hiện."},
+A39:{g:"Kiểm thử toàn bộ sản phẩm sau các thay đổi.",
+ s:["Chạy test Increment 2 và toàn bộ test Increment 1 (regression).","Ghi defect với mức độ nghiêm trọng.","Cập nhật traceability và bằng chứng kiểm thử."],
+ i:"Sản phẩm sau A38, module báo cáo A34, test case",o:"Báo cáo test",d:"Mọi test Must đã chạy; kết quả được lưu."},
+A53:{g:"Sản phẩm ổn định cho nghiệm thu.",
+ s:["Sửa defect theo thứ tự nghiêm trọng.","Bổ sung validation và xử lý lỗi còn thiếu.","Kiểm tra trên điện thoại thật; khóa chức năng mới.","Triển khai bản phát hành lên hosting dùng cho UAT và demo."],
+ i:"Báo cáo test (A39)",o:"Bản phát hành đã triển khai cho UAT",d:"Không còn defect nghiêm trọng."},
+A41:{g:"Client nghiệm thu sản phẩm (checkpoint CP5).",
+ s:["Viết kịch bản UAT theo tiêu chí nghiệm thu đã thống nhất.","Client chạy kịch bản; nhóm ghi kết quả.","Ghi biên bản nghiệm thu, phân loại scope: hoàn thành, một phần, hoãn, bỏ."],
+ i:"Bản phát hành, tiêu chí nghiệm thu",o:"Biên bản UAT",d:"Có xác nhận của client."},
+A42:{g:"So sánh kế hoạch với thực tế và đánh giá mục tiêu (Task 4.2, 4.3).",
+ s:["So sánh Baseline V1.0 (và V2.0) với thực tế về effort, thời lượng, cost, scope, quality.","Phân tích các sai số ước lượng lớn nhất và nguyên nhân.","Đánh giá từng objective và MoE; phân biệt sản phẩm hoàn thành với mục tiêu đạt được."],
+ i:"Weekly log, time tracking, baseline",o:"Phần planned vs actual của báo cáo",d:"Mọi chênh lệch lớn có giải thích."},
+A43:{g:"Chuẩn bị đóng dự án và bàn giao (Task 4.4).",
+ s:["Viết kế hoạch bàn giao: hướng dẫn chạy, tài khoản demo, tài liệu.","Liệt kê outstanding issues.","Mô tả việc giải phóng tài nguyên và lưu trữ tài liệu."],
+ i:"Biên bản UAT",o:"Closure và handover plan",d:"Người ngoài nhóm chạy được hệ thống theo hướng dẫn."},
+A44:{g:"Rút kinh nghiệm cho dự án sau (Task 4.5).",
+ s:["Họp retro khoảng 1 giờ: điều nên lặp lại, điều cần thay đổi.","Rút ra cải tiến cho cách lập kế hoạch và ước lượng.","Mỗi người ghi ý chính cho phần reflection cá nhân."],
+ i:"Toàn bộ log dự án",o:"Lessons learned",d:"Mỗi bài học gắn với một sự kiện cụ thể trong dự án."},
+A45:{g:"Hoàn thành báo cáo cuối kỳ.",
+ s:["Ghép các phần theo cấu trúc đề yêu cầu; giữ nguyên Baseline V1.0 và V2.0 để so sánh.","Đính kèm hoặc link Client Log, weekly log, traceability.","Khai báo AI đã dùng; thu reflection cá nhân.","Review chéo tính nhất quán."],
+ i:"Kết quả A42–A44 và toàn bộ artifact",o:"Báo cáo cuối kỳ PDF",d:"Mọi sơ đồ và bảng đọc được; không bảng nào mâu thuẫn nhau."},
+A46:{g:"Sẵn sàng cho demo và viva.",
+ s:["Diễn tập demo trong giới hạn thời gian.","Hỏi chéo: mỗi người trả lời câu hỏi về artifact của người khác.","Chuẩn bị phương án dự phòng: chạy local, video demo."],
+ i:"Báo cáo, bản phát hành",o:"Kịch bản demo",d:"Mỗi người trả lời được câu hỏi về estimate, rủi ro, thay đổi lịch."},
+A47:{g:"Nộp đầy đủ sản phẩm cuối.",
+ s:["Nộp báo cáo PDF, link repo, hướng dẫn chạy theo yêu cầu LMS.","Gắn git tag final."],
+ i:"Báo cáo, repo",o:"Bài nộp cuối",d:"Đã nộp trước hạn; kiểm tra link mở được."},
+A54:{g:"Trình bày sản phẩm và bằng chứng quản lý trước giảng viên.",
+ s:["Demo các luồng đã thống nhất.","Trình bày bằng chứng quản lý: baseline, actual, thay đổi, rủi ro.","Trả lời viva cá nhân."],
+ i:"Kịch bản demo",o:"Buổi demo và viva",d:"Hoàn thành."}
+};
+
+let actWho = "all";
+function renderDetails(){
+  const q = (document.getElementById("actSearch").value||"").trim().toLowerCase();
+  const open = new Set([...document.querySelectorAll("details.act[open]")].map(d=>d.dataset.id));
+  let h = "", cur = null;
+  [...ACT].sort((a,b)=> (a.phase>b.phase?1:a.phase<b.phase?-1:0) || a.es-b.es || a.id.localeCompare(b.id)).forEach(a=>{
+    if(actWho!=="all" && !a.owners.includes(actWho)) return;
+    if(q && !(a.id.toLowerCase().includes(q) || a.name.toLowerCase().includes(q))) return;
+    const d = DETAILS[a.id] || {g:"",s:[],i:"",o:"",d:""};
+    if(a.phase!==cur){ cur=a.phase; h += `<div class="act-phase">${esc(PHASES[cur])}</div>`; }
+    const when = a.dur===1 ? `${WD[dayDate(a.es+1).getDay()]} ${fmt(a.es+1)}` : `${fmt(a.es+1)} – ${fmt(a.ef)}`;
+    h += `<details class="act ${a.crit?"crit":""}" id="act-${a.id}" data-id="${a.id}" ${open.has(a.id)?"open":""}>
+      <summary><span class="aid">${a.id}</span><span class="aname">${esc(a.name)}${a.cp?` <span class="tag cp">${a.cp}</span>`:""}</span><span class="ameta">${when} · ${a.owners.join(", ")} · ${a.effort}h</span><span class="agoal">${esc(d.g)}</span></summary>
+      <div class="act-body">
+        <h5>Các bước</h5><ol>${d.s.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
+        <div class="act-grid">
+          <div><h5>Đầu vào</h5><p>${esc(d.i)}</p></div>
+          <div><h5>Đầu ra</h5><p>${esc(d.o)}</p></div>
+          <div><h5>Hoàn thành khi</h5><p>${esc(d.d)}</p></div>
+          <div><h5>Thông tin kế hoạch</h5><p>Task ${esc(a.task)} · phụ thuộc ${a.preds.join(", ")||"không có"} · ${a.dur} ngày${a.hammock?"":` · float ${a.float}`}${a.fixed?` · cố định từ ${fmt(dayOf(a.fixed))}`:""}</p></div>
+        </div>
+      </div></details>`;
+  });
+  document.getElementById("actList").innerHTML = h || `<p>Không có activity nào khớp. Thử bỏ bộ lọc hoặc đổi từ khóa.</p>`;
+}
+document.getElementById("actFilter").addEventListener("click",e=>{
+  const b = e.target.closest("button[data-who]"); if(!b) return;
+  actWho = b.dataset.who;
+  document.querySelectorAll("#actFilter button[data-who]").forEach(x=>x.setAttribute("aria-pressed", x===b ? "true":"false"));
+  renderDetails();
+});
+document.getElementById("actSearch").addEventListener("input",renderDetails);
+document.getElementById("actOpenAll").addEventListener("click",()=>document.querySelectorAll("details.act").forEach(d=>d.open=true));
+document.getElementById("actCloseAll").addEventListener("click",()=>document.querySelectorAll("details.act").forEach(d=>d.open=false));
+document.getElementById("ganttChart").addEventListener("click",e=>{
+  const lab = e.target.closest(".g-label"); if(!lab) return;
+  const id = lab.querySelector(".id")?.textContent; if(!id) return;
+  if(actWho!=="all"||document.getElementById("actSearch").value){ actWho="all"; document.getElementById("actSearch").value=""; document.querySelectorAll("#actFilter button[data-who]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.who==="all"?"true":"false")); renderDetails(); }
+  const d = document.getElementById("act-"+id); if(d){ d.open = true; d.scrollIntoView({block:"start"}); }
+});
+window.addEventListener("beforeprint",()=>{ actWho="all"; document.getElementById("actSearch").value=""; renderDetails(); document.querySelectorAll("details.act").forEach(d=>d.open=true); });
+function renderAll(){ computeCPM(); renderGantt(); renderCPM(); renderLoad(); renderDetails(); }
+renderAll();
+
+document.getElementById("critToggle").addEventListener("click",e=>{
+  const g = document.getElementById("ganttChart"); const on = g.classList.toggle("hide-noncrit");
+  e.currentTarget.textContent = on ? "Hiện tất cả activity" : "Chỉ hiện activity găng";
+});
+function toast(msg){ const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
+function tableTSV(tbl){ return [...tbl.rows].map(r=>[...r.cells].map(c=>c.innerText.replace(/\s+/g," ").trim()).join("\t")).join("\n"); }
+document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",async()=>{
+  const text = tableTSV(document.getElementById(b.dataset.copy));
+  try { await navigator.clipboard.writeText(text); toast("Đã copy. Dán vào Google Sheets là xong."); }
+  catch(e){ const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); toast("Đã copy. Dán vào Google Sheets là xong."); }catch(_){ toast("Không copy được. Hãy bôi đen bảng và copy thủ công."); } ta.remove(); }
+}));
+document.getElementById("themeBtn").addEventListener("click",()=>{
+  const r = document.documentElement; const dark = r.dataset.theme ? r.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+});
+</script>
+</body>
+</html>

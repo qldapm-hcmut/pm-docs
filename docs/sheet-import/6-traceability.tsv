@@ -1,0 +1,15 @@
+﻿O1 Duy trì chính xác đăng ký, số chỗ, waitlist	REQ-05, REQ-06 Capacity, đăng ký và hủy (S33)	A29	TV3, TV4, TV5	R17	T-REG-01 đến 05: không trùng, không vượt chỗ, hủy đến 24 giờ	CP3
+O1	REQ-07, REQ-08, REQ-09 Waitlist, tự chuyển FIFO, thông báo (S33)	A62	TV3, TV4, TV5	R17, R18	T-WL-01 đến 04: FIFO, thông báo lỗi vẫn đăng ký, đăng ký lại	CP3
+O1	REQ-03 Tạo và chỉnh sửa sự kiện (S32)	A27	TV3, TV4, TV5	R14	T-EV-01 đến 05	CP3
+O1	REQ-21 Sửa hoặc hủy sự kiện đã công bố (S32), Should	A27, A29	TV3, TV4, TV5	R14	T-EV-06 đến 07: thông báo, hủy sự kiện đóng waitlist	CP3
+O2 Tăng tốc điểm danh, có phương án dự phòng	REQ-10 Điểm danh bằng QR (S34)	A20, A33	TV3, TV5, TV2	R04	T-CI-01 đến 03: quét, trùng, median ≤ 5 giây	CP4
+O2	REQ-11 Nhập mã hoặc xác nhận thủ công (S34)	A33	TV5, TV2	R04	T-CI-04 đến 05: cập nhật giống QR	CP4
+O2	REQ-10 Giao diện điểm danh mobile-first (S36)	A35	TV4	R04	T-UI-01	CP4
+O3 Giảm thời gian lấy thông tin tham dự	REQ-12, REQ-13 Danh sách đăng ký, tham dự, thống kê (S35)	A34	TV3	R16	T-RP-01 đến 02: số liệu khớp dữ liệu nguồn	CP5
+O3	REQ-14 Xuất Excel hoặc CSV (S35)	A34	TV3	R16	T-RP-03: 500 lượt đăng ký trong 30 giây	CP5
+O4 Chỉ vai trò có thẩm quyền mới publish và truy cập	REQ-01, REQ-02 Đăng nhập mô phỏng, phân quyền (S31)	A26	TV3, TV5	R20	T-AUTH-01 đến 03	CP3
+O4	REQ-04 Duyệt trước khi công bố; Organizer không tự duyệt (S31, S32)	A26, A27	TV3, TV5	R14	T-AUTH-04: không publish khi chưa duyệt	CP3
+O4	REQ-15 Bảo vệ dữ liệu cá nhân; quyền xem dữ liệu theo vai trò (Q20)	A26	TV3, TV5	R20	T-AUTH-05 đến 06	CP5
+O1 đến O4	S42 Tested Integrated System	A37, A39, A53	TV3, TV4, TV5	R15, R16	T-INT-01 đến 03: luồng end-to-end	CP4, CP5
+O1 đến O4	S51 Deployed System	A24, A53, A41	TV5, TV3, TV4	R09, R11, R20	T-DEP-01; UAT theo tiêu chí acceptance	CP5
+Quản lý: Baseline V1.0 nhất quán	M2 Project Baseline	A17 đến A23	TV1, TV2, TV3	R08, R15	Review chéo theo checklist CP2	CP2

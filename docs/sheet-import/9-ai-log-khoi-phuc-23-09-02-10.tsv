@@ -1,0 +1,5 @@
+2026-09-23	Claude	Kế hoạch tổng thể (`plan/index.html`)	Lập khung kế hoạch, Gantt, template, chi tiết activity		Đức Nghĩa
+2026-10-02	Claude	Cấu trúc `docs/`, template, cấu hình CI	Dựng khung thư mục và template tài liệu		Đức Nghĩa
+2026-10-02	Claude	Sheet master; cập nhật kế hoạch theo P01–P06 và mốc M1 05/10	Dựng file sheet, cập nhật lịch và tài liệu		Đức Nghĩa
+2026-10-02	Claude	Sheet master (file này)	Lọc bỏ dữ liệu Claude đề xuất; chỉ giữ dữ liệu thật, quyết định đã đưa ra và các dòng ví dụ		Đức Nghĩa
+2026-10-02	Claude	Kế hoạch HTML, file import Jira, tài liệu trong repo	Lưu ý: số effort, thời lượng, lịch, rủi ro, PD trong các file này là bản nháp Claude đề xuất, không phải số liệu của nhóm; chỉ dùng tham khảo		Đức Nghĩa

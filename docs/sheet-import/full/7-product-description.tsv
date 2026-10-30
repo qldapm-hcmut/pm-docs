@@ -1,0 +1,60 @@
+﻿Trường	Nội dung
+Ví dụ — PD-01 Requirements specification	
+Identity (mã, tên product)	P2.1 Requirements specification
+Purpose / description	Mô tả đầy đủ yêu cầu chức năng và phi chức năng đã được client xác nhận
+Derivation (tạo ra từ product nào)	Client Interaction Log (A04, A12), scope (A07)
+Composition (gồm những phần nào)	Danh sách requirement có mã, mức MoSCoW, tiêu chí chấp nhận, ràng buộc phi chức năng
+Format	Markdown trong `docs/task2/`
+Relevant standards	Mỗi requirement có mã duy nhất, truy ngược được về câu trả lời của client
+Quality criteria	100% requirement Must có tiêu chí chấp nhận; 100% truy ngược được về Client Log hoặc assumption có mã
+Quality method (review, test…) và người kiểm tra	Review chéo bởi TV1; client xác nhận ở A12
+	
+PD-01 — S1 Validated Scope & Requirements (nháp AI, TV2 duyệt)	
+Identity (mã, tên product)	S1 Đặc tả yêu cầu (Validated Scope & Requirements)
+Purpose / description	Mô tả đầy đủ yêu cầu chức năng và phi chức năng đã được client xác nhận, làm đầu vào cho thiết kế, kiểm thử và Baseline V1.0
+Derivation (tạo ra từ product nào)	Client Interaction Log (Q01–Q20), scope và MoE (A07), giả định ASM-01 đến ASM-07
+Composition (gồm những phần nào)	Danh sách REQ-01 đến REQ-21 có mức MoSCoW và tiêu chí chấp nhận; ràng buộc phi chức năng; giả định và loại trừ; quy tắc nghiệp vụ đã xác nhận (hạn hủy 24 giờ, waitlist FIFO, một đăng ký còn hiệu lực/sinh viên/sự kiện)
+Format	Markdown trong docs/task2, xuất sang báo cáo mục 1.4
+Relevant standards	Mỗi requirement có mã duy nhất và truy ngược được về câu trả lời của client hoặc assumption có mã
+Quality criteria	100% requirement Must có tiêu chí chấp nhận kiểm tra được; 100% truy ngược được về Client Log hoặc assumption; không có mâu thuẫn giữa bảng MoSCoW và báo cáo
+Quality method (review, test…) và người kiểm tra	Review chéo bởi TV1 theo checklist CP2; client đã xác nhận scope ở Q10 và Q11
+	
+PD-02 — S21 Database Design (nháp AI, TV4 duyệt)	
+Identity (mã, tên product)	S21 Thiết kế cơ sở dữ liệu (ERD và schema)
+Purpose / description	Mô hình dữ liệu đáp ứng mọi requirement Must và các quy tắc nghiệp vụ đã xác nhận
+Derivation (tạo ra từ product nào)	S1 Validated Scope & Requirements; ASM-02 (quy mô)
+Composition (gồm những phần nào)	ERD; định nghĩa bảng users, roles, events, registrations, waitlist, attendance; khóa, ràng buộc, chỉ mục; trạng thái sự kiện gồm Cancelled (Q19)
+Format	Sơ đồ ERD và file migration trong src/
+Relevant standards	Chuẩn hóa tới 3NF trừ khi có lý do ghi rõ; tên bảng và cột snake_case
+Quality criteria	Mọi requirement Must ánh xạ được vào thực thể; ràng buộc không đăng ký trùng và không vượt số chỗ được thực thi ở mức database; test đồng thời 100 lượt đăng ký không vượt chỗ
+Quality method (review, test…) và người kiểm tra	Review bởi TV3 và TV4 (frontend dùng được); test tích hợp với dữ liệu mẫu 500 lượt đăng ký
+	
+PD-03 — S34 Check-in & Attendance (nháp AI, TV4 duyệt)	
+Identity (mã, tên product)	S34 Module điểm danh (Check-in & Attendance)
+Purpose / description	Ghi nhận người tham dự nhanh và chính xác tại sự kiện, kể cả khi QR không dùng được
+Derivation (tạo ra từ product nào)	S33 Registration & Waitlist; kết quả spike A20; Q03
+Composition (gồm những phần nào)	Sinh mã QR cho đăng ký; màn hình quét; nhập mã hoặc xác nhận thủ công; chặn điểm danh trùng; lưu thời điểm; không check-out
+Format	Mã nguồn trong src/, chạy trên bản deploy
+Relevant standards	Hoạt động trên trình duyệt điện thoại, mobile-first, không cần cài ứng dụng
+Quality criteria	Median thời gian điểm danh ≤ 5 giây trong môi trường test của nhóm (O2); không tạo bản ghi điểm danh trùng; phương án thủ công cập nhật giống QR
+Quality method (review, test…) và người kiểm tra	Test trên ít nhất 3 thiết bị thật; test case T-CI-01 đến T-CI-05 (đề xuất, mã chốt ở A22); review bởi TV2
+	
+PD-04 — S41 Test Specification (nháp AI, TV2 duyệt)	
+Identity (mã, tên product)	S41 Đặc tả kiểm thử (test plan và test case)
+Purpose / description	Bằng chứng cho thấy requirement đã được kiểm tra (Task 3.5); đầu vào cho UAT
+Derivation (tạo ra từ product nào)	S1 Validated Scope & Requirements; quality plan (A22)
+Composition (gồm những phần nào)	Chiến lược test theo mức (unit, integration, e2e, UAT); test case có mã gắn với requirement; dữ liệu test; tiêu chí pass/fail; nơi lưu kết quả
+Format	Markdown trong docs/quality và test tự động trong src/
+Relevant standards	Mã test theo quy ước T-nhóm-số (ví dụ T-REG-01), gắn với REQ
+Quality criteria	100% requirement Must có ít nhất một test case; mỗi test case có kết quả kỳ vọng đo được; 100% test đã chạy được ghi kết quả
+Quality method (review, test…) và người kiểm tra	Review bởi TV1 và TV4; kết quả chạy lưu và liên kết từ ma trận truy vết
+	
+PD-05 — S51 Deployed System (nháp AI, TV2 duyệt)	
+Identity (mã, tên product)	S51 Hệ thống đã triển khai
+Purpose / description	Sản phẩm chạy được để client nghiệm thu và nhóm demo
+Derivation (tạo ra từ product nào)	S42 Tested Integrated System (toàn bộ module S31 đến S36)
+Composition (gồm những phần nào)	Ứng dụng đang chạy; database có dữ liệu mẫu (500 lượt đăng ký); 3 tài khoản demo cho Student, Organizer, Admin (ASM-06); README hướng dẫn chạy
+Format	URL bản deploy và mã nguồn trong repo (bản mirror công khai)
+Relevant standards	Chạy trên trình duyệt phổ biến và điện thoại; không lưu mật khẩu hay dữ liệu thật trong repo
+Quality criteria	Luồng tạo sự kiện, duyệt, đăng ký, waitlist, check-in, báo cáo chạy không lỗi nghiêm trọng; người ngoài nhóm dựng lại được theo README trong dưới 30 phút
+Quality method (review, test…) và người kiểm tra	Regression test A39; UAT A41; review bởi TV5
