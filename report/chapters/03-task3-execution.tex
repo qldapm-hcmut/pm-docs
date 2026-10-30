@@ -1,0 +1,108 @@
+\chapter{Thực thi, giám sát và kiểm soát (Task 3)}
+\label{chap:task3}
+
+\section{Hiện thực phần mềm}
+\label{sec:3-1}
+\todo{Tóm tắt các increment đã hiện thực, chức năng đã có, kiến trúc và stack; liên kết tới repo ở Phụ lục~\ref{app:repository}.}
+
+\section{Nhật ký hằng tuần}
+\label{sec:3-2}
+Weekly log được ghi theo activity trong tab Weekly Log của Sheet master; bảng đầy đủ ở Phụ lục~\ref{app:weekly-logs}. Các điểm đáng chú ý đến tuần 9:
+\begin{itemize}
+  \item \textbf{W6 (28/09--04/10):} phát hiện Milestone 1 là buổi trình bày 05/10 chứ không phải hạn nộp 11/10 (I01); PM thu hẹp nội dung M1 theo bảng milestone của đề và dời Task~2 sang sau M1.
+  \item \textbf{W7 (05--11/10):} ở buổi M1 ngày 05/10 nhóm không được gọi trình bày nên không có nhận xét của client; email vòng 2 gửi 08/10 và được trả lời trong ngày; A16, A17 trễ so với lịch, A19, A22, A25 chưa bắt đầu.
+  \item \textbf{W8 (12--18/10):} TV2 duyệt mạng hoạt động và checkpoint, năm PD được duyệt ngày 14/10; CP2 lùi từ 16/10 sang 18/10 và đạt có điều kiện; nhóm chốt stack React, Go, PostgreSQL và phân vai mới.
+  \item \textbf{W9 (19--25/10):} phát hiện chưa ai log work trên Jira từ đầu dự án (I02); đồng bộ Jira theo lịch Baseline V1.0 nháp (21/10); phát hiện các thành viên không truy cập được GitLab tự host trên máy cá nhân (I03, 22/10).
+\end{itemize}
+Cột effort thực tế trong weekly log còn trống cho đến khi thu xong giờ hồi tưởng (hạn 23/10, xem I02).
+
+\todo{Tóm tắt các tuần từ W9 trở đi khi có số liệu.}
+
+\section{So sánh kế hoạch và thực tế}
+\label{sec:3-3}
+\todo{So sánh effort và lịch planned vs actual theo activity/tuần, phân tích độ lệch và nguyên nhân.}
+
+\section{Cập nhật rủi ro và vấn đề}
+\label{sec:3-4}
+\subsection*{Issue}
+Issue là sự việc đã xảy ra, khác với rủi ro là sự việc có thể xảy ra. Bảng~\ref{tab:issues} lấy từ issue log của nhóm; người xử lý cả ba issue là TV1, chưa issue nào được đóng.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{0.7cm}L{2.0cm}L{3.2cm}L{2.5cm}L{4.4cm}L{1.0cm}}
+\caption{Issue log}\label{tab:issues}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Ngày} & \textbf{Mô tả} & \textbf{Ảnh hưởng} & \textbf{Hành động} & \textbf{Rủi ro} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Ngày} & \textbf{Mô tả} & \textbf{Ảnh hưởng} & \textbf{Hành động} & \textbf{Rủi ro} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+I01 & 02/10/2026 & Milestone 1 là buổi trình bày trên lớp thứ Hai 05/10, không phải hạn nộp 11/10 như nhóm đã hiểu; thời gian còn lại giảm từ 9 ngày xuống 3 ngày & Chuỗi Task~1 đến M1; A15--A22 & Thu hẹp M1 theo bảng milestone của đề (chỉ Initiation \& Definition, ước lượng effort để sang Task~2); thêm A61, A59; dời Task~2 sang 06--12/10; email vòng 2 chuyển sang sau buổi M1 & R10 \\
+I02 & 20/10/2026 & Chưa thành viên nào log work trên Jira từ đầu dự án; tab Time Tracking trống, không có actual effort cho các activity đã làm (A01--A23) & Mục~\ref{sec:3-2}, \ref{sec:3-3}; báo cáo actual effort tại Progress Check 09/11 & Thu giờ hồi tưởng bằng mẫu Time Tracking, mỗi dòng ghi \enquote{ước tính hồi tưởng}, hạn 23/10; từ W9 log work trên Jira khi làm, rà ở họp 15h Chủ nhật & R02, R07 \\
+I03 & 22/10/2026 & GitLab của nhóm chạy trên máy cá nhân, các thành viên khác không truy cập được; chưa có repo chung để dựng codebase, review Merge Request, chạy CI và deploy & A24 (găng), A28, A20; stage \texttt{Baseline frozen} & Tạm đến họp 25/10: tài liệu là file \texttt{.md} trên thư mục Drive \texttt{Sprint 6-7}, code dùng git trên máy từng người; CI, deploy, Merge Request dời sang 26--28/10. Họp A23 ngày 25/10 chọn nơi chứa repo và CI; quá 25/10 thì A24 trễ, kéo theo A26 và demo & R11, R15 \\
+\end{longtable}
+\endgroup
+
+\subsection*{Lịch sử rủi ro}
+Bảng~\ref{tab:risk-history} ghi lại các thay đổi của sổ rủi ro tính đến 22/10 (tab Risk History của Sheet master). Các dòng ngày 14/10 được TV1 ghi lại vào ngày 20/10 từ checklist rà soát của TV3.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{2.0cm}L{0.8cm}L{5.5cm}L{4.3cm}L{1.5cm}}
+\caption{Lịch sử thay đổi rủi ro}\label{tab:risk-history}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Ngày} & \textbf{ID} & \textbf{Thay đổi} & \textbf{Lý do} & \textbf{Người cập nhật} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Ngày} & \textbf{ID} & \textbf{Thay đổi} & \textbf{Lý do} & \textbf{Người cập nhật} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+02/10/2026 & R10 & Rủi ro xảy ra: M1 là buổi trình bày 05/10, không phải hạn nộp 11/10. Chuyển thành issue I01, kích hoạt phương án dự phòng & Nhóm đối chiếu lại thông báo trên lớp & TV1 \\
+08/10/2026 & R13 & Đóng: thầy xác nhận không có Milestone 2 và 3, chỉ một Progress Check & Phản hồi Q16 ngày 08/10 (19:58) & TV1 \\
+08/10/2026 & R01 & P 3$\rightarrow$2, exposure 12$\rightarrow$8 & Vòng 2 gửi 16:39 được trả lời trong cùng ngày 19:58 & TV1 \\
+08/10/2026 & R05 & Cập nhật giảm thiểu: contingency chung thay cho activity riêng & Q17: change event không báo trước nội dung, không tạo activity riêng & TV1 \\
+13/10/2026 & R11 & P 3$\rightarrow$2, exposure 12$\rightarrow$8; thêm mirror công khai & PM chốt mirror công khai ngày 13/10 & TV1 \\
+13/10/2026 & R14 & Thêm mới: yêu cầu mới từ Q19 làm tăng effort & Phản hồi 08/10 thêm sửa/hủy sự kiện và thông báo & TV1 \\
+13/10/2026 & R15 & Thêm mới: lịch vượt Progress Check và demo theo năng lực E01 & Phân tích tải và đề xuất thời lượng (nháp AI) ngày 12/10 & TV1 \\
+13/10/2026 & R16 & Thêm mới: báo cáo tích hợp muộn ở A39 & A34 không còn chặn A37 để giữ Progress Check & TV1 \\
+13/10/2026 & R17 & Thêm mới: tranh chấp khi waitlist tự chuyển & Q14, Q15: quy tắc waitlist và đăng ký lại & TV1 \\
+13/10/2026 & R18 & Thêm mới: thông báo thất bại hoặc thiếu kênh email & Q14: thông báo lỗi không hoàn tác việc chuyển & TV1 \\
+13/10/2026 & R19 & Thêm mới: TV1 quá tải & Tải theo tuần vượt 7h khi tính theo effort đã chốt & TV1 \\
+13/10/2026 & R20 & Thêm mới: lộ thông tin xác thực khi mirror công khai & Quyết định mirror công khai; file ghi mật khẩu trong thư mục dự án & TV1 \\
+14/10/2026 & R02 & Sửa giảm thiểu (tính cả AI review/test/sửa lỗi; báo PM khi vượt) và dự phòng (cân bằng tài nguyên/reserve hoặc đổi scope) & TV3 rà estimate và rủi ro (checklist 14/10) & TV1 (ghi lại 20/10) \\
+14/10/2026 & R14 & Sửa giảm thiểu: tính sửa/hủy sự kiện và thông báo trong A27, tránh tính trùng A29; dự phòng: PM/BA xác nhận REQ-21 trước khi cắt & TV3 rà estimate A27, A29 (checklist 14/10) & TV1 (ghi lại 20/10) \\
+14/10/2026 & R17 & Sửa giảm thiểu (test FIFO, không chuyển trùng, đồng thời 100 lượt) và dự phòng (fallback thủ công có quyền riêng) & TV3 rà thiết kế waitlist (checklist 14/10) & TV1 (ghi lại 20/10) \\
+14/10/2026 & R21 & Thêm mới: giao diện quét QR hoặc form vỡ layout trên điện thoại nhỏ (P3, I4) & Owner TV4 bổ sung, xác nhận 14/10 & TV1 (ghi lại 20/10) \\
+14/10/2026 & R22 & Thêm mới: chậm review tài liệu chéo do thành viên bận (P4, I3) & Owner TV4 bổ sung, xác nhận 14/10 & TV1 (ghi lại 20/10) \\
+20/10/2026 & R02 & Bổ sung: ý kiến trái chiều về estimate implement/testing tại CP2 18/10; PM giữ số 20/10 & Kết quả CP2 18/10 & TV1 (ghi lại 20/10) \\
+20/10/2026 & R19 & Cập nhật giảm thiểu: TV1 nhận toàn bộ phần quản trị và báo cáo từ 18/10; chờ chấm lại P, I & Phân vai lại tại họp 18/10 & TV1 (ghi lại 20/10) \\
+22/10/2026 & R15 & Sửa mô tả: năng lực 14h/tuần (E01) thay 12h/tuần; thêm kết quả lịch A21: chỉ vừa kịp 07/12, không còn ngày dự trữ, Progress Check 09/11 chưa có QR check-in & E01 chốt 14h/tuần (20/10); lịch A21 chạy lại 21/10 & TV1 (ghi lại 22/10) \\
+22/10/2026 & R05 & Sửa giảm thiểu: A38 là quỹ dự phòng 30h ngoài chuỗi (L6 = B), bỏ \enquote{8 ngày sau Progress Check} & L6 = B, nhóm duyệt tại CP2 18/10 & TV1 (ghi lại 22/10) \\
+22/10/2026 & R19 & Sửa mô tả: năng lực khoảng 14h/tuần (E01) thay 7h/tuần, khớp báo cáo & Năng lực TV1 chốt 14h/tuần (A50, 20/10) & TV1 (ghi lại 22/10) \\
+\end{longtable}
+\endgroup
+
+\todo{Cập nhật rủi ro và issue phát sinh trong Increment 1 và 2; chấm lại P, I theo actual effort.}
+
+\section{Bằng chứng chất lượng}
+\label{sec:3-5}
+\todo{Kết quả test, review, CI/CD, đối chiếu với tiêu chí chất lượng trong Product Descriptions.}
+
+\section{Phản hồi change event}
+\label{sec:3-6}
+Theo thầy (Q17, 08/10), change event do thầy đưa ra trong quá trình thực hiện dự án và không báo trước nội dung. Nhóm xem đây là một phần của rủi ro, dành contingency trong kế hoạch và không tạo trước activity riêng.
+
+\todo{Mô tả change event thực tế do giảng viên đưa ra, phân tích tác động, change request, quyết định và người duyệt.}
+
+\section{Baseline V2.0}
+\label{sec:3-7}
+\todo{Những gì thay đổi so với Baseline V1.0 và lý do; giữ nguyên V1.0 ở Phụ lục~\ref{app:baselines}.}
+
+\section{Kế hoạch cấp thấp}
+\label{sec:3-8}
+\todo{Kế hoạch chi tiết cho từng increment/sprint (công việc, người, thời gian, tiêu chí hoàn thành).}
