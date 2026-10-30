@@ -1,0 +1,33 @@
+# Secret và cấu hình local
+.env
+.env.*
+!.env.example
+Link.txt
+
+# Ghi chú nội bộ và kế hoạch tạm, không đưa vào repo
+PROGRESS.md
+NOTES.md
+notes/
+*-PLAN.md
+
+# Export Sheet master và file Office, lấy từ Drive của nhóm
+*.xlsx
+
+# Build LaTeX (báo cáo PDF nộp bài đưa vào docs/report/ hoặc docs/baseline/)
+report/*.aux
+report/*.fdb_latexmk
+report/*.fls
+report/*.lof
+report/*.lot
+report/*.out
+report/*.toc
+report/*.synctex.gz
+report/main.pdf
+
+# Khác
+*.log
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+node_modules/
