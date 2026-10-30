@@ -14,7 +14,7 @@ Hạ tầng đã dựng. File này ghi **cấu hình nội dung** để các cô
 | Repo | Nội dung | Chế độ |
 |---|---|---|
 | `ticket-system-uni` | Mã nguồn sản phẩm (Go, PostgreSQL) | public |
-| `pm-docs` | Hồ sơ quản lý dự án (`docs/`, `tools/`, `report/`) | private |
+| `pm-docs` | Hồ sơ quản lý dự án (`docs/`, `tools/`, `report/`) | public (từ 30/10) |
 
 ### Repository
 - [ ] Mời đủ 5 thành viên vào tổ chức; quyền **Write** cho cả hai repo; TV1 và chủ repo code quyền **Admin**
@@ -26,9 +26,8 @@ Hạ tầng đã dựng. File này ghi **cấu hình nội dung** để các cô
 `TV1` … `TV5` · `task1` … `task4` · `docs` · `code` · `test` · `risk` · `change-request`
 
 ### Truy cập của giảng viên — quan trọng
-Repo `pm-docs` là private. Khi nộp bài chọn một:
-- [ ] Mời tài khoản GitHub của giảng viên làm collaborator quyền Read, **hoặc**
-- [ ] Chuyển `pm-docs` sang public sau khi quét dữ liệu cá nhân (họ tên, MSSV, email) và secret (rủi ro **R20**)
+Cả hai repo đều public nên giảng viên truy cập được không cần mời. `pm-docs` chuyển sang public ngày 30/10/2026 sau khi quét secret (rủi ro **R20**); TV1 xác nhận việc lộ họ tên và MSSV không phải vấn đề.
+- [ ] Trước mỗi lần thêm file mới: không đưa mật khẩu, token, `Link.txt`, file `.xlsx`; kiểm tra quyền chia sẻ của link Google Sheet/Drive/Jira trong tài liệu (chỉ người được mời), vì link nằm trong repo công khai
 
 ### Backup
 - [ ] Mỗi thành viên giữ một bản clone; export bản zip của `pm-docs` trước mỗi lần nộp

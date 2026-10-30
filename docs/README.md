@@ -68,7 +68,7 @@ Trước mỗi checkpoint, TV1 chạy activity A57: rà toàn bộ các bảng x
 
 ## Trước mỗi lần nộp
 
-1. Export Sheet master và Jira ra PDF/CSV, đặt vào thư mục tương ứng — bài nộp phải tự đọc được, giảng viên không truy cập Jira hay repo private của nhóm.
+1. Export Sheet master và Jira ra PDF/CSV, đặt vào thư mục tương ứng — bài nộp phải tự đọc được, giảng viên không truy cập Jira hay Sheet master của nhóm.
 2. Chạy A57 rà traceability.
 3. Kiểm tra mọi sơ đồ và bảng đọc được khi in.
 4. Cập nhật `ai-usage.md`.
