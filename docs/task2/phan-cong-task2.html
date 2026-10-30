@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phân công Task 2</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1d2330;--muted:#5d6675;--line:#e1e5eb;--accent:#2f5bd3;--accent-soft:#e8eefc;--warn:#9a5b00;--warn-soft:#fff4dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171c;--card:#1d2128;--text:#e6e9ee;--muted:#9aa3b1;--line:#2e343e;--accent:#7f9cff;--accent-soft:#232c45;--warn:#f0b54a;--warn-soft:#3a2f17}}
+:root[data-theme="dark"]{--bg:#14171c;--card:#1d2128;--text:#e6e9ee;--muted:#9aa3b1;--line:#2e343e;--accent:#7f9cff;--accent-soft:#232c45;--warn:#f0b54a;--warn-soft:#3a2f17}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.35rem;margin:8px 0 4px}
+h2{font-size:1.1rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 12px}
+.note{background:var(--warn-soft);color:var(--text);border-left:4px solid var(--warn);padding:10px 12px;border-radius:6px;margin:12px 0;font-size:.92rem}
+.tabs{position:sticky;top:0;z-index:2;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding:8px 0;margin-bottom:8px}
+.tabs button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--text);padding:7px 12px;border-radius:999px;font:inherit;font-size:.9rem;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.person{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.person header{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.hours{font-weight:600;color:var(--accent)}
+.hours.warn{color:var(--warn)}
+.task{border-top:1px solid var(--line);padding:10px 0}
+.task:first-of-type{border-top:0}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+.code{background:var(--accent-soft);color:var(--accent);font-weight:600;padding:1px 8px;border-radius:4px}
+.name{font-weight:600;color:var(--text)}
+.handoff{font-size:.85rem;color:var(--muted);margin-top:4px}
+.handoff b{color:var(--text);font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.scroll{overflow-x:auto}
+ul{padding-left:20px;margin:6px 0}
+li{margin:3px 0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <h1>Phân công Task 2 theo từng người</h1>
+  <p class="sub">CO3011 · L01 · Nhóm 9 · 06–16/10/2026</p>
+  <div class="note"><b>Đã chốt bởi PM (TV1) ngày 06/10/2026.</b> Effort là ước lượng ban đầu; effort của việc làm chung được chia đều. Số liệu sẽ cập nhật sau A18.</div>
+
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <div id="people"></div>
+
+  <section class="person" id="overview" hidden>
+    <h2>Tổng quan activity</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Mã</th><th>Activity</th><th>Người làm</th><th>Effort</th><th>Ngày</th><th>Phụ thuộc</th></tr></thead>
+      <tbody id="ov"></tbody>
+    </table></div>
+  </section>
+
+  <section class="person" id="rules">
+    <h2>Quy ước chung</h2>
+    <ul>
+      <li><b>Ước lượng chéo ở A18</b> đi theo vòng: TV1 ước lượng lại cho TV2, TV2 cho TV3, TV3 cho TV4, TV4 cho TV5, TV5 cho TV1. Lệch &gt;50% thì hai người giải thích và thống nhất.</li>
+      <li><b>Review chéo ở A23</b>: không ai review phần do chính mình làm.</li>
+      <li><b>Bàn giao đúng hạn</b> để người khác không bị chặn:
+        <ul>
+          <li>A15 xong 07/10, vì A16 và A17 cần nó.</li>
+          <li>A17 xong 09/10, vì A18 và A19 cần nó.</li>
+          <li>A18 và A19 xong 11/10, vì A21 cần cả hai.</li>
+          <li>A21 xong 12/10, vì A20, A50 và A58 cần nó.</li>
+        </ul>
+      </li>
+      <li>Ghi actual effort vào Jira worklog hoặc tab Time Tracking ngay khi làm xong.</li>
+    </ul>
+  </section>
+</main>
+<script>
+const people = [
+ {id:"TV1",name:"Nguyễn Đức Nghĩa",role:"PM",h:"~13h",tasks:[
+  ["07/10","A12","Gửi email hỏi client vòng 2","Duyệt bộ câu hỏi A11, viết và gửi email vòng 2. Theo dõi phản hồi. Nếu sau 2 ngày chưa có trả lời thì quyết định ghi phần đó thành assumption.","2h","Báo TV2 ghi Client Log"],
+  ["08–09/10","A17","Activity network và checkpoints","Đặt các checkpoint, mỗi cái ghi rõ kiểm tra gì, ai duyệt, không đạt thì làm gì. Tách activity dài hơn 16h, gộp activity quá ngắn, ghi lý do. Rà để activity nào cũng có đầu ra.","3h","Network hoàn chỉnh → cả nhóm (cho A18)"],
+  ["10–11/10","A18","Ước lượng effort","Ước lượng 3 điểm cho activity của mình. Ước lượng độc lập lại activity của TV2. Ghi giả định năng lực (12h/người/tuần, TV1 ~7h, giảm tải tuần nghỉ), đơn giá giả định, tính cost.","2h","TV3 tổng hợp"],
+  ["13–15/10","A50","Phân bổ tài nguyên","Thu lịch rảnh và lịch thi của từng người. Gán owner cho từng activity, lập bảng tải theo tuần, quyết định chuyển việc khi ai đó quá tải.","3h","TV3 cập nhật Gantt"],
+  ["13–14/10","A58","Email hỏi client trước baseline","Lọc các assumption chưa xác nhận có ảnh hưởng lớn tới scope, effort hoặc lịch. Gom vào 1 email gửi thầy.","2h","TV2 ghi Client Log"],
+  ["16/10","A23","CP2 – Chốt Baseline V1.0","Đưa nhận xét M1 và kết quả A58 vào baseline. Rà ma trận traceability. Ký duyệt cuối.","1h","—"]]},
+ {id:"TV2",name:"Ngô Thanh Hùng",role:"BA/QA",h:"~16,5h",tasks:[
+  ["06/10","A11","Soạn câu hỏi vòng 2","Lọc các câu \"chưa rõ\" ở vòng 1 và nhận xét ở buổi M1. Soạn bản tóm tắt scope, exclusions, objectives nháp để xin thầy xác nhận. Gộp và xếp ưu tiên cả bộ câu hỏi.","1,5h","Bộ câu hỏi → TV1"],
+  ["07–08/10","A12","Gửi email hỏi client vòng 2","Ghi Client Log trong 24h sau khi có trả lời (giờ gửi, giờ nhận, ảnh chụp email). Cập nhật scope và assumptions theo câu trả lời.","2h","Báo TV5 nếu có rủi ro mới"],
+  ["08–09/10","A17","Activity network và checkpoints","Từ PFD suy ra các activity, đặt tên dạng động từ + danh từ. Xác định phụ thuộc, vẽ activity network (activity-on-node).","3h","Bản vẽ → TV1 đặt checkpoint"],
+  ["09–10/10","A16","Product Descriptions","Viết 3 PD: SRS, Test plan, Hệ thống đã deploy (đủ 8 trường, quality criteria đo được). Review chéo 2 PD của TV4.","4h","—"],
+  ["10–11/10","A18","Ước lượng effort","Ước lượng 3 điểm cho activity của mình. Ước lượng độc lập lại activity của TV3.","2h","TV3 tổng hợp"],
+  ["11–12/10","A22","Quality plan và test strategy","Xác định các mức kiểm thử (unit, integration, e2e, UAT). Quy ước mã T# gắn với requirement. Chọn nơi lưu bằng chứng.","3h","—"],
+  ["16/10","A23","CP2 – Chốt Baseline V1.0","Review chéo phần estimate và lịch (A18, A21, A50) theo checklist CP2. Viết biên bản CP2.","1h","—"]]},
+ {id:"TV3",name:"Phan Huy Quang Minh",role:"Tech Lead",h:"~22h",tasks:[
+  ["06–07/10","A15","PBS và PFD","Liệt kê specialist products (SRS, thiết kế, các module Event/Registration/Check-in/Report, test, hệ thống đã deploy). Vẽ PFD.","5h","PBS và PFD → TV1, TV2 (A17); TV2, TV4 (A16)"],
+  ["10–11/10","A18","Ước lượng effort (chủ trì)","Ước lượng activity của mình, ước lượng độc lập lại activity của TV4. Tính PERT, xử lý các chỗ lệch >50%, tách effort và thời lượng.","2h","Bảng estimate → A21"],
+  ["11–13/10","A25","Database và API contract","Vẽ ERD (users, roles, events, registrations, attendance). Xác định ràng buộc (không đăng ký trùng, không vượt số chỗ). Liệt kê endpoint kèm request và response mẫu.","3h","→ TV4 review"],
+  ["12/10","A21","Lịch, Gantt, critical path","Nhập activity, thời lượng, phụ thuộc. Tính critical path, vẽ Gantt nháp (chưa ràng buộc tài nguyên).","5h","→ TV1 (A50, A58)"],
+  ["13–15/10","A20","Spike check-in QR","Thử QR trên 3–4 thiết bị và trình duyệt, kể cả khi mạng yếu. Đo thời gian check-in mỗi người. Cập nhật estimate của A33.","3h","—"],
+  ["13–15/10","A50","Phân bổ tài nguyên","San tải: dời activity có float. Cập nhật Gantt có ràng buộc tài nguyên. So sánh với lịch lý tưởng và ghi lý do từng thay đổi.","3h","—"],
+  ["16/10","A23","CP2 – Chốt Baseline V1.0","Review chéo PD và quality plan (A16, A22) theo checklist CP2.","1h","—"]]},
+ {id:"TV4",name:"Nguyễn Đắc Nghĩa",role:"Frontend",h:"~17h",tasks:[
+  ["09–10/10","A16","Product Descriptions","Viết 2 PD: Thiết kế database, Module Check-in. Review chéo 3 PD của TV2.","4h","—"],
+  ["10–11/10","A18","Ước lượng effort","Ước lượng 3 điểm cho activity của mình. Ước lượng độc lập lại activity của TV5.","2h","TV3 tổng hợp"],
+  ["10–11/10","A19","Rủi ro cấp activity","Thêm rủi ro cho các activity tài liệu, quản lý và frontend/UI. Chấm P, I, tính exposure, ghi owner, giảm thiểu, dự phòng cho phần này.","4h","→ TV5 gộp vào register"],
+  ["11–12/10","A22","Quality plan và test strategy","Quy định cách review tài liệu (review chéo, checklist). Chọn công cụ test, nhất là cho frontend và e2e.","3h","—"],
+  ["11–13/10","A25","Database và API contract","Review API contract từ phía frontend. Ghép từng màn hình với endpoint, đề xuất chỉnh. Xác nhận đồng ý contract.","3h","—"],
+  ["16/10","A23","CP2 – Chốt Baseline V1.0","Review chéo activity network và risk (A17, A19) theo checklist CP2.","1h","—"]]},
+ {id:"TV5",name:"Hà Cao Đức Minh",role:"Fullstack/DevOps",h:"~16,5h",tasks:[
+  ["06/10","A11","Soạn câu hỏi vòng 2","Soạn câu hỏi phát sinh từ high-level risks và lifecycle (A13). Thêm câu hỏi về ngày M2, M3, thời điểm change event, và M1 có cần initial estimates không.","1,5h","→ TV2 gộp"],
+  ["06–07/10","A15","PBS và PFD","Liệt kê management products (kế hoạch, báo cáo, logs). Vẽ PBS dạng cây, đánh mã P#, đánh dấu deliverable hay intermediate.","5h","Thống nhất danh sách product với TV3 trong ngày 06/10"],
+  ["10–11/10","A18","Ước lượng effort","Ước lượng 3 điểm cho activity của mình. Ước lượng độc lập lại activity của TV1.","2h","TV3 tổng hợp"],
+  ["10–11/10","A19","Rủi ro cấp activity","Thêm rủi ro cho các activity kỹ thuật (backend, check-in, CI/CD, deploy). Thêm activity phản hồi cho rủi ro có exposure ≥12. Gộp phần của TV4 vào Risk Register.","4h","→ TV3 (A21)"],
+  ["13–15/10","A20","Spike check-in QR","Code thử tạo và quét QR bằng thư viện có sẵn, kèm phương án nhập mã dự phòng. Cùng TV3 chọn giải pháp, cập nhật R04.","3h","—"],
+  ["16/10","A23","CP2 – Chốt Baseline V1.0","Review chéo scope và Client Log (A12, A58). Export PDF và gắn tag baseline-v1.0.","1h","—"]]}
+];
+const overview = [
+ ["A11","Soạn câu hỏi vòng 2","TV2, TV5","3h","06/10","—"],
+ ["A12","Gửi email hỏi client vòng 2","TV1, TV2","4h","07–08/10","A11, A49"],
+ ["A15","Dựng PBS và PFD","TV3, TV5","10h","06–07/10","A49"],
+ ["A17","Activity network và checkpoints","TV1, TV2","6h","08–09/10","A15"],
+ ["A16","Product Descriptions (≥5)","TV2, TV4","8h","09–10/10","A15, A12"],
+ ["A18","Ước lượng effort từ dưới lên","Cả nhóm (TV3 chủ trì)","10h","10–11/10","A17"],
+ ["A19","Rủi ro cấp activity","TV5, TV4","8h","10–11/10","A17, A13"],
+ ["A22","Quality plan và test strategy","TV2, TV4","6h","11–12/10","A16"],
+ ["A25","Database và API contract","TV3, TV4","6h","11–13/10","—"],
+ ["A21","Lịch, Gantt, critical path","TV3","5h","12/10","A18, A19"],
+ ["A20","Spike check-in QR","TV3, TV5","6h","13–15/10","A21"],
+ ["A50","Phân bổ tài nguyên","TV1, TV3","6h","13–15/10","A21"],
+ ["A58","Email hỏi client trước baseline","TV1","2h","13–14/10","A21, A12"],
+ ["A23","CP2 – Chốt Baseline V1.0","Cả nhóm","5h","16/10","A50, A25, A22, A58"]
+];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const wrap = document.getElementById("people");
+wrap.innerHTML = people.map(p => `
+ <section class="person" data-p="${p.id}">
+  <header><h2>${p.id} — ${esc(p.name)} <span class="sub">(${esc(p.role)})</span></h2>
+  <span class="hours${p.warn ? " warn" : ""}">${p.h}</span></header>
+  ${p.tasks.map(t => `<div class="task">
+    <div class="meta"><span class="code">${t[1]}</span><span class="name">${esc(t[2])}</span><span>· ${t[0]}</span><span>· ${t[4]}</span></div>
+    <div>${esc(t[3])}</div>
+    <div class="handoff">Bàn giao: <b>${esc(t[5])}</b></div>
+  </div>`).join("")}
+ </section>`).join("");
+document.getElementById("ov").innerHTML = overview.map(r => `<tr>${r.map((c,i) => `<td>${i===0?`<span class="code">${c}</span>`:esc(c)}</td>`).join("")}</tr>`).join("");
+
+const tabs = [["all","Tất cả"],...people.map(p => [p.id, p.id + " · " + p.name.split(" ").pop()]),["overview","Tổng quan"]];
+const nav = document.getElementById("tabs");
+nav.innerHTML = tabs.map(([k,l]) => `<button role="tab" data-k="${k}">${esc(l)}</button>`).join("");
+function show(k){
+  nav.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.k === k));
+  wrap.querySelectorAll(".person").forEach(s => s.hidden = !(k === "all" || s.dataset.p === k));
+  document.getElementById("overview").hidden = k !== "overview";
+  try { localStorage.setItem("pc-task2-tab", k); } catch(e) {}
+}
+nav.addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(b.dataset.k); });
+let start = "all";
+try { start = localStorage.getItem("pc-task2-tab") || "all"; } catch(e) {}
+show(tabs.some(t => t[0] === start) ? start : "all");
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+W9	19/10 – 25/10	A21	Tính CPM, Gantt, cost baseline (20–22/10)	Xong 20–21/10 (TV1 báo); cost baseline 364,2h + A38 30h = 394,2h	5,2				Chạy lại lịch 21/10 khi TV1 chốt A23 ngày 25/10	
+W9	19/10 – 25/10	A50	San tải theo năng lực 14h/tuần (23–26/10)	Xong 20–21/10 (TV1 báo); TV2, TV4, TV5 xác nhận phần việc mới (L9) 21/10	6,3			R15: lịch vừa kịp 07/12, 0 ngày dự trữ; Progress Check chưa có QR	Cập nhật R15, Risk History 21/10 (TV1 báo); hỏi thầy phạm vi Progress Check (A58)	
+W9	19/10 – 25/10	A22	Quality plan và test strategy (20–22/10)	Jira 21/10: In Progress	6,0					
+W9	19/10 – 25/10	A25	TV3 xác nhận phần bổ sung PD-02 (20/10)	Jira 21/10: In Review	1,0					
+W9	19/10 – 25/10	A24	Dựng repo, CI, deploy khung (21–28/10)		4,5			CI dùng Jenkins (TV1 chốt 21/10); chưa chọn hosting	TV5 chọn hosting free-tier (ASM-05)	
+W9	19/10 – 25/10	A28	Layout và component dùng chung (21–26/10)		10,0					
+W9	19/10 – 25/10	A20	Spike QR, timebox 6h (22–24/10)		5,7					
+W9	19/10 – 25/10	A58	Gửi email hỏi phạm vi Progress Check và kênh notification (22–23/10)	Jira 21/10: In Progress; email v0.3 đã soạn, chưa gửi	2,1				Nếu 24/10 chưa có trả lời thì ghi giả định còn mở tại A23	
+W9	19/10 – 25/10	A31	Viết test case Increment 1 (23–28/10)		6,0					
+W9	19/10 – 25/10	A23	Họp chốt Baseline V1.0 (25/10, 15h)		5,2				Theo checklist docs/baseline/A23-checklist.md	
+W10	26/10 – 01/11	A24	Hoàn tất repo, CI, deploy khung (đến 28/10)		4,5					
+W10	26/10 – 01/11	A28	Hoàn tất layout (26/10)		0,5					
+W10	26/10 – 01/11	A31	Hoàn tất test case Increment 1 (đến 28/10)		4,5					
+W10	26/10 – 01/11	A26	Đăng nhập, phân quyền (29–30/10)		10,5					
+W10	26/10 – 01/11	A27	Quản lý sự kiện, phần đầu (31/10–01/11; kết thúc 04/11)		12,0					
+W10	26/10 – 01/11	A36	Theo dõi tiến độ, weekly log; rà log work Jira ở họp 15h Chủ nhật 25/10, 01/11						Từ W9 mỗi Chủ nhật xuất Jira CSV để chuyển thành dòng tab 3	

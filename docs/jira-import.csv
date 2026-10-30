@@ -1,0 +1,301 @@
+Summary,Issue Type,Labels,Labels,Labels,Labels,Labels,Labels,Labels,Original Estimate,Start date,Due date,Description
+A01 Set up project infrastructure,Task,A01,P0,TV3,TV5,,,,21600,2026-09-23,2026-09-25,"Activity: A01
+Task trong đề: 1.7
+Người làm: TV3, TV5
+Phụ thuộc: không có
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A02 Analyse project brief,Task,A02,P0,TV1,TV2,TV3,TV4,TV5,18000,2026-09-23,2026-09-23,"Activity: A02
+Task trong đề: 1.1
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: không có
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A55 Clarify client role & channel (P01–P06),Task,A55,P1,TV1,,,,,7200,2026-09-23,2026-09-24,"Activity: A55
+Task trong đề: 1.1, 1.5
+Người làm: TV1
+Phụ thuộc: không có
+Ngày cố định: 2026-09-23
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A03 Prepare client questions (round 1),Task,A03,P1,TV2,TV4,,,,18000,2026-09-24,2026-09-25,"Activity: A03
+Task trong đề: 1.1
+Người làm: TV2, TV4
+Phụ thuộc: A02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A04 Consult client (round 1),Task,A04,P1,TV1,TV2,,,,14400,2026-09-28,2026-09-28,"Activity: A04
+Task trong đề: 1.1
+Người làm: TV1, TV2
+Phụ thuộc: A01, A03
+Ngày cố định: 2026-09-28
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A05 Document business context & constraints,Task,A05,P1,TV2,TV5,,,,21600,2026-10-02,2026-10-02,"Activity: A05
+Task trong đề: 1.2
+Người làm: TV2, TV5
+Phụ thuộc: A04
+Ngày cố định: 2026-10-02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A06 Evaluate business case & costs,Task,A06,P1,TV4,,,,,28800,2026-10-02,2026-10-03,"Activity: A06
+Task trong đề: 1.3
+Người làm: TV4
+Phụ thuộc: A04
+Ngày cố định: 2026-10-02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A08 Define project authority & escalation,Task,A08,P1,TV1,,,,,14400,2026-10-02,2026-10-02,"Activity: A08
+Task trong đề: 1.5
+Người làm: TV1
+Phụ thuộc: A04
+Ngày cố định: 2026-10-02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A09 Analyse stakeholders,Task,A09,P1,TV2,TV3,,,,18000,2026-10-02,2026-10-03,"Activity: A09
+Task trong đề: 1.6
+Người làm: TV2, TV3
+Phụ thuộc: A04
+Ngày cố định: 2026-10-02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A13 Analyse project characteristics & lifecycle,Task,A13,P1,TV5,TV3,,,,28800,2026-10-02,2026-10-03,"Activity: A13
+Task trong đề: 1.8
+Người làm: TV5, TV3
+Phụ thuộc: A04
+Ngày cố định: 2026-10-02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A61 Build Milestone 1 deck skeleton,Task,A61,P1,TV1,,,,,3600,2026-10-02,2026-10-02,"Activity: A61
+Task trong đề: M1
+Người làm: TV1
+Phụ thuộc: không có
+Ngày cố định: 2026-10-02
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+"A07 Define scope, objectives & MoE",Task,A07,P1,TV2,TV5,,,,28800,2026-10-03,2026-10-03,"Activity: A07
+Task trong đề: 1.4
+Người làm: TV2, TV5
+Phụ thuộc: A05
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A10 Establish standards & communication plan,Task,A10,P1,TV3,TV4,,,,21600,2026-10-03,2026-10-03,"Activity: A10
+Task trong đề: 1.7
+Người làm: TV3, TV4
+Phụ thuộc: A08
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A14 Approve project definition,Task,A14,P1,TV1,TV2,TV3,TV4,TV5,10800,2026-10-04,2026-10-04,"Activity: A14
+Task trong đề: CP1
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A06, A07, A09, A10, A13
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A59 Fill Milestone 1 deck & rehearse,Task,A59,P1,TV1,,,,,10800,2026-10-04,2026-10-04,"Activity: A59
+Task trong đề: M1
+Người làm: TV1
+Phụ thuộc: A61, A06, A07, A09, A10, A13
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A49 Present Milestone 1 in class,Task,A49,P1,TV1,TV2,TV3,TV4,TV5,18000,2026-10-05,2026-10-05,"Activity: A49
+Task trong đề: M1
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A14, A59
+Ngày cố định: 2026-10-05
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A11 Prepare client questions (round 2),Task,A11,P2,TV2,TV5,,,,10800,2026-10-06,2026-10-06,"Activity: A11
+Task trong đề: 1.1
+Người làm: TV2, TV5
+Phụ thuộc: A07, A09, A49
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A15 Build PBS & PFD,Task,A15,P2,TV3,TV5,,,,36000,2026-10-06,2026-10-07,"Activity: A15
+Task trong đề: 2.1, 2.3
+Người làm: TV3, TV5
+Phụ thuộc: A49
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A12 Consult client by email (round 2),Task,A12,P2,TV1,TV2,,,,14400,2026-10-07,2026-10-08,"Activity: A12
+Task trong đề: 1.1
+Người làm: TV1, TV2
+Phụ thuộc: A11, A49
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A17 Construct activity network & checkpoints,Task,A17,P2,TV1,TV2,,,,21600,2026-10-08,2026-10-09,"Activity: A17
+Task trong đề: 2.4, 2.5, 2.7
+Người làm: TV1, TV2
+Phụ thuộc: A15
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A16 Write product descriptions,Task,A16,P2,TV2,TV4,,,,28800,2026-10-09,2026-10-10,"Activity: A16
+Task trong đề: 2.2
+Người làm: TV2, TV4
+Phụ thuộc: A15, A12
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A18 Estimate activity effort bottom-up,Task,A18,P2,TV1,TV2,TV3,TV4,TV5,36000,2026-10-10,2026-10-11,"Activity: A18
+Task trong đề: 2.6
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A17
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A19 Assess activity risks & plan responses,Task,A19,P2,TV5,TV4,,,,28800,2026-10-10,2026-10-11,"Activity: A19
+Task trong đề: 2.8, 2.9
+Người làm: TV5, TV4
+Phụ thuộc: A17, A13
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A22 Write quality plan & test strategy,Task,A22,P2,TV2,TV4,,,,21600,2026-10-11,2026-10-12,"Activity: A22
+Task trong đề: 2.12
+Người làm: TV2, TV4
+Phụ thuộc: A16
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A25 Design database schema & API contract,Task,A25,P3,TV3,TV4,,,,21600,2026-10-11,2026-10-13,"Activity: A25
+Task trong đề: 3.1
+Người làm: TV3, TV4
+Phụ thuộc: A16
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A21 Draft schedule & Gantt,Task,A21,P2,TV3,,,,,18000,2026-10-12,2026-10-12,"Activity: A21
+Task trong đề: 2.11
+Người làm: TV3
+Phụ thuộc: A18, A19
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A20 Prototype QR check-in (spike),Task,A20,P3,TV3,TV5,,,,21600,2026-10-13,2026-10-15,"Activity: A20
+Task trong đề: 2.9
+Người làm: TV3, TV5
+Phụ thuộc: A21
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A50 Allocate resources & level schedule,Task,A50,P3,TV1,TV3,,,,21600,2026-10-13,2026-10-15,"Activity: A50
+Task trong đề: 2.10
+Người làm: TV1, TV3
+Phụ thuộc: A21
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A58 Confirm scope-affecting points with client,Task,A58,P3,TV1,,,,,7200,2026-10-13,2026-10-14,"Activity: A58
+Task trong đề: 1.1
+Người làm: TV1
+Phụ thuộc: A21, A12
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A23 Approve Project Baseline V1.0 (team),Task,A23,P3,TV1,TV2,TV3,TV4,TV5,18000,2026-10-16,2026-10-16,"Activity: A23
+Task trong đề: CP2
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A50, A25, A22, A58
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+"A24 Set up codebase, CI & deployment",Task,A24,P3,TV5,,,,,28800,2026-10-16,2026-10-18,"Activity: A24
+Task trong đề: 3.1
+Người làm: TV5
+Phụ thuộc: A20
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A36 Monitor progress & update logs,Task,A36,P4,TV1,,,,,86400,2026-10-17,2026-12-04,"Activity: A36
+Task trong đề: 3.2–3.4
+Người làm: TV1
+Phụ thuộc: A23
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A57 Chair traceability & consistency reviews,Task,A57,P4,TV1,,,,,36000,2026-10-17,2026-11-25,"Activity: A57
+Task trong đề: Traceability
+Người làm: TV1
+Phụ thuộc: A23
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A26 Implement authentication & roles,Task,A26,P4,TV3,TV5,,,,36000,2026-10-20,2026-10-22,"Activity: A26
+Task trong đề: 3.1
+Người làm: TV3, TV5
+Phụ thuộc: A23, A24
+Ngày cố định: 2026-10-20
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A28 Build UI layout & shared components,Task,A28,P4,TV4,TV2,,,,36000,2026-10-20,2026-10-23,"Activity: A28
+Task trong đề: 3.1
+Người làm: TV4, TV2
+Phụ thuộc: A23
+Ngày cố định: 2026-10-20
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A31 Write test cases for increment 1,Task,A31,P4,TV2,,,,,36000,2026-10-20,2026-10-24,"Activity: A31
+Task trong đề: 3.5
+Người làm: TV2
+Phụ thuộc: A23
+Ngày cố định: 2026-10-20
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A27 Implement event management,Task,A27,P4,TV3,TV4,TV5,,,86400,2026-10-24,2026-10-27,"Activity: A27
+Task trong đề: 3.1
+Người làm: TV3, TV4, TV5
+Phụ thuộc: A26, A28
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A29 Implement event registration & cancellation,Task,A29,P4,TV3,TV4,TV5,,,86400,2026-10-28,2026-10-31,"Activity: A29
+Task trong đề: 3.1
+Người làm: TV3, TV4, TV5
+Phụ thuộc: A27
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A30 Test & demo increment 1,Task,A30,P4,TV1,TV2,TV3,TV4,TV5,36000,2026-11-01,2026-11-01,"Activity: A30
+Task trong đề: CP3
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A29, A31
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A32 Plan increment 2 in detail,Task,A32,P5,TV1,,,,,14400,2026-11-02,2026-11-02,"Activity: A32
+Task trong đề: 3.8
+Người làm: TV1
+Phụ thuộc: A30
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A33 Implement QR check-in & attendance,Task,A33,P5,TV5,TV2,,,,57600,2026-11-03,2026-11-07,"Activity: A33
+Task trong đề: 3.1
+Người làm: TV5, TV2
+Phụ thuộc: A32
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A34 Implement attendance reports & export,Task,A34,P5,TV3,,,,,50400,2026-11-03,2026-11-06,"Activity: A34
+Task trong đề: 3.1
+Người làm: TV3
+Phụ thuộc: A32
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A35 Build check-in & report UI,Task,A35,P5,TV4,,,,,50400,2026-11-03,2026-11-07,"Activity: A35
+Task trong đề: 3.1
+Người làm: TV4
+Phụ thuộc: A32
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A40 Write test cases for increment 2,Task,A40,P5,TV2,,,,,28800,2026-11-03,2026-11-06,"Activity: A40
+Task trong đề: 3.5
+Người làm: TV2
+Phụ thuộc: A32
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A37 Integrate core workflow,Task,A37,P5,TV3,TV4,TV5,,,28800,2026-11-08,2026-11-08,"Activity: A37
+Task trong đề: 3.1
+Người làm: TV3, TV4, TV5
+Phụ thuộc: A33, A34, A35
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A51 Present progress check,Task,A51,P5,TV1,TV2,TV3,TV4,TV5,18000,2026-11-09,2026-11-09,"Activity: A51
+Task trong đề: CP4
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A37
+Ngày cố định: 2026-11-09
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A38 Respond to change event (reserve),Task,A38,P6,TV1,TV2,TV3,TV4,TV5,108000,2026-11-10,2026-11-17,"Activity: A38
+Task trong đề: 3.6, 3.7
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A51
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A39 Test increment 2 & regression,Task,A39,P6,TV2,TV4,,,,36000,2026-11-18,2026-11-20,"Activity: A39
+Task trong đề: 3.5
+Người làm: TV2, TV4
+Phụ thuộc: A38, A40
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A53 Fix defects & harden release,Task,A53,P6,TV3,TV4,TV5,,,43200,2026-11-21,2026-11-22,"Activity: A53
+Task trong đề: 3.5
+Người làm: TV3, TV4, TV5
+Phụ thuộc: A39
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A41 Conduct user acceptance test,Task,A41,P7,TV2,TV1,CP5,,,21600,2026-11-23,2026-11-24,"Activity: A41
+Task trong đề: CP5
+Người làm: TV2, TV1
+Phụ thuộc: A53
+Ngày cố định: 2026-11-23
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A42 Analyse planned vs actual performance,Task,A42,P7,TV1,TV3,,,,36000,2026-11-25,2026-11-28,"Activity: A42
+Task trong đề: 4.2, 4.3
+Người làm: TV1, TV3
+Phụ thuộc: A41
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A43 Prepare closure & handover plan,Task,A43,P7,TV5,,,,,18000,2026-11-25,2026-11-27,"Activity: A43
+Task trong đề: 4.4
+Người làm: TV5
+Phụ thuộc: A41
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A44 Hold retrospective & record lessons,Task,A44,P7,TV1,TV2,TV3,TV4,TV5,18000,2026-11-25,2026-11-25,"Activity: A44
+Task trong đề: 4.5
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A41
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A45 Compile final report,Task,A45,P7,TV2,TV4,TV5,,,54000,2026-11-29,2026-12-02,"Activity: A45
+Task trong đề: 4.1–4.6
+Người làm: TV2, TV4, TV5
+Phụ thuộc: A42, A43, A44
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A46 Rehearse demo & viva,Task,A46,P7,TV1,TV2,TV3,TV4,TV5,36000,2026-12-03,2026-12-04,"Activity: A46
+Task trong đề: 4.6
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A45
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A47 Submit final deliverables,Task,A47,P7,TV1,,,,,7200,2026-12-05,2026-12-05,"Activity: A47
+Task trong đề: 4
+Người làm: TV1
+Phụ thuộc: A46
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
+A54 Present final demo & viva,Task,A54,P7,TV1,TV2,TV3,TV4,TV5,18000,2026-12-07,2026-12-07,"Activity: A54
+Task trong đề: Demo
+Người làm: TV1, TV2, TV3, TV4, TV5
+Phụ thuộc: A47
+Ngày cố định: 2026-12-07
+Chi tiết: xem trang kế hoạch, mục Chi tiết activity."
