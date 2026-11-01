@@ -130,7 +130,7 @@ Phương pháp và người kiểm tra & Review bởi TV3 và TV4 (frontend dùn
 \endgroup
 
 \subsection*{PD-03 -- S34 Check-in \& Attendance}
-\noindent\textit{TV4 duyệt 14/10; bổ sung stack và quyền điểm danh 20/10.}
+\noindent\textit{TV4 duyệt 14/10; bổ sung stack và quyền điểm danh 20/10; TV1 sửa quyền điểm danh 01/11 (CR-01).}
 
 \begingroup\tblsetup\tblzebra
 \begin{longtable}{L{3.4cm}L{11.6cm}}
@@ -148,10 +148,10 @@ Phương pháp và người kiểm tra & Review bởi TV3 và TV4 (frontend dùn
 Định danh & S34 Module điểm danh (Check-in \& Attendance) \\
 Mục đích & Ghi nhận người tham dự nhanh và chính xác tại sự kiện, kể cả khi QR không dùng được \\
 Nguồn tạo ra (derivation) & S33 Registration \& Waitlist; kết quả spike A20; Q03 \\
-Thành phần & Sinh mã QR cho đăng ký; màn hình quét; nhập mã hoặc xác nhận thủ công; chặn điểm danh trùng; lưu thời điểm; không check-out \\
+Thành phần & Sinh mã QR cho từng đăng ký, sinh viên xuất trình trên trang \enquote{Đăng ký của tôi} (ASM-08); màn hình quét cho Organizer; nhập mã hoặc xác nhận thủ công; chặn điểm danh trùng; lưu thời điểm; không check-out \\
 Định dạng & Mã nguồn giao diện quét (React) và API điểm danh (Go), chạy trên bản deploy \\
 Tiêu chuẩn liên quan & Hoạt động trên trình duyệt điện thoại, mobile-first, không cần cài ứng dụng \\
-Tiêu chí chất lượng & Median thời gian điểm danh $\le$ 5 giây trong môi trường test của nhóm (O2); không tạo bản ghi điểm danh trùng; phương án thủ công cập nhật giống QR; chỉ Organizer của sự kiện hoặc Admin được điểm danh (Q20) \\
+Tiêu chí chất lượng & Median thời gian điểm danh $\le$ 5 giây trong môi trường test của nhóm (O2); không tạo bản ghi điểm danh trùng; phương án thủ công cập nhật giống QR; chỉ Organizer được điểm danh và không tự điểm danh cho đăng ký của mình; Admin không có quyền này (CR-01) \\
 Phương pháp và người kiểm tra & Test trên ít nhất 3 thiết bị thật; test case T-CI-01 đến T-CI-05 (đề xuất, mã chốt ở A22); review bởi TV2 \\
 \end{longtable}
 \endgroup

@@ -1,0 +1,14 @@
+Mã CR, ngày nhận, người yêu cầu	CR-01; 01/11/2026; TV1
+Mô tả thay đổi và lý do	PD-03 ghi Organizer hoặc Admin được điểm danh (Q20), hợp đồng API ghi Admin không có quyền check-in. Sửa PD-03 theo hợp đồng API vì Admin đã phụ trách duyệt và Q20 chỉ quy định quyền xem dữ liệu
+Ảnh hưởng tới requirements / products	PD-03 (S34): sửa tiêu chí chất lượng. REQ-10, REQ-11 không đổi
+Ảnh hưởng tới activities (thêm, bỏ, sửa)	Không
+Ảnh hưởng tới effort (h) và resources	Không đáng kể; chỉ thêm test case
+Ảnh hưởng tới risks	Không
+Ảnh hưởng tới schedule, critical path, cost	Không
+Ảnh hưởng tới quality và test	TV2 thêm ca: Admin không phải Organizer bị từ chối; Organizer không tự điểm danh cho đăng ký của mình
+Phương án A	Sửa PD-03 theo hợp đồng API; không đổi code
+Phương án B	Sửa code cho Admin được điểm danh; đổi hợp đồng API và kiểm thử quyền
+Phương án C	Không có
+Phương án chọn và lý do	A: không phát sinh việc code; câu cũ dựa trên Q20 không đúng phạm vi
+Quyết định, người duyệt, ngày duyệt	Chọn A; TV1 duyệt 01/11/2026
+Có cần Baseline V2.0 không? Các mục thay đổi so với V1.0	Không cần riêng cho CR này; nếu lập Baseline V2.0 thì liệt kê CR-01

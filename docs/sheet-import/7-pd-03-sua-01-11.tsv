@@ -1,0 +1,3 @@
+A32	PD-03 — S34 Check-in & Attendance (AI hỗ trợ soạn; TV4 duyệt 14/10; bổ sung stack và quyền điểm danh 20/10; TV1 sửa quyền điểm danh 01/11, CR-01)
+B36	Sinh mã QR cho từng đăng ký, sinh viên xuất trình trên trang "Đăng ký của tôi" (ASM-08); màn hình quét cho Organizer; nhập mã hoặc xác nhận thủ công; chặn điểm danh trùng; lưu thời điểm; không check-out
+B39	Median thời gian điểm danh ≤ 5 giây trong môi trường test của nhóm (O2); không tạo bản ghi điểm danh trùng; phương án thủ công cập nhật giống QR; chỉ Organizer được điểm danh và không tự điểm danh cho đăng ký của mình; Admin không có quyền này (CR-01)
