@@ -3,29 +3,103 @@
 
 \section{Hiện thực phần mềm}
 \label{sec:3-1}
-\todo{Tóm tắt các increment đã hiện thực, chức năng đã có, kiến trúc và stack; liên kết tới repo ở Phụ lục~\ref{app:repository}.}
+\kiemtra{Mục này là bản nháp AI (16/11) tổng hợp từ GitHub, Jira và Sheet; TV3 xác nhận phần backend, TV4 xác nhận phần frontend trước khi gỡ nhãn. \enquote{Đã merge} nghĩa là PR đã vào \texttt{main}, chưa có nghĩa là đã kiểm thử.}
+
+\textbf{Stack và repo.} Backend viết bằng Go (Echo, Uber Fx), PostgreSQL 16 (pgx, sqlc, golang-migrate), tổ chức theo module với hướng phụ thuộc \texttt{adapter} $\rightarrow$ \texttt{app} $\rightarrow$ \texttt{domain}. Frontend dùng React (Vite, TailwindCSS, TanStack Query, Axios). Mã nguồn nằm ở hai repo công khai của tổ chức \texttt{qldapm-hcmut}: \texttt{ticket-system-uni-be} và \texttt{ticket-system-uni-fe}; hồ sơ quản lý ở \texttt{pm-docs} (Phụ lục~\ref{app:repository}). Các tài liệu cũ của nhóm gọi repo code là \texttt{ticket-system-uni}.
+
+\textbf{Backend đã merge vào \texttt{main} đến 16/11.} Luồng nghiệp vụ chính của Q08 đã có ở backend: đăng nhập Google tài khoản trường $\rightarrow$ tạo và duyệt sự kiện $\rightarrow$ đăng ký hoặc vào danh sách chờ FIFO $\rightarrow$ hủy và tự động chuyển chỗ $\rightarrow$ check-in bằng QR, mã hoặc xác nhận thủ công $\rightarrow$ thống kê và xuất CSV.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{6.4cm}L{3.4cm}L{3.2cm}}
+\caption{Chức năng backend đã merge vào \texttt{main} (repo \texttt{ticket-system-uni-be})}\label{tab:backend-merged}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Chức năng} & \textbf{PR} & \textbf{Ngày merge} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Chức năng} & \textbf{PR} & \textbf{Ngày merge} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Đăng nhập Google OIDC (domain \texttt{hcmut.edu.vn}), JWT, refresh token, phân quyền & \#4--\#8 & 28--29/10 \\
+Tạo, sửa nháp, gửi duyệt, duyệt và công bố sự kiện & \#9, \#10 & 29--30/10 \\
+Đăng ký theo sức chứa, danh sách chờ FIFO, thông báo trong transaction & \#11 & 30/10 \\
+Sửa, hủy sự kiện đã công bố & \#12, \#20 & 30/10, 04/11 \\
+Check-in: nền lưu, mã nhập tay, xác nhận thủ công, hoàn tác, QR riêng từng đăng ký & \#13, \#14, \#15 & 31/10--02/11 \\
+Duyệt, danh mục sự kiện, nhật ký truy cập an toàn & \#16 & 03/11 \\
+Báo cáo tổng hợp và xuất CSV có audit & \#17 & 03/11 \\
+Thông báo trong ứng dụng & \#18 & 04/11 \\
+Worker hết hạn danh sách chờ và hoàn thành sự kiện & \#21 & 04/11 \\
+Danh sách quản lý (đăng ký, check-in, lịch sử duyệt) & \#22 & 05/11 \\
+Quản lý đơn vị và người dùng & \#23 & 09/11 \\
+Xóa nháp, Organizer hủy thay, hợp đồng phản hồi đăng ký, refresh token, va chạm mã check-in, refactor & \#24--\#27, \#29, \#30 & 10--14/11 \\
+\end{longtable}
+\endgroup
+
+\textbf{Frontend.} Nhánh \texttt{main} của \texttt{ticket-system-uni-fe} chỉ có phần khung (PR \#1, 02/11). Các màn hình đăng nhập, sự kiện, đăng ký và check-in (PR \#2--\#5, 02/11) được merge vào nhánh xếp chồng nên không nằm trên \texttt{main}; PR \#6 (12/11) tích hợp luồng, thêm Dockerfile và cấu hình nginx, đang mở, mục tiêu merge trước 19/11.
+
+\textbf{Chưa có hoặc chưa hoàn tất.} Email thông báo chưa nằm trên \texttt{main} (Q22: email là Should); PR \#31 (import sinh viên, admin CLI, email) được hoãn theo quyết định TV1 ngày 16/11; PR \#28 (đăng nhập demo, kiểm tra lịch sự kiện) đang mở. Chưa có workflow CI ở cả hai repo; chưa có kết quả kiểm thử được tổng hợp (mục~\ref{sec:3-5}).
+
+\todo{Ảnh chụp màn hình bản demo và kết quả chạy kịch bản end-to-end khi TV3, TV2 xác nhận; ghi lại lịch sử đổi tên repo từ \texttt{ticket-system-uni} sang hai repo hiện tại.}
 
 \section{Nhật ký hằng tuần}
 \label{sec:3-2}
-Weekly log được ghi theo activity trong tab Weekly Log của Sheet master; bảng đầy đủ ở Phụ lục~\ref{app:weekly-logs}. Các điểm đáng chú ý đến tuần 9:
+Weekly log được ghi theo activity trong tab Weekly Log của Sheet master; bảng đầy đủ ở Phụ lục~\ref{app:weekly-logs}. Các điểm đáng chú ý đến tuần 13:
 \begin{itemize}
   \item \textbf{W6 (28/09--04/10):} phát hiện Milestone 1 là buổi trình bày 05/10 chứ không phải hạn nộp 11/10 (I01); PM thu hẹp nội dung M1 theo bảng milestone của đề và dời Task~2 sang sau M1.
   \item \textbf{W7 (05--11/10):} ở buổi M1 ngày 05/10 nhóm không được gọi trình bày nên không có nhận xét của client; email vòng 2 gửi 08/10 và được trả lời trong ngày; A16, A17 trễ so với lịch, A19, A22, A25 chưa bắt đầu.
   \item \textbf{W8 (12--18/10):} TV2 duyệt mạng hoạt động và checkpoint, năm PD được duyệt ngày 14/10; CP2 lùi từ 16/10 sang 18/10 và đạt có điều kiện; nhóm chốt stack React, Go, PostgreSQL và phân vai mới.
   \item \textbf{W9 (19--25/10):} phát hiện chưa ai log work trên Jira từ đầu dự án (I02); đồng bộ Jira theo lịch Baseline V1.0 nháp (21/10); phát hiện các thành viên không truy cập được GitLab tự host trên máy cá nhân (I03, 22/10).
+  \item \textbf{W10 (26/10--01/11):} nhóm chuyển repo chung sang GitHub (30/10, TV1 chốt) và I03 chấm dứt; backend merge đăng nhập (\#4--\#8), quản lý sự kiện (\#9, \#10, \#12), đăng ký và danh sách chờ (\#11), nền check-in (\#13); chưa có frontend, CI, deploy trên repo.
+  \item \textbf{W11 (02--08/11):} backend merge check-in (\#14, \#15), báo cáo và CSV (\#17), thông báo trong ứng dụng (\#18), hủy sự kiện đã công bố (\#20), worker (\#21), danh sách quản lý (\#22); repo frontend có PR \#1--\#5 ngày 02/11 nhưng chỉ PR \#1 (khung) vào \texttt{main}; ngày 08/11 TV1 rà tiến độ và ghi R23, R24, CR-02, CR-03.
+  \item \textbf{W12 (09--15/11):} Progress Check 09/11 diễn ra nhưng nhóm 9 không được gọi nên không có nhận xét của giảng viên; backend merge quản trị đơn vị và người dùng (\#23) cùng các sửa về hủy, phản hồi đăng ký, refresh token (\#24--\#30); PR frontend \#6 và backend \#28, \#31 đang mở; A30 (CP3) chưa diễn ra.
+  \item \textbf{W13 (từ 16/11):} giảng viên thông báo hai tuần cuối các nhóm demo và viva; ngày của nhóm 9 chưa biết nên TV1 chốt mốc sẵn sàng 29/11 (chừa một tuần so với 07/12) và lập lịch rút gọn (mục~\ref{sec:3-8}).
 \end{itemize}
-Cột effort thực tế trong weekly log còn trống cho đến khi thu xong giờ hồi tưởng (hạn 23/10, xem I02).
-
-\todo{Tóm tắt các tuần từ W9 trở đi khi có số liệu.}
+Cột effort thực tế trong weekly log còn trống cho đến khi thu xong giờ thực tế 22/10--15/11 (hạn 19/11 theo TV1 chốt 16/11, xem I02).
 
 \section{So sánh kế hoạch và thực tế}
 \label{sec:3-3}
-\todo{So sánh effort và lịch planned vs actual theo activity/tuần, phân tích độ lệch và nguyên nhân.}
+\kiemtra{Bản nháp AI (16/11). Cột \enquote{Thực tế} lấy từ ngày merge trên GitHub và trạng thái Jira; ngày merge không chứng minh chức năng đã được kiểm thử. Phần effort chưa so sánh được vì chưa có giờ thực tế đáng tin (I02).}
+
+Bảng~\ref{tab:plan-actual} so sánh lịch Baseline V1.0 (lịch A21 chạy lại 21/10) với thực tế đến 16/11.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{2.2cm}L{2.6cm}L{4.4cm}L{4.0cm}}
+\caption{Lịch kế hoạch và thực tế đến 16/11}\label{tab:plan-actual}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Activity} & \textbf{Kế hoạch V1.0} & \textbf{Thực tế} & \textbf{Nhận xét} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Activity} & \textbf{Kế hoạch V1.0} & \textbf{Thực tế} & \textbf{Nhận xét} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+A26 Đăng nhập, phân quyền & 29--30/10 & Backend merge 28--29/10 (PR \#4--\#8) & Sớm 1 ngày; giao diện chưa trên \texttt{main} \\
+A27 Quản lý sự kiện & 31/10--04/11 & Backend merge 29/10--05/11 (PR \#9, \#10, \#12, \#16, \#20, \#22) & Trong kế hoạch \\
+A29 Đăng ký, hủy & 05--07/11 & Backend merge 30/10 (PR \#11) & Sớm khoảng 6 ngày (backend) \\
+A62 Danh sách chờ, tự chuyển & 08--10/11 & Backend merge 30/10 (PR \#11), worker 04/11 (PR \#21) & Sớm (backend) \\
+A33 QR check-in & 15--19/11 & Backend merge 31/10--02/11 (PR \#13--\#15) & Sớm; chưa kiểm chứng trên điện thoại \\
+A34 Báo cáo, CSV & 19--24/11 & Backend merge 03/11 (PR \#17) & Sớm; chưa kiểm chứng dữ liệu \\
+A28, A35 Frontend & 21--26/10; 15--22/11 & Khung vào \texttt{main} 02/11 (PR \#1); màn hình ở PR \#6, đang mở & Trễ; chưa chạy từ \texttt{main} \\
+A24 CI, deploy & 21--28/10 & Chưa có workflow CI; Docker nằm ở PR \#6, \#28 (chưa merge) & Trễ \\
+A20 Spike QR & 22--24/10 & Chưa có kết quả đo & Trễ \\
+A22, A31 Quality plan, test case & 20--22/10; 23--28/10 & Chưa thấy sản phẩm trong repo & Trễ \\
+A30 CP3 & 11--16/11 & Chưa diễn ra; dời 20/11 trong lịch rút gọn & Trễ \\
+A51 Progress Check & 09/11 & Đã diễn ra; nhóm không được gọi, không có nhận xét & Không có phản hồi để ghi \\
+\end{longtable}
+\endgroup
+
+Nguyên nhân chính của độ lệch: phần backend do một người đảm nhận tiến nhanh hơn kế hoạch, trong khi frontend, hạ tầng và kiểm thử trễ và nằm trên chuỗi găng của lịch V1.0 (R15, R23, R26). Nhóm chưa có giờ thực tế để phân tích độ lệch effort (R02).
+
+\todo{So sánh effort kế hoạch và thực tế theo activity và theo tuần sau khi thu giờ (hạn 19/11); phân tích nguyên nhân lệch effort.}
 
 \section{Cập nhật rủi ro và vấn đề}
 \label{sec:3-4}
 \subsection*{Issue}
-Issue là sự việc đã xảy ra, khác với rủi ro là sự việc có thể xảy ra. Bảng~\ref{tab:issues} lấy từ issue log của nhóm; người xử lý cả ba issue là TV1, chưa issue nào được đóng.
+Issue là sự việc đã xảy ra, khác với rủi ro là sự việc có thể xảy ra. Bảng~\ref{tab:issues} lấy từ issue log của nhóm; người xử lý cả ba issue là TV1. I03 chấm dứt ngày 30/10 khi nhóm chuyển sang GitHub; I02 còn mở cho đến khi thu xong giờ thực tế (hạn 19/11).
 
 \begingroup\tblsetup\tblzebra
 \begin{longtable}{L{0.7cm}L{2.0cm}L{3.2cm}L{2.5cm}L{4.4cm}L{1.0cm}}
@@ -47,7 +121,7 @@ I03 & 22/10/2026 & GitLab của nhóm chạy trên máy cá nhân, các thành v
 \endgroup
 
 \subsection*{Lịch sử rủi ro}
-Bảng~\ref{tab:risk-history} ghi lại các thay đổi của sổ rủi ro tính đến 22/10 (tab Risk History của Sheet master). Các dòng ngày 14/10 được TV1 ghi lại vào ngày 20/10 từ checklist rà soát của TV3.
+Bảng~\ref{tab:risk-history} ghi lại các thay đổi của sổ rủi ro tính đến 16/11 (tab Risk History của Sheet master). Các dòng ngày 14/10 được TV1 ghi lại vào ngày 20/10 từ checklist rà soát của TV3; các dòng 08/11 là đề xuất của AI và TV1 duyệt ngày 16/11.
 
 \begingroup\tblsetup\tblzebra
 \begin{longtable}{L{2.0cm}L{0.8cm}L{5.5cm}L{4.3cm}L{1.5cm}}
@@ -84,25 +158,92 @@ Bảng~\ref{tab:risk-history} ghi lại các thay đổi của sổ rủi ro tí
 22/10/2026 & R15 & Sửa mô tả: năng lực 14h/tuần (E01) thay 12h/tuần; thêm kết quả lịch A21: chỉ vừa kịp 07/12, không còn ngày dự trữ, Progress Check 09/11 chưa có QR check-in & E01 chốt 14h/tuần (20/10); lịch A21 chạy lại 21/10 & TV1 (ghi lại 22/10) \\
 22/10/2026 & R05 & Sửa giảm thiểu: A38 là quỹ dự phòng 30h ngoài chuỗi (L6 = B), bỏ \enquote{8 ngày sau Progress Check} & L6 = B, nhóm duyệt tại CP2 18/10 & TV1 (ghi lại 22/10) \\
 22/10/2026 & R19 & Sửa mô tả: năng lực khoảng 14h/tuần (E01) thay 7h/tuần, khớp báo cáo & Năng lực TV1 chốt 14h/tuần (A50, 20/10) & TV1 (ghi lại 22/10) \\
+25/10/2026 & R15 & Rủi ro được nhóm chấp nhận: A23 chọn phương án V0 (giữ lịch, 0 ngày dự trữ trước demo 07/12), không tạo config V1/V2. Cost baseline 394,2h. Các giảm thiểu hiện có giữ nguyên (Baseline chỉ Must, cắt Could rồi Should) & Họp A23 ngày 25/10: nhóm đồng ý toàn bộ 18 mục checklist, mục 17 chọn V0 & TV1 (ghi lại 27/10) \\
+22/10/2026 & R11 & Đính chính: tab 4 ghi \enquote{Đã đóng 18/10} nhưng I03 xảy ra 22/10 (GitLab chạy trên máy cá nhân, các thành viên khác không truy cập được) nên rủi ro thực tế vẫn mở. Xử lý tại A23 25/10: giữ GitLab và Jenkins, do TV3 giữ. Chưa chốt cách các thành viên truy cập repo, mirror công khai gửi thầy, TV5 kiểm stage Baseline frozen. Trạng thái: Open; owner đổi từ TV5 sang TV3 & I03 (22/10) trái với dòng \enquote{Đã đóng 18/10}; quyết định A23 25/10 & TV1 (ghi lại 27/10) \\
+01/11/2026 & R04 & Giảm thiểu chưa thực hiện: spike A20 chưa làm, quá hạn 24/10. Giữ nguyên P 3, I 4, chờ owner TV5 chấm lại sau spike & TV1 báo 01/11; TV3 chuẩn bị bổ sung QR vào PR \#14 nên cần kết quả spike trước khi chốt & TV1 \\
+08/11/2026 & R11 & Đề xuất đóng: nhóm đã chuyển sang GitHub (org qldapm-hcmut) ngày 30/10; GitLab tự host không còn dùng; I03 chấm dứt. Giảm thiểu và dự phòng cũ không còn áp dụng & TV1 chốt 30/10 đã chuyển khỏi GitLab; CI/CD do người dựng repo code thiết lập (thay quyết định Jenkins 21/10) & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R15 & Rủi ro đang xảy ra: A24, A28, A31, A20, A22 quá hạn trên Jira (hạn 22–28/10), chưa thấy bằng chứng trên GitHub cho frontend, CI, deploy; tab Activity float -9 đến -12 trên chuỗi A24$\rightarrow$A37. Đề xuất P 4$\rightarrow$5, exposure 16$\rightarrow$20; TV1 quyết (P, I trong tab 4 chưa đổi) & Đối chiếu Jira, GitHub, Sheet ngày 08/11, một ngày trước Progress Check & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R20 & Bổ sung: pm-docs public từ 30/10 sau khi quét secret; 08/11 kiểm tra quyền chia sẻ Sheet master vẫn là \enquote{bất kỳ ai có link đều sửa được} trong khi link nằm trong repo public. Đề xuất P 2$\rightarrow$4 (exposure 20) đến khi giới hạn quyền; TV1 quyết (P, I trong tab 4 chưa đổi); giảm thiểu thêm: thêm thành viên theo email rồi tắt chia sẻ bằng link & Kiểm tra quyền Drive 08/11 (chỉ đọc); đã ghi nhận từ 01/11 & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R02 & Bổ sung: chưa kiểm chứng được vì thiếu actual (Time Tracking 52,5h, dừng 22/10; Jira worklog 9h của TV1). Giữ P, I & Thiếu dữ liệu actual; đang thu giờ 22/10–08/11 & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R23 & Thêm mới (đề xuất): giao diện web chưa có trên main; Progress Check chỉ demo được API & Nhánh fix/\allowbreak frontend-api-integration rỗng; A28 Backlog quá hạn 08/11 & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R24 & Thêm mới (đề xuất): toàn bộ PR và commit backend do một người; chưa có bằng chứng review chéo; main chưa bảo vệ & GitHub 08/11: 22 PR và 57 commit từ 25/10 đều của một tác giả; truy cập API trả \enquote{Branch not protected} & TV1 (nháp AI 08/11, chờ duyệt) \\
+16/11/2026 & R11 & Đóng: TV1 duyệt đề xuất đóng 08/11; GitHub thay GitLab, I03 chấm dứt & TV1 duyệt 16/11 & TV1 \\
+16/11/2026 & R15 & Chấm lại P 4$\rightarrow$5, exposure 16$\rightarrow$20 (TV1 chốt). A30 (hạn 16/11) chưa chạy, A24 và A28 vẫn quá hạn; Progress Check 09/11 không có nhận xét; thầy thông báo hai tuần cuối demo và viva; mốc sẵn sàng 29/11, lịch rút gọn P-A & Đối chiếu Jira, GitHub, Sheet ngày 16/11; quyết định D1, D2 & TV1 \\
+16/11/2026 & R20 & Bổ sung: Sheet master vẫn \enquote{bất kỳ ai có link là người chỉnh sửa}, chỉ TV1 trong danh sách theo email. TV1 quyết giữ nguyên, chấp nhận rủi ro, sẽ báo nhóm; P, I giữ nguyên (P 2, I 5), đề xuất P 4 ngày 08/11 không áp dụng & Quyết định D10 ngày 16/11 & TV1 \\
+16/11/2026 & R23 & Duyệt đề xuất 08/11: owner TV4, P5, I4 giữ nguyên. Cập nhật: frontend main chỉ có scaffold; PR \#6 đang mở, mục tiêu merge trước 19/11 & TV1 chọn owner 16/11; kiểm tra GitHub 16/11 & TV1 \\
+16/11/2026 & R24 & Duyệt đề xuất 08/11: owner TV2, P3, I5 giữ nguyên. Cập nhật: PR \#28 của tài khoản khác đang mở; chưa có branch protection; yêu cầu review chéo trước khi merge & TV1 chọn owner 16/11; kiểm tra GitHub 16/11 & TV1 \\
+16/11/2026 & R25 & Thêm mới: demo và viva có thể sớm hơn mốc 07/12; P5, I4, owner TV1 & Thầy thông báo hai tuần cuối các nhóm demo và viva (TV1 báo 16/11); quyết định D1 & TV1 \\
+16/11/2026 & R26 & Thêm mới: chưa có bằng chứng kiểm thử; P4, I4, owner TV2 & Không thấy kết quả test trong docs/\allowbreak quality/\allowbreak results/\allowbreak  lúc 16/11 & TV1 \\
+16/11/2026 & R19 & Bổ sung: TV1 viết gần hết báo cáo (D11); tải tăng, P, I chờ TV1 chấm lại & Quyết định D11 ngày 16/11 & TV1 \\
+16/11/2026 & R09 & Bổ sung: TV1 chốt Docker local kèm video dự phòng (D3), hosting là Could; rủi ro hosting giảm, P, I chờ owner TV5 chấm lại & Quyết định D3 ngày 16/11 & TV1 \\
 \end{longtable}
 \endgroup
 
-\todo{Cập nhật rủi ro và issue phát sinh trong Increment 1 và 2; chấm lại P, I theo actual effort.}
+Tình trạng rủi ro đến 16/11: R11 đã đóng; R15 chấm lại P5, I4 (exposure 20); thêm R23 (owner TV4), R24 (owner TV2), R25 (owner TV1), R26 (owner TV2); R20 giữ P, I và TV1 chấp nhận rủi ro về quyền truy cập Sheet master (đang cho bất kỳ ai có link quyền chỉnh sửa). P, I của các rủi ro còn lại chưa chấm lại theo actual effort vì chưa có giờ thực tế.
+
+\todo{Chấm lại P, I theo actual effort sau khi thu giờ (hạn 19/11); ghi issue phát sinh ở Increment 2.}
 
 \section{Bằng chứng chất lượng}
 \label{sec:3-5}
-\todo{Kết quả test, review, CI/CD, đối chiếu với tiêu chí chất lượng trong Product Descriptions.}
+\kiemtra{Bản nháp AI (16/11); TV2 viết lại phần này sau khi có kết quả kiểm thử.}
+
+Đến 16/11 chưa có kết quả kiểm thử nào được lưu trong thư mục \texttt{docs/\allowbreak quality/\allowbreak results/} của repo \texttt{pm-docs} (R26). Repo backend có 58 file test Go (\texttt{*\_test.go}) chạy bằng \texttt{go test -race}, nhưng nhóm chưa tổng hợp kết quả chạy; chưa có workflow CI ở cả hai repo; review chéo trên PR chưa có bằng chứng (R24). Kế hoạch: TV2 viết test case theo mã T-\ldots{} trong bảng truy vết và chạy trên API đã merge; CP3 ngày 20/11; regression 23--24/11; UAT nội bộ 26--27/11.
+
+\todo{Kết quả test theo mã T-\ldots{} (đạt, không đạt, chưa chạy, bằng chứng), review chéo, CI, đối chiếu với tiêu chí chất lượng trong Product Descriptions; TV2 điền.}
 
 \section{Phản hồi change event}
 \label{sec:3-6}
 Theo thầy (Q17, 08/10), change event do thầy đưa ra trong quá trình thực hiện dự án và không báo trước nội dung. Nhóm xem đây là một phần của rủi ro, dành contingency trong kế hoạch và không tạo trước activity riêng.
 
-\todo{Mô tả change event thực tế do giảng viên đưa ra, phân tích tác động, change request, quyết định và người duyệt.}
+Đến 16/11 thầy chưa đưa change event nào và nhóm không gửi email hỏi thêm (TV1 chốt 16/11); quỹ A38 (30h) chưa dùng. Các change request đã có (CR-01, CR-02, CR-03) là thay đổi do chính nhóm phát hiện khi đối chiếu code và tài liệu với nội dung đã thống nhất với client; chúng không phải change event của thầy và không được ghi là client đồng ý.
+
+\todo{Nếu thầy đưa change event trước khi nộp: mô tả, phân tích tác động, change request, quyết định và người duyệt.}
 
 \section{Baseline V2.0}
 \label{sec:3-7}
-\todo{Những gì thay đổi so với Baseline V1.0 và lý do; giữ nguyên V1.0 ở Phụ lục~\ref{app:baselines}.}
+\chot{Bản dự thảo ngày 16/11 từ quyết định của TV1. TV1 chốt nội dung, gửi nhóm và chờ phản hồi 24 giờ rồi mới xuất \texttt{v2.0.pdf}; giờ còn lại của từng activity do chủ task ước lượng lại (hạn 20/11).}
+
+Baseline V1.0 (25/10) giữ nguyên ở Phụ lục~\ref{app:baselines}. V2.0 là tài liệu mới, lập sau khi có các change request đã duyệt (CR-01 ngày 01/11; CR-02, CR-03 ngày 16/11). Thay đổi so với V1.0:
+\begin{itemize}
+  \item \textbf{Mốc và lịch:} mốc sẵn sàng 29/11 thay cho nộp 06--07/12; tuần 30/11--06/12 là dự trữ; A30 dời sang 20/11, A39 sang 24/11, A53 sang 26/11, A41 sang 27/11, A47 sang 29/11. Ngày demo do giảng viên xếp, chưa biết.
+  \item \textbf{Phạm vi:} giữ toàn bộ Must; không làm trang quản lý đơn vị, người dùng (thiết lập bằng seed hoặc admin CLI); email (Should) chưa làm, PR \#31 hoãn.
+  \item \textbf{Triển khai:} ASM-05 đổi từ hosting free-tier sang chạy local bằng Docker kèm video dự phòng; hosting là Could; A24 thu hẹp (Docker local, CI tối thiểu).
+  \item \textbf{Change request:} CR-01 (chỉ Organizer điểm danh, PD-03); CR-02 (Organizer xem sự kiện theo đơn vị được gán, Admin xem toàn trường); CR-03 (đăng nhập Google OIDC kèm tài khoản mẫu cho demo). CR-02 và CR-03 là quyết định của nhóm, code được làm trước khi có CR và nhóm không hỏi giảng viên.
+  \item \textbf{Activity:} A32 đóng; A33, A34 đóng sau khi có kết quả kiểm thử; A35 gộp vào PR frontend; A20 đóng bằng kiểm chứng QR trên điện thoại hoặc ghi lý do bỏ spike.
+  \item \textbf{Rủi ro:} đóng R11; R15 chấm P5, I4; thêm R23--R26; R20 TV1 chấp nhận rủi ro.
+  \item \textbf{Effort:} tổng 394,2 person-hours của V1.0 (364,2 cộng quỹ A38 30h) làm tham chiếu; quỹ A38 chưa dùng.
+\end{itemize}
+
+\todo{Giờ còn lại của từng activity (chủ task ước lượng lại), tổng effort V2.0, lý do chọn phương án A của CR-02, CR-03 (TV1 điền), ngày chốt và ngày gắn tag \texttt{baseline-v2.0}.}
 
 \section{Kế hoạch cấp thấp}
 \label{sec:3-8}
-\todo{Kế hoạch chi tiết cho từng increment/sprint (công việc, người, thời gian, tiêu chí hoàn thành).}
+\kiemtra{Bản nháp AI (16/11): ngày và việc theo lịch rút gọn P-A; bước kỹ thuật chờ TV3, TV5 duyệt; chủ task xác nhận giờ.}
+
+Kế hoạch đến mốc sẵn sàng 29/11. Giao việc chi tiết theo từng người nằm trong repo \texttt{pm-docs}, thư mục \texttt{docs/\allowbreak task3/\allowbreak w13/\allowbreak giao-viec/}.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{2.2cm}L{4.6cm}L{2.2cm}L{4.4cm}}
+\caption{Kế hoạch cấp thấp W13--W14}\label{tab:lower-plan}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Ngày} & \textbf{Mốc} & \textbf{Người chính} & \textbf{Hoàn thành khi} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Ngày} & \textbf{Mốc} & \textbf{Người chính} & \textbf{Hoàn thành khi} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+17/11 & Mỗi người báo hiện trạng thật; TV3 gửi hướng dẫn môi trường test cho TV2 & Cả nhóm; TV3 & Có phản hồi của đủ 5 người \\
+19/11 & Merge PR frontend \#6 và backend \#28 sau review chéo; hạn điền giờ thực tế & TV3, TV4, TV5 & Có approve của người khác tác giả; Docker chạy luồng chính từ \texttt{main} \\
+20/11 & CP3 (A30): luồng chính chạy end-to-end & TV2 chủ trì & Kết quả test lưu trong \texttt{docs/\allowbreak quality/\allowbreak results/} \\
+22/11 & Kiểm chứng QR và CSV, cập nhật Jira (A33, A34, A20) & TV2, TV3, TV5 & Có kết quả test T-CI, T-RP \\
+23--24/11 & Tích hợp (A37), regression (A39) & TV2, TV3, TV4 & Luồng chính đạt trên \texttt{main} \\
+24--26/11 & Sửa lỗi, đóng gói release, quay video dự phòng (A53) & TV3, TV5, TV4 & Tag release; video quay xong \\
+26--27/11 & UAT nội bộ (A41) & TV2, TV1 & Biên bản UAT \\
+28/11 & Tổng duyệt demo và viva (A46) & Cả nhóm & Mỗi người trả lời được về estimate, rủi ro, thay đổi lịch, client, scope \\
+29/11 & Nộp (A47) & TV1 & Checklist nộp đủ \\
+30/11--06/12 & Dự trữ trước slot demo & Cả nhóm & Chỉ sửa lỗi, không thêm tính năng \\
+\end{longtable}
+\endgroup
