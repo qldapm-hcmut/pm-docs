@@ -40,11 +40,21 @@ Trạng thái: Nháp AI (Claude Code, 16/11), dựa trên quyết định D1–D
 
 Chưa có bản chụp báo cáo đúng ngày 25/10. Bản `report/main.pdf` hiện có ngày 01/11 (đã chứa sửa đổi sau baseline). Bản gần nhất trước baseline là báo cáo ngày 22/10.
 
+**Kết quả tìm ngày 16/11 (đọc trong thư mục `QLDAPM`, Drive và lịch sử Sheet):**
+- Thư mục dự án và Drive không có `v1.0.pdf` hay bản chụp 25/10. Drive chỉ có `Bao-cao-CO3011-Nhom9-ban-22-10.pdf` (22/10); thư mục `baseline` trên Drive (tạo 21/10) chỉ có file `.gitkeep`.
+- Các file `.tex` của báo cáo có ngày sửa cuối: Phụ lục B, Chương 3, 4 (23/10 hoặc 20/10); Phụ lục A, C, D, Chương 5 (27/10); Chương 1, 2, Phụ lục F (01/11). Chưa có bản lưu riêng đúng 25/10.
+- Lịch sử phiên bản của Sheet master có bản gần họp A23 nhất trước họp: revision 1004 (24/10 lúc 22:31, giờ Việt Nam); revision kế tiếp 1026 (27/10 lúc 18:37) là lúc ghi kết quả A23. Có thể dùng làm bằng chứng trạng thái dữ liệu trước họp; TV1 xem qua File $\to$ Lịch sử phiên bản.
+- Overleaf chưa kiểm tra được (không truy cập từ môi trường này).
+
 Câu đề xuất, điền theo kết quả TV1 kiểm lịch sử Overleaf hoặc Drive:
 
 > Baseline V1.0 được nhóm duyệt tại họp A23 ngày 25/10/2026 (Biên bản CP, dòng CP2 bổ sung). File `v1.0.pdf` được lập ngày [../11/2026] từ [**phương án a:** bản lịch sử Overleaf/Drive ngày [../10/2026] | **phương án b:** bản báo cáo ngày 22/10/2026 kèm biên bản họp A23], không phải bản chụp đúng ngày 25/10. So với trạng thái ngày 25/10, [không có khác biệt đã biết | các khác biệt sau: [TV1 rà và liệt kê]]. Nhóm không chỉnh sửa nội dung V1.0 sau khi lập.
 
 Lưu ý: V1.0 chỉ chấp nhận nội dung có ngày thật. Không dựng lại từ nội dung hiện tại rồi ghi là bản 25/10.
+
+## 3b. Theo dõi trên Jira (TV1 đồng ý 16/11)
+
+V2.0 được theo dõi tại A38 (SCRUM-104, Task 3.6 và 3.7), không tạo activity mới để không lệch Sheet tab 10, Traceability, Estimation. Log work V2.0 ghi "V2.0" đầu ghi chú để tách khỏi phần dự phòng cho change event (Q17). Mức trần giờ V2.0 trong quỹ 30h: [TV1 quyết].
 
 ## 4. Các bước sau khi TV1 chốt
 
