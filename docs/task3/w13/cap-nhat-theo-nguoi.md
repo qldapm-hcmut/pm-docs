@@ -12,8 +12,8 @@ Trạng thái: Nháp AI (Claude Code, 16/11) để TV1 gửi nhóm sau khi duy�
 
 ## TV1 Nguyễn Đức Nghĩa (PM)
 
-- Duyệt D1–D12 trong `README.md`; gửi gói này cho nhóm.
-- Sheet: dán `2-weekly-log-W11-W13.tsv`, `9-ai-log-16-11.tsv`; thêm câu SỬA 16/11 vào CP4 (`cap-nhat-16-11.md`); duyệt R23, R24, đóng R11, chấm R15, R25, R26.
+- D1–D12 trong `README.md` đã chốt 16/11; báo nhóm các điểm cần biết (mốc 29/11, bỏ UI quản trị, Docker local, hoãn PR #31, CR-02/03, V2.0, quyền Sheet giữ nguyên) và cho nhóm 24h phản hồi (R22).
+- Sheet: Weekly Log, AI Log, CP4 đã dán 16/11. Còn ghi: Risk Register theo D7 (R11, R15, R20, R23–R26), tab CR (CR-02, CR-03), Risk History.
 - Jira: A51 sang Done sau khi ghi CP4; xóa tay SCRUM-115 đến 119 (sub-task tạo nhầm); dời hạn theo mục 4 `lich-rut-gon.md`; log work A36, A51, A57.
 - Giới hạn quyền Sheet và Drive (R20); xuất Jira CSV (cột Log Work) mỗi Chủ nhật vào tab Time Tracking.
 - Đưa `docs/` mới và `v1.0.pdf` kèm tag `baseline-v1.0` vào `pm-docs` bằng PR riêng.
@@ -31,8 +31,8 @@ Trạng thái: Nháp AI (Claude Code, 16/11) để TV1 gửi nhóm sau khi duy�
 
 - Jira: A26, A27, A29, A62 (In Review), A33, A34 (Backlog): chuyển trạng thái thật; Done chỉ khi TV2 có kết quả test.
 - Time Tracking: tự điền giờ các dòng "[TV3 chọn]" (skeleton, thông báo, review, hỗ trợ frontend, đăng nhập demo, họp) và PR #23–#30.
-- Quyết định PR #28 (demo auth, validation lịch) và PR #31 (import sinh viên, admin CLI, email Mailpit): phạm vi so với baseline, effort, có cần CR không (D4).
-- CR-02, CR-03: gửi effort, lịch, cách demo để TV1 duyệt.
+- PR #28 (demo auth, kiểm tra lịch): review chéo cùng TV5, merge trước 19/11. PR #31 (import sinh viên, admin CLI, email Mailpit) hoãn theo D4: giữ mở, chỉ xét sau regression; nếu merge thì phải lập CR. Có thể tách PR #31 thành PR nhỏ nếu còn giờ.
+- CR-02, CR-03 đã duyệt phương án A (16/11): ghi giờ thực tế vào Time Tracking để TV1 lấy effort từ log work.
 - Kiểm chứng end-to-end bằng kịch bản D1 và gửi xác nhận; cập nhật README (tên repo mới `-be`, `-fe`).
 - Bật branch protection (chủ repo) hoặc báo chủ repo; yêu cầu 1 review trước merge (R24).
 
@@ -47,7 +47,7 @@ Trạng thái: Nháp AI (Claude Code, 16/11) để TV1 gửi nhóm sau khi duy�
 ## TV5 Hà Cao Đức Minh (Backend, DevOps)
 
 - Jira: A24 (Backlog), A20 (In Review): cập nhật; đóng A20 bằng kết quả kiểm chứng QR hoặc ghi lý do bỏ spike.
-- Phối hợp review chéo PR #6, #28, #31; chốt Docker local chạy được từ `main`.
-- Quyết định hosting hay Docker local (D3) cùng TV1; thêm workflow CI tối thiểu (test + build) nếu TV3 đồng ý bước kỹ thuật. Giờ: [TV5 ước lượng].
+- Rebase PR #28 lên `main` (đang xung đột sau PR #30) và phối hợp review chéo PR #6, #28; chốt Docker local chạy được từ `main`.
+- Triển khai theo D3: Docker local và video dự phòng, hosting không bắt buộc; thêm workflow CI tối thiểu (test + build) nếu TV3 đồng ý bước kỹ thuật. Giờ: [TV5 ước lượng].
 - Time Tracking: giờ A24, A20 và các PR của mình.
 - Chuẩn bị video demo dự phòng (24–26/11).
