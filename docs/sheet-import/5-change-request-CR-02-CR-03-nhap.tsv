@@ -1,0 +1,15 @@
+Nội dung	Nội dung
+CR-02; 01/11/2026; TV1 (phát hiện khi đối chiếu hợp đồng API với Client Log)	CR-03; 01/11/2026; TV1 (phát hiện khi đối chiếu repo code với báo cáo mục 1.2)
+Hợp đồng API cho Organizer xem mọi sự kiện thuộc đơn vị được gán, Admin xem và duyệt toàn trường; Q20 (08/10) chỉ đồng ý Organizer xem sự kiện của mình, Approver/Admin xem theo đơn vị được giao. Nhóm không hỏi thầy (TV1 chốt 01/11); ghi là quyết định của nhóm, không ghi là client đồng ý	Q02 và Q10: không tích hợp SSO thật; ASM-06 mô phỏng bằng tài khoản mẫu. Repo ticket-system-uni đã có Google OIDC kiểm tra domain hcmut.edu.vn (PR #7, merge 28/10); nhánh feature/dev-login-demo (đăng nhập local cho demo) chưa merge. Nhóm không hỏi thầy (TV1 chốt 01/11); ghi là quyết định của nhóm
+Quyền xem dữ liệu ở PD-01 và các mục dẫn Q20; [TV1 rà khi duyệt]	Báo cáo 1.2 (ASM-06, câu 'không tích hợp SSO thật'), Exclusions ở 1.4; chỉ sửa khi CR được duyệt
+[TV3 xác nhận]	[TV3 xác nhận]
+Chưa xác nhận; [TV3 điền số giờ]	Chưa có số; lấy từ log work, không ước đoán
+Có: nhiều người xem được dữ liệu cá nhân hơn (Q09); hợp đồng API giảm bớt bằng cách chỉ gán Organizer cho người cần	Có: demo phụ thuộc Google; người không có tài khoản hcmut.edu.vn không đăng nhập được nếu thiếu tài khoản mẫu
+Chưa xác nhận; TV3 chưa khẳng định không ảnh hưởng lịch	[TV3 xác nhận]
+Có: [TV2 bổ sung ca kiểm tra quyền xem theo đơn vị]	Có: UAT và demo phải chạy được đủ ba vai trò bằng tài khoản mẫu
+Giữ theo hợp đồng API, ghi là quyết định của nhóm. Ưu: không đổi thiết kế, nhiều người cùng quét được. Nhược: khác nội dung đã thống nhất với client. Effort [TV3]	Giữ Google OIDC, thêm tài khoản mẫu cho demo. Ưu: giữ phần đã làm, demo không phụ thuộc Google. Nhược: vượt phần 'không làm' đã thống nhất; phải khai báo. Effort [TV3]
+Sửa code về đúng Q20. Ưu: khớp nội dung client đã đồng ý. Nhược: cần cách giao người trực check-in và Admin theo đơn vị. Effort [TV3]	Bỏ Google OIDC, về tài khoản mẫu. Ưu: khớp Q02, Q10, ASM-06. Nhược: bỏ phần đã làm, sửa lại xác thực. Effort [TV3]
+Không có	Không có
+TV1 định hướng A ngày 01/11, TV3 cùng đề xuất A; chốt sau khi TV3 xác nhận effort và lịch. Lý do: [TV1 điền khi duyệt]	TV1 định hướng A ngày 01/11; chốt sau khi TV3 review cơ chế login mẫu và tổng hợp số giờ. Lý do: [TV1 điền khi duyệt]
+[chưa duyệt]	[chưa duyệt]
+[TV1 quyết khi duyệt]	[TV1 quyết khi duyệt]
