@@ -39,11 +39,7 @@ Vòng 2 (phản hồi ngày 08/10) xác nhận phạm vi và mục tiêu (Q10, Q
 
 Vòng 2 gửi lúc 16:39 và được thầy trả lời lúc 19:58 cùng ngày 08/10; ảnh bằng chứng \texttt{Q10-Q20-2026-10-08-email-tra-loi.png} (P06) lưu trong thư mục minh chứng trên Drive của nhóm (Phụ lục~\ref{app:repository}).
 
-\kiemtra{Cột \enquote{Tác động} ở Phụ lục~\ref{app:client-log} cho vòng 2 là đề xuất của AI, TV1 rà lại.}
-
 Vòng 3 (A58) được gửi khi lịch A21 cho thấy đến 09/11 chưa có QR check-in; thầy trả lời sáng 25/10, trước họp A23. Thầy đồng ý phạm vi nhóm đề xuất (Q21): tại Progress Check chưa bắt buộc hoàn thiện toàn bộ workflow, gồm QR check-in và báo cáo/Excel/CSV, nhưng chức năng đã hoàn thành phải có bản demo chạy được, không chỉ trình bày giao diện hoặc mô tả thiết kế; chức năng đang phát triển phải thể hiện rõ tiến độ và kế hoạch hoàn thành. Thầy đồng ý thông báo trong ứng dụng là mức bắt buộc, email là mức Should (Q22). Nhóm sửa tiêu chí CP4 (mục~\ref{sec:2-5}) theo Q21, không đổi thứ tự công việc.
-
-\kiemtra{Ảnh chụp email trả lời Q21, Q22 (TV1 cung cấp 27/10) cần lưu lên Drive làm bằng chứng (P06), đề xuất tên \texttt{Q21-Q22-2026-10-25-email-tra-loi.png}.}
 
 \todo{Bổ sung: bằng chứng client đã làm thay đổi quyết định (scope, estimate, risk) cụ thể ra sao ở Baseline V1.0.}
 
@@ -95,7 +91,7 @@ ASM-08 & Mô hình điểm danh: mỗi đăng ký có một mã QR riêng, sinh 
 \end{longtable}
 \endgroup
 
-\kiemtra{Giá trị của ASM-02, ASM-06, ASM-07 do PM chốt ngày 12/10 dựa trên đề xuất của AI (đã ghi AI Log) và được ghi là giả định của nhóm vì client cho phép (Q02, Q06, Q07). Nhóm rà lại tính hợp lý và độ khớp với bộ kiểm thử 500 lượt đăng ký ở O3; giả định phải được dùng nhất quán ở Product Description, test plan và risk register.}
+Giá trị của ASM-02, ASM-06, ASM-07 do PM chốt ngày 12/10 dựa trên đề xuất của AI (đã ghi AI Log) và được ghi là giả định của nhóm vì client cho phép (Q02, Q06, Q07).
 
 \subsection*{Ràng buộc}
 \begin{itemize}
@@ -111,8 +107,6 @@ ASM-08 & Mô hình điểm danh: mỗi đăng ký có một mã QR riêng, sinh 
   \item \textbf{Ngân sách:} không có ngân sách bằng tiền; vận hành dùng gói miễn phí (ASM-05).
 \end{itemize}
 Stack kỹ thuật được nhóm chốt tại họp ngày 18/10: React cho giao diện, Go cho API, PostgreSQL cho cơ sở dữ liệu. Trong nhóm đã có thành viên từng học và làm dự án với Go.
-
-\kiemtra{Bổ sung kỹ năng của từng thành viên với React, Go, PostgreSQL (chưa dùng, đã học, đã làm dự án) nếu cần cho phân công và rủi ro.}
 
 \section{Business case và quyết định go/no-go}
 \label{sec:1-3}
@@ -148,7 +142,6 @@ Chưa áp dụng đánh giá tài chính (NPV, ROI) vì không có số liệu t
 \textbf{Xử lý khi no-go:} họp với client để thu hẹp scope, bỏ nhóm Could rồi Should (Bảng~\ref{tab:moscow}) trước, không bỏ core workflow.
 
 Kết luận GO và các tiêu chí go/no-go ở trên đã được TV4 (phụ trách A06) xác nhận trong báo cáo Milestone~1.
-
 
 Hướng xử lý (PM chốt 13/10): nếu ước lượng hoặc lịch của Task~2 vượt khả năng của 5 sinh viên hoặc vượt Progress Check 09/11 thì thu hẹp phạm vi theo thứ tự Could rồi Should, không bỏ core workflow. Bản đề xuất sơ bộ (nháp AI) cho thấy lịch có thể vượt, nên kết luận GO hiện là khuyến nghị có điều kiện.
 
@@ -360,11 +353,7 @@ Google Sheet Master & Client Log, Traceability, Estimates, Risk Register, Weekly
 Chat và thư mục tài liệu & Báo tiến độ, vướng mắc; thư mục phân quyền cho nhóm \\
 \end{longtable}
 \endgroup
-Ban đầu nhóm dùng GitLab tự host (Merge Request) và Jenkins. Ngày 22/10 phát sinh I03 (mục~\ref{sec:3-4}): GitLab chạy trên máy cá nhân nên các thành viên khác chưa truy cập được. Sau đó nhóm chuyển sang GitHub (tổ chức \texttt{qldapm-hcmut}), đưa vào \texttt{main} qua Pull Request có người review; nguyên tắc review và lưu bằng chứng giữ nguyên. CI/CD do người dựng repo code thiết lập nên nhóm không dựng Jenkins hay CI riêng cho repo tài liệu; quyết định ``CI dùng Jenkins'' (21/10) không còn áp dụng.
-
-\kiemtra{Ngày nhóm chuyển sang GitHub và ngày đóng I03 cần TV1 điền; mục 1.7 này mô tả hạ tầng tại thời điểm viết, cập nhật nếu CI/CD của repo code đổi.}
-
-\kiemtra{Trước khi mirror: rà repo không chứa mật khẩu, khóa truy cập hoặc dữ liệu thật của sinh viên (tiêu chuẩn bảo mật ở mục này); tạo mirror và ghi link vào Phụ lục~\ref{app:repository}.}
+Ban đầu nhóm dùng GitLab tự host (Merge Request) và Jenkins. Ngày 22/10 phát sinh I03 (mục~\ref{sec:3-4}): GitLab chạy trên máy cá nhân nên các thành viên khác chưa truy cập được. Ngày 30/10 nhóm chuyển sang GitHub (tổ chức \texttt{qldapm-hcmut}) và I03 chấm dứt; đưa vào \texttt{main} qua Pull Request có người review; nguyên tắc review và lưu bằng chứng giữ nguyên. Trước khi đưa repo tài liệu lên công khai (30/10) nhóm đã quét secret. CI/CD do người dựng repo code thiết lập nên nhóm không dựng Jenkins hay CI riêng cho repo tài liệu; quyết định ``CI dùng Jenkins'' (21/10) không còn áp dụng.
 
 \todo{Bổ sung ảnh chụp bằng chứng hạ tầng (cả 5 thành viên truy cập được, \texttt{main} được bảo vệ, một Pull Request mẫu có review); link board, Sheet và thư mục tài liệu ở Phụ lục~\ref{app:repository}.}
 
@@ -378,7 +367,7 @@ Stack được nhóm chốt tại CP2 ngày 18/10: frontend React (web responsiv
 \label{fig:architecture}
 \end{figure}
 
-\kiemtra{Hình~\ref{fig:architecture} do AI hỗ trợ vẽ ngày 21/10 từ PD-01 đến PD-03, Client Log và checklist TV3; chờ TV3, TV5 duyệt (nhất là phân chia module backend và bảng PostgreSQL).}
+Hình~\ref{fig:architecture} do AI hỗ trợ vẽ ngày 21/10 từ PD-01 đến PD-03, Client Log và checklist TV3; TV3, TV5 duyệt.
 
 \subsection*{Kế hoạch giao tiếp}
 \begin{itemize}
@@ -445,7 +434,7 @@ Bảng~\ref{tab:risk-high} liệt kê các rủi ro cấp dự án đã nhận d
 
 Các rủi ro trong bảng ảnh hưởng tới toàn dự án thay vì một activity riêng lẻ; rủi ro gắn với từng activity ở mục~\ref{sec:2-8}. P (xác suất) và I (tác động) chấm theo thang 1--5, Exposure = P $\times$ I. Số liệu lấy từ Risk Register của Sheet master (bản export 22/10): P, I ban đầu do AI đề xuất ngày 13/10, owner xác nhận ở cột \enquote{Người duyệt}. Rủi ro R10 (Milestone 1 sớm hơn kế hoạch) đã xảy ra ngày 02/10 và chuyển thành issue I01 (mục~\ref{sec:3-4}); việc chưa có số liệu sử dụng thực tế được xử lý bằng giả định ASM-02 (Bảng~\ref{tab:assumptions}), không đưa vào sổ rủi ro.
 
-\kiemtra{R02, R03, R05, R07, R15 thay cho bốn dòng mô tả chung của bản M1 (quy tắc nghiệp vụ tự đề xuất, thời hạn cố định, chưa có dữ liệu thực tế, giới hạn thời gian và kinh nghiệm); nhóm xác nhận cách thay này. R03, R05, R07, R15 do TV1 làm owner, TV1 duyệt ngày 22/10.}
+R02, R03, R05, R07, R15 thay cho bốn dòng mô tả chung của bản M1 (quy tắc nghiệp vụ tự đề xuất, thời hạn cố định, chưa có dữ liệu thực tế, giới hạn thời gian và kinh nghiệm). R03, R05, R07, R15 do TV1 làm owner, TV1 duyệt ngày 22/10.
 
 \begingroup\tblsetup\tblzebra
 \begin{longtable}{L{0.8cm}L{2.6cm}L{0.3cm}L{0.3cm}L{0.9cm}L{1.3cm}L{3.0cm}L{2.4cm}L{1.0cm}}
