@@ -22,6 +22,9 @@ Trạng thái: Nháp AI (Claude Code, 16/11). Số liệu đối chiếu GitHub,
 | `lich-rut-gon.md` | Lịch rút gọn về mốc sẵn sàng 29/11, phương án, thứ tự cắt, task điều chỉnh |
 | `cap-nhat-theo-nguoi.md` | Việc từng thành viên cần cập nhật trên Jira, Time Tracking, PR |
 | `bao-cao-hoan-thien.md` | 49 `\todo` của báo cáo chia theo việc làm được ngay hay chờ số liệu |
+| `thong-bao-nhom-16-11.md` | Tin nhắn báo nhóm các quyết định D1–D12, nhờ phản hồi trong 24h |
+| `baseline-v2-danh-sach-thay-doi.md` | Danh sách thay đổi V2.0 so với V1.0 và câu nguồn V1.0 cho Phụ lục C |
+| `giao-viec/` | Giao việc W13–W14 theo người (README + TV1–TV5), theo khung mục tiêu, đầu vào, bước, đầu ra, hoàn thành khi |
 | `../../sheet-import/2-weekly-log-W11-W13.tsv` | Dòng Weekly Log W11–W13 |
 | `../../sheet-import/9-ai-log-16-11.tsv` | Dòng AI Log lần dùng AI này |
 | `../../sheet-import/cap-nhat-16-11.md` | Câu SỬA cho Biên bản CP4, đề xuất rủi ro mới, hướng dẫn dán |
