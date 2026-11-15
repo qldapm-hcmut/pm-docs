@@ -1,9 +1,9 @@
 \chapter{Nhật ký hằng tuần}
 \label{app:weekly-logs}
 
-Bảng lấy từ tab Weekly Log của Sheet master (bản export 22/10). Effort kế hoạch của W7--W8 là số kế hoạch nháp tại thời điểm lập lịch tuần.
+Bảng đồng bộ với tab Weekly Log của Sheet master đến ngày 16/11 (bỏ cột \enquote{Chênh lệch} của Sheet vì chưa có số thực tế). Effort kế hoạch của W7--W8 là số kế hoạch nháp tại thời điểm lập lịch tuần; giờ kế hoạch W11 do AI đề xuất và TV1 duyệt hướng làm ngày 01/11. Các dòng W11--W13 ghi theo GitHub, Jira, Sheet đối chiếu ngày 16/11.
 
-\todo{Cột Effort TT còn trống do I02 (chưa log work); điền sau khi thu giờ hồi tưởng (hạn 23/10) và từ W9 theo worklog Jira. Bổ sung các tuần tiếp theo.}
+\todo{Cột Effort TT còn trống do I02 (chưa log work); điền sau khi thu giờ thực tế 22/10--15/11 (hạn 19/11) và theo worklog Jira từ 16/11. Bổ sung các tuần tiếp theo.}
 
 \begin{landscape}
 \begingroup\tblsetup\tblzebra
@@ -71,12 +71,37 @@ W9 & 19/10 -- 25/10 & A20 & Spike QR, timebox 6h (22--24/10) &  & 5,7 &  &  &  &
 W9 & 19/10 -- 25/10 & A58 & Gửi email hỏi phạm vi Progress Check và kênh notification (22--23/10) & Jira 21/10: In Progress; email v0.3 đã soạn, chưa gửi & 2,1 &  &  & Nếu 24/10 chưa có trả lời thì ghi giả định còn mở tại A23 &  \\
 W9 & 19/10 -- 25/10 & A31 & Viết test case Increment 1 (23--28/10) &  & 6,0 &  &  &  &  \\
 W9 & 19/10 -- 25/10 & A23 & Họp chốt Baseline V1.0 (25/10, 15h) &  & 5,2 &  &  & Theo checklist \texttt{docs/\allowbreak baseline/\allowbreak A23-checklist.md} &  \\
-W10 & 26/10 -- 01/11 & A24 & Hoàn tất repo, CI, deploy khung (đến 28/10) &  & 4,5 &  &  &  &  \\
-W10 & 26/10 -- 01/11 & A28 & Hoàn tất layout (26/10) &  & 0,5 &  &  &  &  \\
-W10 & 26/10 -- 01/11 & A31 & Hoàn tất test case Increment 1 (đến 28/10) &  & 4,5 &  &  &  &  \\
-W10 & 26/10 -- 01/11 & A26 & Đăng nhập, phân quyền (29--30/10) &  & 10,5 &  &  &  &  \\
-W10 & 26/10 -- 01/11 & A27 & Quản lý sự kiện, phần đầu (31/10--01/11; kết thúc 04/11) &  & 12,0 &  &  &  &  \\
-W10 & 26/10 -- 01/11 & A36 & Theo dõi tiến độ, weekly log; rà log work Jira ở họp 15h Chủ nhật 25/10, 01/11 &  &  &  &  & Từ W9 mỗi Chủ nhật xuất Jira CSV để chuyển thành dòng tab 3 &  \\
+W10 & 26/10 – 01/11 & A24 & Hoàn tất repo, CI, deploy khung (đến 28/10) & Rà repo 01/11: khung API, worker, PostgreSQL, sqlc đã merge (PR \#1–\#3, 23–27/10). Chưa có workflow CI, Dockerfile, bản deploy trên repo. Jira: Backlog & 4,5 &  &  &  &  \\
+W10 & 26/10 – 01/11 & A28 & Hoàn tất layout (26/10) & Rà repo 01/11: chưa có mã frontend trên repo. Jira: Backlog. Chờ TV4 xác nhận phần đã làm & 0,5 &  &  &  &  \\
+W10 & 26/10 – 01/11 & A31 & Hoàn tất test case Increment 1 (đến 28/10) & Rà 01/11: chưa thấy test case mới trên repo tài liệu. Jira: Backlog. Chờ TV2 xác nhận phần đã làm & 4,5 &  &  &  &  \\
+W10 & 26/10 – 01/11 & A26 & Đăng nhập, phân quyền (29–30/10) & Backend đã merge: PR \#4–\#8 (28–29/10). Giao diện chưa có trên repo & 10,5 &  &  &  &  \\
+W10 & 26/10 – 01/11 & A27 & Quản lý sự kiện, phần đầu (31/10–01/11; kết thúc 04/11) & Backend đã merge sớm: PR \#9 (29/10), \#10, \#12 (30/10). Giao diện chưa có trên repo & 12 &  &  &  &  \\
+W10 & 26/10 – 01/11 & A36 & Theo dõi tiến độ, weekly log; rà log work Jira ở họp 15h Chủ nhật 25/10, 01/11 & 01/11: rà Jira, GitHub, Sheet; phát hiện Sprint 6 quá hạn, Sprint 7 chưa bắt đầu; worklog từ 20/10 chỉ có A21, A50, A58; tab 3 dừng ở 22/10 &  &  & Từ W9 mỗi Chủ nhật xuất Jira CSV để chuyển thành dòng tab 3 &  &  \\
+W9 & 19/10 – 25/10 & A58 & Gửi email hỏi phạm vi Progress Check và kênh notification & Gửi 23/10 15:10 (Q21, Q22); thầy trả lời 25/10 07:32, đồng ý cả hai &  &  & — & Sửa tiêu chí CP4 theo Q21; REQ-10, REQ-11 kiểm ở CP5; kênh thông báo trong ứng dụng là Must, email Should (Q22) & TV1 \\
+W10 & 26/10 – 01/11 & A29, A62 & Không có trong kế hoạch W10 (lịch 05–10/11) & Backend đăng ký, hủy, waitlist, tự chuyển, thông báo merge sớm: PR \#11 (30/10). Giao diện chưa có trên repo &  &  &  &  & TV1 \\
+W10 & 26/10 – 01/11 & A33 & Không có trong kế hoạch W10 (lịch 15–19/11) & Nền lưu check-in merge: PR \#13 (31/10). PR \#14 (check-in API) đóng 31/10, chưa merge: TV3 báo đã hiểu nhầm hướng quét; CODE, MANUAL vẫn đúng ASM-08, sẽ khôi phục PR. SỬA 02/11: PR \#14 đã merge 01/11 21:29 (CODE, MANUAL, hoàn tác), chờ TV3 xác nhận vì comment cuối của PR vẫn ghi \enquote{Wrong contract}. PR \#15 (ký và quét QR) mở 01/11 22:56, chưa review &  &  & Trên main chưa có endpoint check-in, chưa ký QR. SỬA 02/11: main đã có C1 (CODE, MANUAL), C3; còn thiếu QR (PR \#15) và C2 & Mô hình check-in chốt 01/11 (ASM-08, CR-01) & TV1 \\
+W11 & 02/11 – 08/11 & A36 & TV1: giới hạn quyền Drive, Sheet; cập nhật Jira, Weekly Log, thu giờ thực tế; duyệt CR-02, CR-03 &  & 6 &  & Actual effort từ 22/10 chưa ghi; Sprint 6 quá hạn & Thu giờ thật từ từng người, không ước tính thay; giờ KH W11 do AI đề xuất, TV1 duyệt hướng làm 01/11 & TV1 \\
+W11 & 02/11 – 08/11 & A51 & TV1: chuẩn bị nội dung, kịch bản Progress Check 09/11; tổng duyệt 08/11 &  & 4 &  & Q21: phần báo đã xong phải demo chạy được & Kịch bản theo phần chạy thật, chốt 07/11 & TV1 \\
+W11 & 02/11 – 08/11 & A22 & TV2: chốt quality plan &  & 2 &  & Quá hạn 22/10 &  & TV1 \\
+W11 & 02/11 – 08/11 & A31 & TV2: viết test case Increment 1; chạy thử API đã merge &  & 12 &  & Quá hạn 28/10 & Thêm 2 ca check-in theo CR-01 (ghi ở A40) & TV1 \\
+W11 & 02/11 – 08/11 & A26 & TV3: đăng nhập demo bằng tài khoản mẫu đủ ba vai trò &  & 2 &  & CR-03: Google OIDC là lựa chọn của nhóm; nhánh demo chưa merge & TV3 review cơ chế login mẫu, chỉ dùng local và demo & TV1 \\
+W11 & 02/11 – 08/11 & A33 & TV3: check-in còn lại 3h (merge PR \#15 sau review, thêm C2); review PR, thông tin CR-02, CR-03 4h; hỗ trợ frontend 5h &  & 12 &  & PR \#15 chưa review; C2 chưa có; TV3 chốt lịch phần còn lại sau khi rà scope & Chia giờ là đề xuất AI, chờ TV3 xác nhận; dời được nếu ưu tiên demo cần giờ & TV1 \\
+W11 & 02/11 – 08/11 & A28 & TV4: layout, component, kết nối API &  & 6 &  & Quá hạn 25/10; A28 nằm trên chuỗi găng & Họp bất thường đầu tuần theo điều kiện deviation activity găng & TV1 \\
+W11 & 02/11 – 08/11 & A26, A27, A29 & TV4: màn hình đăng nhập, sự kiện, duyệt, đăng ký theo thứ tự ưu tiên &  & 8 &  & Năng lực 14–16h/tuần có thể chưa đủ toàn bộ màn hình trước 09/11 & Xác nhận phạm vi demo ở họp đầu tuần; TV3 dự kiến hỗ trợ màn hình ưu tiên 4 hoặc 5, chờ TV3 xác nhận & TV1 \\
+W11 & 02/11 – 08/11 & A24 & TV5: CI, hosting, deploy &  & 8 &  & Quá hạn 28/10; chưa chọn hosting & TV5 chọn hosting free-tier (ASM-05), có HTTPS & TV1 \\
+W11 & 02/11 – 08/11 & A20 & TV5, TV3: làm spike QR, timebox 6h &  & 6 &  & Quá hạn 24/10; chưa làm (TV1 báo 01/11); backend QR đã ở PR \#15 nhưng chưa đo quét trên điện thoại & Có kết quả trước khi chốt PR \#15 và màn hình quét ở A35; đo bằng mã dài như token thật; cập nhật R04 & TV1 \\
+W11 & 02/11 – 08/11 & A29, A62 & Đăng ký/hủy (05–07/11); waitlist tự chuyển (08–10/11) & Backend đã merge sớm hơn lịch: PR \#11 (30/10), PR \#21 (04/11, worker hết hạn waitlist). Jira 16/11: In Review. Chưa có kiểm chứng end-to-end &  &  & Thiếu actual effort; chưa có kết quả test trong docs/\allowbreak quality/\allowbreak results/\allowbreak  & Giao TV2 chạy test API đã merge (xem w13/\allowbreak lich-rut-gon.md) & TV1 \\
+W11 & 02/11 – 08/11 & A33 & QR check-in và điểm danh (15–19/11) & Backend merge sớm: PR \#13, \#14 (đến 01/11), PR \#15 (02/11): QR riêng từng đăng ký, CODE, MANUAL, hoàn tác. Chưa có spike A20, chưa kiểm chứng trên điện thoại &  &  & R04 chưa kiểm chứng; Jira: Backlog (lệch GitHub) & Kiểm chứng QR trên điện thoại; chuyển Jira sang In Review & TV1 \\
+W11 & 02/11 – 08/11 & A34 & Báo cáo và xuất CSV (19–24/11) & Backend merge sớm: PR \#17 (03/11) báo cáo tổng hợp, xuất CSV có audit. Jira: Backlog (lệch GitHub) &  &  & Chưa kiểm chứng dữ liệu báo cáo (R16) & Test với dữ liệu mẫu 500 lượt đăng ký (R16) & TV1 \\
+W11 & 02/11 – 08/11 & A27 & Quản lý sự kiện (31/10–04/11) & Backend: PR \#16 (03/11) nối duyệt và danh mục sự kiện, PR \#20 (04/11) hủy sự kiện đã công bố, PR \#22 (05/11) danh sách quản lý. PR \#19 đóng (trùng \#20) &  &  & Jira: In Review & Chờ kiểm chứng của TV2 & TV1 \\
+W11 & 02/11 – 08/11 & [TV3 chọn] & Thông báo trong ứng dụng (Must theo Q22) & PR \#18 merge 04/11: hộp thư và xác nhận đã đọc. Email chưa có trên main &  &  & Q22: in-app là Must, email là Should & — & TV1 \\
+W11 & 02/11 – 08/11 & A28, A26, A27, A29, A35 & Layout và giao diện (A28 21–26/10; A35 15–22/11) & Repo frontend mới ticket-system-uni-fe: 02/11 có PR \#1 (scaffold) vào main; PR \#2–\#5 (đăng nhập, sự kiện, đăng ký, check-in UI) merge vào nhánh xếp chồng nên chưa nằm trên main. Tài khoản đẩy: [TV4 xác nhận] &  &  & Frontend chưa chạy được từ main (R23); Jira A28, A35: Backlog & Tích hợp lên main qua PR \#6; TV4 xác nhận phần đã làm & TV1 \\
+W11 & 02/11 – 08/11 & A36 & Theo dõi tiến độ, log work & 08/11: rà Sheet, Jira, GitHub; ghi R23, R24, CR-02, CR-03; Jira worklog 9h chỉ của TV1; Time Tracking dừng ở 22/10 &  &  & I02 chưa xử lý; thiếu actual cho R02 & Thu giờ hồi tưởng 22/10–08/11; xem sheet-import/\allowbreak cap-nhat-08-11.md & TV1 \\
+W12 & 09/11 – 15/11 & A51 & Progress Check 09/11 (CP4) & Không trình bày: buổi 09/11 nhóm 9 không được gọi; không có nhận xét của client. Không có Milestone khác theo Q16 &  &  & Không có phản hồi để ghi; deviation lịch (FE, CI, test) chưa báo được cho thầy & Ghi CP4 vào Biên bản CP (câu SỬA 16/11); lịch rút gọn thay kế hoạch dùng nhận xét & TV1 \\
+W12 & 09/11 – 15/11 & [TV3 chọn] & Quản trị và vòng đời (đơn vị, người dùng, hủy thay, xóa nháp, hợp đồng phản hồi) & Backend: PR \#23 (09/11) đơn vị và người dùng; PR \#24, \#25 (10/11) xóa nháp, Organizer hủy thay; PR \#26 (11/11) phản hồi đăng ký; PR \#27 (12/11) refresh token; PR \#29 (13/11) va chạm mã check-in; PR \#30 (14/11) refactor &  &  & 58 file test Go trên main; chưa có review chéo (R24); phạm vi quản trị đơn vị rộng hơn Q20, xem CR-02 & Rà phạm vi so với baseline (D4) & TV1 \\
+W12 & 09/11 – 15/11 & A24, A28, A35 & Repo, CI, deploy; giao diện & PR đang mở: backend \#28 (12/11, demo auth, kiểm tra lịch), \#31 (14/11, import sinh viên, admin CLI, email Mailpit, hợp đồng sự kiện); frontend \#6 (12/11, tích hợp luồng, Docker và Nginx, xuất đăng ký sự kiện đã hoàn thành). Chưa có workflow CI &  &  & Chưa merge; main chưa có Docker, CI, giao diện (R23); PR \#31 vượt phạm vi Must (import, admin CLI) chưa có CR & Review chéo và merge trước 19/11; quyết định D3, D4 & TV1 \\
+W12 & 09/11 – 15/11 & A30 & Test và demo Increment 1 / CP3 (11–16/11) & Chưa diễn ra; Jira: Backlog; chưa thấy kết quả test trên các repo &  &  & Deviation lịch; R15 đang xảy ra & Dời 20/11 trong lịch rút gọn [TV1 duyệt] & TV1 \\
+W13 & 16/11 – 22/11 & A36 & Theo dõi tiến độ, cập nhật lịch & 16/11: TV1 báo thầy thông báo hai tuần cuối các nhóm demo và viva; ngày của nhóm 9 chưa biết &  &  & Lịch V1.0 (nộp 06–07/12, 0 ngày dự trữ) không còn an toàn; xem R25 đề xuất & Đề xuất lịch rút gọn, mốc sẵn sàng 29/11 (chờ TV1 duyệt); xem w13/\allowbreak lich-rut-gon.md & TV1 \\
 \end{longtable}
 \endgroup
 \end{landscape}

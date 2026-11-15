@@ -6,11 +6,26 @@
   \item Thư mục Drive chứa Sheet master (Client Log, ...) và minh chứng: \url{https://drive.google.com/drive/folders/1UkYtjNzXvqCz692bWuZzUaHzDmbNyent}
   \item Sheet master: \url{https://docs.google.com/spreadsheets/d/1jG_FqUl93JeiN-5hRsLuTG49J6-3cBZJQsKQAnKJ4Xw/edit}
   \item Board Jira: \url{https://minhphan.atlassian.net/jira/software/projects/SCRUM/boards/1}
-  \item GitHub, tổ chức \texttt{qldapm-hcmut}: mã nguồn sản phẩm tại \url{https://github.com/qldapm-hcmut/ticket-system-uni} (public); hồ sơ quản lý dự án tại \url{https://github.com/qldapm-hcmut/pm-docs} (public từ 30/10/2026).
+  \item GitHub, tổ chức \texttt{qldapm-hcmut} (nhóm chuyển từ GitLab sang GitHub ngày 30/10/2026, TV1 chốt): mã nguồn backend \url{https://github.com/qldapm-hcmut/ticket-system-uni-be}; mã nguồn frontend \url{https://github.com/qldapm-hcmut/ticket-system-uni-fe}; hồ sơ quản lý dự án \url{https://github.com/qldapm-hcmut/pm-docs} (cả ba public).
 \end{itemize}
 
 \kiemtra{Link Sheet master lấy từ báo cáo TV3 (04/10); xác nhận còn đúng và thư mục Drive đã chia sẻ cho giảng viên.}
 
-\kiemtra{Ngày nhóm chuyển từ GitLab sang GitHub cần TV1 điền; kiểm tra quyền chia sẻ của link Sheet và Drive ở trên vì chúng nằm trong repo công khai.}
+\kiemtra{Quyền chia sẻ Sheet master hiện là \enquote{bất kỳ ai có link là người chỉnh sửa} (kiểm tra 16/11) trong khi link nằm trong repo công khai; TV1 quyết định giữ nguyên, chấp nhận rủi ro (R20) và sẽ báo nhóm. Quyền của thư mục Drive chưa kiểm tra lại. TV1 quyết định có giữ câu này trong bản nộp hay không.}
 
-\todo{Yêu cầu môi trường, các bước cài đặt và chạy, tài khoản mẫu để demo: tóm tắt từ README của \texttt{ticket-system-uni} sau khi nhóm kỹ thuật xác nhận.}
+\textbf{Chạy backend (tóm tắt từ README của \texttt{ticket-system-uni-be}).}
+\begin{itemize}
+  \item Yêu cầu: Go theo \texttt{go.mod}, Make, Podman với Compose (\texttt{podman compose}), các CLI \texttt{migrate}, \texttt{sqlc}, \texttt{psql}.
+  \item Cấu hình \texttt{.env} (từ \texttt{.env.example}): \texttt{DATABASE\_URL}, \texttt{HTTP\_ADDR} (mặc định \texttt{:3000}), \texttt{GOOGLE\_CLIENT\_ID}, \texttt{JWT\_SECRET}, \texttt{QR\_HMAC\_SECRET}. Hai khóa là hai chuỗi ngẫu nhiên khác nhau, mỗi khóa ít nhất 32 byte (\texttt{openssl rand -hex 32}); không commit khóa thật.
+  \item Lệnh: \texttt{make db-up}, \texttt{make migrate-up}, \texttt{make seed ADMIN\_EMAIL=...} (email trường của quản trị đầu tiên), \texttt{make run} (API, cổng 3000), \texttt{make worker} (tiến trình nền). Kiểm thử: \texttt{make test}, \texttt{make test-int} (cần \texttt{TEST\_DATABASE\_URL}).
+\end{itemize}
+
+\textbf{Chạy frontend (tóm tắt từ README của \texttt{ticket-system-uni-fe}).}
+\begin{itemize}
+  \item \texttt{npm install}; sao chép \texttt{.env.example} thành \texttt{.env} (\texttt{VITE\_API\_BASE\_URL} mặc định \texttt{http://localhost:3000/api/v1}, \texttt{VITE\_GOOGLE\_CLIENT\_ID}, \texttt{VITE\_ENABLE\_DEV\_LOGIN}).
+  \item \texttt{npm run dev} (\texttt{http://localhost:5173}); \texttt{npm run build} để build bản production.
+\end{itemize}
+
+\kiemtra{Đây là cách chạy theo README hiện tại. Cách chạy bằng Docker (theo quyết định TV1 16/11: Docker local kèm video dự phòng) và tài khoản mẫu ba vai trò phụ thuộc PR \#28 (backend) và \#6 (frontend); sau khi merge, TV5 cập nhật hướng dẫn và thử từ máy sạch.}
+
+\todo{Tài khoản mẫu Student, Organizer, Admin để demo và hướng dẫn chạy bằng Docker sau khi PR \#28 và \#6 merge.}
