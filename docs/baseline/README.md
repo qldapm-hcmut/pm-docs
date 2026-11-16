@@ -4,7 +4,7 @@
 
 | File | Ngày duyệt | Người duyệt | Git tag |
 |---|---|---|---|
-| `v1.0.pdf` | 25/10/2026 (họp A23; CP2 18/10 đạt có điều kiện; `v1.0.pdf` chưa xuất, chờ repo chung) | Cả nhóm, TV1 ký | `baseline-v1.0` |
+| `v1.0.pdf` | 25/10/2026 (họp A23; CP2 18/10 đạt có điều kiện). File PDF lập ngày 16/11/2026 từ báo cáo bản 22/10 kèm trang phụ lục kết quả họp A23; không phải bản chụp đúng ngày 25/10 (xem trang bìa của file) | Cả nhóm, TV1 ký | `baseline-v1.0` |
 | `v2.0.pdf` | sau change event | | `baseline-v2.0` |
 
 ## Quy trình tạo baseline
