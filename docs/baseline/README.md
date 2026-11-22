@@ -5,7 +5,7 @@
 | File | Ngày duyệt | Người duyệt | Git tag |
 |---|---|---|---|
 | `v1.0.pdf` | 25/10/2026 (họp A23; CP2 18/10 đạt có điều kiện). File PDF lập ngày 16/11/2026 từ báo cáo bản 22/10 kèm trang phụ lục kết quả họp A23; không phải bản chụp đúng ngày 25/10 (xem trang bìa của file) | Cả nhóm, TV1 ký | `baseline-v1.0` |
-| `v2.0.pdf` | sau change event | | `baseline-v2.0` |
+| `v2.0.pdf` | TV1 chốt nội dung 23/11/2026; danh sách thay đổi gửi nhóm 17/11/2026, quá hạn phản hồi 24 giờ (R22) nên TV1 tự duyệt. File PDF lập ngày 23/11/2026 gồm trang bìa nêu nguồn, danh sách 14 thay đổi so với V1.0, mục 3.7 của báo cáo và Gantt V2.0 | TV1 | `baseline-v2.0` |
 
 ## Quy trình tạo baseline
 
