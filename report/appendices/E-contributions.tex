@@ -1,4 +1,27 @@
 \chapter{Đóng góp của thành viên}
 \label{app:contributions}
 
-\todo{Đóng góp của từng thành viên kèm bằng chứng (commit, task, worklog, tài liệu đã viết).}
+Bảng dưới tổng hợp đóng góp của từng thành viên theo phân công trong tab Activity của Sheet master, kèm bằng chứng kiểm tra được tại ngày 26/11/2026. TV1 báo các thành viên làm theo đúng task được giao (26/11). Bảng do AI tổng hợp từ GitHub, Jira và tab Activity theo yêu cầu của TV1 (Phụ lục~\ref{app:ai-declaration}). Số commit và PR đếm trên ba repo của tổ chức \texttt{qldapm-hcmut}; giờ Jira theo quy tắc effort ở mục~\ref{sec:3-3} (chỉ tính từ worklog đầu tiên, phần lớn ghi sau khi làm việc), nên không phản ánh đủ giờ làm. Commit và PR không đo được phần việc ngoài repo (thiết kế, họp, review, làm việc trên Sheet và Jira).
+
+\begingroup\tblsetup\footnotesize\tblzebra
+\begin{longtable}{L{2.6cm}L{4.6cm}L{5.8cm}L{1.6cm}}
+\caption{Đóng góp theo thành viên (đến 26/11)}\label{tab:contributions}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Thành viên} & \textbf{Task theo phân công} & \textbf{Bằng chứng} & \textbf{Giờ Jira (h)} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Thành viên} & \textbf{Task theo phân công} & \textbf{Bằng chứng} & \textbf{Giờ Jira (h)} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+TV1, Nguyễn Đức Nghĩa (2312266), quản lý dự án & Từ 18/10: toàn bộ phần quản trị và báo cáo. A21, A50, A58; A36, A57 (theo dõi, rà truy vết); A42, A44, A45, A47 & Repo \texttt{pm-docs}: 32 commit trên \texttt{main}, 10 PR đã merge, gồm \texttt{v1.0.pdf}, \texttt{v2.0.pdf} và hai tag baseline. Chủ Sheet master (Client Log, Risk Register, Weekly Log, AI Log). Báo cáo LaTeX & 9,0 \\
+TV2, Ngô Thanh Hùng (2311289), kiểm thử & A22 quality plan; A31, A40 test case; A30, A39 kiểm thử và hồi quy; A41 UAT; A43 kế hoạch đóng & Repo \texttt{pm-docs}: 3 commit trên \texttt{main}, 2 PR (1 đã merge, PR \#11 ngày 22/11). Quality plan v1.0 (19/11), 35 test case, kết quả CP3 và hồi quy 18--20/11 trong \texttt{docs/\allowbreak quality/\allowbreak results/}, \texttt{defects.md} & 28,0 \\
+TV3, Phan Huy Quang Minh (2312105), Tech Lead, backend & A25 thiết kế cơ sở dữ liệu và hợp đồng API; A26, A27, A29, A62, A34, A53; quyết định kỹ thuật. Hạ tầng ban đầu (GitLab, Jenkins, Jira) ở W5 & Repo \texttt{ticket-system-uni-be}: 96 commit trên \texttt{main}, 34 PR (32 đã merge, \#2--\#35). Chủ hai repo code & 57,5 \\
+TV4, Nguyễn Đắc Nghĩa (2312265), frontend & A28 layout; A35 giao diện check-in và báo cáo; màn hình đăng nhập, sự kiện, đăng ký (A26, A27, A29). Trước 18/10: A06, câu hỏi vòng 1 & Repo \texttt{ticket-system-uni-fe}: 3 commit trên \texttt{main}, 10 PR (5 PR \#1--\#5 vào nhánh xếp chồng ngày 02/11; 5 PR \#7--\#11 mở ngày 25/11, chưa merge) & chưa có \\
+TV5, Hà Cao Đức Minh (2312059), backend và DevOps & A24 codebase, CI, deploy; A20 spike QR; A33 QR check-in. Trước 18/10: A05, A07, A11, A13, A19 & Backend: PR \#28 (đăng nhập demo, kiểm tra lịch sự kiện, merge 15/11), 1 commit trên \texttt{main}. Frontend: PR \#6 (tích hợp luồng, Docker, xuất đăng ký, mở từ 12/11, chưa merge) & 24,0 \\
+\midrule
+\textbf{Tổng} & & & \textbf{118,5} \\
+\end{longtable}
+\endgroup

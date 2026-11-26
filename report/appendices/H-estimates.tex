@@ -1,0 +1,118 @@
+\chapter{Ước lượng và lịch chi tiết}
+\label{app:estimates}
+
+Phụ lục này giữ nguyên bảng ước lượng bottom-up đầy đủ của 39 activity (Bảng~\ref{tab:estimates}) và lịch chi tiết sau san tải (Bảng~\ref{tab:schedule}). Thân báo cáo giữ phương pháp, giả định, bảng tổng hợp (Bảng~\ref{tab:estimates-ct}), mốc chính và Gantt. Nguồn: tab Estimation và Activity của Sheet master.
+
+\begin{landscape}
+\section{Ước lượng bottom-up theo activity}
+\begingroup\tblsetup\footnotesize\renewcommand{\arraystretch}{1.1}\tblzebra
+\begin{longtable}{L{1.2cm}L{6.0cm}L{1.1cm}L{1.1cm}L{1.1cm}L{1.1cm}L{2.0cm}L{3.2cm}L{1.4cm}}
+\caption{Ước lượng bottom-up theo activity (giờ người)}\label{tab:estimates}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Mã} & \textbf{Activity} & \textbf{$O$} & \textbf{$M$} & \textbf{$P$} & \textbf{$E$} & \textbf{Thời lượng (ngày)} & \textbf{Phụ trách ước lượng} & \textbf{Nguồn} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Mã} & \textbf{Activity} & \textbf{$O$} & \textbf{$M$} & \textbf{$P$} & \textbf{$E$} & \textbf{Thời lượng (ngày)} & \textbf{Phụ trách ước lượng} & \textbf{Nguồn} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+A17 & Construct activity network \& checkpoints & 5 & 6 & 8,5 & 6,3 & 2 & TV1, TV2 & a \\
+A16 & Write product descriptions & 6,5 & 8 & 11 & 8,3 & 2 & TV2, TV4 & a \\
+A18 & Estimate activity effort bottom-up & 8 & 10 & 14 & 10,3 & 2 & Cả nhóm & a \\
+A19 & Assess activity risks \& plan responses & 6 & 8 & 11 & 8,2 & 2 & TV5, TV4 & a \\
+A22 & Write quality plan \& test strategy & 5 & 6 & 8,5 & 6,3 & 3 & TV2, TV4 & a \\
+A25 & Design database schema \& API contract & 5 & 6 & 8,5 & 6,3 & 1 & TV3, TV4 & d \\
+A21 & Draft schedule \& Gantt & 4 & 5 & 7 & 5,2 & 3 & TV3 & b \\
+A20 & Prototype QR check-in (spike) & 4 & 6 & 6 & 5,7 & 2 & TV3, TV5 & e \\
+A50 & Allocate resources \& level schedule & 5 & 6 & 8,5 & 6,3 & 4 & TV1, TV3 & a \\
+A58 & Confirm scope-affecting points with client & 1,5 & 2 & 3 & 2,1 & 2 & TV1 & a \\
+A23 & Approve Project Baseline V1.0 (team) & 5 & 5 & 6 & 5,2 & 1 & Cả nhóm & a \\
+A24 & Set up codebase, CI \& deployment & 5,5 & 8 & 16 & 8,9 & 3 & TV5 & c \\
+A36 & Monitor progress \& update logs & 19 & 24 & 33,5 & 24,8 & 43 & TV1 & a \\
+A57 & Chair traceability \& consistency reviews & 8 & 10 & 14 & 10,3 & 43 & TV1 & a \\
+A26 & Implement authentication \& roles & 7 & 10 & 16 & 10,5 & 2 & TV3, TV5 & d \\
+A28 & Build UI layout \& shared components & 8 & 10 & 15 & 10,5 & 6 & TV4, TV2 & c \\
+A31 & Write test cases for increment 1 & 8 & 10 & 15 & 10,5 & 6 & TV2 & c \\
+A27 & Implement event management & 17 & 24 & 38,5 & 25,3 & 5 & TV3, TV4, TV5 & d \\
+A29 & Implement event registration \& cancellation & 8,5 & 12 & 19 & 12,6 & 3 & TV3, TV4, TV5 & d \\
+A62 & Implement waitlist \& auto-promotion & 8,5 & 12 & 24 & 13,4 & 3 & TV3, TV4, TV5 & d \\
+A30 & Test \& demo increment 1 & 8 & 10 & 15 & 10,5 & 2 & Cả nhóm & c \\
+A32 & Plan increment 2 in detail & 3 & 4 & 5,5 & 4,1 & 4 & TV1 & a \\
+A33 & Implement QR check-in \& attendance & 11 & 16 & 32 & 17,8 & 5 & TV5, TV2 & c \\
+A34 & Implement attendance reports \& export & 10 & 14 & 22,5 & 14,8 & 4 & TV3 & d \\
+A35 & Build check-in \& report UI & 10 & 14 & 22,5 & 14,8 & 8 & TV4 & c \\
+A40 & Write test cases for increment 2 & 6,5 & 8 & 12 & 8,4 & 5 & TV2 & c \\
+A37 & Integrate core workflow & 5,5 & 8 & 13 & 8,4 & 2 & TV3, TV4, TV5 & d \\
+A51 & Present progress check & 5 & 5 & 6 & 5,2 & 1 & Cả nhóm & a \\
+A38 & Hold contingency buffer (change event) & 15 & 30 & 45 & 30 & -- & Cả nhóm & a \\
+A39 & Test increment 2 \& regression & 8 & 10 & 15 & 10,5 & 3 & TV2, TV4 & c \\
+A53 & Fix defects \& deploy release & 8,5 & 12 & 19 & 12,6 & 3 & TV3, TV4, TV5 & d \\
+A41 & Conduct user acceptance test & 5 & 6 & 9 & 6,3 & 3 & TV2, TV1 & c \\
+A42 & Analyse planned vs actual performance & 8 & 10 & 14 & 10,3 & 7 & TV1, TV3 & a \\
+A43 & Prepare closure \& handover plan & 4 & 5 & 7 & 5,2 & 3 & TV5 & a \\
+A44 & Hold retrospective \& record lessons & 5 & 5 & 6 & 5,2 & 1 & Cả nhóm & a \\
+A45 & Compile final report & 12 & 15 & 21 & 15,5 & 10 & TV2, TV4, TV5 & a \\
+A46 & Rehearse demo \& viva & 10 & 10 & 12 & 10,3 & 1 & Cả nhóm & a \\
+A47 & Submit final deliverables & 2 & 2 & 2,5 & 2,1 & 2 & TV1 & a \\
+A54 & Present final demo \& viva & 5 & 5 & 6 & 5,2 & 1 & Cả nhóm & a \\
+\midrule
+\multicolumn{5}{l}{\textbf{Tổng effort (không gồm A38)}} & \textbf{364,2} &  &  &  \\
+\multicolumn{5}{l}{Quỹ dự phòng A38 (tách riêng)} & 30 &  &  &  \\
+\multicolumn{5}{l}{\textbf{Tổng gồm dự phòng}} & \textbf{394,2} &  &  &  \\
+\end{longtable}
+\endgroup
+
+\section{Lịch chi tiết sau san tải}
+\begingroup\tblsetup\footnotesize\renewcommand{\arraystretch}{1.1}\tblzebra
+\begin{longtable}{L{1.2cm}L{5.4cm}L{3.2cm}>{\raggedleft\arraybackslash}p{1.6cm}>{\raggedleft\arraybackslash}p{1.8cm}L{1.8cm}L{1.8cm}>{\raggedleft\arraybackslash}p{1.8cm}}
+\caption{Lịch chi tiết sau san tải (thời lượng và float theo CPM)}\label{tab:schedule}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Activity} & \textbf{Owner} & \textbf{Effort (h)} & \textbf{Thời lượng (ngày)} & \textbf{Bắt đầu} & \textbf{Kết thúc} & \textbf{Float (ngày)} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Activity} & \textbf{Owner} & \textbf{Effort (h)} & \textbf{Thời lượng (ngày)} & \textbf{Bắt đầu} & \textbf{Kết thúc} & \textbf{Float (ngày)} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+A21 & Draft schedule \& Gantt & TV1 & 5,2 &  & 20/10 & 21/10 & đã xong \\
+A50 & Allocate resources \& level schedule & TV1 & 6,3 &  & 20/10 & 21/10 & đã xong \\
+A22 & Write quality plan \& test strategy & TV1 duyệt; TV2 thực hiện (từ 20/10; trước đó TV2, TV4) & 6,0 & 3 & 20/10 & 22/10 & 2 \\
+A25 & Design database schema \& API contract & TV3, TV5; TV4 review & 1,0 & 1 & 20/10 & 20/10 & $-$12 \\
+A24 & Set up codebase, CI \& deployment & TV5, TV4 & 8,9 & 3 & 21/10 & 28/10 & $-$11 \\
+A28 & Build UI layout \& shared components & TV4 & 10,5 & 6 & 21/10 & 26/10 & $-$12 \\
+A20 & Prototype QR check-in (spike) & TV3, TV5 & 5,7 & 2 & 22/10 & 24/10 & 9 \\
+A58 & Confirm scope-affecting points with client & TV1 & 2,1 & 2 & 22/10 & 23/10 & 1 \\
+A31 & Write test cases for increment 1 & TV2 & 10,5 & 6 & 23/10 & 28/10 & 27 \\
+A23 & Approve Project Baseline V1.0 (team) & Cả nhóm & 5,2 & 1 & 25/10 & 25/10 & 0 \\
+A26 & Implement authentication \& roles & TV3, TV5, TV4 & 10,5 & 2 & 29/10 & 30/10 & $-$11 \\
+A27 & Implement event management & TV3, TV5, TV4 & 25,3 & 5 & 31/10 & 04/11 & $-$12 \\
+A29 & Implement event registration \& cancellation & TV3, TV5, TV4 & 12,6 & 3 & 05/11 & 07/11 & $-$12 \\
+A62 & Implement waitlist \& auto-promotion & TV3, TV5, TV4 & 13,4 & 3 & 08/11 & 10/11 & $-$12 \\
+A51 & Present progress check & Cả nhóm (TV1 chủ trì) & 5,2 & 1 & 09/11 & 09/11 & 0 \\
+A42 & Analyse planned vs actual performance & TV1; TV2 làm phần chất lượng, kiểm thử (3h) & 10,3 & 7 & 10/11 & 02/12 & 18 \\
+A30 & Test \& demo increment 1 & TV2 chủ trì, cả nhóm & 10,5 & 2 & 11/11 & 16/11 & 16 \\
+A32 & Plan increment 2 in detail & TV1 & 4,1 & 4 & 11/11 & 14/11 & $-$12 \\
+A33 & Implement QR check-in \& attendance & TV5, TV3 & 17,8 & 5 & 15/11 & 19/11 & $-$9 \\
+A35 & Build check-in \& report UI & TV4 & 14,8 & 8 & 15/11 & 22/11 & $-$12 \\
+A40 & Write test cases for increment 2 & TV2 & 8,4 & 5 & 15/11 & 19/11 & 10 \\
+A45 & Compile final report & TV1; TV2 viết phần kiểm thử, chất lượng (5h) & 15,5 & 10 & 17/11 & 26/11 & 16 \\
+A34 & Implement attendance reports \& export & TV3, TV5 & 14,8 & 4 & 19/11 & 24/11 & 11 \\
+A43 & Prepare closure \& handover plan & TV1 duyệt; TV2 thực hiện & 5,2 & 3 & 21/11 & 24/11 & 23 \\
+A37 & Integrate core workflow & TV3, TV5, TV4 & 8,4 & 2 & 23/11 & 24/11 & $-$12 \\
+A39 & Test increment 2 \& regression & TV2, TV4 & 10,5 & 3 & 25/11 & 27/11 & 5 \\
+A44 & Hold retrospective \& record lessons & Cả nhóm & 5,2 & 1 & 28/11 & 28/11 & 10 \\
+A53 & Fix defects \& deploy release & TV3, TV5, TV4 & 12,6 & 3 & 28/11 & 30/11 & 5 \\
+A41 & Conduct user acceptance test & TV2, TV1 & 6,3 & 3 & 01/12 & 05/12 & 5 \\
+A46 & Rehearse demo \& viva & Cả nhóm & 10,3 & 1 & 03/12 & 03/12 & 11 \\
+A47 & Submit final deliverables & TV1 & 2,1 & 2 & 06/12 & 07/12 & 5 \\
+A54 & Present final demo \& viva & Cả nhóm & 5,2 & 1 & 07/12 & 07/12 & 0 \\
+A36 & Monitor progress \& update logs (hammock) & TV1 & 24,8 &  & 25/10 & 07/12 &  \\
+A57 & Chair traceability \& consistency reviews (hammock) & TV1 & 10,3 &  & 25/10 & 07/12 &  \\
+A38 & Hold contingency buffer (change event) & TV1 (quản lý quỹ) & 30 &  & ngoài chuỗi &  &  \\
+\end{longtable}
+\endgroup
+\end{landscape}

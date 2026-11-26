@@ -41,7 +41,33 @@ Vòng 2 gửi lúc 16:39 và được thầy trả lời lúc 19:58 cùng ngày 
 
 Vòng 3 (A58) được gửi khi lịch A21 cho thấy đến 09/11 chưa có QR check-in; thầy trả lời sáng 25/10, trước họp A23. Thầy đồng ý phạm vi nhóm đề xuất (Q21): tại Progress Check chưa bắt buộc hoàn thiện toàn bộ workflow, gồm QR check-in và báo cáo/Excel/CSV, nhưng chức năng đã hoàn thành phải có bản demo chạy được, không chỉ trình bày giao diện hoặc mô tả thiết kế; chức năng đang phát triển phải thể hiện rõ tiến độ và kế hoạch hoàn thành. Thầy đồng ý thông báo trong ứng dụng là mức bắt buộc, email là mức Should (Q22). Nhóm sửa tiêu chí CP4 (mục~\ref{sec:2-5}) theo Q21, không đổi thứ tự công việc.
 
-\todo{Bổ sung: bằng chứng client đã làm thay đổi quyết định (scope, estimate, risk) cụ thể ra sao ở Baseline V1.0.}
+\textbf{Phản hồi của client đã làm thay đổi gì ở Baseline V1.0.} Bảng~\ref{tab:client-impact} liệt kê các thay đổi có nguồn là câu trả lời của thầy và nơi chúng được phản ánh trong báo cáo. Nội dung đối chiếu theo Client Log và các mục đã nêu; ``tách A62'' và ``tính trong A27'' là quyết định của nhóm sau khi nhận câu trả lời, không phải yêu cầu của thầy.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{1.9cm}L{4.6cm}L{5.6cm}}
+\caption{Thay đổi ở Baseline V1.0 xuất phát từ phản hồi của client}\label{tab:client-impact}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Câu trả lời} & \textbf{Thay đổi} & \textbf{Nơi phản ánh} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Câu trả lời} & \textbf{Thay đổi} & \textbf{Nơi phản ánh} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Q08, Q10 & Ưu tiên chuỗi cốt lõi: sự kiện $\rightarrow$ đăng ký, hủy $\rightarrow$ chỗ và danh sách chờ $\rightarrow$ điểm danh $\rightarrow$ báo cáo; thông báo là phụ; loại trừ check-out bắt buộc, SSO thật, ứng dụng di động, điểm rèn luyện & Scope và Exclusions (mục~\ref{sec:1-4}); các module phần mềm trong PBS bám chuỗi này (mục~\ref{sec:2-1}); Baseline chỉ cam kết toàn bộ yêu cầu Must \\
+Q03 & Điểm danh bằng QR, có nhập mã và xác nhận thủ công làm dự phòng, không check-out & PD-03; activity A20 (spike QR) và A33 (mục~\ref{sec:2-2}, \ref{sec:2-4}) \\
+Q04, Q14, Q15 & Giới hạn chỗ, danh sách chờ tự động chuyển người đầu hàng, không có trạng thái chờ xác nhận; một đăng ký còn hiệu lực cho mỗi sinh viên mỗi sự kiện & Activity đăng ký tách thành A29 và A62; A62 gắn với R17, R18 (mục~\ref{sec:2-4}, \ref{sec:2-8}, \ref{sec:2-9}) \\
+Q12, Q13, Q20 & Admin duyệt sự kiện, không thêm role riêng; hạn hủy cố định 24 giờ; quyền xem dữ liệu theo vai trò và đơn vị & Bổ sung PD-01 và PD-02 ngày 20/10 (bảng \texttt{units}); quy tắc nghiệp vụ trong REQ (mục~\ref{sec:2-2}) \\
+Q19 & Organizer sửa hoặc hủy sự kiện đã công bố, đổi thời gian hoặc địa điểm phải thông báo người đã đăng ký; yêu cầu mới so với vòng 1 & Phần sửa, hủy và thông báo tính trong A27; thêm R14 (effort A27, A29 chưa được số nháp tính) \\
+Q17 & Change event không báo trước nội dung & A38 là quỹ dự phòng 30 giờ, nằm ngoài chuỗi phụ thuộc, không tạo activity riêng (mục~\ref{sec:2-4}, \ref{sec:2-10}) \\
+Q16, Q21 & Không có Milestone 2, 3; chỉ có Progress Check 09/11; chưa bắt buộc QR check-in và báo cáo tại Progress Check nhưng phần đã xong phải demo chạy được & Baseline V1.0 là mốc nội bộ; đóng R13; tiêu chí CP4 sửa theo Q21 (mục~\ref{sec:2-5}) \\
+Q22 & Thông báo trong ứng dụng bắt buộc, email là Should & A58 hỏi Q22; R18 ghi nhận thông báo trong ứng dụng là bắt buộc, email tùy chọn (mục~\ref{sec:2-8}, \ref{sec:2-9}) \\
+\end{longtable}
+\endgroup
+
+Về ước lượng, client không cung cấp số liệu thực tế (Q06), nên quy mô và các chỉ tiêu tải là giả định của nhóm (ASM-02, ASM-07) chứ không phải số liệu client; các ước lượng effort cũng do nhóm đề xuất và không dựa trên số liệu của client.
 
 \section{Bối cảnh, giả định và ràng buộc}
 \label{sec:1-2}
@@ -302,7 +328,7 @@ Nhóm dự án (TV1--TV5) & Lập kế hoạch, triển khai, bảo vệ dữ li
 \end{longtable}
 \endgroup
 
-\todo{Nêu thay đổi cụ thể về objective/scope/cách tiếp cận do phân tích stakeholder (nếu có); bổ sung bên liên quan khác nếu nhóm xác định thêm.}
+Tài liệu nguồn của phân tích này (A09) chưa ghi nhận thay đổi nào về objective, scope hay cách tiếp cận xuất phát riêng từ phân tích stakeholder; các thay đổi scope đã ghi đều có nguồn là câu trả lời của client (Bảng~\ref{tab:client-impact}). Nhóm không nêu thay đổi nào ở đây khi chưa có ghi nhận.
 
 \section{Hạ tầng dự án: tiêu chuẩn, tổ chức nhóm và giao tiếp}
 \label{sec:1-7}
@@ -346,8 +372,8 @@ TV5 & Backend, DevOps (Hà Cao Đức Minh) & Backend (Go) cùng TV3, codebase, 
 \endhead
 \bottomrule
 \endlastfoot
-GitHub (tổ chức \texttt{qldapm-hcmut}) & Kho mã nguồn (\texttt{ticket-system-uni}) và tài liệu quản lý (\texttt{pm-docs}); mỗi công việc làm trên nhánh riêng, đưa vào \texttt{main} qua Pull Request có người review \\
-CI/CD của repo code & Build và test chạy trong repo \texttt{ticket-system-uni}, do người dựng repo thiết lập; nhóm không dựng CI riêng cho repo tài liệu \\
+GitHub (tổ chức \texttt{qldapm-hcmut}) & Kho mã nguồn (\texttt{ticket-system-uni-be}, \texttt{ticket-system-uni-fe}) và tài liệu quản lý (\texttt{pm-docs}); mỗi công việc làm trên nhánh riêng, đưa vào \texttt{main} qua Pull Request, quy định ít nhất một người khác review \\
+CI/CD của repo code & Kế hoạch: build và test chạy trong repo code, do người dựng repo thiết lập; nhóm không dựng CI riêng cho repo tài liệu. Đến 23/11 chưa có workflow CI ở hai repo code (mục~\ref{sec:3-5}) \\
 Jira & Space Uni-Ticket-System (key SCRUM), theo dõi công việc bằng sprint hằng tuần với trạng thái Backlog, In Progress, Done; thẻ gắn mã activity; worklog làm dữ liệu actual effort \\
 Google Sheet Master & Client Log, Traceability, Estimates, Risk Register, Weekly Log, Time Tracking \\
 Chat và thư mục tài liệu & Báo tiến độ, vướng mắc; thư mục phân quyền cho nhóm \\
@@ -355,19 +381,19 @@ Chat và thư mục tài liệu & Báo tiến độ, vướng mắc; thư mục 
 \endgroup
 Ban đầu nhóm dùng GitLab tự host (Merge Request) và Jenkins. Ngày 22/10 phát sinh I03 (mục~\ref{sec:3-4}): GitLab chạy trên máy cá nhân nên các thành viên khác chưa truy cập được. Ngày 30/10 nhóm chuyển sang GitHub (tổ chức \texttt{qldapm-hcmut}) và I03 chấm dứt; đưa vào \texttt{main} qua Pull Request có người review; nguyên tắc review và lưu bằng chứng giữ nguyên. Trước khi đưa repo tài liệu lên công khai (30/10) nhóm đã quét secret. CI/CD do người dựng repo code thiết lập nên nhóm không dựng Jenkins hay CI riêng cho repo tài liệu; quyết định ``CI dùng Jenkins'' (21/10) không còn áp dụng.
 
-\todo{Bổ sung ảnh chụp bằng chứng hạ tầng (cả 5 thành viên truy cập được, \texttt{main} được bảo vệ, một Pull Request mẫu có review); link board, Sheet và thư mục tài liệu ở Phụ lục~\ref{app:repository}.}
+Link board, Sheet và thư mục tài liệu ở Phụ lục~\ref{app:repository}. Hiện trạng đã kiểm tra đến 23/11: hai repo code và \texttt{pm-docs} đều công khai; \texttt{pm-docs} có 11 Pull Request, 10 đã merge và 1 đóng; \texttt{main} chưa bật bảo vệ nhánh (nhóm quyết định không bật, TV1 chốt 26/11; TV3 là chủ hai repo code) và chưa thấy phê duyệt của thành viên khác trên các PR backend gần nhất (mục~\ref{sec:3-5}, R24).
 
 \subsection*{Kiến trúc kỹ thuật}
-Stack được nhóm chốt tại CP2 ngày 18/10: frontend React (web responsive, không làm ứng dụng di động riêng theo Q09, Q10), backend Go, cơ sở dữ liệu PostgreSQL. Hình~\ref{fig:architecture} ánh xạ từng khối tới activity tạo ra nó; thiết kế bảng và hợp đồng API là sản phẩm của A25 (PD-02). CI/CD do repo code đảm nhiệm (thay quyết định dùng Jenkins ngày 21/10). Các phần chưa quyết định (nền tảng hosting, kênh thông báo ngoài ứng dụng) vẽ nét đứt.
+Stack được nhóm chốt tại CP2 ngày 18/10: frontend React (web responsive, không làm ứng dụng di động riêng theo Q09, Q10), backend Go, cơ sở dữ liệu PostgreSQL. Hình~\ref{fig:architecture} ánh xạ từng khối tới activity tạo ra nó; thiết kế bảng và hợp đồng API là sản phẩm của A25 (PD-02). Hình vẽ theo hiện trạng ngày 23/11: chạy bằng Docker Compose trên máy (hosting là Could, quyết định D3), đăng nhập Google OIDC kèm tài khoản mẫu cho demo (CR-03); phần chưa có hoặc chưa làm (email thông báo, workflow CI) vẽ nét đứt.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{image/architecture.pdf}
+\includegraphics[width=\linewidth]{image/architecture.png}
 \caption{Kiến trúc kỹ thuật React -- Go -- PostgreSQL và activity tương ứng}
 \label{fig:architecture}
 \end{figure}
 
-Hình~\ref{fig:architecture} do AI hỗ trợ vẽ ngày 21/10 từ PD-01 đến PD-03, Client Log và checklist TV3; TV3, TV5 duyệt.
+Hình~\ref{fig:architecture} do AI hỗ trợ vẽ ngày 21/10 từ PD-01 đến PD-03, Client Log và checklist TV3 (TV3, TV5 duyệt bản đó) và được vẽ lại ngày 23/11 theo hiện trạng repo và README hai repo; bản vẽ lại TV3, TV5 đã duyệt (TV1 báo 23/11).
 
 \subsection*{Kế hoạch giao tiếp}
 \begin{itemize}
@@ -385,7 +411,15 @@ Hình~\ref{fig:architecture} do AI hỗ trợ vẽ ngày 21/10 từ PD-01 đến
   \item \textbf{Định nghĩa hoàn thành:} code chạy được, đáp ứng yêu cầu công việc, đã kiểm tra phù hợp và đã review; tài liệu ghi rõ người thực hiện, nguồn thông tin và các điểm còn là giả định. Mức kiểm thử xác định theo từng tính năng, không bắt buộc unit test đầy đủ cho mọi công việc.
   \item \textbf{Giao diện:} ưu tiên hiển thị tốt trên điện thoại (mobile-first) cho màn hình điểm danh; dùng thư viện UI component có sẵn cho biểu mẫu và bảng để rút ngắn thời gian; giao diện dùng React (nhóm chốt stack ngày 18/10).
 \end{itemize}
-\todo{Bổ sung: chuẩn đặt tên (nhánh, file, mã activity), chuẩn coding/tài liệu, quy trình change request.}
+
+\subsection*{Quy ước đặt tên, tài liệu và change request}
+\begin{itemize}
+  \item \textbf{Mã định danh:} \texttt{O\#} objective; \texttt{M\#}, \texttt{S\#} sản phẩm quản lý và kỹ thuật (PBS); \texttt{A\#\#} activity; \texttt{R\#\#} rủi ro; \texttt{REQ-\#\#} yêu cầu; \texttt{ASM-\#\#} giả định; \texttt{T-XX-\#\#} test case; \texttt{D\#\#} defect; \texttt{CP\#} checkpoint; \texttt{CR-\#\#} change request; \texttt{Q\#\#}, \texttt{P\#\#} câu hỏi và câu trả lời của client. Mã activity dùng chung giữa Jira, Sheet và tài liệu để truy vết.
+  \item \textbf{Quy ước ban đầu (tài liệu hạ tầng A10, thời GitLab):} nhánh \texttt{feature/<ID>-<mô tả>} hoặc \texttt{docs/<ID>-<mô tả>}; commit \texttt{<ID>: <mô tả ngắn>}. \textbf{Thực tế khi chuyển sang GitHub (30/10):} commit và tiêu đề Pull Request theo Conventional Commits viết bằng tiếng Anh (ví dụ \texttt{feat(registration): \ldots}, \texttt{fix(event): \ldots}, \texttt{docs(quality): \ldots}), nhánh dạng \texttt{feat/}, \texttt{fix/}, \texttt{docs/}; repo frontend còn ghi mã activity trong tiêu đề (ví dụ \texttt{[A35]}). Hai quy ước cùng tồn tại; mã activity không bắt buộc trong mọi commit của repo backend.
+  \item \textbf{Tài liệu:} mỗi file trong \texttt{docs/} có khối metadata (activity, chủ sở hữu, phiên bản, ngày cập nhật, trạng thái); tên file theo số mục hoặc loại (ví dụ \texttt{2.12-quality-plan.md}, \texttt{cr-02-pham-vi-xem-du-lieu.md}); nội dung do AI soạn phải được ghi vào AI Log (Phụ lục~\ref{app:ai-declaration}).
+  \item \textbf{Code:} ưu tiên thư viện và component có sẵn; logic nghiệp vụ quan trọng (giới hạn chỗ, trùng đăng ký, trùng check-in) phải có test; backend tổ chức theo module với hướng phụ thuộc \texttt{adapter} $\rightarrow$ \texttt{app} $\rightarrow$ \texttt{domain} (mục~\ref{sec:3-1}). Công cụ lint và format chưa được ghi nhận trong tài liệu của nhóm.
+  \item \textbf{Change request:} thay đổi sau Baseline V1.0 đi qua file \texttt{cr-NN-<mô tả>.md} theo mẫu: mô tả và lý do, phân tích tác động (requirement, activity, effort, resource, rủi ro, lịch, chi phí, chất lượng), các phương án (dùng quỹ A38, cắt Should/Could, dời deliverable), quyết định, người và ngày duyệt. Change request đã duyệt là điều kiện để lập baseline mới; Original Estimate trên Jira không sửa sau khi V1.0 được duyệt. Đã có ba change request (CR-01, CR-02, CR-03; mục~\ref{sec:3-7}).
+\end{itemize}
 
 \section{Đặc điểm dự án, rủi ro cấp cao và lựa chọn vòng đời}
 \label{sec:1-8}
@@ -437,22 +471,24 @@ Các rủi ro trong bảng ảnh hưởng tới toàn dự án thay vì một ac
 R02, R03, R05, R07, R15 thay cho bốn dòng mô tả chung của bản M1 (quy tắc nghiệp vụ tự đề xuất, thời hạn cố định, chưa có dữ liệu thực tế, giới hạn thời gian và kinh nghiệm). R03, R05, R07, R15 do TV1 làm owner, TV1 duyệt ngày 22/10.
 
 \begingroup\tblsetup\tblzebra
-\begin{longtable}{L{0.8cm}L{2.6cm}L{0.3cm}L{0.3cm}L{0.9cm}L{1.3cm}L{3.0cm}L{2.4cm}L{1.0cm}}
-\caption{Rủi ro cấp cao}\label{tab:risk-high}\\
+\begin{longtable}{L{0.9cm}L{6.9cm}L{0.6cm}L{0.6cm}L{1.0cm}L{1.4cm}L{2.6cm}}
+\caption{Rủi ro cấp cao (bản gọn)}\label{tab:risk-high-ct}\\
 \toprule
-\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{Giảm thiểu} & \textbf{Dự phòng} & \textbf{TT} \\
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{TT} \\
 \midrule
 \endfirsthead
 \toprule
-\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{Giảm thiểu} & \textbf{Dự phòng} & \textbf{TT} \\
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{TT} \\
 \midrule
 \endhead
 \bottomrule
 \endlastfoot
-R15 & Lịch vượt Progress Check 09/11 và demo 07/12 vì năng lực 14h/tuần (E01) và nhiều activity do một người làm. Lịch A21 (21/10) chỉ vừa kịp 07/12, không còn ngày dự trữ; Progress Check 09/11 chưa có QR check-in & 4 & 4 & 16 & TV1 & Baseline V1.0 chỉ gồm Must; A34 không chặn A37; thêm owner cho A24, A31, A35; hỏi thầy phạm vi tối thiểu (A58) & Thu hẹp phạm vi theo thứ tự Could rồi Should & Open \\
-R05 & Change event của giảng viên làm tăng scope đáng kể; nội dung không báo trước (Q17) & 5 & 3 & 15 & TV1 & Contingency A38 (30h) là quỹ ngoài chuỗi (L6 = B), dùng giờ dư của TV2--TV5; template Change Request sẵn & Cắt Should rồi Could; lập Baseline V2.0 & Open \\
-R02 & Ước lượng thấp hơn thực tế do nhóm thiếu kinh nghiệm & 4 & 3 & 12 & TV3 & Tính cả AI review/test/sửa lỗi trong estimate; so sánh actual hằng tuần; báo PM khi vượt; CP2 18/10: ý kiến trái chiều về estimate implement/testing, chưa có số thay thế; PM giữ số 20/10, so actual hằng tuần & Cân bằng tài nguyên/reserve hoặc đổi scope theo quy trình & Open \\
-R03 & Thành viên bận thi giữa kỳ hoặc môn khác; tuần nghỉ chỉ khoảng 6h/người (E02) & 4 & 3 & 12 & TV1 & Thu lịch thi sớm (A50); tuần nghỉ chỉ giao việc nhẹ & Hoán đổi việc, dùng float trước 20/10 & Open \\
-R07 & Thành viên không đóng góp hoặc rời nhóm & 2 & 5 & 10 & TV1 & Owner rõ ràng; theo dõi time tracking và check-in thứ Tư/thứ Năm & Phân lại việc, báo giảng viên & Open \\
+R15 & Lịch vượt Progress Check 09/11 và demo 07/12 vì năng lực 14h/tuần (E01) và nhiều activity do một người làm & 4 & 4 & 16 & TV1 & Open \\
+R05 & Change event của giảng viên làm tăng scope đáng kể & 5 & 3 & 15 & TV1 & Open \\
+R02 & Ước lượng thấp hơn thực tế do nhóm thiếu kinh nghiệm & 4 & 3 & 12 & TV3 & Open \\
+R03 & Thành viên bận thi giữa kỳ hoặc môn khác & 4 & 3 & 12 & TV1 & Đã đóng 23/11 \\
+R07 & Thành viên không đóng góp hoặc rời nhóm & 2 & 5 & 10 & TV1 & Open \\
 \end{longtable}
 \endgroup
+
+Giảm thiểu và dự phòng của từng rủi ro ở Bảng~\ref{tab:risk-high} (Phụ lục~\ref{app:risk}).

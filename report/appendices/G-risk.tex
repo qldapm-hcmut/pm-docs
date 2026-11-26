@@ -1,0 +1,158 @@
+\chapter{Sổ rủi ro đầy đủ và lịch sử thay đổi}
+\label{app:risk}
+
+Phụ lục này giữ nguyên các bảng rủi ro đầy đủ (mọi cột, gồm biện pháp giảm thiểu và dự phòng) và lịch sử thay đổi. Thân báo cáo chỉ giữ bản gọn (Bảng~\ref{tab:risk-high-ct}, \ref{tab:risk-activity-ct}, \ref{tab:risk-response-ct}, \ref{tab:risk-status}). Nguồn: tab Risk Register và Risk History của Sheet master.
+
+\begin{landscape}
+\section{Rủi ro cấp cao (đầy đủ)}
+\begingroup\tblsetup\footnotesize\renewcommand{\arraystretch}{1.1}\tblzebra
+\begin{longtable}{L{1.16cm}L{3.75cm}L{0.44cm}L{0.44cm}L{1.30cm}L{1.88cm}L{4.34cm}L{3.47cm}L{1.45cm}}
+\caption{Rủi ro cấp cao (đầy đủ)}\label{tab:risk-high}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{Giảm thiểu} & \textbf{Dự phòng} & \textbf{TT} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{Giảm thiểu} & \textbf{Dự phòng} & \textbf{TT} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+R15 & Lịch vượt Progress Check 09/11 và demo 07/12 vì năng lực 14h/tuần (E01) và nhiều activity do một người làm. Lịch A21 (21/10) chỉ vừa kịp 07/12, không còn ngày dự trữ; Progress Check 09/11 chưa có QR check-in & 4 & 4 & 16 & TV1 & Baseline V1.0 chỉ gồm Must; A34 không chặn A37; thêm owner cho A24, A31, A35; hỏi thầy phạm vi tối thiểu (A58) & Thu hẹp phạm vi theo thứ tự Could rồi Should & Open \\
+R05 & Change event của giảng viên làm tăng scope đáng kể; nội dung không báo trước (Q17) & 5 & 3 & 15 & TV1 & Contingency A38 (30h) là quỹ ngoài chuỗi (L6 = B), dùng giờ dư của TV2--TV5; template Change Request sẵn & Cắt Should rồi Could; lập Baseline V2.0 & Open \\
+R02 & Ước lượng thấp hơn thực tế do nhóm thiếu kinh nghiệm & 4 & 3 & 12 & TV3 & Tính cả AI review/test/sửa lỗi trong estimate; so sánh actual hằng tuần; báo PM khi vượt; CP2 18/10: ý kiến trái chiều về estimate implement/testing, chưa có số thay thế; PM giữ số 20/10, so actual hằng tuần & Cân bằng tài nguyên/reserve hoặc đổi scope theo quy trình & Open \\
+R03 & Thành viên bận thi giữa kỳ hoặc môn khác; tuần nghỉ chỉ khoảng 6h/người (E02) & 4 & 3 & 12 & TV1 & Thu lịch thi sớm (A50); tuần nghỉ chỉ giao việc nhẹ & Hoán đổi việc, dùng float trước 20/10 & Đã đóng 23/11 \\
+R07 & Thành viên không đóng góp hoặc rời nhóm & 2 & 5 & 10 & TV1 & Owner rõ ràng; theo dõi time tracking và check-in thứ Tư/thứ Năm & Phân lại việc, báo giảng viên & Open \\
+\end{longtable}
+\endgroup
+
+\section{Rủi ro cấp hoạt động (đầy đủ)}
+\begingroup\tblsetup\footnotesize\renewcommand{\arraystretch}{1.1}\tblzebra
+\begin{longtable}{L{0.70cm}L{3.82cm}L{1.61cm}L{0.30cm}L{0.30cm}L{0.90cm}L{1.31cm}L{4.23cm}L{3.32cm}L{1.31cm}}
+\caption{Sổ đăng ký rủi ro cấp hoạt động (đầy đủ)}\label{tab:risk-activity}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{Activity} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{Giảm thiểu} & \textbf{Dự phòng} & \textbf{TT} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{ID} & \textbf{Mô tả} & \textbf{Activity} & \textbf{P} & \textbf{I} & \textbf{Exp.} & \textbf{Owner} & \textbf{Giảm thiểu} & \textbf{Dự phòng} & \textbf{TT} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+R01 & Client phản hồi email chậm (không cam kết thời gian, P02) làm việc làm rõ yêu cầu bị trễ. Vòng 2 đã được trả lời trong cùng ngày 08/10 nên xác suất giảm & A12, A58 & 2 & 4 & 8 & TV2 & Gom câu hỏi và gửi sớm; chừa 2 ngày chờ & Ghi phần chưa rõ thành assumption có mã, làm trước phần Must & Đã đóng 23/11 \\
+R04 & Check-in QR chạy kém trên điện thoại hoặc mạng yếu & A20, A33 & 3 & 4 & 12 & TV5 & Spike A20 trên nhiều thiết bị; mobile-first & Nhập mã hoặc xác nhận thủ công (REQ-11) & Open \\
+R06 & Frontend và backend lệch API & A25, A37 & 3 & 3 & 9 & TV3 & Chốt API contract ở A25; TV4 review & Dành A37 để tích hợp & Open \\
+R08 & Các bảng trong báo cáo mâu thuẫn nhau (ID, effort, lịch) & A57, A49, A45 & 3 & 4 & 12 & TV1 & Một nguồn sự thật là Sheet master; rà truy vết ở A57 trước mỗi checkpoint & Review chéo và sửa trước khi nộp & Open \\
+R09 & Demo bằng Docker local lỗi trên máy demo hoặc chưa có video dự phòng (nhóm bỏ hosting cloud từ 16/11) & A24, A46 & 3 & 4 & 12 & TV5 & Chạy thử Docker từ máy sạch (TV5) trước demo ít nhất 2 ngày; quay video dự phòng & Phát video dự phòng; demo API & Open \\
+R11 & GitLab server nội bộ: giảng viên không truy cập được hoặc server sập & A01 & 2 & 4 & 8 & TV5 & Mirror công khai (PM chốt 13/10); backup định kỳ & Khôi phục từ bản mirror & Open \\
+R12 & Bằng chứng nằm trong Jira, Jenkins nên không đưa được vào bài nộp & A57 & 3 & 3 & 9 & TV2 & Export định kỳ; lưu ảnh lên Drive & Chụp màn hình trước khi nộp & Open \\
+R14 & Yêu cầu mới từ Q19 (sửa/hủy sự kiện đã công bố, thông báo người đã đăng ký) làm tăng effort A27, A29 mà số nháp chưa tính & A27, A29, A18 & 4 & 3 & 12 & TV3 & Tính sửa/hủy sự kiện và thông báo trong A27, tránh tính trùng với A29; tách phần Must và Should & PM/BA xác nhận REQ-21 (Should) trước khi cắt yêu cầu client & Open \\
+R16 & Báo cáo (A34) tích hợp muộn ở A39 nên lỗi dữ liệu phát hiện muộn & A34, A39 & 3 & 3 & 9 & TV3 & Chốt schema ở A25; dùng dữ liệu mẫu 500 lượt đăng ký; test hợp đồng dữ liệu sớm & Dành thời gian sửa trong A53 & Đã đóng 23/11 \\
+R17 & Waitlist tự động chuyển bị lỗi khi nhiều người hủy hoặc đăng ký đồng thời (tranh chấp) & A62 & 3 & 4 & 12 & TV3 & Transaction/khóa; test FIFO, không chuyển trùng, đồng thời 100 lượt; thông báo lỗi không rollback & Fallback thủ công phải có quyền riêng và tránh xung đột với tiến trình tự động; không thay thế yêu cầu tự chuyển bắt buộc & Open \\
+R18 & Gửi thông báo thất bại hoặc chưa có kênh email & A62, A27 & 3 & 2 & 6 & TV5 & Thông báo trong ứng dụng là bắt buộc, email tùy chọn; thất bại không hoàn tác chuyển (Q14) & Hiển thị trạng thái trong ứng dụng & Open \\
+R19 & TV1 quá tải: A36 và A57 kéo dài suốt thực thi, cộng toàn bộ phần quản trị và báo cáo từ 18/10, trên năng lực khoảng 14h/tuần (E01) & A36, A57 & 4 & 3 & 12 & TV1 & TV1 nhận toàn bộ phần quản trị và báo cáo từ 18/10 (có AI hỗ trợ); ghi time tracking gọn; TV1 báo năng lực mới để san tải ở A50 & Giảm tần suất rà truy vết & Open \\
+R20 & Lộ thông tin xác thực khi mirror repo công khai (mật khẩu, khóa, dữ liệu thật) & A01, A24 & 2 & 5 & 10 & TV5 & Quét secret trước khi mirror; .gitignore; đổi mật khẩu đã từng lưu trong file & Thu hồi và đổi khóa, gỡ lịch sử commit & Open \\
+R21 & Giao diện quét QR hoặc form bị vỡ layout trên điện thoại nhỏ. & A28, A35 & 3 & 4 & 12 & TV4 & Dùng Mobile-first design & Chuẩn bị sẵn giao diện fallback HTML rút gọn & Open \\
+R22 & Chậm trễ review tài liệu chéo do các thành viên bận việc cá nhân & A57 & 4 & 3 & 12 & TV4 & Đặt quy định cross-review tối đa 24h & Quá 24h không phản hồi PM có quyền tự duyệt & Open \\
+\end{longtable}
+\endgroup
+
+\section{Activity phản hồi rủi ro (đầy đủ)}
+\begingroup\tblsetup\footnotesize\renewcommand{\arraystretch}{1.1}\tblzebra
+\begin{longtable}{L{2.19cm}L{2.78cm}L{2.34cm}L{10.83cm}L{1.76cm}}
+\caption{Activity phản hồi rủi ro (đầy đủ)}\label{tab:risk-response}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Activity} & \textbf{Loại} & \textbf{Rủi ro} & \textbf{Nội dung phản hồi} & \textbf{Effort (giờ)} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Activity} & \textbf{Loại} & \textbf{Rủi ro} & \textbf{Nội dung phản hồi} & \textbf{Effort (giờ)} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+A20 & Giảm thiểu & R04 & Thử quét QR trên nhiều thiết bị trước khi làm A33; timebox $P = 6$ giờ (TV3); kết quả spike là đầu vào của A33 & 5,7 \\
+A38 & Dự phòng & R05 & Quỹ 30 giờ, không có ngày trong lịch, nằm ngoài chuỗi phụ thuộc; dùng qua change request khi có change event (Q17) hoặc để làm Should/Could khi còn thời gian & 30 \\
+A58 & Giảm thiểu & R01, R15 & Gom các điểm còn ảnh hưởng scope vào một email (phạm vi tối thiểu cho Progress Check, kênh thông báo); gửi 23/10, thầy trả lời 25/10 (Q21, Q22) & 2,1 \\
+A57 & Giảm thiểu & R08, R12, R22 & Rà truy vết trước mỗi checkpoint với Sheet master là nguồn duy nhất; export bằng chứng Jira, Jenkins; review chéo tối đa 24 giờ & 10,3 \\
+A36 & Giảm thiểu & R07 & Theo dõi time tracking và check-in thứ Tư/thứ Năm để phát hiện sớm thành viên không đóng góp & 24,8 \\
+A24 & Giảm thiểu & R09, R20 & Deploy sớm, kiểm tra trước demo 2 ngày; quét secret, \texttt{.gitignore} trước khi mirror công khai &  \\
+A25 & Giảm thiểu & R06, R16 & Chốt API contract (TV4 review) và schema; dữ liệu mẫu 500 lượt đăng ký cho báo cáo &  \\
+A27 & Giảm thiểu & R14, R18 & Tính sửa/hủy sự kiện và thông báo trong A27, không tính trùng A29; thông báo trong ứng dụng là bắt buộc &  \\
+A62 & Giảm thiểu & R17, R18 & Transaction/khóa; test FIFO, không chuyển trùng, đồng thời 100 lượt; thông báo lỗi không hoàn tác việc chuyển (Q14) &  \\
+A28, A35 & Giảm thiểu, dự phòng & R21 & Mobile-first; dự phòng giao diện fallback HTML rút gọn &  \\
+A33 & Dự phòng & R04 & Nhập mã hoặc xác nhận thủ công khi QR không dùng được (REQ-11) &  \\
+A37 & Dự phòng & R06 & Dành thời gian tích hợp frontend và backend &  \\
+A53 & Dự phòng & R16 & Sửa lỗi dữ liệu báo cáo phát hiện ở A39 &  \\
+A50 & Giảm thiểu & R03, R19 & Thu lịch thi sớm, giao việc nhẹ trong tuần nghỉ; san tải theo năng lực mới của TV1 &  \\
+\end{longtable}
+\endgroup
+
+\section{Lịch sử thay đổi rủi ro}
+\begingroup\tblsetup\footnotesize\renewcommand{\arraystretch}{1.1}\tblzebra
+\begin{longtable}{L{2.82cm}L{1.13cm}L{7.77cm}L{6.07cm}L{2.11cm}}
+\caption{Lịch sử thay đổi rủi ro}\label{tab:risk-history}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Ngày} & \textbf{ID} & \textbf{Thay đổi} & \textbf{Lý do} & \textbf{Người cập nhật} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Ngày} & \textbf{ID} & \textbf{Thay đổi} & \textbf{Lý do} & \textbf{Người cập nhật} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+02/10/2026 & R10 & Rủi ro xảy ra: M1 là buổi trình bày 05/10, không phải hạn nộp 11/10. Chuyển thành issue I01, kích hoạt phương án dự phòng & Nhóm đối chiếu lại thông báo trên lớp & TV1 \\
+08/10/2026 & R13 & Đóng: thầy xác nhận không có Milestone 2 và 3, chỉ một Progress Check & Phản hồi Q16 ngày 08/10 (19:58) & TV1 \\
+08/10/2026 & R01 & P 3$\rightarrow$2, exposure 12$\rightarrow$8 & Vòng 2 gửi 16:39 được trả lời trong cùng ngày 19:58 & TV1 \\
+08/10/2026 & R05 & Cập nhật giảm thiểu: contingency chung thay cho activity riêng & Q17: change event không báo trước nội dung, không tạo activity riêng & TV1 \\
+13/10/2026 & R11 & P 3$\rightarrow$2, exposure 12$\rightarrow$8; thêm mirror công khai & PM chốt mirror công khai ngày 13/10 & TV1 \\
+13/10/2026 & R14 & Thêm mới: yêu cầu mới từ Q19 làm tăng effort & Phản hồi 08/10 thêm sửa/hủy sự kiện và thông báo & TV1 \\
+13/10/2026 & R15 & Thêm mới: lịch vượt Progress Check và demo theo năng lực E01 & Phân tích tải và đề xuất thời lượng (nháp AI) ngày 12/10 & TV1 \\
+13/10/2026 & R16 & Thêm mới: báo cáo tích hợp muộn ở A39 & A34 không còn chặn A37 để giữ Progress Check & TV1 \\
+13/10/2026 & R17 & Thêm mới: tranh chấp khi waitlist tự chuyển & Q14, Q15: quy tắc waitlist và đăng ký lại & TV1 \\
+13/10/2026 & R18 & Thêm mới: thông báo thất bại hoặc thiếu kênh email & Q14: thông báo lỗi không hoàn tác việc chuyển & TV1 \\
+13/10/2026 & R19 & Thêm mới: TV1 quá tải & Tải theo tuần vượt 7h khi tính theo effort đã chốt & TV1 \\
+13/10/2026 & R20 & Thêm mới: lộ thông tin xác thực khi mirror công khai & Quyết định mirror công khai; file ghi mật khẩu trong thư mục dự án & TV1 \\
+14/10/2026 & R02 & Sửa giảm thiểu (tính cả AI review/test/sửa lỗi; báo PM khi vượt) và dự phòng (cân bằng tài nguyên/reserve hoặc đổi scope) & TV3 rà estimate và rủi ro (checklist 14/10) & TV1 (ghi lại 20/10) \\
+14/10/2026 & R14 & Sửa giảm thiểu: tính sửa/hủy sự kiện và thông báo trong A27, tránh tính trùng A29; dự phòng: PM/BA xác nhận REQ-21 trước khi cắt & TV3 rà estimate A27, A29 (checklist 14/10) & TV1 (ghi lại 20/10) \\
+14/10/2026 & R17 & Sửa giảm thiểu (test FIFO, không chuyển trùng, đồng thời 100 lượt) và dự phòng (fallback thủ công có quyền riêng) & TV3 rà thiết kế waitlist (checklist 14/10) & TV1 (ghi lại 20/10) \\
+14/10/2026 & R21 & Thêm mới: giao diện quét QR hoặc form vỡ layout trên điện thoại nhỏ (P3, I4) & Owner TV4 bổ sung, xác nhận 14/10 & TV1 (ghi lại 20/10) \\
+14/10/2026 & R22 & Thêm mới: chậm review tài liệu chéo do thành viên bận (P4, I3) & Owner TV4 bổ sung, xác nhận 14/10 & TV1 (ghi lại 20/10) \\
+20/10/2026 & R02 & Bổ sung: ý kiến trái chiều về estimate implement/testing tại CP2 18/10; PM giữ số 20/10 & Kết quả CP2 18/10 & TV1 (ghi lại 20/10) \\
+20/10/2026 & R19 & Cập nhật giảm thiểu: TV1 nhận toàn bộ phần quản trị và báo cáo từ 18/10; chờ chấm lại P, I & Phân vai lại tại họp 18/10 & TV1 (ghi lại 20/10) \\
+22/10/2026 & R15 & Sửa mô tả: năng lực 14h/tuần (E01) thay 12h/tuần; thêm kết quả lịch A21: chỉ vừa kịp 07/12, không còn ngày dự trữ, Progress Check 09/11 chưa có QR check-in & E01 chốt 14h/tuần (20/10); lịch A21 chạy lại 21/10 & TV1 (ghi lại 22/10) \\
+22/10/2026 & R05 & Sửa giảm thiểu: A38 là quỹ dự phòng 30h ngoài chuỗi (L6 = B), bỏ \enquote{8 ngày sau Progress Check} & L6 = B, nhóm duyệt tại CP2 18/10 & TV1 (ghi lại 22/10) \\
+22/10/2026 & R19 & Sửa mô tả: năng lực khoảng 14h/tuần (E01) thay 7h/tuần, khớp báo cáo & Năng lực TV1 chốt 14h/tuần (A50, 20/10) & TV1 (ghi lại 22/10) \\
+25/10/2026 & R15 & Rủi ro được nhóm chấp nhận: A23 chọn phương án V0 (giữ lịch, 0 ngày dự trữ trước demo 07/12), không tạo config V1/V2. Cost baseline 394,2h. Các giảm thiểu hiện có giữ nguyên (Baseline chỉ Must, cắt Could rồi Should) & Họp A23 ngày 25/10: nhóm đồng ý toàn bộ 18 mục checklist, mục 17 chọn V0 & TV1 (ghi lại 27/10) \\
+22/10/2026 & R11 & Đính chính: tab 4 ghi \enquote{Đã đóng 18/10} nhưng I03 xảy ra 22/10 (GitLab chạy trên máy cá nhân, các thành viên khác không truy cập được) nên rủi ro thực tế vẫn mở. Xử lý tại A23 25/10: giữ GitLab và Jenkins, do TV3 giữ. Chưa chốt cách các thành viên truy cập repo, mirror công khai gửi thầy, TV5 kiểm stage Baseline frozen. Trạng thái: Open; owner đổi từ TV5 sang TV3 & I03 (22/10) trái với dòng \enquote{Đã đóng 18/10}; quyết định A23 25/10 & TV1 (ghi lại 27/10) \\
+01/11/2026 & R04 & Giảm thiểu chưa thực hiện: spike A20 chưa làm, quá hạn 24/10. Giữ nguyên P 3, I 4, chờ owner TV5 chấm lại sau spike & TV1 báo 01/11; TV3 chuẩn bị bổ sung QR vào PR \#14 nên cần kết quả spike trước khi chốt & TV1 \\
+08/11/2026 & R11 & Đề xuất đóng: nhóm đã chuyển sang GitHub (org qldapm-hcmut) ngày 30/10; GitLab tự host không còn dùng; I03 chấm dứt. Giảm thiểu và dự phòng cũ không còn áp dụng & TV1 chốt 30/10 đã chuyển khỏi GitLab; CI/CD do người dựng repo code thiết lập (thay quyết định Jenkins 21/10) & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R15 & Rủi ro đang xảy ra: A24, A28, A31, A20, A22 quá hạn trên Jira (hạn 22–28/10), chưa thấy bằng chứng trên GitHub cho frontend, CI, deploy; tab Activity float -9 đến -12 trên chuỗi A24$\rightarrow$A37. Đề xuất P 4$\rightarrow$5, exposure 16$\rightarrow$20; TV1 quyết (P, I trong tab 4 chưa đổi) & Đối chiếu Jira, GitHub, Sheet ngày 08/11, một ngày trước Progress Check & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R20 & Bổ sung: pm-docs public từ 30/10 sau khi quét secret; 08/11 kiểm tra quyền chia sẻ Sheet master vẫn là \enquote{bất kỳ ai có link đều sửa được} trong khi link nằm trong repo public. Đề xuất P 2$\rightarrow$4 (exposure 20) đến khi giới hạn quyền; TV1 quyết (P, I trong tab 4 chưa đổi); giảm thiểu thêm: thêm thành viên theo email rồi tắt chia sẻ bằng link & Kiểm tra quyền Drive 08/11 (chỉ đọc); đã ghi nhận từ 01/11 & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R02 & Bổ sung: chưa kiểm chứng được vì thiếu actual (Time Tracking 52,5h, dừng 22/10; Jira worklog 9h của TV1). Giữ P, I & Thiếu dữ liệu actual; đang thu giờ 22/10–08/11 & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R23 & Thêm mới (đề xuất): giao diện web chưa có trên main; Progress Check chỉ demo được API & Nhánh fix/\allowbreak frontend-api-integration rỗng; A28 Backlog quá hạn 08/11 & TV1 (nháp AI 08/11, chờ duyệt) \\
+08/11/2026 & R24 & Thêm mới (đề xuất): toàn bộ PR và commit backend do một người; chưa có bằng chứng review chéo; main chưa bảo vệ & GitHub 08/11: 22 PR và 57 commit từ 25/10 đều của một tác giả; truy cập API trả \enquote{Branch not protected} & TV1 (nháp AI 08/11, chờ duyệt) \\
+16/11/2026 & R11 & Đóng: TV1 duyệt đề xuất đóng 08/11; GitHub thay GitLab, I03 chấm dứt & TV1 duyệt 16/11 & TV1 \\
+16/11/2026 & R15 & Chấm lại P 4$\rightarrow$5, exposure 16$\rightarrow$20 (TV1 chốt). A30 (hạn 16/11) chưa chạy, A24 và A28 vẫn quá hạn; Progress Check 09/11 không có nhận xét; thầy thông báo hai tuần cuối demo và viva; mốc sẵn sàng 29/11, lịch rút gọn P-A & Đối chiếu Jira, GitHub, Sheet ngày 16/11; quyết định D1, D2 & TV1 \\
+16/11/2026 & R20 & Bổ sung: Sheet master vẫn \enquote{bất kỳ ai có link là người chỉnh sửa}, chỉ TV1 trong danh sách theo email. TV1 quyết giữ nguyên, chấp nhận rủi ro, sẽ báo nhóm; P, I giữ nguyên (P 2, I 5), đề xuất P 4 ngày 08/11 không áp dụng & Quyết định D10 ngày 16/11 & TV1 \\
+16/11/2026 & R23 & Duyệt đề xuất 08/11: owner TV4, P5, I4 giữ nguyên. Cập nhật: frontend main chỉ có scaffold; PR \#6 đang mở, mục tiêu merge trước 19/11 & TV1 chọn owner 16/11; kiểm tra GitHub 16/11 & TV1 \\
+16/11/2026 & R24 & Duyệt đề xuất 08/11: owner TV2, P3, I5 giữ nguyên. Cập nhật: PR \#28 của tài khoản khác đang mở; chưa có branch protection; yêu cầu review chéo trước khi merge & TV1 chọn owner 16/11; kiểm tra GitHub 16/11 & TV1 \\
+16/11/2026 & R25 & Thêm mới: demo và viva có thể sớm hơn mốc 07/12; P5, I4, owner TV1 & Thầy thông báo hai tuần cuối các nhóm demo và viva (TV1 báo 16/11); quyết định D1 & TV1 \\
+16/11/2026 & R26 & Thêm mới: chưa có bằng chứng kiểm thử; P4, I4, owner TV2 & Không thấy kết quả test trong docs/\allowbreak quality/\allowbreak results/\allowbreak  lúc 16/11 & TV1 \\
+16/11/2026 & R19 & Bổ sung: TV1 viết gần hết báo cáo (D11); tải tăng, P, I chờ TV1 chấm lại & Quyết định D11 ngày 16/11 & TV1 \\
+16/11/2026 & R09 & Bổ sung: TV1 chốt Docker local kèm video dự phòng (D3), hosting là Could; rủi ro hosting giảm, P, I chờ owner TV5 chấm lại & Quyết định D3 ngày 16/11 & TV1 \\
+23/11/2026 & R01 & Đóng: không còn câu hỏi nào chờ thầy; scope đã chốt ở Baseline V2.0 & Client Log đến Q22 (25/10) đã có trả lời đủ; thầy không báo thêm yêu cầu về phạm vi; thông báo hai tuần cuối demo và viva (16/11) là change event, xử lý ở R25 và mục~\ref{sec:3-6}; nhóm không gửi email hỏi thêm (TV1 chốt 16/11) & TV1 \\
+23/11/2026 & R16 & Đóng: báo cáo đã được tích hợp và kiểm với bộ 500 đăng ký (250 đã check-in) ở lượt A39 ngày 20/11; không phát hiện lỗi dữ liệu & T-RP-01 đến 03 đạt, summary và hai file CSV khớp dữ liệu nguồn (mục~\ref{sec:3-5}); kiểm ở mức API, giao diện báo cáo chưa kiểm riêng & TV1 \\
+23/11/2026 & R26 & Đóng: đã có bằng chứng kiểm thử & TV2 chạy 35 test case ngày 18--20/11 và lưu kết quả ở \texttt{docs/\allowbreak quality/\allowbreak results/}: 32 đạt, 2 không đạt, 1 chưa chạy. Giới hạn còn lại (D01, D02, T-AUTH-01, UAT, thiết bị) ghi ở mục~\ref{sec:3-5} & TV1 \\
+23/11/2026 & R03 & Đóng: tuần nghỉ giữa kỳ và giai đoạn thi giữa kỳ đã qua & TV1 xác nhận hết rủi ro ngày 23/11 & TV1 \\
+23/11/2026 & R20 & Bổ sung: TV1 tiếp tục chấp nhận mở Sheet master cho bất kỳ ai có link chỉnh sửa và sẽ chuyển lại thành chỉ đọc sau (chưa nêu thời điểm); P, I giữ nguyên (P 2, I 5), rủi ro còn mở & TV1 xác nhận ngày 23/11 & TV1 \\
+23/11/2026 & R19 & Giữ P 4, I 3 (exposure 12) sau khi TV1 xem lại tải; đóng mục chờ chấm lại từ 20/10 và 16/11 & TV1 quyết ngày 23/11 & TV1 \\
+23/11/2026 & R05 & Bổ sung: change event đầu tiên của thầy, thông báo trên lớp thứ Hai 16/11 (demo và viva trong hai tuần cuối, mốc sớm hơn khoảng một tuần so với 07/12); phản hồi theo mục~\ref{sec:3-6} và Baseline V2.0; quỹ A38 đã dùng, chưa có số giờ; P, I chưa đổi & TV1 xác nhận ngày 23/11 & TV1 \\
+23/11/2026 & R09 & Chấm lại P 2$\rightarrow$3, I 4, exposure 8$\rightarrow$12 (TV1 duyệt đề xuất AI). Đổi mô tả từ \enquote{hosting lỗi} sang Docker demo lỗi trên máy demo hoặc chưa có video dự phòng; giảm thiểu: chạy thử từ máy sạch trước demo, quay video; dự phòng: phát video, demo API. Hạ về P 2 khi TV5 chạy máy sạch và có video & Nhóm bỏ hosting cloud (D3, 16/11); Docker mới chạy trên máy TV2 (18--20/11), chưa chạy từ máy sạch của TV5, video chưa có & TV1 \\
+26/11/2026 & R02 & Bổ sung: TV1 xác nhận nhóm đã thống nhất từ trước chỉ ghi effort thực tế từ worklog Jira đầu tiên (21/10); giờ hồi tưởng trước đó để trống vì không ai nhớ, không thu bù (I02 chấp nhận); worklog của TV3 giữ nguyên. Jira có 118,5 giờ đến 26/11. Rủi ro còn mở: so sánh actual với estimate chỉ ở mức đã ghi, không kết luận độ lệch, P, I chưa đổi & Quyết định TV1 ngày 26/11 (nhắc lại thống nhất cũ của nhóm); mục~\ref{sec:3-3}, \ref{sec:4-2}, Phụ lục~\ref{app:weekly-logs} & TV1 \\
+26/11/2026 & R24 & Bổ sung: TV1 chấp nhận không bật branch protection cho 	exttt{main} (TV3 là chủ hai repo code); biện pháp giảm thiểu bật branch protection không thực hiện; rủi ro còn mở, P, I chưa đổi & Quyết định TV1 ngày 26/11; mục~ef{sec:1-7}, ef{sec:3-4}, ef{sec:3-5} & TV1 \
+\end{longtable}
+\endgroup
+\end{landscape}

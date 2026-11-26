@@ -6,12 +6,10 @@
   \item Thư mục Drive chứa Sheet master (Client Log, ...) và minh chứng: \url{https://drive.google.com/drive/folders/1UkYtjNzXvqCz692bWuZzUaHzDmbNyent}
   \item Sheet master: \url{https://docs.google.com/spreadsheets/d/1jG_FqUl93JeiN-5hRsLuTG49J6-3cBZJQsKQAnKJ4Xw/edit}
   \item Board Jira: \url{https://minhphan.atlassian.net/jira/software/projects/SCRUM/boards/1}
-  \item GitHub, tổ chức \texttt{qldapm-hcmut} (nhóm chuyển từ GitLab sang GitHub ngày 30/10/2026, TV1 chốt): mã nguồn backend \url{https://github.com/qldapm-hcmut/ticket-system-uni-be}; mã nguồn frontend \url{https://github.com/qldapm-hcmut/ticket-system-uni-fe}; hồ sơ quản lý dự án \url{https://github.com/qldapm-hcmut/pm-docs} (cả ba public).
+  \item GitHub, tổ chức \texttt{qldapm-hcmut} (nhóm chuyển từ GitLab sang GitHub ngày 30/10/2026, TV1 chốt): mã nguồn backend \url{https://github.com/qldapm-hcmut/ticket-system-uni-be}; mã nguồn frontend \url{https://github.com/qldapm-hcmut/ticket-system-uni-fe}; hồ sơ quản lý dự án \url{https://github.com/qldapm-hcmut/pm-docs} (cả ba public); TV3 là chủ hai repo code.
 \end{itemize}
 
-\kiemtra{Xác nhận thư mục Drive đã chia sẻ cho giảng viên.}
-
-\kiemtra{Quyền chia sẻ Sheet master hiện là \enquote{bất kỳ ai có link là người chỉnh sửa} (kiểm tra 16/11) trong khi link nằm trong repo công khai; TV1 quyết định giữ nguyên, chấp nhận rủi ro (R20) và sẽ báo nhóm. Quyền của thư mục Drive chưa kiểm tra lại. TV1 quyết định có giữ câu này trong bản nộp hay không.}
+Quyền chia sẻ Sheet master hiện là \enquote{bất kỳ ai có link là người chỉnh sửa} (kiểm tra 16/11) trong khi link nằm trong repo công khai; TV1 (chủ Sheet master) quyết định giữ nguyên, chấp nhận rủi ro (R20) và sẽ chuyển lại thành chỉ đọc sau. Quyền của thư mục Drive chưa kiểm tra lại.
 
 \textbf{Chạy backend (tóm tắt từ README của \texttt{ticket-system-uni-be}).}
 \begin{itemize}
@@ -26,4 +24,14 @@
   \item \texttt{npm run dev} (\texttt{http://localhost:5173}); \texttt{npm run build} để build bản production.
 \end{itemize}
 
-\todo{Tài khoản mẫu Student, Organizer, Admin để demo và hướng dẫn chạy bằng Docker (theo quyết định TV1 16/11: Docker local kèm video dự phòng); điền sau khi PR \#28 (backend) và \#6 (frontend) merge và TV5 thử từ máy sạch. Các lệnh ở trên theo README hiện tại.}
+\textbf{Tài khoản mẫu để demo.} Chạy backend với \texttt{AUTH\_MODE=local}; tài khoản và dữ liệu là dữ liệu tổng hợp, không phải người thật. Đăng nhập Google thật chưa được kiểm thử vì nhóm chưa có \texttt{GOOGLE\_CLIENT\_ID} (T-AUTH-01, mục~\ref{sec:3-5}).
+\begin{itemize}
+  \item \texttt{student.demo@hcmut.edu.vn}: vai trò Student, mã sinh viên \texttt{DEMO0001}.
+  \item \texttt{organizer.demo@hcmut.edu.vn}: vai trò Organizer, thuộc đơn vị \texttt{DEMO} (Demo Event Unit); chọn đơn vị này khi tạo sự kiện.
+  \item \texttt{admin.demo@hcmut.edu.vn}: vai trò Admin; Admin không tự có quyền Organizer.
+  \item Lấy access token (hiệu lực 8 giờ) bằng \texttt{make dev-token ROLE=student} (hoặc \texttt{organizer}, \texttt{admin}) trên máy chạy cơ sở dữ liệu; lệnh chỉ chạy khi \texttt{AUTH\_MODE=local} và cơ sở dữ liệu ở localhost. Trên giao diện, dán token vào tab \enquote{Dán token trực tiếp} (cần \texttt{VITE\_ENABLE\_DEV\_LOGIN=true}).
+\end{itemize}
+
+\textbf{Chạy toàn bộ bằng Docker (theo README backend).} Đặt hai repo cạnh nhau dưới tên \texttt{ticket-system-uni-be} và \texttt{ticket-system-uni-fe}; điền \texttt{DOCKER\_DATABASE\_URL}, \texttt{JWT\_SECRET}, \texttt{QR\_HMAC\_SECRET} trong \texttt{.env}; từ repo backend chạy \texttt{docker compose -f compose.yaml -f compose.host.yaml up -d --build --wait}. Compose khởi động PostgreSQL, áp dụng migration, chạy API, worker và frontend Nginx; web mở ở cổng 5174 (điện thoại cùng Wi-Fi dùng \texttt{http://<IP-LAN-của-PC>:5174}). Quét QR bằng camera điện thoại cần HTTPS với chứng chỉ được tin cậy (README đề xuất Tailscale), hoặc trên Chrome Android dùng tùy chọn coi địa chỉ local là secure context như lần chạy 19/11. Luồng này cần frontend có \texttt{Dockerfile}, \texttt{nginx.conf} và đăng nhập demo, hiện chỉ có ở PR \#6.
+
+Trạng thái đến 26/11: PR \#28 (backend) đã merge 15/11; PR \#6 (frontend) chưa merge nên Docker full-stack chạy được từ nhánh PR \#6, chưa từ \texttt{main} của frontend. TV2 đã chạy từ Docker trên máy của TV2 (18--20/11, mục~\ref{sec:3-5}); chưa có xác nhận chạy từ máy sạch của TV5; video demo dự phòng (theo quyết định TV1 16/11) chưa có.
