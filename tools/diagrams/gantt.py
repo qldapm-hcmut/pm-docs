@@ -1,7 +1,7 @@
 """Vẽ Gantt (đã san tải) ra HTML từ kết quả sched.py.
 Dùng: python gantt.py <master.xlsx> <config.json> <kết-quả.json> <file-ra.html>"""
 import sys, html, datetime as dt
-from common import load, owners, num
+from common import load, owners, num, css as css_base
 
 XLSX, CFG, RES, OUT = sys.argv[1:5]
 R, SC, RES_, PRED, NEW = load(XLSX, CFG, RES)
@@ -28,7 +28,7 @@ for name, ids in sections:
     for a in ids:
         rows.append(('act', a, y)); y += RH
 chart_bottom = y
-height = y + 70
+height = y + 92
 svg, txt, bg = [], [], []
 for i in range(days):
     d = T0 + dt.timedelta(days=i)
@@ -79,25 +79,25 @@ for i, (d, t, c) in enumerate(marks):
     bg.append(f'<line x1="{x}" y1="{TOP}" x2="{x}" y2="{chart_bottom + 6 + 13 * (i % 2)}" class="{c}"/>')
     txt.append(f'<text x="{x}" y="{chart_bottom + 17 + 13 * (i % 2)}" class="{c}t">{t} ({d[8:]}/{d[5:7]})</text>')
 legend = (f'<div class="lg" style="top:{chart_bottom + 40}px"><i class="crit"></i>đường găng sau san tải <i class="bar"></i>activity '
-          '<i class="done"></i>đã xong <i class="ham"></i>hammock <b>◆</b> họp/mốc trong một ngày · '
-          'năng lực 14h/tuần mỗi người, khoảng 2h/ngày; cột nền xám là cuối tuần; A38 (30h) là quỹ dự phòng, không có ngày</div>')
-page = f'''<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>
+          '<i class="done"></i>đã xong <i class="ham"></i>hammock <b>◆</b> họp/mốc trong một ngày'
+          '<span class="note">Năng lực 14h/tuần mỗi người, khoảng 2h/ngày; cột nền xám là cuối tuần; A38 (30h) là quỹ dự phòng, không có ngày.</span></div>')
+page = f'''<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>{css_base()}
 @page {{ size: {width}px {height}px; margin: 0 }}
-html,body {{ margin:0; width:{width}px; height:{height}px; background:#fff; font-family:"Segoe UI",Arial,sans-serif }}
-svg {{ position:absolute; left:0; top:0 }}
-.wk0 {{ fill:#e8eef3 }} .wk1 {{ fill:#d6e0e8 }} .we {{ fill:#f4f4f4 }} .wl {{ stroke:#b0bec5; stroke-width:1 }}
-.sec {{ fill:#eceff1 }} .wkt {{ font-size:11px; text-anchor:middle; fill:#263238; font-weight:600 }}
-.dt {{ font-size:9px; text-anchor:middle; fill:#607d8b }}
-.sect {{ font-size:12px; font-weight:700; fill:#263238 }} .lbl {{ font-size:11.5px; fill:#1a1a1a }} .id {{ font-weight:700 }}
-.bl {{ font-size:10.5px; fill:#37474f }}
-.bar {{ fill:#5b8db8 }} .crit {{ fill:#c62828 }} .done {{ fill:#b0b0b0 }} .ham {{ fill:#8e6bb0 }}
+html,body {{ width:{width}px; height:{height}px }}
+.wk0 {{ fill:#eef2f6 }} .wk1 {{ fill:#e1e8ef }} .we {{ fill:#f6f7f9 }} .wl {{ stroke:#c3d1e0; stroke-width:1 }}
+.sec {{ fill:#eef2f6 }} .wkt {{ font-size:11px; text-anchor:middle; fill:var(--ink); font-weight:600 }}
+.dt {{ font-size:9px; text-anchor:middle; fill:var(--mute) }}
+.sect {{ font-size:12.5px; font-weight:700; fill:var(--navy) }} .lbl {{ font-size:12px; fill:var(--ink) }} .id {{ font-weight:700; fill:var(--navy) }}
+.bl {{ font-size:11px; fill:var(--mute) }}
+.bar {{ fill:#7f9bbb }} .crit {{ fill:var(--crit) }} .done {{ fill:#c5ccd3 }} .ham {{ fill:url(#hatch); stroke:var(--navy); stroke-width:.8 }}
 .ms {{ stroke:#fff; stroke-width:1 }}
-.mk {{ stroke:#263238; stroke-width:1.4 }} .old {{ stroke:#9e9e9e; stroke-width:1.2; stroke-dasharray:4 3 }}
-.mkt, .oldt {{ font-size:10.5px; text-anchor:middle }} .mkt {{ fill:#263238; font-weight:600 }} .oldt {{ fill:#777 }}
-.lg {{ position:absolute; left:{PAD}px; right:{PAD}px; font-size:11.5px; color:#333 }}
-.lg i {{ display:inline-block; width:22px; height:10px; vertical-align:middle; margin:0 4px 0 10px; border-radius:2px }}
-.lg i.bar {{ background:#5b8db8 }} .lg i.crit {{ background:#c62828 }} .lg i.done {{ background:#b0b0b0 }} .lg i.ham {{ background:#8e6bb0; height:5px }}
-.lg b {{ margin-left:10px }}
-</style></head><body><svg width="{width}" height="{height}">{"".join(bg)}{"".join(svg)}{"".join(txt)}</svg>{legend}</body></html>'''
+.mk {{ stroke:var(--ink); stroke-width:1.4 }} .old {{ stroke:var(--grey); stroke-width:1.2; stroke-dasharray:4 3 }}
+.mkt, .oldt {{ font-size:11px; text-anchor:middle }} .mkt {{ fill:var(--ink); font-weight:600 }} .oldt {{ fill:var(--mute) }}
+.lg {{ left:{PAD}px; right:{PAD}px }}
+.lg i.bar {{ background:#7f9bbb; border-color:#7f9bbb }} .lg i.crit {{ background:var(--crit); border-color:var(--crit) }}
+.lg i.done {{ background:#c5ccd3; border-color:#c5ccd3 }}
+.lg i.ham {{ height:8px; border-color:var(--navy); background:repeating-linear-gradient(45deg,#fff 0 2px,var(--navy) 2px 3.5px) }}
+.lg b {{ margin-left:12px; color:var(--ink) }}
+</style></head><body><svg width="{width}" height="{height}"><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><rect width="2.2" height="6" fill="#1d3b5c"/></pattern></defs>{"".join(bg)}{"".join(svg)}{"".join(txt)}</svg>{legend}</body></html>'''
 open(OUT, 'w', encoding='utf-8').write(page)
 print(OUT, width, height)

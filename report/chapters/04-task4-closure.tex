@@ -1,26 +1,226 @@
 \chapter{Bàn giao và đánh giá (Task 4)}
 \label{chap:task4}
 
+Chương này tổng hợp từ bằng chứng đến 26/11 (kết quả kiểm thử của TV2, GitHub, Jira, Sheet); các mục chờ UAT (A41) và frontend vào \texttt{main} giữ ghi chú \texttt{\textbackslash todo}. Khung chương do AI dựng ngày 23/11; phần đóng góp ở mục 4.6 và Phụ lục~\ref{app:contributions} do AI tổng hợp theo yêu cầu của TV1 (26/11); các lần dùng AI khai báo ở Phụ lục~\ref{app:ai-declaration}.
+
 \section{Bàn giao và phân loại phạm vi}
 \label{sec:4-1}
-\todo{Danh sách sản phẩm bàn giao; phân loại từng hạng mục scope: hoàn thành, hoàn thành một phần, chưa làm, bị loại/đổi (kèm lý do).}
+
+\subsection*{Sản phẩm bàn giao}
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{4.2cm}L{4.4cm}L{4.4cm}}
+\caption{Sản phẩm bàn giao và trạng thái đến 23/11}\label{tab:deliverables}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Sản phẩm} & \textbf{Nơi lưu} & \textbf{Trạng thái} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Sản phẩm} & \textbf{Nơi lưu} & \textbf{Trạng thái} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Backend (Go, PostgreSQL) & \texttt{ticket-system-uni-be}, nhánh \texttt{main} & Có trên \texttt{main}; PR \#31 (import, admin CLI, email) hoãn, chưa merge \\
+Frontend (React) & \texttt{ticket-system-uni-fe} & \texttt{main} chỉ có khung; màn hình ở PR \#6, chưa merge \\
+Hướng dẫn chạy, tài khoản mẫu & Phụ lục~\ref{app:repository}; README hai repo & Có; chưa có xác nhận chạy từ máy sạch \\
+Kết quả kiểm thử, test case, defect & \texttt{pm-docs/\allowbreak docs/\allowbreak quality/} & Có kết quả CP3 và hồi quy 18--20/11; UAT chưa chạy \\
+Hồ sơ quản lý (PBS, PD, ước lượng, rủi ro, change request, log) & \texttt{pm-docs}, Sheet master, Jira & Có; Sheet và báo cáo còn vài chỗ lệch cần đồng bộ \\
+Baseline V1.0 & \texttt{pm-docs/\allowbreak docs/\allowbreak baseline/v1.0.pdf} & Có; dựng từ báo cáo 22/10 và biên bản A23, không phải bản chụp ngày 25/10 (Phụ lục~\ref{app:baselines}) \\
+Baseline V2.0 & Phụ lục~\ref{app:baselines}; mục~\ref{sec:3-7} & TV1 chốt nội dung 23/11; \texttt{v2.0.pdf} và tag \texttt{baseline-v2.0} đã vào \texttt{pm-docs} (PR \#12) \\
+Báo cáo cuối (PDF) và khai báo AI & Phụ lục~\ref{app:ai-declaration} & Đang hoàn thiện \\
+Video demo dự phòng & --- & Chưa có (quyết định TV1 16/11) \\
+\end{longtable}
+\endgroup
+
+\subsection*{Phân loại yêu cầu}
+Bảng~\ref{tab:scope-status} đối chiếu từng yêu cầu của Bảng~\ref{tab:moscow} với bằng chứng ở mục~\ref{sec:3-5}. ``Chưa có bằng chứng'' nghĩa là báo cáo không tìm thấy kết quả kiểm thử hoặc ghi nhận nào, chưa nghĩa là chưa làm. Phân loại cuối do chủ sản phẩm xác nhận khi nộp.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{1.6cm}L{2.4cm}L{9.0cm}}
+\caption{Phân loại yêu cầu theo bằng chứng đến 23/11 (tạm thời)}\label{tab:scope-status}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Yêu cầu} & \textbf{Phân loại tạm} & \textbf{Bằng chứng và ghi chú} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Yêu cầu} & \textbf{Phân loại tạm} & \textbf{Bằng chứng và ghi chú} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+REQ-01 & Hoàn thành một phần & Đăng nhập demo đạt (T-AUTH-02, 03). Đăng nhập Google chưa kiểm chứng (T-AUTH-01 chưa chạy; CR-03) \\
+REQ-02 & Hoàn thành & T-AUTH-03, 05, 06 đạt \\
+REQ-03 & Hoàn thành & T-EV-01, 02, 05 đạt \\
+REQ-04 & Hoàn thành một phần & Duyệt và từ chối đạt (T-EV-03, 04); tự duyệt bị chặn đúng quy tắc nhưng sai mã lỗi so với hợp đồng (T-AUTH-04, D02; PR \#34 sửa, chưa kiểm lại) \\
+REQ-05, REQ-06 & Hoàn thành & T-REG-01 đến 05 đạt \\
+REQ-07, REQ-08 & Hoàn thành & T-WL-01, 02, 04 đạt \\
+REQ-09 & Hoàn thành một phần & Thông báo \texttt{PROMOTED} được tạo (T-WL-02); lỗi lưu thông báo làm hủy đăng ký thất bại, trái Q14 (T-WL-03, D01); giao diện chưa có màn hình xem thông báo \\
+REQ-10 & Hoàn thành một phần & T-CI-01 đến 03 đạt qua API; quét thật trên một điện thoại (T-CI-03, T-UI-01) ở nhánh PR \#6, chưa trên \texttt{main}; chưa đủ ba thiết bị \\
+REQ-11 & Hoàn thành & T-CI-04, 05 đạt \\
+REQ-12, REQ-13 & Hoàn thành & T-RP-01, 02 đạt \\
+REQ-14 & Hoàn thành một phần & T-RP-03 đạt qua API (500 đăng ký); giao diện tải được CSV đăng ký, CSV tham dự chưa xuất qua giao diện (T-INT-03) \\
+REQ-15 & Hoàn thành một phần & Kiểm soát quyền xem dữ liệu đạt (T-AUTH-05, 06); chưa có kiểm thử riêng cho các biện pháp bảo vệ dữ liệu cá nhân khác \\
+REQ-16, REQ-17, REQ-18 & Chưa có bằng chứng & Should; email chưa lên \texttt{main} (PR \#31 hoãn); không có test case \\
+REQ-19, REQ-20 & Chưa có bằng chứng & Could; theo quy tắc cắt, bỏ Could trước \\
+REQ-21 & Hoàn thành & T-EV-06, 07 đạt (thông báo khi đổi thời gian, hủy sự kiện hủy đăng ký) \\
+\end{longtable}
+\endgroup
+
+\textbf{Ngoài baseline.} Quản lý đơn vị và người dùng ở backend (PR \#23) và đăng nhập Google (CR-03) là phạm vi do nhóm tự quyết, không phải yêu cầu đã thống nhất với client; giao diện quản trị đơn vị và người dùng bị bỏ theo quyết định D2 (16/11). PR \#31 hoãn. Hạng mục \textbf{bị loại hoặc đổi} so với V1.0: hosting free-tier thay bằng Docker local kèm video dự phòng (D3).
+
+\todo{Cập nhật bảng sau UAT (A41) và khi PR \#6 vào \texttt{main}: chuyển các dòng ``hoàn thành một phần'' khi có bằng chứng; ghi lý do cho từng hạng mục chưa làm.}
 
 \section{So sánh kế hoạch và thực tế}
 \label{sec:4-2}
-\todo{So sánh tổng thể Baseline V1.0/V2.0 với thực tế về scope, lịch, effort, chi phí.}
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{2.2cm}L{4.4cm}L{6.4cm}}
+\caption{Baseline và thực tế đến 23/11}\label{tab:baseline-vs-actual}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Khía cạnh} & \textbf{Baseline V1.0 / V2.0 (nội dung chốt 23/11)} & \textbf{Thực tế đến 23/11} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Khía cạnh} & \textbf{Baseline V1.0 / V2.0 (nội dung chốt 23/11)} & \textbf{Thực tế đến 23/11} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Phạm vi & V1.0 cam kết toàn bộ yêu cầu Must; Should và Could làm khi còn thời gian & Bảng~\ref{tab:scope-status}: các yêu cầu Must đã có phần lớn bằng chứng; sáu yêu cầu Must hoàn thành một phần; ba yêu cầu Should và hai Could chưa có bằng chứng \\
+Lịch & V1.0: UAT 01--05/12, nộp 06--07/12, 0 ngày dự trữ. V2.0: mốc sẵn sàng 29/11, A41 26--27/11 & CP3 chạy 18--20/11 (kế hoạch 11--16/11); PR \#6 chưa merge (hạn rút gọn 19/11); chi tiết ở Bảng~\ref{tab:plan-actual}. Ngày nộp: Chủ nhật 29/11 (mốc sẵn sàng); ngày demo do thầy xếp, nhóm chưa biết \\
+Effort & 394,2 person-hours (364,2 cộng quỹ A38 30 giờ; đã dùng cho change event 16/11, chưa có số giờ) & Chỉ có giờ ghi trên Jira từ 21/10 (118,5 giờ đến 26/11, Bảng~\ref{tab:jira-worklog}); giờ trước đó để trống theo thống nhất của nhóm. Không đủ để so với 394,2 và không kết luận độ lệch (mục~\ref{sec:3-3}, I02) \\
+Chi phí & Tính bằng person-hours, không quy ra tiền (E04) & Như dòng effort \\
+\end{longtable}
+\endgroup
+
+Ba điểm rút ra từ dữ liệu hiện có: backend, do một người đảm nhận, hoàn thành sớm hơn lịch; frontend, hạ tầng CI và kiểm thử trễ và nằm trên đường găng; thầy đưa change event ngày 16/11 (mốc demo và viva sớm hơn) nên quỹ A38 đã dùng (mục~\ref{sec:3-6}). Các nhận định về nguyên nhân cần giờ thực tế để kiểm chứng.
+
+\todo{Điền ngày UAT thực tế và kết luận tổng thể; cập nhật số giờ Jira nếu có thêm worklog.}
 
 \section{Đánh giá mục tiêu và MoE}
 \label{sec:4-3}
-\todo{Đánh giá từng objective và MoE; tách rõ \enquote{sản phẩm đã xong} với \enquote{mục tiêu đã đạt}.}
+
+Mục này tách hai câu hỏi: \emph{sản phẩm đã xong} (mục~\ref{sec:4-1}) và \emph{mục tiêu đã đạt}. Các số đo dưới đây lấy trong môi trường kiểm thử của nhóm, bằng dữ liệu tổng hợp và tài khoản demo; không có sinh viên hay sự kiện thật tham gia (P03) và các mốc hiện trạng 15 giây mỗi người và 20 phút mỗi sự kiện là giả định (ASM-07), nên mức cải thiện so với hiện trạng không được đo.
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{1.0cm}L{4.4cm}L{5.0cm}L{2.6cm}}
+\caption{Đánh giá mục tiêu theo MoE đến 23/11 (tạm thời)}\label{tab:moe-eval}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Mã} & \textbf{Tiêu chí MoE (Bảng~\ref{tab:objectives})} & \textbf{Bằng chứng} & \textbf{Kết luận tạm} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Mã} & \textbf{Tiêu chí MoE} & \textbf{Bằng chứng} & \textbf{Kết luận tạm} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+O1 & 100\% acceptance test đạt; không đăng ký trùng, không vượt số chỗ; waitlist đúng FIFO & Chặn trùng, tranh chỗ và FIFO đạt (T-REG-02, 03, T-WL-02, 100 lượt đồng thời ở mức dịch vụ); T-WL-03 không đạt (D01); UAT chưa chạy & Chưa đạt: còn một ca không đạt \\
+O2 & Trung vị điểm danh không quá 5 giây; chặn điểm danh trùng; dự phòng cập nhật như QR & Trung vị 2,31 giây, lớn nhất 2,55 giây (5 lượt, một thiết bị, đo khoảng cách giữa hai lượt thành công kể cả thao tác chuyển mã); chặn trùng đạt (T-CI-02); nhập mã và thủ công đạt (T-CI-04, 05) & Đạt ở mẫu nhỏ, chưa đủ ba thiết bị \\
+O3 & Bộ 500 đăng ký: tổng hợp và xuất CSV trong 30 giây, khớp dữ liệu nguồn & 0,040 giây, khớp 500 và 250 dòng (T-RP-03, qua API) & Đạt ở mức API; chưa đo qua giao diện \\
+O4 & 100\% authorization test đạt; không publish khi chưa duyệt; không còn lỗi nghiêm trọng về quyền tại UAT & Chặn publish khi chưa duyệt đạt (T-EV-03, 04); T-AUTH-04 sai mã lỗi (D02); T-AUTH-01 chưa chạy; UAT chưa chạy & Chưa đạt: một ca không đạt, một ca chưa chạy \\
+\end{longtable}
+\endgroup
+
+\todo{Cập nhật kết luận sau UAT (A41) và sau khi sửa D01, D02; ghi rõ mục tiêu nào đã đạt, đạt một phần hay không đạt. Không kết luận mức cải thiện so với hiện trạng khi chưa có số đo thật.}
 
 \section{Kế hoạch đóng dự án}
 \label{sec:4-4}
-\todo{Các việc đóng dự án: bàn giao tài liệu/mã nguồn, lưu trữ, thu hồi quyền truy cập, xác nhận của client.}
+
+TV1 là người nộp bài và nộp vào Chủ nhật 29/11/2026 (TV1 báo 26/11). Bảng~\ref{tab:closure} nêu các việc đóng dự án với chủ và ngày theo TV1 báo; khung việc do AI đề xuất (A43, TV2 phụ trách trên Jira).
+
+\begingroup\tblsetup\tblzebra
+\begin{longtable}{L{4.0cm}L{6.2cm}L{2.8cm}}
+\caption{Kế hoạch đóng dự án}\label{tab:closure}\\
+\toprule
+\rowcolor{tblheadbg}\textbf{Việc} & \textbf{Nội dung} & \textbf{Chủ, ngày} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{tblheadbg}\textbf{Việc} & \textbf{Nội dung} & \textbf{Chủ, ngày} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Bàn giao mã nguồn & Gắn tag bản phát hành trên hai repo code sau khi PR \#6 merge; ghi commit đã kiểm thử & TV1 nộp; 29/11 \\
+Bàn giao tài liệu & Đồng bộ \texttt{pm-docs} với Sheet và báo cáo; xuất báo cáo PDF (hai tag \texttt{baseline-v1.0}, \texttt{baseline-v2.0} đã gắn) & TV1; 29/11 \\
+Lưu trữ dữ liệu quản lý & Export Sheet master, Jira (issue và worklog), board, log CI nếu có vào \texttt{pm-docs} trước khi nộp & TV1; 29/11 \\
+Quyền truy cập & Sheet master (TV1 là chủ) và thư mục Drive hiện cho bất kỳ ai có link chỉnh sửa (R20): giới hạn lại sau khi nộp; xác nhận hai repo công khai (TV3 là chủ) không chứa khóa hoặc dữ liệu thật & TV1 (Sheet), TV3 (repo code); sau 29/11 \\
+Dữ liệu demo & Xóa token, dữ liệu thử và cơ sở dữ liệu tạm; không giữ khóa thật & TV1; 29/11 \\
+Phản hồi client & Client không ký biên bản (P06); ghi vào Client Log việc gửi link và báo cáo cho thầy, nếu thầy phản hồi & TV1; 29/11 \\
+Vấn đề còn mở & Danh sách defect và hạng mục chưa làm bàn giao kèm khuyến nghị (D01, D02, REQ-16 đến 20, email, CI) & TV1; 29/11 \\
+\end{longtable}
+\endgroup
 
 \section{Bài học kinh nghiệm}
 \label{sec:4-5}
-\todo{Bài học rút ra về ước lượng, rủi ro, giao tiếp, công cụ; mỗi bài học gắn với sự kiện cụ thể trong dự án.}
+
+Nhóm không tổ chức họp riêng cho A44: các thành viên xem qua các bài học dưới đây và ủy quyền cho TV1 duyệt (TV1 báo 26/11); TV1 duyệt ngày 26/11/2026, sau khi bỏ hai bài đề xuất ban đầu (về phản hồi của client và về kiểm thử đến muộn). Mỗi bài học dưới đây dẫn về một sự kiện hoặc tài liệu đã có trong báo cáo, chia thành điều nhóm nên giữ và điều cần thay đổi nếu làm lại.
+
+\textbf{Điều nên giữ}
+
+\begin{itemize}
+  \item \textbf{Ghi lại trao đổi với client ngay khi xảy ra và gom câu hỏi.} Client Log ghi giờ gửi, giờ nhận và ảnh email làm bằng chứng (Phụ lục~\ref{app:client-log}); câu hỏi được gom theo vòng thay vì hỏi rời rạc, và vòng 3 (Q21, Q22) gửi ngày 23/10 được trả lời ngày 25/10. Bài học: giữ nếp ghi trong 24 giờ và gom câu hỏi, vì thầy không cam kết thời gian phản hồi (P02).
+  \item \textbf{Giữ nguyên baseline cũ khi lập baseline mới.} Baseline V1.0 được giữ nguyên, V2.0 là tài liệu riêng kèm danh sách thay đổi và các change request đã duyệt, mỗi bản có tag trên \texttt{pm-docs} (mục~\ref{sec:3-7}, Phụ lục~\ref{app:baselines}). Bài học: giữ cách tách này để so sánh kế hoạch với thực tế mà không phải dựng lại lịch sử.
+  \item \textbf{Cắt phạm vi có quyết định rõ khi tiến độ trễ.} Baseline chỉ cam kết các yêu cầu Must; khi lịch trễ, ngày 16/11 nhóm bỏ giao diện quản trị đơn vị và người dùng (D2) và chuyển hosting sang Docker local kèm video dự phòng (D3), mỗi quyết định có ngày và được ghi lại. Bài học: giữ thứ tự cắt Could rồi Should và không động đến luồng cốt lõi.
+  \item \textbf{Kiểm thử có bằng chứng và phát hiện lỗi trước demo.} Kết quả kiểm thử ngày 20/11 gồm cả quét QR thật trên điện thoại, và lỗi D01 (hủy đăng ký bị hoàn tác khi lưu thông báo thất bại) được phát hiện, rồi sửa bằng PR \#35 ngày 23/11 (mục~\ref{sec:3-5}). Bài học: giữ việc ghi kết quả test và lỗi thành tài liệu có ngày, kể cả khi kết quả không đạt.
+\end{itemize}
+
+\textbf{Điều cần thay đổi}
+
+\begin{itemize}
+  \item \textbf{Hiểu nhầm mốc (I01).} Nhóm tưởng Milestone 1 là hạn nộp 11/10 trong khi là buổi trình bày 05/10, nên phải thu hẹp nội dung và dời Task~2. Bài học: đối chiếu mốc với nguồn chính thức (đề, thông báo trên lớp) và hỏi client ngay từ đầu thay vì suy luận.
+  \item \textbf{Không log work từ đầu (I02).} Từ đầu dự án không ai ghi giờ trên Jira; đến 23/11 giờ thực tế vẫn thiếu nên không so sánh được effort (mục~\ref{sec:3-3}). Bài học: gắn việc ghi giờ vào nhịp tuần ngay từ tuần đầu, kiểm tra ở họp Chủ nhật, không thu hồi tưởng cuối kỳ.
+  \item \textbf{Hạ tầng đặt trên máy cá nhân (I03).} GitLab tự host chạy trên máy của một người nên các thành viên khác không truy cập được; nhóm chuyển sang GitHub ngày 30/10. Bài học: chọn nền tảng dùng chung, truy cập được cho cả nhóm, trước khi giao việc phụ thuộc vào nó.
+  \item \textbf{Tiến độ lệch giữa các phần.} Backend do một người làm tiến sớm, trong khi frontend, CI và kiểm thử trễ và nằm trên đường găng (R15, R23, R24). Bài học: phụ thuộc vào một người và chuỗi găng cần theo dõi theo tuần bằng trạng thái thật, không theo trạng thái Jira vốn chưa cập nhật.
+  \item \textbf{Quy trình review và change request chưa được giữ.} Quy định ``ít nhất một người khác review'' chưa thấy thực hiện trên các PR backend gần nhất (mục~\ref{sec:3-5}); CR-02 và CR-03 được ghi nhận sau khi code đã làm (mục~\ref{sec:3-7}). Bài học: bật bảo vệ nhánh từ đầu và duyệt change request trước khi làm.
+\end{itemize}
+
+Nhóm không có đề xuất bài học về ước lượng và giao tiếp trong nhóm (TV1 báo 26/11).
 
 \section{Đóng góp và reflection cá nhân}
 \label{sec:4-6}
-\todo{Tóm tắt đóng góp từng thành viên (chi tiết ở Phụ lục~\ref{app:contributions}) và phần reflection cá nhân do chính mỗi người viết.}
+Phần đóng góp dưới đây do AI tổng hợp từ bằng chứng có sẵn (Jira, GitHub, tab Activity) theo yêu cầu của TV1 ngày 26/11, khai báo ở Phụ lục~\ref{app:ai-declaration}; TV1 báo các thành viên làm theo đúng task được giao. Đóng góp được chứng minh bằng commit, Pull Request, task Jira, worklog và tài liệu đã viết; bảng chi tiết ở Phụ lục~\ref{app:contributions}.
+
+\begin{itemize}
+  \item \textbf{TV1, quản lý dự án (Nguyễn Đức Nghĩa).} Quản trị và báo cáo: Client Log, lịch, Baseline V1.0 và V2.0, sổ rủi ro, báo cáo; 32 commit và 10 PR đã merge trên \texttt{pm-docs}; 9,0 giờ trên Jira.
+  \item \textbf{TV2, kiểm thử (Ngô Thanh Hùng).} Quality plan, 35 test case, chạy kiểm thử và hồi quy 18--20/11, ghi defect D01, D02; 28,0 giờ trên Jira.
+  \item \textbf{TV3, Tech Lead, backend (Phan Huy Quang Minh).} Thiết kế cơ sở dữ liệu và hợp đồng API, backend Go (96 commit, 34 PR, 32 đã merge); 57,5 giờ trên Jira.
+  \item \textbf{TV4, frontend (Nguyễn Đắc Nghĩa).} Giao diện web: 10 PR trên \texttt{ticket-system-uni-fe}, trong đó 5 PR vào nhánh xếp chồng ngày 02/11 và 5 PR mở ngày 25/11 chưa merge; chưa có worklog Jira.
+  \item \textbf{TV5, backend và DevOps (Hà Cao Đức Minh).} PR \#28 (đăng nhập demo, kiểm tra lịch sự kiện, đã merge 15/11), PR \#6 (tích hợp luồng, Docker, mở từ 12/11, chưa merge); A20, A24, A33; 24,0 giờ trên Jira.
+\end{itemize}
+
+\subsection*{Reflection của TV1 (Nguyễn Đức Nghĩa)}
+
+Phần reflection của TV1 do AI soạn từ nhật ký dự án theo yêu cầu của TV1 (26/11, khai báo ở Phụ lục~\ref{app:ai-declaration}); TV1 duyệt ngày 26/11/2026.
+
+\textbf{Việc đã làm.} Tôi giữ vai trò quản lý dự án: trao đổi với client qua email và ghi Client Log (vòng P, vòng 1 đến vòng 3), lập lịch, Gantt và cost baseline 394,2 person-hours (A21, A50), chốt Baseline V1.0 (25/10) và V2.0 (23/11), giữ sổ rủi ro, issue log, Weekly Log, đồng bộ Jira và Sheet master, và viết báo cáo.
+
+\textbf{Làm được.}
+\begin{itemize}
+  \item Ghi trao đổi với client có đủ thời điểm, câu hỏi, phản hồi và ảnh email, gom câu hỏi theo vòng.
+  \item Giữ nguyên Baseline V1.0 khi lập V2.0, nên so sánh được kế hoạch với thực tế mà không dựng lại lịch sử.
+  \item Quyết định cắt phạm vi có ngày và có ghi lại khi lịch trễ (D2, D3 ngày 16/11), không đụng luồng cốt lõi.
+  \item Xử lý I03 (GitLab trên máy cá nhân): chuyển sang GitHub ngày 30/10, tám ngày sau khi vấn đề xuất hiện.
+  \item Phản hồi thông báo demo và viva sớm hơn của thầy bằng lịch rút gọn và mốc sẵn sàng 29/11, chừa một tuần.
+\end{itemize}
+
+\textbf{Chưa làm được.}
+\begin{itemize}
+  \item Nhóm hiểu nhầm Milestone 1 là hạn nộp 11/10 trong khi là buổi trình bày 05/10 (I01); tôi chưa đối chiếu mốc với nguồn chính thức trước khi lập kế hoạch.
+  \item Không bắt buộc log work từ tuần đầu (I02), nên không có effort thực tế trước 21/10 và không so sánh được effort kế hoạch với thực tế.
+  \item Theo dõi tiến độ dựa vào trạng thái Jira vốn lệch thực tế, nên biết muộn việc frontend chưa vào \texttt{main} (I05).
+  \item Quy định review chéo và change request trước khi code không được giữ (I07, CR-02, CR-03 ghi sau khi code làm xong).
+  \item Phần lớn tài liệu và báo cáo có AI hỗ trợ (54 lần ghi ở Phụ lục~\ref{app:ai-declaration}); tôi phải duyệt từng phần, và vẫn chưa có vòng ước lượng chéo độc lập cho effort.
+\end{itemize}
+
+\textbf{Điều sẽ làm khác.}
+\begin{itemize}
+  \item Đặt log work thành điều kiện từ tuần đầu và kiểm ở họp Chủ nhật hằng tuần, không thu hồi tưởng cuối kỳ.
+  \item Xác nhận mốc với nguồn chính thức (đề, thông báo trên lớp) và hỏi client ngay từ đầu trước khi lập kế hoạch.
+  \item Đo tiến độ bằng sản phẩm chạy được (PR đã merge, bản demo) mỗi tuần, không dùng trạng thái Jira làm thước đo chính.
+  \item Chốt quy tắc review và duyệt change request trước khi code, ghi vào kế hoạch từ đầu.
+  \item Tổ chức ước lượng chéo giữa các thành viên trước khi chốt baseline.
+\end{itemize}
+
+\todo{Reflection cá nhân của TV2 đến TV5 (việc làm được và chưa được, điều sẽ làm khác) do từng thành viên tự viết, AI không viết thay. Giảng viên có thể hỏi bất kỳ thành viên nào ở viva.}

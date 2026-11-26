@@ -1,0 +1,23 @@
+/* Kiểu chung cho mọi hình báo cáo. Mỗi generator nhúng file này vào HTML qua common.css(). */
+:root {
+  --ink: #1f2933;       /* chữ */
+  --mute: #52606d;      /* chữ phụ, nét phụ */
+  --navy: #1d3b5c;      /* màu nhấn duy nhất, cho khung và mũi tên */
+  --t1: #f1f5f9;        /* nền nhạt */
+  --t2: #dde6ef;        /* nền vừa */
+  --t3: #c3d1e0;        /* nền đậm */
+  --grey: #8a949e;      /* nét đứt, phần ngoài hoặc chưa làm */
+  --crit: #b42318;      /* chỉ dùng cho đường găng */
+  --critbg: #fdecea;
+}
+html, body {
+  margin: 0; background: #fff; color: var(--ink);
+  font-family: "Noto Sans", "Segoe UI", Arial, sans-serif; line-height: 1.4;
+}
+svg { position: absolute; left: 0; top: 0 }
+/* Chú giải: cùng một mẫu cho mọi hình */
+.lg { position: absolute; font-size: 12px; color: var(--mute); line-height: 1.7 }
+.lg i { display: inline-block; width: 22px; height: 12px; box-sizing: border-box; vertical-align: middle;
+        margin: 0 5px 0 14px; border: 1.5px solid var(--navy); border-radius: 3px; background: #fff }
+.lg i:first-child { margin-left: 0 }
+.lg .note { display: block; font-size: 11px; margin-top: 2px }

@@ -1,0 +1,36 @@
+{
+  "_nguon": "Ngày V2.0 lấy từ docs/task3/w13/baseline-v2-danh-sach-thay-doi.md (mục 1, hàng 2, TV1 chốt 23/11) và docs/task3/w13/lich-rut-gon.md (mục 3, 4, 5). type: bar = khoảng ngày có trong lịch rút gọn; due = chỉ có hạn (Jira, lịch rút gọn), không có ngày bắt đầu; ms = mốc một ngày. actual = chỉ ghi khi có kết quả của TV2 trong pm-docs/docs/quality/results (CP3 18-20/11, hồi quy 20/11). crit = thuộc chuỗi găng nêu ở lich-rut-gon.md mục 5 (merge frontend, kiểm thử, sửa lỗi, UAT, nộp); không phải kết quả CPM.",
+  "start": "2026-11-16",
+  "end": "2026-12-08",
+  "today": "2026-11-23",
+  "sections": [
+    {"name": "Hoàn thiện Increment 1 và 2", "rows": [
+      {"id": "A28", "type": "due", "at": "2026-11-19", "crit": true, "note": "merge frontend (PR #6)"},
+      {"id": "A31", "type": "bar", "from": "2026-11-16", "to": "2026-11-22"},
+      {"id": "A40", "type": "bar", "from": "2026-11-16", "to": "2026-11-22"},
+      {"id": "A24", "type": "due", "at": "2026-11-22", "note": "Docker local, CI tối thiểu"},
+      {"id": "A20", "type": "due", "at": "2026-11-22", "note": "đóng bằng kiểm chứng QR"},
+      {"id": "A33", "type": "due", "at": "2026-11-22", "note": "kiểm chứng QR"},
+      {"id": "A34", "type": "due", "at": "2026-11-22", "note": "kiểm chứng CSV"},
+      {"id": "A30", "type": "ms", "at": "2026-11-20", "actual": ["2026-11-18", "2026-11-20"], "note": "CP3"},
+      {"id": "A37", "type": "bar", "from": "2026-11-23", "to": "2026-11-24"}
+    ]},
+    {"name": "Kiểm thử, sửa lỗi, nghiệm thu", "rows": [
+      {"id": "A39", "type": "bar", "from": "2026-11-23", "to": "2026-11-24", "crit": true, "actual": ["2026-11-20", "2026-11-20"]},
+      {"id": "A53", "type": "bar", "from": "2026-11-24", "to": "2026-11-26", "crit": true},
+      {"id": "A41", "type": "bar", "from": "2026-11-26", "to": "2026-11-27", "crit": true}
+    ]},
+    {"name": "Đóng dự án và nộp", "rows": [
+      {"id": "A45", "type": "bar", "from": "2026-11-17", "to": "2026-11-27"},
+      {"id": "A42", "type": "bar", "from": "2026-11-20", "to": "2026-11-25"},
+      {"id": "A43", "type": "bar", "from": "2026-11-23", "to": "2026-11-25"},
+      {"id": "A44", "type": "ms", "at": "2026-11-26"},
+      {"id": "A46", "type": "ms", "at": "2026-11-28"},
+      {"id": "A47", "type": "ms", "at": "2026-11-29", "crit": true, "note": "nộp"}
+    ]}
+  ],
+  "hammock": [
+    {"id": "A36", "from": "2026-11-16", "to": "2026-11-29"},
+    {"id": "A57", "from": "2026-11-16", "to": "2026-11-29"}
+  ]
+}

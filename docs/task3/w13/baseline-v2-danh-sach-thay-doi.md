@@ -3,7 +3,7 @@ Nội dung: Danh sách thay đổi Baseline V2.0 so với V1.0 và câu giải t
 Chủ sở hữu: TV1
 Phiên bản: 0.1
 Cập nhật: 16/11/2026
-Trạng thái: Nháp AI (Claude Code, 16/11), dựa trên quyết định D1–D12 TV1 chốt 16/11. Chưa xuất `v2.0.pdf`. Chỗ [ngoặc vuông] TV1 hoặc chủ task điền. V1.0 không được sửa.
+Trạng thái: TV1 chốt nội dung 23/11 (danh sách mục 1 là bản chốt); TV1 gửi nhóm 17/11, quá hạn phản hồi 24h (R22) nên TV1 tự duyệt (TV1 báo 23/11); `v2.0.pdf` lập 23/11, đã merge vào `pm-docs` (PR #12) và gắn tag `baseline-v2.0` ngày 23/11. Effort giữ 394,2h làm tham chiếu, giờ còn lại chưa có từ owner. Lý do phương án A của CR-02, CR-03 ở ô Sheet vẫn [TV1 điền]. V1.0 không được sửa.
 ---
 
 # Baseline V2.0: danh sách thay đổi

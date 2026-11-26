@@ -1,0 +1,26 @@
+{
+  "_nguon": "Trích từ khối TikZ PFD trong report/chapters/02-task2-planning.tex (bản trước 23/11). x, y là toạ độ cm của TikZ; group theo PBS: in = S1, S2; sw = S3; qa = S4, S5.",
+  "nodes": [
+    {"id": "REQ", "name": "Validated Scope & Requirements", "x": 6.0, "y": 0.0, "group": "in"},
+    {"id": "DB", "name": "Database Design", "x": 0.0, "y": -1.9, "group": "in"},
+    {"id": "API", "name": "API Contract", "x": 4.0, "y": -1.9, "group": "in"},
+    {"id": "TEST", "name": "Test Specification", "x": 8.0, "y": -1.9, "group": "qa"},
+    {"id": "UI", "name": "User Interface", "x": 12.0, "y": -1.9, "group": "sw"},
+    {"id": "AUTH", "name": "Authentication & Authorization", "x": 8.0, "y": -3.8, "group": "sw"},
+    {"id": "EVENT", "name": "Event Management", "x": 2.4, "y": -3.8, "group": "sw"},
+    {"id": "REG", "name": "Registration & Waitlist", "x": 2.4, "y": -5.7, "group": "sw"},
+    {"id": "CHECK", "name": "Check-in & Attendance", "x": 2.4, "y": -7.6, "group": "sw"},
+    {"id": "REPORT", "name": "Reporting & Export", "x": 2.4, "y": -9.5, "group": "sw"},
+    {"id": "SYS", "name": "Tested Integrated System", "x": 2.4, "y": -11.4, "group": "qa"},
+    {"id": "DEPLOY", "name": "Deployed System", "x": 2.4, "y": -13.3, "group": "qa"},
+    {"id": "HAND", "name": "Handover Documentation", "x": 2.4, "y": -15.2, "group": "qa"}
+  ],
+  "edges": [
+    ["REQ", "DB", "v"], ["REQ", "API", "v"], ["REQ", "TEST", "v"], ["REQ", "UI", "v"],
+    ["DB", "EVENT", "v"], ["API", "EVENT", "v"], ["DB", "AUTH", "v"], ["API", "AUTH", "v"],
+    ["EVENT", "REG", "v"], ["REG", "CHECK", "v"], ["CHECK", "REPORT", "v"], ["REPORT", "SYS", "v"],
+    ["SYS", "DEPLOY", "v"], ["DEPLOY", "HAND", "v"],
+    ["REG", "REPORT", "w", 1.4], ["EVENT", "SYS", "w", 1.0], ["REG", "SYS", "w", 1.2], ["CHECK", "SYS", "w", 1.4],
+    ["AUTH", "SYS", "o", 12, -14], ["TEST", "SYS", "o", 28, 0], ["UI", "SYS", "o", 30, 14]
+  ]
+}
