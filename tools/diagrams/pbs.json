@@ -1,0 +1,29 @@
+{
+  "_nguon": "Trích từ khối TikZ PBS trong report/chapters/02-task2-planning.tex (bản trước 23/11); mã M/S khớp docs/task2/2.1-pbs.md.",
+  "nodes": [
+    {"id": "P0", "name": "University Event Registration System", "parent": null},
+    {"id": "M", "name": "Management Products", "parent": "P0"},
+    {"id": "S", "name": "Specialist Products", "parent": "P0"},
+    {"id": "M1", "name": "Project Definition", "parent": "M"},
+    {"id": "M2", "name": "Project Baseline", "parent": "M"},
+    {"id": "M3", "name": "Monitoring & Change Records", "parent": "M"},
+    {"id": "M4", "name": "Final Report & Closure", "parent": "M"},
+    {"id": "S1", "name": "Validated Scope & Requirements", "parent": "S"},
+    {"id": "S2", "name": "System Design", "parent": "S"},
+    {"id": "S21", "name": "Database Design", "parent": "S2"},
+    {"id": "S22", "name": "API Contract", "parent": "S2"},
+    {"id": "S3", "name": "Software Products", "parent": "S"},
+    {"id": "S31", "name": "Authentication & Authorization", "parent": "S3"},
+    {"id": "S32", "name": "Event Management", "parent": "S3"},
+    {"id": "S33", "name": "Registration & Waitlist", "parent": "S3"},
+    {"id": "S34", "name": "Check-in & Attendance", "parent": "S3"},
+    {"id": "S35", "name": "Reporting & Export", "parent": "S3"},
+    {"id": "S36", "name": "User Interface", "parent": "S3"},
+    {"id": "S4", "name": "Test Products", "parent": "S"},
+    {"id": "S41", "name": "Test Specification", "parent": "S4"},
+    {"id": "S42", "name": "Tested Integrated System", "parent": "S4"},
+    {"id": "S5", "name": "Release Products", "parent": "S"},
+    {"id": "S51", "name": "Deployed System", "parent": "S5"},
+    {"id": "S52", "name": "Handover Documentation", "parent": "S5"}
+  ]
+}

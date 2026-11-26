@@ -1,20 +1,38 @@
-# Hình cho báo cáo (mạng activity, Gantt, kiến trúc)
+# Hình cho báo cáo (kiến trúc, PBS, PFD, mạng activity, Gantt V1.0 và V2.0)
 
-Vẽ bằng HTML/SVG rồi xuất PDF vector bằng Chrome/Edge headless (cùng engine với Playwright; máy nhóm chưa cài gói `playwright`). AI hỗ trợ viết (Claude Code, 21/10/2026). Kết quả đặt ở `report/image/`.
+Mỗi hình là một file HTML/SVG độc lập (nhúng sẵn `style.css`), chụp thành PNG độ nét cao bằng Playwright (Chromium). Kiểu chung nằm ở `style.css`: nền trắng, một màu nhấn xanh navy, đỏ chỉ cho đường găng, phân biệt loại phần tử bằng độ đậm nền và nét đứt để in đen trắng vẫn đọc được. Làm lại ngày 23/11/2026 (AI hỗ trợ, TV1 duyệt kiểu); bản trước (PDF, TikZ) lưu ở `_archive/figures-truoc-23-11/`.
 
-Cần Python 3, `openpyxl` và Chrome hoặc Edge (đặt biến `CHROME` nếu không ở đường dẫn mặc định).
+## Chạy
+
+Cần Python 3 với `openpyxl`, và một Python có gói `playwright` (đặt `PW_PYTHON` nếu khác Python đang chạy). Trình duyệt dùng bản Chromium do Playwright tải (`~/AppData/Local/ms-playwright/chromium-*`) hoặc đặt `PW_CHROME`.
 
 ```bash
-cd tools/schedule
-python sched.py "<master.xlsx>" 14 baseline-v1-a23-25-10.json ket-qua.json
-cd ../diagrams
-python network.py "<master.xlsx>" ../schedule/baseline-v1-a23-25-10.json ../schedule/ket-qua.json <thư mục tạm>
-python gantt.py   "<master.xlsx>" ../schedule/baseline-v1-a23-25-10.json ../schedule/ket-qua.json <thư mục tạm>/gantt.html
-python render.py <thư mục tạm> <thư mục tạm>/network-a.html <thư mục tạm>/network-b.html <thư mục tạm>/network-c.html <thư mục tạm>/gantt.html architecture.html
+cd tools/diagrams
+PW_PYTHON=<python-có-playwright> python build.py "<master.xlsx>" [thư-mục-ra]   # mặc định ra ./out
 ```
 
-Sau đó chép `network-a.pdf`, `network-b.pdf`, `network-c.pdf`, `gantt.pdf`, `architecture.pdf` vào `report/image/`. `render.py` cũng xuất PNG cùng tên để xem nhanh.
+`build.py` chạy `sched.py` (lịch san tải từ `baseline-v1-a23-25-10.json`), sinh 8 file HTML rồi chụp PNG. Sau đó chép các file `.png` trong thư mục ra vào `report/image/`. `SCALE` đổi độ nét (mặc định 3).
 
-- `network.py`: 3 hình activity-on-node, bố cục từ trên xuống; cạnh dài đi qua điểm trung gian để không chui dưới nút. Tô đỏ đường găng sau san tải (`critical` trong config, thêm A54); nét đứt xanh là cạnh có trong config `pred` nhưng không có ở cột G tab 10 (tức cạnh sửa ở L8–L11). Nhóm nút của từng hình khai báo ở `FIGS`.
-- `gantt.py`: Gantt theo ngày bắt đầu/kết thúc sau san tải; A21, A50 vẽ là đã xong 20–21/10; A36, A57 vẽ dải hammock từ 25/10.
-- `architecture.html`: sửa tay; nét đứt là phần chưa chốt.
+| Hình | Sinh bởi | Dữ liệu |
+|---|---|---|
+| `architecture` | `arch.py` (nhúng `style.css` vào `architecture.html`, viết tay) | Viết tay theo hiện trạng; nét đứt là phần chưa có |
+| `pbs` | `tree.py` | `pbs.json` (khớp `docs/task2/2.1-pbs.md`) |
+| `pfd` | `flow.py` | `pfd.json` (toạ độ cm lấy từ bản TikZ cũ) |
+| `network-a/b/c` | `network.py` | Tab 10 Sheet master + lịch A21. Ô dạng PDM (ES, thời lượng, EF / LS, float, LF; ngày thứ n kể từ 23/09), đường nối vuông góc chạy trong khe giữa các hàng, mỗi đoạn ngang một làn riêng; đường găng đỏ |
+| `gantt` | `gantt.py` | Như trên; Gantt Baseline V1.0; A21, A50 là đã xong, A36, A57 là hammock |
+| `gantt-v2` | `gantt_v2.py` | `gantt-v2.json` (ngày V2.0 theo `docs/task3/w13/`, ghi nguồn từng ngày) + khoảng ngày V1.0 từ `sched.py` |
+
+Các script khác: `render.py` xuất PDF vector bằng Chrome/Edge headless (không còn dùng cho báo cáo, giữ để xuất bản in); `shot.py` chụp PNG bằng Playwright.
+
+Sơ đồ trong `docs/task2/` (`2.1-pbs.md`, `2.4-activity-network.md`, `2.11-schedule.md`, `A15_PBS_PFD.md`) dùng cùng các hình, chép vào `docs/task2/img/` (PNG và HTML); Mermaid cũ lưu ở `_archive/figures-truoc-23-11/docs-md/`.
+
+## Kiểm tra dữ liệu sau khi đổi
+
+- Mạng activity, Gantt: xuất văn bản (PDF hoặc HTML) bản cũ và bản mới, so từng activity, ngày, giờ, owner; mạng activity so thêm số nút và số cạnh (21, 22, 16 nút; 27, 28, 21 cạnh) và ES, EF, LS, LF với `sched.py` và tab 10.
+- PBS, PFD: nút và cạnh trong JSON phải khớp bản vẽ nguồn (TikZ cũ ở `_archive/`, hoặc `2.1-pbs.md`).
+
+## Lưu ý
+
+- Hình kiến trúc phải sửa tay khi hạ tầng đổi (CI, hosting, email); ghi ngày hiện trạng ở chân hình và để TV3, TV5 duyệt.
+- Windows: chạy Python với `-X utf8` hoặc đặt `PYTHONUTF8=1` (đã đặt sẵn trong `build.py`), nếu không `print` tiếng Việt lỗi mã hoá.
+- `out/` chứa HTML và PNG vừa dựng; HTML mở thẳng bằng trình duyệt để xem hoặc gửi cho người khác.
