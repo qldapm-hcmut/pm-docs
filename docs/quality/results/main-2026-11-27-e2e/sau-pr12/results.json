@@ -1,0 +1,223 @@
+[
+  {
+    "id": "1",
+    "title": "Organizer tạo sự kiện (sức chứa 1, hàng chờ 2) và gửi duyệt",
+    "ok": true,
+    "detail": "event 3d5342cd-5669-4917-ba55-67ba4d1c63db, tạo 201, gửi duyệt 200"
+  },
+  {
+    "id": "2",
+    "title": "Admin duyệt và công bố",
+    "ok": true,
+    "detail": "approve 200, PUBLISHED"
+  },
+  {
+    "id": "3",
+    "title": "Student A đăng ký → REGISTERED",
+    "ok": true,
+    "detail": "201 REGISTERED (53a16527-825a-44f1-8991-03c2bea62929)"
+  },
+  {
+    "id": "4",
+    "title": "Student B vào hàng chờ → WAITLISTED vị trí 1",
+    "ok": true,
+    "detail": "201 WAITLISTED vị trí 1; UI có chữ \"hàng chờ\": true"
+  },
+  {
+    "id": "5",
+    "title": "Student A hủy (còn >24h) → CANCELLED",
+    "ok": true,
+    "detail": "200 CANCELLED"
+  },
+  {
+    "id": "6",
+    "title": "Student B tự lên REGISTERED + có thông báo PROMOTED",
+    "ok": true,
+    "detail": "DB REGISTERED; notifications PROMOTED=1; UI \"Đăng ký của tôi\" hiển thị trạng thái: Đã đăng ký; FE không có trang xem thông báo"
+  },
+  {
+    "id": "7",
+    "title": "Organizer dời giờ bắt đầu về ~30 phút tới (UI sửa sự kiện)",
+    "ok": true,
+    "detail": "PATCH 200"
+  },
+  {
+    "id": "7b",
+    "title": "Ca lỗi: Student B hủy khi còn <24h → 422 CANCEL_DEADLINE_PASSED, UI báo lỗi",
+    "ok": true,
+    "detail": "422 CANCEL_DEADLINE_PASSED; UI: Đã quá hạn hủy đăng ký (trước giờ bắt đầu 24 giờ).\n✕"
+  },
+  {
+    "id": "8",
+    "title": "Student B mở vé, thấy QR và mã check-in",
+    "ok": true,
+    "detail": "QR canvas có; mã hiển thị khớp DB"
+  },
+  {
+    "id": "9",
+    "title": "Organizer check-in B bằng Nhập mã; lần 2 báo đã check-in",
+    "ok": true,
+    "detail": "201 CODE / 409 ALREADY_CHECKED_IN; banner trùng hiện UUID người check-in: true"
+  },
+  {
+    "id": "10",
+    "title": "Organizer xem thống kê và tải CSV",
+    "ok": true,
+    "detail": "CSV 3 dòng; tỉ lệ tham dự: 100%"
+  },
+  {
+    "id": "C2",
+    "title": "Ca lỗi: check-in ngoài khung giờ → 422 CHECKIN_WINDOW_CLOSED, UI báo",
+    "ok": true,
+    "detail": "422 CHECKIN_WINDOW_CLOSED; UI có chữ \"khung giờ\": true (sự kiện được PUBLISHED trực tiếp qua DB để tiết kiệm bước duyệt)"
+  },
+  {
+    "id": "C3",
+    "title": "Ca lỗi: Organizer kiêm Admin tự duyệt sự kiện của mình",
+    "ok": true,
+    "detail": "403 SELF_APPROVAL_NOT_ALLOWED; UI: Bạn không thể tự duyệt sự kiện do chính mình tạo."
+  },
+  {
+    "id": "U1",
+    "title": "Vé của tôi, ba tab, trạng thái vé, QR và mã dự phòng",
+    "ok": true,
+    "detail": "4/4 kiểm tra thành phần",
+    "components": [
+      {
+        "label": "sap-toi",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "GET upcoming=true, thẻ REGISTERED và WAITLISTED đúng dữ liệu",
+        "screenshot": "shots/U1-sap-toi.png"
+      },
+      {
+        "label": "tat-ca",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "GET tất cả, 3 thẻ và trạng thái khớp DB",
+        "screenshot": "shots/U1-tat-ca.png"
+      },
+      {
+        "label": "da-huy",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "GET status=CANCELLED, chỉ có thẻ đã hủy",
+        "screenshot": "shots/U1-da-huy.png"
+      },
+      {
+        "label": "qr",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "QR được vẽ, mã UI và API khớp DB",
+        "screenshot": "shots/U1-qr.png"
+      }
+    ]
+  },
+  {
+    "id": "U2",
+    "title": "Thống kê, ba tab check-in, mã sai và MANUAL",
+    "ok": true,
+    "detail": "7/7 kiểm tra thành phần",
+    "components": [
+      {
+        "label": "thong-ke-truoc",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "UI = DB, 0 check-in / 1 đăng ký / 0%",
+        "screenshot": "shots/U2-thong-ke-truoc.png"
+      },
+      {
+        "label": "quet-qr",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "Tab Quét QR mở và hiện trạng thái camera headless",
+        "screenshot": "shots/U2-quet-qr.png"
+      },
+      {
+        "label": "nhap-ma",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "Tab Nhập mã mở và có ô mã",
+        "screenshot": "shots/U2-nhap-ma.png"
+      },
+      {
+        "label": "ma-sai",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "404 NOT_FOUND và UI hiển thị thông báo lỗi",
+        "screenshot": "shots/U2-ma-sai.png"
+      },
+      {
+        "label": "danh-sach",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "Tab Danh sách mở và có Student A",
+        "screenshot": "shots/U2-danh-sach.png"
+      },
+      {
+        "label": "thu-cong",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "201 MANUAL, DB ghi MANUAL và đúng 1 log MANUAL_CHECKIN",
+        "screenshot": "shots/U2-thu-cong.png"
+      },
+      {
+        "label": "thong-ke-sau",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "UI = DB, 1 check-in / 1 đăng ký / 100%",
+        "screenshot": "shots/U2-thong-ke-sau.png"
+      }
+    ]
+  },
+  {
+    "id": "U3",
+    "title": "Form sự kiện, kiểm lỗi tại trường và lưu thay đổi",
+    "ok": false,
+    "detail": "2/6 kiểm tra thành phần",
+    "components": [
+      {
+        "label": "tao-thieu-tieu-de",
+        "ok": false,
+        "outcome": "fail",
+        "detail": "Request tạo/sửa=0, lỗi tại trường \"Tiêu đề\"=false; thông báo trên UI: Vui lòng nhập tiêu đề.",
+        "screenshot": "shots/U3-tao-thieu-tieu-de.png"
+      },
+      {
+        "label": "tao-sai-lich",
+        "ok": false,
+        "outcome": "fail",
+        "detail": "Request tạo/sửa=0, lỗi tại trường \"Kết thúc\"=false; thông báo trên UI: Thời gian kết thúc phải sau thời gian bắt đầu.",
+        "screenshot": "shots/U3-tao-sai-lich.png"
+      },
+      {
+        "label": "tao-hop-le",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "201 DRAFT và DB lưu đúng tiêu đề",
+        "screenshot": "shots/U3-tao-hop-le.png"
+      },
+      {
+        "label": "sua-thieu-tieu-de",
+        "ok": false,
+        "outcome": "fail",
+        "detail": "Request tạo/sửa=0, lỗi tại trường \"Tiêu đề\"=false; thông báo trên UI: Vui lòng nhập tiêu đề.",
+        "screenshot": "shots/U3-sua-thieu-tieu-de.png"
+      },
+      {
+        "label": "sua-sai-lich",
+        "ok": false,
+        "outcome": "fail",
+        "detail": "Request tạo/sửa=0, lỗi tại trường \"Kết thúc\"=false; thông báo trên UI: Thời gian kết thúc phải sau thời gian bắt đầu.",
+        "screenshot": "shots/U3-sua-sai-lich.png"
+      },
+      {
+        "label": "sua-hop-le",
+        "ok": true,
+        "outcome": "pass",
+        "detail": "PATCH 200, địa điểm sau tải lại khớp response và DB",
+        "screenshot": "shots/U3-sua-hop-le.png"
+      }
+    ]
+  }
+]

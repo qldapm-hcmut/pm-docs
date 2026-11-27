@@ -1,0 +1,11 @@
+GET /login web HTTP 200
+GET /health/ready API HTTP 200
+dev-token organizer exit 0 / GET /api/v1/me via web HTTP 200 / roles=ORGANIZER
+dev-token admin exit 0 / GET /api/v1/me via web HTTP 200 / roles=ADMIN
+dev-token student exit 0 / GET /api/v1/me via web HTTP 200 / roles=STUDENT
+qldapm-m27-tools-1 Up 10 minutes 
+qldapm-m27-web-1 Up 10 minutes (healthy) 127.0.0.1:5178->80/tcp
+qldapm-m27-api-1 Up 10 minutes (healthy) 127.0.0.1:53006->3000/tcp
+qldapm-m27-worker-1 Up 10 minutes 3000/tcp
+qldapm-m27-migrate-1 Exited (0) 10 minutes ago 
+qldapm-m27-postgres-1 Up 10 minutes (healthy) 127.0.0.1:55436->5432/tcp

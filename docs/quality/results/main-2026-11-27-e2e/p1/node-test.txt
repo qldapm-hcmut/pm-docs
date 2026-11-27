@@ -1,0 +1,13 @@
+✔ opening in the past is allowed while the deadline is in the future (1.0651ms)
+✔ past and exactly-current start/deadline show field errors (0.2003ms)
+✔ missing and invalid dates show errors instead of silently omitting payload fields (0.6842ms)
+✔ published event can keep its closed deadline when editing its title (0.1439ms)
+✔ date ordering and required unit remain enforced (0.1478ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.2495
