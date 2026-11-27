@@ -1,7 +1,7 @@
 \chapter{Bàn giao và đánh giá (Task 4)}
 \label{chap:task4}
 
-Chương này tổng hợp từ bằng chứng đến 26/11 (kết quả kiểm thử của TV2, GitHub, Jira, Sheet); các mục chờ UAT (A41) và frontend vào \texttt{main} giữ ghi chú \texttt{\textbackslash todo}. Khung chương do AI dựng ngày 23/11; phần đóng góp ở mục 4.6 và Phụ lục~\ref{app:contributions} do AI tổng hợp theo yêu cầu của TV1 (26/11); các lần dùng AI khai báo ở Phụ lục~\ref{app:ai-declaration}.
+Chương này tổng hợp từ bằng chứng đến 26/11 (kết quả kiểm thử của TV2, GitHub, Jira, Sheet). Ngày 28/11 TV2 cập nhật các phần về kiểm thử lại trên \texttt{main}, UAT (A41), kế hoạch bàn giao (A43) và reflection của TV2; mục còn thiếu dữ kiện giữ ghi chú \texttt{\textbackslash todo}. Khung chương do AI dựng ngày 23/11; phần đóng góp ở mục 4.6 và Phụ lục~\ref{app:contributions} do AI tổng hợp theo yêu cầu của TV1 (26/11); các lần dùng AI khai báo ở Phụ lục~\ref{app:ai-declaration}.
 
 \section{Bàn giao và phân loại phạm vi}
 \label{sec:4-1}
@@ -68,7 +68,7 @@ REQ-21 & Hoàn thành & T-EV-06, 07 đạt (thông báo khi đổi thời gian, 
 
 \textbf{Ngoài baseline.} Quản lý đơn vị và người dùng ở backend (PR \#23) và đăng nhập Google (CR-03) là phạm vi do nhóm tự quyết, không phải yêu cầu đã thống nhất với client; giao diện quản trị đơn vị và người dùng bị bỏ theo quyết định D2 (16/11). PR \#31 hoãn. Hạng mục \textbf{bị loại hoặc đổi} so với V1.0: hosting free-tier thay bằng Docker local kèm video dự phòng (D3).
 
-\todo{Cập nhật bảng sau UAT (A41) và khi PR \#6 vào \texttt{main}: chuyển các dòng ``hoàn thành một phần'' khi có bằng chứng; ghi lý do cho từng hạng mục chưa làm.}
+\todo{FE PR \#6 đã merge ngày 26/11. Cập nhật bảng sau khi TV1 xác nhận UAT (A41): chuyển các dòng ``hoàn thành một phần'' khi có bằng chứng; ghi lý do cho từng hạng mục chưa làm.}
 
 \section{So sánh kế hoạch và thực tế}
 \label{sec:4-2}
@@ -95,7 +95,9 @@ Chi phí & Tính bằng person-hours, không quy ra tiền (E04) & Như dòng ef
 
 Ba điểm rút ra từ dữ liệu hiện có: backend, do một người đảm nhận, hoàn thành sớm hơn lịch; frontend, hạ tầng CI và kiểm thử trễ và nằm trên đường găng; thầy đưa change event ngày 16/11 (mốc demo và viva sớm hơn) nên quỹ A38 đã dùng (mục~\ref{sec:3-6}). Các nhận định về nguyên nhân cần giờ thực tế để kiểm chứng.
 
-\todo{Điền ngày UAT thực tế và kết luận tổng thể; cập nhật số giờ Jira nếu có thêm worklog.}
+UAT nội bộ (A41) gồm lượt TV2 tự đi tay toàn bộ luồng ngày 24/11 và lượt E2E tự động trên \texttt{main} ngày 27/11; kịch bản và biên bản ở \texttt{docs/\allowbreak quality/\allowbreak uat/}.
+
+\todo{TV1 xác nhận kết luận UAT; cập nhật số giờ Jira nếu có thêm worklog.}
 
 \section{Đánh giá mục tiêu và MoE}
 \label{sec:4-3}
@@ -104,7 +106,7 @@ Mục này tách hai câu hỏi: \emph{sản phẩm đã xong} (mục~\ref{sec:4
 
 \begingroup\tblsetup\tblzebra
 \begin{longtable}{L{1.0cm}L{4.4cm}L{5.0cm}L{2.6cm}}
-\caption{Đánh giá mục tiêu theo MoE đến 23/11 (tạm thời)}\label{tab:moe-eval}\\
+\caption{Đánh giá mục tiêu theo MoE, cập nhật 27/11 (tạm thời)}\label{tab:moe-eval}\\
 \toprule
 \rowcolor{tblheadbg}\textbf{Mã} & \textbf{Tiêu chí MoE (Bảng~\ref{tab:objectives})} & \textbf{Bằng chứng} & \textbf{Kết luận tạm} \\
 \midrule
@@ -115,14 +117,16 @@ Mục này tách hai câu hỏi: \emph{sản phẩm đã xong} (mục~\ref{sec:4
 \endhead
 \bottomrule
 \endlastfoot
-O1 & 100\% acceptance test đạt; không đăng ký trùng, không vượt số chỗ; waitlist đúng FIFO & Chặn trùng, tranh chỗ và FIFO đạt (T-REG-02, 03, T-WL-02, 100 lượt đồng thời ở mức dịch vụ); T-WL-03 không đạt (D01); UAT chưa chạy & Chưa đạt: còn một ca không đạt \\
+O1 & 100\% acceptance test đạt; không đăng ký trùng, không vượt số chỗ; waitlist đúng FIFO & Chặn trùng, tranh chỗ và FIFO đạt (T-REG-02, 03, T-WL-02, 100 lượt đồng thời ở mức dịch vụ); T-WL-03 đạt khi kiểm lại 27/11 sau PR \#35 (D01 đã sửa); E2E 13 ca trên \texttt{main} đạt sau FE PR \#12 & Đạt trong môi trường kiểm thử; kết luận UAT chờ TV1 xác nhận \\
 O2 & Trung vị điểm danh không quá 5 giây; chặn điểm danh trùng; dự phòng cập nhật như QR & Trung vị 2,31 giây, lớn nhất 2,55 giây (5 lượt, một thiết bị, đo khoảng cách giữa hai lượt thành công kể cả thao tác chuyển mã); chặn trùng đạt (T-CI-02); nhập mã và thủ công đạt (T-CI-04, 05) & Đạt ở mẫu nhỏ, chưa đủ ba thiết bị \\
 O3 & Bộ 500 đăng ký: tổng hợp và xuất CSV trong 30 giây, khớp dữ liệu nguồn & 0,040 giây, khớp 500 và 250 dòng (T-RP-03, qua API) & Đạt ở mức API; chưa đo qua giao diện \\
-O4 & 100\% authorization test đạt; không publish khi chưa duyệt; không còn lỗi nghiêm trọng về quyền tại UAT & Chặn publish khi chưa duyệt đạt (T-EV-03, 04); T-AUTH-04 sai mã lỗi (D02); T-AUTH-01 chưa chạy; UAT chưa chạy & Chưa đạt: một ca không đạt, một ca chưa chạy \\
+O4 & 100\% authorization test đạt; không publish khi chưa duyệt; không còn lỗi nghiêm trọng về quyền tại UAT & Chặn publish khi chưa duyệt đạt (T-EV-03, 04); T-AUTH-04 đạt khi kiểm lại 27/11 sau PR \#34 (D02 đã sửa); T-AUTH-01 chưa chạy vì chưa có Google Client ID & Chưa đủ: còn một ca chưa chạy \\
 \end{longtable}
 \endgroup
 
-\todo{Cập nhật kết luận sau UAT (A41) và sau khi sửa D01, D02; ghi rõ mục tiêu nào đã đạt, đạt một phần hay không đạt. Không kết luận mức cải thiện so với hiện trạng khi chưa có số đo thật.}
+Sau lượt kiểm lại 27/11, O1 và O3 có bằng chứng đạt trong môi trường kiểm thử, O2 đạt ở mẫu một thiết bị, còn O4 thiếu T-AUTH-01. Mức cải thiện so với hiện trạng chưa đo được vì không có số đo thật (P03, ASM-07).
+
+\todo{TV1 xác nhận kết luận UAT (A41) trước khi chốt bảng.}
 
 \section{Kế hoạch đóng dự án}
 \label{sec:4-4}
@@ -148,9 +152,11 @@ Lưu trữ dữ liệu quản lý & Export Sheet master, Jira (issue và worklog
 Quyền truy cập & Sheet master (TV1 là chủ) và thư mục Drive hiện cho bất kỳ ai có link chỉnh sửa (R20): giới hạn lại sau khi nộp; xác nhận hai repo công khai (TV3 là chủ) không chứa khóa hoặc dữ liệu thật & TV1 (Sheet), TV3 (repo code); sau 29/11 \\
 Dữ liệu demo & Xóa token, dữ liệu thử và cơ sở dữ liệu tạm; không giữ khóa thật & TV1; 29/11 \\
 Phản hồi client & Client không ký biên bản (P06); ghi vào Client Log việc gửi link và báo cáo cho thầy, nếu thầy phản hồi & TV1; 29/11 \\
-Vấn đề còn mở & Danh sách defect và hạng mục chưa làm bàn giao kèm khuyến nghị (D01, D02, REQ-16 đến 20, email, CI) & TV1; 29/11 \\
+Vấn đề còn mở & Danh sách defect và hạng mục chưa làm bàn giao kèm khuyến nghị (D01 đến D03 đã sửa; còn form sự kiện chỉ báo lỗi bằng toast, T-AUTH-01, T-CI-03, REQ-16 đến 20, email, CI) & TV1; 29/11 \\
 \end{longtable}
 \endgroup
+
+TV2 soạn bản nháp kế hoạch bàn giao (A43) ngày 27/11 ở \texttt{docs/\allowbreak task4/\allowbreak 4.4-closure-handover.md}. Bản nháp ghi cách dựng lại hệ thống từ hai commit đã kiểm thử (backend \texttt{24e08ce}, frontend \texttt{ff9ea2d}) và đăng nhập bằng tài khoản demo, danh sách vấn đề còn lại, nơi lưu trữ, tài nguyên cần thu hồi và phần bàn giao của từng thành viên. Các mục về bản export cuối, quyền Sheet và người nhận bàn giao chờ TV1 xác nhận.
 
 \section{Bài học kinh nghiệm}
 \label{sec:4-5}
@@ -184,7 +190,7 @@ Phần đóng góp dưới đây do AI tổng hợp từ bằng chứng có sẵ
 
 \begin{itemize}
   \item \textbf{TV1, quản lý dự án (Nguyễn Đức Nghĩa).} Quản trị và báo cáo: Client Log, lịch, Baseline V1.0 và V2.0, sổ rủi ro, báo cáo; 32 commit và 10 PR đã merge trên \texttt{pm-docs}; 9,0 giờ trên Jira.
-  \item \textbf{TV2, kiểm thử (Ngô Thanh Hùng).} Quality plan, 35 test case, chạy kiểm thử và hồi quy 18--20/11, ghi defect D01, D02; 28,0 giờ trên Jira.
+  \item \textbf{TV2, kiểm thử (Ngô Thanh Hùng).} Quality plan, 35 test case, kiểm thử và hồi quy 18--20/11, kiểm thử lại trên \texttt{main} 27/11, ghi defect D01 đến D03 và sửa D03 (FE PR \#12), UAT nội bộ (A41), bản nháp kế hoạch bàn giao (A43); 28,0 giờ trên Jira.
   \item \textbf{TV3, Tech Lead, backend (Phan Huy Quang Minh).} Thiết kế cơ sở dữ liệu và hợp đồng API, backend Go (96 commit, 34 PR, 32 đã merge); 57,5 giờ trên Jira.
   \item \textbf{TV4, frontend (Nguyễn Đắc Nghĩa).} Giao diện web: 10 PR trên \texttt{ticket-system-uni-fe}, trong đó 5 PR vào nhánh xếp chồng ngày 02/11 và 5 PR mở ngày 25/11 chưa merge; chưa có worklog Jira.
   \item \textbf{TV5, backend và DevOps (Hà Cao Đức Minh).} PR \#28 (đăng nhập demo, kiểm tra lịch sự kiện, đã merge 15/11), PR \#6 (tích hợp luồng, Docker, mở từ 12/11, chưa merge); A20, A24, A33; 24,0 giờ trên Jira.
@@ -211,7 +217,7 @@ Phần reflection của TV1 do AI soạn từ nhật ký dự án theo yêu cầ
   \item Không bắt buộc log work từ tuần đầu (I02), nên không có effort thực tế trước 21/10 và không so sánh được effort kế hoạch với thực tế.
   \item Theo dõi tiến độ dựa vào trạng thái Jira vốn lệch thực tế, nên biết muộn việc frontend chưa vào \texttt{main} (I05).
   \item Quy định review chéo và change request trước khi code không được giữ (I07, CR-02, CR-03 ghi sau khi code làm xong).
-  \item Phần lớn tài liệu và báo cáo có AI hỗ trợ (54 lần ghi ở Phụ lục~\ref{app:ai-declaration}); tôi phải duyệt từng phần, và vẫn chưa có vòng ước lượng chéo độc lập cho effort.
+  \item Phần lớn tài liệu và báo cáo có AI hỗ trợ (56 lần ghi ở Phụ lục~\ref{app:ai-declaration}); tôi phải duyệt từng phần, và vẫn chưa có vòng ước lượng chéo độc lập cho effort.
 \end{itemize}
 
 \textbf{Điều sẽ làm khác.}
@@ -223,4 +229,30 @@ Phần reflection của TV1 do AI soạn từ nhật ký dự án theo yêu cầ
   \item Tổ chức ước lượng chéo giữa các thành viên trước khi chốt baseline.
 \end{itemize}
 
-\todo{Reflection cá nhân của TV2 đến TV5 (việc làm được và chưa được, điều sẽ làm khác) do từng thành viên tự viết, AI không viết thay. Giảng viên có thể hỏi bất kỳ thành viên nào ở viva.}
+\subsection*{Reflection của TV2 (Ngô Thanh Hùng)}
+
+\textbf{Việc đã làm.} Tôi phụ trách kiểm thử: viết quality plan (A22, chốt v1.0 ngày 19/11), bộ 35 test case (A31, A40), chạy kiểm thử API trước CP3 ngày 18/11 và hồi quy A39 ngày 20/11, chạy lại toàn bộ trên \texttt{main} ngày 27/11, ghi defect D01 đến D03, làm UAT nội bộ (A41) và soạn bản nháp kế hoạch bàn giao (A43).
+
+\textbf{Làm được.}
+\begin{itemize}
+  \item Khi frontend chưa lên \texttt{main}, tôi kiểm thử thẳng trên API đã merge (114 request), nên nhóm có kết quả kiểm thử đầu tiên từ 18/11 thay vì chờ giao diện.
+  \item T-CI-03 chỉ đo được trên một điện thoại. Tôi ghi đúng số đo từ log máy chủ (trung vị 2,31 giây) và ghi rõ là chưa đủ ba thiết bị, không ghi đạt.
+  \item Ở A39 tôi chạy hai lượt độc lập rồi đối chiếu, nên kết quả hồi quy không dựa vào một lần chạy.
+  \item D01 được phát hiện trước demo. Test có sẵn của backend vẫn đạt vì nó kiểm hành vi hoàn tác, trong khi Q14 yêu cầu ngược lại; TV3 sửa ở PR \#35.
+  \item Ngày 27/11 tôi tìm ra D03 khi chạy trên máy không có camera, truy được lần merge làm mất đoạn kiểm tra, sửa ở FE PR \#12 và chạy lại đạt 13/13 rồi mới báo đóng.
+\end{itemize}
+
+\textbf{Chưa làm được.}
+\begin{itemize}
+  \item T-AUTH-01 (đăng nhập Google) chưa chạy được vì nhóm chưa có Google Client ID, và T-CI-03 mới đo trên một thiết bị.
+  \item Tôi viết test case từ 18/11, sát CP3, nên kiểm thử trễ và nằm trên đường găng (R26).
+\end{itemize}
+
+\textbf{Điều sẽ làm khác.}
+\begin{itemize}
+  \item Viết test case ngay khi chốt yêu cầu, không đợi đến lúc có code.
+  \item Đề xuất CI chạy test backend và E2E cho mỗi PR từ đầu, vì đến 23/11 cả hai repo vẫn chưa có workflow CI, nên test chỉ chạy khi tôi tự chạy trên máy mình chứ không tự chạy sau mỗi PR.
+  \item Đặt việc chuẩn bị cấu hình bên ngoài (Google Client ID) thành một việc có hạn trong kế hoạch, để không đến cuối kỳ mới biết ca đó không chạy được.
+\end{itemize}
+
+\todo{Reflection cá nhân của TV3 đến TV5 (việc làm được và chưa được, điều sẽ làm khác) do từng thành viên tự viết, AI không viết thay. Giảng viên có thể hỏi bất kỳ thành viên nào ở viva.}
