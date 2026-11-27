@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\Downloads\HCMUT\HK261\QLDAPM\BTL\code\.scratch\orca\main-retest-2026-11-27\run\verify_api_uat.py", line 260, in <module>
+    result = cancel(a, "s1")
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\Downloads\HCMUT\HK261\QLDAPM\BTL\code\.scratch\orca\main-retest-2026-11-27\run\verify_api_uat.py", line 131, in cancel
+    return request("POST", reg_path(reg) + "/cancel", role, expected=200)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\Downloads\HCMUT\HK261\QLDAPM\BTL\code\.scratch\orca\main-retest-2026-11-27\run\verify_api_uat.py", line 93, in request
+    assert status in ((expected,) if isinstance(expected, int) else expected), (status, excerpt, expected)
+AssertionError: (409, {'error': 'INVALID_STATE_TRANSITION'}, 200)

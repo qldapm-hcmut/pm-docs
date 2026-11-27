@@ -1,0 +1,11 @@
+activity_logs=0
+auth_sessions=0
+events=0
+notifications=0
+registrations=0
+schema_migrations=1
+unit_memberships=1
+units=1
+users=3
+demo_roles=admin.demo@hcmut.edu.vn/true/true,organizer.demo@hcmut.edu.vn/false/true,student.demo@hcmut.edu.vn/false/true
+demo_units=DEMO/ORGANIZER

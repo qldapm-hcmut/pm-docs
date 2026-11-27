@@ -1,0 +1,231 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.93kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 435B 0.0s done
+#2 DONE 0.0s
+
+#3 [web internal] load build definition from Dockerfile
+#3 transferring dockerfile: 513B done
+#3 DONE 0.1s
+
+#4 [worker internal] load metadata for docker.io/library/alpine:3.22
+#4 DONE 0.0s
+
+#5 [worker internal] load metadata for docker.io/library/golang:1.27-alpine
+#5 DONE 1.8s
+
+#6 [worker internal] load .dockerignore
+#6 transferring context: 89B done
+#6 DONE 0.0s
+
+#7 [api build 1/6] FROM docker.io/library/golang:1.27-alpine@sha256:70bd7ddea8b6cbe5d6943cde279d6b67feb10cc924fb9100d1d8757c1575b280
+#7 resolve docker.io/library/golang:1.27-alpine@sha256:70bd7ddea8b6cbe5d6943cde279d6b67feb10cc924fb9100d1d8757c1575b280 0.0s done
+#7 DONE 0.0s
+
+#8 [worker stage-1 1/4] FROM docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f
+#8 resolve docker.io/library/alpine:3.22@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f 0.0s done
+#8 DONE 0.0s
+
+#9 [web internal] load metadata for docker.io/library/nginx:1.28-alpine
+#9 DONE 1.9s
+
+#10 [worker internal] load build context
+#10 transferring context: 892.22kB 0.1s done
+#10 DONE 0.1s
+
+#11 [worker build 2/6] WORKDIR /src
+#11 CACHED
+
+#12 [worker build 3/6] COPY go.mod go.sum ./
+#12 CACHED
+
+#13 [api build 4/6] RUN go mod download
+#13 CACHED
+
+#14 [worker build 5/6] COPY . .
+#14 DONE 0.1s
+
+#15 [api build 6/6] RUN CGO_ENABLED=0 go build -trimpath -o /out/api ./cmd/api     && CGO_ENABLED=0 go build -trimpath -o /out/worker ./cmd/worker
+#15 ...
+
+#16 [web internal] load metadata for docker.io/library/node:22-alpine
+#16 DONE 2.5s
+
+#17 [web internal] load .dockerignore
+#17 transferring context: 87B done
+#17 DONE 0.0s
+
+#18 [web build 1/6] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#18 resolve docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a 0.0s done
+#18 DONE 0.0s
+
+#19 [web stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#19 resolve docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236 0.0s done
+#19 DONE 0.0s
+
+#20 [web internal] load build context
+#20 transferring context: 397.17kB 0.1s done
+#20 DONE 0.1s
+
+#21 [web build 2/6] WORKDIR /app
+#21 CACHED
+
+#22 [web build 3/6] COPY package.json package-lock.json ./
+#22 DONE 0.1s
+
+#15 [api build 6/6] RUN CGO_ENABLED=0 go build -trimpath -o /out/api ./cmd/api     && CGO_ENABLED=0 go build -trimpath -o /out/worker ./cmd/worker
+#15 ...
+
+#23 [web build 4/6] RUN npm ci --no-audit --no-fund
+#23 10.61 
+#23 10.61 added 112 packages in 10s
+#23 10.61 npm notice
+#23 10.61 npm notice New major version of npm available! 10.9.9 -> 12.2.3
+#23 10.61 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#23 10.61 npm notice To update run: npm install -g npm@12.2.3
+#23 10.61 npm notice
+#23 DONE 10.9s
+
+#15 [api build 6/6] RUN CGO_ENABLED=0 go build -trimpath -o /out/api ./cmd/api     && CGO_ENABLED=0 go build -trimpath -o /out/worker ./cmd/worker
+#15 ...
+
+#24 [web build 5/6] COPY . .
+#24 DONE 0.1s
+
+#25 [web build 6/6] RUN npm run build
+#25 0.282 
+#25 0.282 > ticket-system-uni-fe@0.1.0 build
+#25 0.282 > vite build
+#25 0.282 
+#25 ...
+
+#15 [api build 6/6] RUN CGO_ENABLED=0 go build -trimpath -o /out/api ./cmd/api     && CGO_ENABLED=0 go build -trimpath -o /out/worker ./cmd/worker
+#15 DONE 12.2s
+
+#15 [worker build 6/6] RUN CGO_ENABLED=0 go build -trimpath -o /out/api ./cmd/api     && CGO_ENABLED=0 go build -trimpath -o /out/worker ./cmd/worker
+#15 DONE 12.2s
+
+#26 [api stage-1 2/4] RUN apk add --no-cache ca-certificates
+#26 CACHED
+
+#27 [api stage-1 3/4] WORKDIR /app
+#27 CACHED
+
+#28 [worker stage-1 4/4] COPY --from=build /out/api /out/worker ./
+#28 CACHED
+
+#29 [api] exporting to image
+#29 exporting layers done
+#29 exporting manifest sha256:eea7e372d927351fdda3bfb5eca7d077cff205a7247aecffad30362cfae457cc 0.0s done
+#29 exporting config sha256:05c2d1ed2a664ad797e0bc66d1b118836f6c96eafd6a408768ea6c37970bd563 0.0s done
+#29 exporting attestation manifest sha256:965e7fa8d2027f9ec8636c04d8e334e6db5fa50e1893041bc8814838fc910d37 0.0s done
+#29 exporting manifest list sha256:3321a50995a398abfd2c49ea78552f5ec759689a5812e42ebeabbc56544ba51b
+#29 exporting manifest list sha256:3321a50995a398abfd2c49ea78552f5ec759689a5812e42ebeabbc56544ba51b 0.0s done
+#29 naming to docker.io/library/qldapm-m27-api:latest done
+#29 unpacking to docker.io/library/qldapm-m27-api:latest 0.0s done
+#29 DONE 0.1s
+
+#30 [worker] exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:af894146808f15882f7c95278857872828170391b3d7d7b6c46a00cdee820b16 0.0s done
+#30 exporting config sha256:02aae3585102c6451999231caa53a78461e5050d8c7b4410ff2975ed825c9f21 done
+#30 exporting attestation manifest sha256:e10c3fd68970da2d718cea7280b0cff624b86e6e0e7827b37201a89b4aee5573 0.0s done
+#30 exporting manifest list sha256:8f6f4d758aa81b43a83243651f3a1c1ebbe6fba6a511a65e7105e67f408c2338 0.0s done
+#30 naming to docker.io/library/qldapm-m27-worker:latest done
+#30 unpacking to docker.io/library/qldapm-m27-worker:latest done
+#30 DONE 0.1s
+
+#25 [web build 6/6] RUN npm run build
+#25 0.631 vite v6.4.5 building for production...
+#25 0.713 transforming...
+#25 ...
+
+#31 [worker] resolving provenance for metadata file
+#31 DONE 0.0s
+
+#32 [api] resolving provenance for metadata file
+#32 DONE 0.0s
+
+#25 [web build 6/6] RUN npm run build
+#25 4.096 ✓ 1782 modules transformed.
+#25 4.351 rendering chunks...
+#25 4.379 computing gzip size...
+#25 4.391 dist/index.html                        1.12 kB │ gzip:   0.60 kB
+#25 4.391 dist/assets/index-CzapWMl6.css        36.29 kB │ gzip:   7.41 kB
+#25 4.391 dist/assets/CheckinPage-C2chkJ3H.js  349.46 kB │ gzip: 105.44 kB
+#25 4.391 dist/assets/index-_FCDon8O.js        387.09 kB │ gzip: 124.09 kB
+#25 4.391 ✓ built in 3.72s
+#25 DONE 4.5s
+
+#33 [web stage-1 2/3] COPY nginx.conf /etc/nginx/conf.d/default.conf
+#33 CACHED
+
+#34 [web stage-1 3/3] COPY --from=build /app/dist /usr/share/nginx/html
+#34 DONE 0.0s
+
+#35 [web] exporting to image
+#35 exporting layers 0.1s done
+#35 exporting manifest sha256:7aef0aedd41394fa5a720b449fe253543401732e4cbb69728163102fc11097f2 done
+#35 exporting config sha256:8d6c5a6abbcf0fef183b90b5fba45f06964f76a0b39e7d213a004b216a4d6301
+#35 exporting config sha256:8d6c5a6abbcf0fef183b90b5fba45f06964f76a0b39e7d213a004b216a4d6301 0.0s done
+#35 exporting attestation manifest sha256:3de77621c536842fd96d40fe24a35a04669ff8ef95298eca78735c9782ce5d74 0.0s done
+#35 exporting manifest list sha256:877c5494e4e7ddefadde3d9f7a7ae7e05fee2b0d33f26882603afebf14a4f768 done
+#35 naming to docker.io/library/qldapm-m27-web:latest done
+#35 unpacking to docker.io/library/qldapm-m27-web:latest 0.0s done
+#35 DONE 0.3s
+
+#36 [web] resolving provenance for metadata file
+#36 DONE 0.0s
+docker :  qldapm-m27-worker  Built
+At line:18 char:1
++ docker compose -p qldapm-m27 -f compose.yaml -f compose.host.yaml -f  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( qldapm-m27-worker  Built:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ qldapm-m27-api  Built
+ qldapm-m27-web  Built
+ Network qldapm-m27_default  Creating
+ Network qldapm-m27_default  Created
+ Volume qldapm-m27_postgres_data  Creating
+ Volume qldapm-m27_postgres_data  Created
+ Container qldapm-m27-postgres-1  Creating
+ Container qldapm-m27-postgres-1  Created
+ Container qldapm-m27-migrate-1  Creating
+ Container qldapm-m27-migrate-1  Created
+ Container qldapm-m27-worker-1  Creating
+ Container qldapm-m27-api-1  Creating
+ Container qldapm-m27-worker-1  Created
+ Container qldapm-m27-api-1  Created
+ Container qldapm-m27-web-1  Creating
+ Container qldapm-m27-web-1  Created
+ Container qldapm-m27-postgres-1  Starting
+ Container qldapm-m27-postgres-1  Started
+ Container qldapm-m27-postgres-1  Waiting
+ Container qldapm-m27-postgres-1  Healthy
+ Container qldapm-m27-migrate-1  Starting
+ Container qldapm-m27-migrate-1  Started
+ Container qldapm-m27-migrate-1  Waiting
+ Container qldapm-m27-migrate-1  Waiting
+ Container qldapm-m27-migrate-1  Exited
+ Container qldapm-m27-migrate-1  Exited
+ Container qldapm-m27-worker-1  Starting
+ Container qldapm-m27-api-1  Starting
+ Container qldapm-m27-worker-1  Started
+ Container qldapm-m27-api-1  Started
+ Container qldapm-m27-api-1  Waiting
+ Container qldapm-m27-api-1  Healthy
+ Container qldapm-m27-web-1  Starting
+ Container qldapm-m27-web-1  Started
+ Container qldapm-m27-migrate-1  Waiting
+ Container qldapm-m27-api-1  Waiting
+ Container qldapm-m27-worker-1  Waiting
+ Container qldapm-m27-web-1  Waiting
+ Container qldapm-m27-postgres-1  Waiting
+ Container qldapm-m27-api-1  Healthy
+ Container qldapm-m27-migrate-1  Exited
+ Container qldapm-m27-worker-1  Healthy
+ Container qldapm-m27-postgres-1  Healthy
+ Container qldapm-m27-web-1  Healthy

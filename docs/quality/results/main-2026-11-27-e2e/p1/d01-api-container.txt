@@ -1,0 +1,1 @@
+2026/11/27 13:37:57 WARN promotion notification skipped registration_id=d4205be3-a1f9-47e1-b741-db00c2900768 event_id=22028c03-ddde-47e0-8195-67f048dfc6e3 error="ERROR: TV2 synthetic notification failure (SQLSTATE P0001)"

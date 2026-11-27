@@ -1,0 +1,288 @@
+{
+ "label": "main-ff9ea2d",
+ "eventId": "546ed22e-d29d-4d12-8308-13719c890389",
+ "report": [
+  {
+   "scenario": "nocam",
+   "pageErrors": [],
+   "blank": false,
+   "steps": [
+    {
+     "at": "mở trang (tab Quét QR)",
+     "live": 0,
+     "textLen": 282,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": "Không mở được camera trên thiết bị này."
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 0,
+     "textLen": 282,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": "Không mở được camera trên thiết bị này."
+    },
+    {
+     "at": "Danh sách",
+     "live": 0,
+     "textLen": 297,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 0,
+     "textLen": 282,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": "Không mở được camera trên thiết bị này."
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "cuối (đang ở Nhập mã, chờ 1,5 giây)",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    }
+   ]
+  },
+  {
+   "scenario": "denied",
+   "pageErrors": [],
+   "blank": false,
+   "steps": [
+    {
+     "at": "mở trang (tab Quét QR)",
+     "live": 0,
+     "textLen": 282,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": "Không mở được camera trên thiết bị này."
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 0,
+     "textLen": 282,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": "Không mở được camera trên thiết bị này."
+    },
+    {
+     "at": "Danh sách",
+     "live": 0,
+     "textLen": 297,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 0,
+     "textLen": 282,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": "Không mở được camera trên thiết bị này."
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "cuối (đang ở Nhập mã, chờ 1,5 giây)",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    }
+   ]
+  },
+  {
+   "scenario": "cam",
+   "pageErrors": [],
+   "blank": false,
+   "steps": [
+    {
+     "at": "mở trang (tab Quét QR)",
+     "live": 1,
+     "textLen": 292,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": 4,
+     "cameraMsg": null
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 1,
+     "textLen": 292,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": 4,
+     "cameraMsg": null
+    },
+    {
+     "at": "Danh sách",
+     "live": 0,
+     "textLen": 297,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 1,
+     "textLen": 292,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": 4,
+     "cameraMsg": null
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "cuối (đang ở Nhập mã, chờ 1,5 giây)",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    }
+   ]
+  },
+  {
+   "scenario": "camfast",
+   "pageErrors": [
+    "The play() request was interrupted because the media was removed from the document. https://goo.gl/LdLk22"
+   ],
+   "blank": false,
+   "steps": [
+    {
+     "at": "mở trang (tab Quét QR)",
+     "live": 0,
+     "textLen": 292,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 1,
+     "textLen": 292,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": 4,
+     "cameraMsg": null
+    },
+    {
+     "at": "Danh sách",
+     "live": 0,
+     "textLen": 297,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "Quét QR",
+     "live": 1,
+     "textLen": 292,
+     "tabs": 3,
+     "codeInput": false,
+     "videoReady": 4,
+     "cameraMsg": null
+    },
+    {
+     "at": "Nhập mã",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    },
+    {
+     "at": "cuối (đang ở Nhập mã, chờ 1,5 giây)",
+     "live": 0,
+     "textLen": 290,
+     "tabs": 3,
+     "codeInput": true,
+     "videoReady": null,
+     "cameraMsg": null
+    }
+   ]
+  }
+ ]
+}
