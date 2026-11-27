@@ -217,7 +217,7 @@ Mục này tổng hợp từ \texttt{docs/\allowbreak quality/\allowbreak result
 
 \textbf{Từ 18/11.} TV2 viết bộ 35 test case mang mã T-\ldots{} (\texttt{docs/\allowbreak quality/\allowbreak test-cases.md}), chốt quality plan v1.0 ngày 19/11 (mục~\ref{sec:2-12}) và chạy theo hai mốc: kiểm thử API trước CP3 (18/11) và kiểm thử hồi quy A39 (20/11). Kết quả, log HTTP đã ẩn token và mã check-in, ảnh từng bước nằm ở \texttt{docs/\allowbreak quality/\allowbreak results/}; defect ở \texttt{docs/\allowbreak quality/\allowbreak defects.md}.
 
-\textbf{Bản được kiểm thử.} Backend \texttt{main} tại commit \texttt{a964e19} (đã có PR \#28, \#33) và frontend \texttt{main} ghép với nhánh PR \#6 (\texttt{84c38cb}) trên máy TV2; PR \#6 chưa merge nên đây chưa phải bản \texttt{main} của frontend. Môi trường: Docker Compose, PostgreSQL 16, \texttt{AUTH\_MODE=local}, tài khoản demo và dữ liệu tổng hợp. PR \#34 (22/11, sửa mã lỗi tự duyệt) và PR \#35 (23/11, sửa D01) merge sau các lượt chạy và chưa được chạy lại.
+\textbf{Bản được kiểm thử.} Backend \texttt{main} tại commit \texttt{a964e19} (đã có PR \#28, \#33) và frontend \texttt{main} ghép với nhánh PR \#6 (\texttt{84c38cb}) trên máy TV2; PR \#6 chưa merge nên đây chưa phải bản \texttt{main} của frontend. Môi trường: Docker Compose, PostgreSQL 16, \texttt{AUTH\_MODE=local}, tài khoản demo và dữ liệu tổng hợp. PR \#34 (22/11, sửa mã lỗi tự duyệt) và PR \#35 (23/11, sửa D01) merge sau các lượt chạy này và được chạy lại ngày 27/11 (xem đoạn kiểm thử lại trên \texttt{main} bên dưới).
 
 \begingroup\tblsetup\tblzebra
 \begin{longtable}{L{3.6cm}L{4.2cm}L{5.2cm}}
@@ -259,9 +259,11 @@ Tích hợp & T-INT-01 đến 03 & 3 đạt (API 18/11, UI 19/11 trên nhánh PR
 
 \textbf{Review chéo và CI.} Trong năm PR backend gần nhất được kiểm tra (\#28, \#30, \#32, \#33, \#34), chỉ PR \#28 có nhận xét tự động của Copilot; chưa thấy phê duyệt của thành viên khác (R24). Chưa có workflow CI ở cả hai repo (kiểm tra 23/11), nên các lượt chạy trên do TV2 thực hiện trong Docker trên máy cá nhân, không phải build tự động. TV2 dùng Claude Code và Codex để dựng môi trường, viết script kiểm thử và soạn báo cáo; các lần này đã ghi ở Phụ lục~\ref{app:ai-declaration}.
 
-\textbf{Đối chiếu tiêu chí chất lượng.} Quality plan đặt tiêu chí increment đạt là 100\% ca Must trong phạm vi đã chạy đều đạt và không còn defect nghiêm trọng mở. Hiện còn hai ca không đạt (T-AUTH-04, T-WL-03) và một ca chưa chạy (T-AUTH-01), nên chưa ghi increment đạt theo tiêu chí này; phân loại ca nào là Must do TV2 và TV1 chốt.
+\textbf{Kiểm thử lại trên \texttt{main} (27/11).} Sau khi FE PR \#6 và \#11 merge ngày 26/11, TV2 chạy lại trên backend \texttt{main} \texttt{24e08ce} và frontend \texttt{main} \texttt{58a81b8}: API 30/30 nhóm (114 request), test Go 606/606, test frontend 5/5. T-WL-03 và T-AUTH-04 đạt, nên D01 (PR \#35) và D02 (PR \#34) được đóng. Playwright 13 ca trên Chrome không có camera chỉ đạt 11/13 vì một lỗi mới, D03 (mức cao): màn check-in mở sẵn tab Quét QR, và khi camera không khởi động được thì chuyển sang tab Nhập mã làm trắng cả trang, Organizer mất đường check-in dự phòng. Lỗi nằm ở frontend. Đoạn kiểm tra trước khi tắt camera có trong PR \#6, mất đi khi nhánh A35 merge \texttt{main} (\texttt{e43c46a}), rồi theo PR \#11 vào \texttt{main}. TV2 sửa ở FE PR \#12 (merge 27/11, \texttt{ff9ea2d}); chạy lại trên bản này đạt 13/13, và bốn tình huống camera kiểm riêng đều không còn trắng trang. Form sự kiện (U3) chặn được dữ liệu sai nhưng chỉ báo lỗi bằng toast, nhóm ghi là quan sát. Kết quả ở \texttt{docs/\allowbreak quality/\allowbreak results/\allowbreak main-2026-11-27.md}, kịch bản và biên bản UAT ở \texttt{docs/\allowbreak quality/\allowbreak uat/}.
 
-\todo{Điền khi có: kết quả chạy lại bộ API và E2E trên \texttt{main} sau khi PR \#6 merge; kết quả UAT nội bộ (A41, dự kiến 26--27/11); kết quả T-AUTH-01 nếu có Google Client ID; đo T-CI-03 thêm thiết bị; trạng thái D01, D02 sau khi sửa.}
+\textbf{Đối chiếu tiêu chí chất lượng.} Quality plan đặt tiêu chí increment đạt là 100\% ca Must trong phạm vi đã chạy đều đạt và không còn defect nghiêm trọng mở. Sau lượt 27/11 không còn ca nào không đạt và không còn defect mở, nhưng T-AUTH-01 vẫn chưa chạy, nên chưa ghi increment đạt theo tiêu chí này; phân loại ca nào là Must do TV2 và TV1 chốt.
+
+\todo{Điền khi có: kết quả T-AUTH-01 nếu có Google Client ID; đo T-CI-03 thêm thiết bị.}
 
 \section{Phản hồi change event}
 \label{sec:3-6}
